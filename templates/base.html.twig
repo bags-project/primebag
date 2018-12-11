@@ -2,11 +2,46 @@
 <html>
     <head>
         <meta charset="UTF-8">
-        <title>{% block title %}Welcome!{% endblock %}</title>
+        <title>{% block title %}Primebag{% endblock %}</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}">
         {% block stylesheets %}{% endblock %}
     </head>
     <body>
-        {% block body %}{% endblock %}
+        <header class="center">
+            <img src="{{ asset('assets/img/primebag.png') }}" alt="Primebag Logo">
+        </header>
+        <div id="burger" style="font-size:30px; cursor:pointer" onclick="open_nav()">&#9776;</div>
+
+        <nav id="mon_sidenav" class="sidenav">
+            <a href="javascript:void(0)" class="close" onclick="close_nav()">&times;</a>
+            <a href="{{ path('home') }}">Accueil</a>
+            <a href="#">Femme</a>
+            <a href="#">Homme</a>
+            <a href="#">Scolaire</a>
+            <a href="#">Bagage</a>
+            {# {% if not app.user %} #}
+            <a href="#">Connexion</a>
+            {# <a href="{{ path('security_login') }}">Connexion</a> #}
+            {# {% else %} #}
+            <a href="#">Déconnexion</a>
+            {# <a href="{{ path('security_logout') }}">Déconnexion</a> #}
+            {# {% endif %} #}
+            <a href="#">Compte</a>
+            <a href="#">Panier</a>
+        </nav>
+        <main>
+            {% block body %}{% endblock %}
+        </main>
+
         {% block javascripts %}{% endblock %}
+
+        <script src="{{ asset('assets/js/script.js') }}"></script>
+        <br class="margin-tb">
+
+        <footer class="navbar">
+        <a href="#">Lien</a>
+        </footer>
+
     </body>
 </html>
