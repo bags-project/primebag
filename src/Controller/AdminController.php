@@ -25,7 +25,12 @@ class AdminController extends AbstractController
     */
     public function admin_article()
     {
-        return $this->render('article/index.html.twig', [
+        $repo = $this->getDoctrine()->getRepository(Article::class); // Recup données dans BDD
+        // $articles = $repo->findOneByTitle('Titre article'); // Pour trouver un article
+        $articles = $repo->findAll(); // Pour trouver tous les articles
+
+        return $this->render('admin/index.html.twig', [
+            'articles' => $articles
         ]);
     }
 

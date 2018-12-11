@@ -4,7 +4,17 @@
 
 {% block body %}
 
-
 <div class="content"></div>
+
+        {% for art in articles %}
+
+        <div class="flex-child">
+            <h2>{{ art.name }}</h2>
+            <img src="{{ art.poster }}" alt="image">
+            {{ art.description }}
+            <a href=""><span class="u">Voir</span></a>
+        </div>
+
+        {% endfor %}
 
 {% endblock %}
