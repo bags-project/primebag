@@ -18,9 +18,10 @@
 <!--Main Navigation-->
 <header>
 
+<a href ="{{path('home')}}"></a>
+
     <nav class="navbar fixed-top navbar-expand-lg navbar-dark black scrolling-navbar">
-        <a class="navbar-brand" href="#"><strong>Navbar</strong></a>
-        <div class="logo"> </div>
+        <a href="{{path('home')}}"><div class="logo"></div></a>
         
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
             aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -39,6 +40,12 @@
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="#">Bagages</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{path('user_register')}}">Compte</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Connection</a>
                 </li>
             </ul>
         </div>

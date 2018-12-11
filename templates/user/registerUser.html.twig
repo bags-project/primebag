@@ -1,0 +1,40 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Engistrement{% endblock %}
+
+{% block body %}
+
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+
+    <h1>Créer un compte</h1>
+
+
+
+    {{form_start(form, {'attr': {'novalidate' : 'novalidate' , 'class': 'form-horizontal', 'method': 'POST'}})}}
+    
+        {{form_label(form.firstName, 'Votre prénom', {'label_attr': {'class' : 'col-sm-2 control-label'}}) }}
+            {{form_widget(form.firstName, {'attr': {'novalide': 'novalidate', 'class' : 'form-horizontal'}}) }}
+        {{form_label(form.lastName, 'Votre nom', {'label_attr': {'class' : 'col-sm-2 control-label'}}) }}
+            {{form_widget(form.lastName, {'attr': {'novalide': 'novalidate', 'class' : 'form-horizontal'}}) }}
+        {{form_label(form.address, 'Votre adresse', {'label_attr': {'class' : 'col-sm-2 control-label'}}) }}
+            {{form_widget(form.address, {'attr': {'novalide': 'novalidate', 'class' : 'form-horizontal'}}) }}
+        {{form_label(form.secondaryAddress, 'Autre adresse (optionnel)', {'label_attr': {'class' : 'col-sm-2 control-label'}}) }}
+            {{form_widget(form.secondaryAddress, {'attr': {'novalide': 'novalidate', 'class' : 'form-horizontal'}}) }}
+        {{form_label(form.phoneNumber, 'Votre numéro de téléphone', {'label_attr': {'class' : 'col-sm-2 control-label'}}) }}
+            {{form_widget(form.phoneNumber, {'attr': {'novalide': 'novalidate', 'class' : 'form-horizontal'}}) }}
+        {{form_label(form.email, 'Votre adresse mail', {'label_attr': {'class' : 'col-sm-2 control-label'}}) }}
+            {{form_widget(form.email, {'attr': {'novalide': 'novalidate', 'class' : 'form-horizontal'}}) }}
+
+            {{form_widget(form.plainPassword, {'attr': {'novalide': 'novalidate', 'class' : 'form-horizontal'}}) }}    
+        {{form_widget(form)}}
+        <button>S'inscrire</button>
+    {{form_end(form)}}
+{% endblock %}
