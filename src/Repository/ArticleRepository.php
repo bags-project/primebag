@@ -47,4 +47,23 @@ class ArticleRepository extends ServiceEntityRepository
         ;
     }
     */
+
+    // public function search(?string $page) 
+    // {
+    //     //Système de pagination
+    //     $limit = 4;
+    //     $stmt->setMaxResults($limit);
+    //     $stmt->setFirstResult(($page-1) * $limit);
+
+    //     //RESULTAT
+    //     return $stmt->getQuery()->getResult();         
+    // }  
+
+
+    // public function getWifeCategory(){
+    //     $repo = $this->om->getRepository(Event::class);
+    //     return $this->repo->findBy(
+    //         ['categories' => 'Keyboard']
+    //     );
+    // }
 }

@@ -20,8 +20,4 @@ class ArticleService {
         return $this->repo->findAll();
     }
 
-    
-
-
-
 }
