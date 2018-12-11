@@ -1,0 +1,11 @@
+.content{
+
+    height: 800px;
+}
+
+.logo{
+    height: 150px;
+    width: 550px;
+
+    background-image: url("../img/primebag.png") ;
+}
