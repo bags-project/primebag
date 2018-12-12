@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Engistrement{% endblock %}
+{% block title %} Votre compte - {{parent()}}{% endblock %}
 
 {% block body %}
 
@@ -14,11 +14,11 @@
 <br>
 <br>
 
-    <h1>Créer un compte</h1>
-
-
+    <h1>Votre profil</h1>
 
     {{form_start(form, {'attr': {'novalidate' : 'novalidate' , 'class': 'form-horizontal', 'method': 'POST'}})}}
+
+
     
         {{form_label(form.firstName, 'Votre prénom', {'label_attr': {'class' : 'col-sm-2 control-label'}}) }}
             {{form_widget(form.firstName, {'attr': {'novalide': 'novalidate', 'class' : 'form-horizontal'}}) }}
@@ -45,6 +45,9 @@
             {{form_widget(form.phoneNumber, {'attr': {'novalide': 'novalidate', 'class' : 'form-horizontal'}}) }}
        
         {{form_widget(form)}}
-        <button type="submit">S'inscrire</button>
+        <button type="submit">Editer le profil</button>
     {{form_end(form)}}
+
+
+
 {% endblock %}
