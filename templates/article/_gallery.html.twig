@@ -1,0 +1,69 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello{% endblock %}
+
+{% block body %}
+
+<pre>
+  {{ dump(articles) }}
+</pre>
+
+{# FEMME #}
+{# Détermination des couleurs et spécificaté de l'univers selon l'URL #}
+{% if path == "/article/gallerie/femme" %}
+
+<div id="gallery-jumbotron-femme" class="card card-image">
+  <div class="text-white text-center py-5 px-4 my-5">
+    <div>
+      <h2 class="card-title h1-responsive pt-3 mb-5 font-bold"><strong>Femme</strong></h2>
+    </div>
+  </div>
+</div>
+
+{% endif %}
+
+
+{# HOMME #}
+{# Détermination des couleurs et spécificaté de l'univers selon l'URL #}
+{% if path == "/article/gallerie/homme" %}
+
+<div id="gallery-jumbotron-homme" class="card card-image">
+  <div class="text-white text-center py-5 px-4 my-5">
+    <div>
+      <h2 class="card-title h1-responsive pt-3 mb-5 font-bold"><strong>Homme</strong></h2>
+    </div>
+  </div>
+</div>
+
+{% endif %}
+
+
+{# SCOLAIRE #}
+{# Détermination des couleurs et spécificaté de l'univers selon l'URL #}
+{% if path == "/article/gallerie/scolaire" %}
+
+<div id="gallery-jumbotron-scolaire" class="card card-image">
+  <div class="text-white text-center py-5 px-4 my-5">
+    <div>
+      <h2 class="card-title h1-responsive pt-3 mb-5 font-bold"><strong>Scolaire</strong></h2>
+    </div>
+  </div>
+</div>
+
+{% endif %}
+
+
+{# BAGAGE #}
+{# Détermination des couleurs et spécificaté de l'univers selon l'URL #}
+{% if path == "/article/gallerie/bagage" %}
+
+<div id="gallery-jumbotron-bagage" class="card card-image">
+  <div class="text-white text-center py-5 px-4 my-5">
+    <div>
+      <h2 class="card-title h1-responsive pt-3 mb-5 font-bold"><strong>Bagage</strong></h2>
+    </div>
+  </div>
+</div>
+
+{% endif %}
+{% endblock %}

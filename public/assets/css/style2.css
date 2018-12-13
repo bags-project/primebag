@@ -1,0 +1,340 @@
+/*CORPUS-----------------------------------------------------------*/
+body {
+    box-sizing: border-box;
+    font-size: 16px;
+}
+
+
+
+/*HEADER-----------------------------------------------------------*/
+.logo {
+    height: 100px;
+    width: 330px;
+    background-image: url("../img/logo/primebag.png");
+}
+
+#jumbotron-base {
+    margin: 0;
+    padding: 0;
+}
+
+#menu-navbar {
+    font-weight: 400;
+}
+
+.navbar,
+#underlign-footer {
+    background-color: black;
+}
+
+/*FOOTER-----------------------------------------------------------*/
+
+footer {
+    padding-top: 1%;
+}
+
+
+/*HOME-----------------------------------------------------------*/
+/* html,
+body,
+.view {
+    height: 100%;
+    width: 100%;
+} */
+
+/* Grande photo home*/
+#view {
+    background: url("../img/logo/poster_accueil.jpg")no-repeat center center;
+    background-size: cover;
+}
+
+#home-one {
+    width: 100%;
+    background-attachment: fixed;
+    background-image: url("../intro.svg");
+    background-position: top right;
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+}
+
+#home-one article {
+    display: flex;
+}
+
+/* Epaisseur couleur catégories */
+.home-categories {
+    min-width: 3%;
+    margin-right: 1rem;
+}
+
+#female,
+#man,
+#kid,
+#bagages {
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    color: aliceblue;
+    font-size: 2rem;
+}
+
+#female {
+    background-color: rgb(81, 45, 168);
+}
+
+#man {
+    background-color: rgb(46, 46, 46);
+}
+
+#kid {
+    background-color: rgb(136, 14, 79);
+}
+
+#bagages {
+    background-color: rgb(121, 85, 72);
+}
+
+.content{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    flex-direction: column;
+}
+
+.content h2 {
+    text-align: center;
+}
+
+.vitrine {
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    flex-wrap: wrap;
+}
+
+.vitrine img {
+    margin-left: 1rem;
+    margin-right: 1rem;
+
+    max-width: 200px;
+    max-height: 200px;
+
+}
+
+.count-proposition{
+
+    height: 30rem;
+    width: 30rem;
+}
+
+article{
+    border-top: 1px solid rgb(69, 86, 102);
+}
+
+
+/*ARTICLES DETAILS-----------------------------------------------------------*/
+
+#details-main{
+    margin-top: 5rem;
+    margin-bottom: 5rem;
+}
+
+#details-portfolio{
+    display: flex;
+    align-items: center;
+
+}
+
+.list-group-item.active{
+    background-color: black;
+    border: 1px solid black;
+}
+
+.details-info{
+    display: flex;
+    flex-direction: column;
+    margin-top: 2rem;
+}
+
+.details-shopping-cart{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.tab-content>.active{
+margin-top: 1rem;
+}
+
+/*GALLERY-------ALL----------------------------------------------------------*/
+
+#gallery-title strong{
+    font-family: 'Righteous', cursive;
+    font-size: 4.5rem;
+}
+
+#gallery-display{
+    display: flex;
+    justify-content: center;
+}
+
+#gallery-filtres{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    margin-top: 2rem;
+}
+
+.gallery-card{
+
+    margin: 2rem;
+    border: 1px solid black;
+    border-radius: 10px;
+
+    padding: 1rem;
+}
+
+.card-title{
+    height: 4rem;
+}
+
+.card-buttons{
+    display: flex;
+}
+
+
+.card-price{
+    display: flex;
+}
+
+/*GALLERY-------FEMME----------------------*/
+#gallery-jumbotron-femme{
+
+    background-color: rgb(76, 51, 145);
+}
+
+
+#inlineFormCustomSelectPref-woman1{
+    border: 1px solid rgb(46, 46, 46);
+    width: 10rem;
+}
+
+
+#inlineFormCustomSelectPref-woman2{
+    border: 1px solid rgb(63, 81, 181);
+    width: 10rem;
+}
+
+
+#inlineFormCustomSelectPref-woman3{
+    border: 1px solid rgb(81, 45, 168);
+    width: 10rem;
+}
+
+
+/*GALLERY-------HOMME---------------------*/
+
+#gallery-jumbotron-homme{
+
+    background-color: rgb(46, 64, 79);
+}
+
+#inlineFormCustomSelectPref-man1{
+    border: 1px solid #1C2331;
+    width: 10rem;
+}
+
+
+#inlineFormCustomSelectPref-man2{
+    border: 1px solid #3F729B;
+    width: 10rem;
+}
+
+
+#inlineFormCustomSelectPref-man3{
+    border: 1px solid #263238;
+    width: 10rem;
+}
+
+
+
+/*GALLERY-------KIDS---------------------*/
+
+#gallery-jumbotron-scolaire{
+
+    background-color: rgb(136, 14, 79);
+}
+
+#inlineFormCustomSelectPref-kid1{
+    border: 1px solid #e53935;
+    width: 10rem;
+}
+
+
+#inlineFormCustomSelectPref-kid2{
+    border: 1px solid #880e4f ;
+    width: 10rem;
+}
+
+
+#inlineFormCustomSelectPref-kid3{
+    border: 1px solid #d50000;
+    width: 10rem;
+}
+
+
+
+/*GALLERY-------BAGAGES------------------*/
+
+#gallery-jumbotron-bagage{
+
+    background-color: rgb(153, 96, 50);
+}
+
+#inlineFormCustomSelectPref-bagage1{
+    border: 1px solid rgb(46, 46, 46);
+    width: 10rem;
+}
+
+
+#inlineFormCustomSelectPref-bagage2{
+    border: 1px solid #3e2723;
+    width: 10rem;
+}
+
+
+#inlineFormCustomSelectPref-bagage3{
+    border: 1px solid #212121;
+    width: 10rem;
+}
+
+
+
+
+
+
+
+/* MEDIA QUERIES */
+
+/* Photos présentations vitrine */
+@media screen and (max-width: 400px){
+    .vitrine img {
+        max-width: 120px;
+        max-height: 120px;
+    }
+
+}
+
+/* Photos présentations vitrine */
+@media screen and (max-width: 600px){
+    .vitrine img {
+        max-width: 170px;
+        max-height: 170px;
+    }
+
+}

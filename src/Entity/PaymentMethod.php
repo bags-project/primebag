@@ -7,9 +7,9 @@ use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * @ORM\Entity(repositoryClass="App\Repository\OrderStatusRepository")
+ * @ORM\Entity(repositoryClass="App\Repository\PaymentMethodRepository")
  */
-class OrderStatus
+class PaymentMethod
 {
     /**
      * @ORM\Id()
@@ -24,12 +24,7 @@ class OrderStatus
     private $name;
 
     /**
-     * @ORM\Column(type="string", length=60)
-     */
-    private $icon;
-
-    /**
-     * @ORM\OneToMany(targetEntity="App\Entity\Order", mappedBy="orderStatus")
+     * @ORM\OneToMany(targetEntity="App\Entity\Order", mappedBy="paymentMethod")
      */
     private $orders;
 
@@ -55,18 +50,6 @@ class OrderStatus
         return $this;
     }
 
-    public function getIcon(): ?string
-    {
-        return $this->icon;
-    }
-
-    public function setIcon(string $icon): self
-    {
-        $this->icon = $icon;
-
-        return $this;
-    }
-
     /**
      * @return Collection|Order[]
      */
@@ -79,7 +62,7 @@ class OrderStatus
     {
         if (!$this->orders->contains($order)) {
             $this->orders[] = $order;
-            $order->setOrderStatus($this);
+            $order->setPaymentMethod($this);
         }
 
         return $this;
@@ -90,8 +73,8 @@ class OrderStatus
         if ($this->orders->contains($order)) {
             $this->orders->removeElement($order);
             // set the owning side to null (unless already changed)
-            if ($order->getOrderStatus() === $this) {
-                $order->setOrderStatus(null);
+            if ($order->getPaymentMethod() === $this) {
+                $order->setPaymentMethod(null);
             }
         }
 
