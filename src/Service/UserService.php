@@ -4,6 +4,8 @@ namespace App\Service;
 
 use Doctrine\Common\Persistence\ObjectManager;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
+use App\Repository\UserRepository;
+
 
 
 use App\Entity\User;
@@ -15,7 +17,7 @@ class UserService
     private $userRegisterType;
     private $encoder;
 
-    public function __construct( ObjectManager $om, UserPasswordEncoderInterface $encoder )
+    public function __construct( ObjectManager $om, UserPasswordEncoderInterface $encoder, UserRepository $repo )
     {
         $this->om = $om;
         $this->encoder = $encoder;
@@ -45,6 +47,14 @@ class UserService
         // $encoded = $this->encoder->encodePassword($user, $plainPassword);  
         // $user->setPassword($encoded);
         //$this->om->persist($user);
+        $this->om->flush();
+
+        $repo = $this->om->getRepository( User::class );
+        return $repo->find( $id );
+    }
+
+    public function edit($id)
+    {
         $this->om->flush();
 
         $repo = $this->om->getRepository( User::class );

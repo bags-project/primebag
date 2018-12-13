@@ -6,6 +6,9 @@ use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
+
+
 use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
@@ -14,23 +17,22 @@ use App\Entity\User;
 use App\Form\UserRegisterType;
 use App\Form\LoginType;
 use App\Service\UserService;
-
-
+use App\Repository\UserRepository;
 
 class UserController extends AbstractController
 {
     /**
      * @Route("/user", name="user")
      */
-    public function index()
+    public function index(UserRepository $userRepository): Response
     {
-        return $this->render('user/index.html.twig', [
-            'controller_name' => 'UserController',
-        ]);
+        
+        return $this->render('user/index.html.twig',
+        ['users' => $userRepository->findAll()]);
     }
 
     /**
-    * @Route("/user/login", name="user_login")
+    * @Route("/user/login", name="user_login", methods="POST")
     */
 
     public function loginUser( Request $request, UserService $userService, AuthenticationUtils $authenticationUtils)
@@ -62,27 +64,55 @@ class UserController extends AbstractController
         }
 
         return $this->render('user/registerUser.html.twig', [
+            'user' => $user,
             "form" =>  $form->createView()
         ]);
     }
 
     /**
-    * @Route("/user/profile{id}", name="user_profile", requirements={"id"="\d+"})
+    * @Route("/user/profile{id}", name="user_profile", requirements={"id"="\d+"}, methods="GET")
     * @IsGranted("ROLE_USER")
     */
-    public function profilUser($id, Request $request , UserService $userService)
+    public function profilUser(User $user ,$id, UserService $userService): Response
     {
-        $user = new User ();
+        
+        return $this->render('user/profile.html.twig', ['user' => $user]);
 
-        $form = $this->createForm(UserRegisterType::Class, $user);
+    }
 
+    /**
+     * @Route("user/edit{id}", name="user_edit",  requirements={"id"="\d+"} , methods="GET|POST")
+     */
+    public function edit(Request $request, User $user, UserService $userService): Response
+    {
+        $form = $this->createForm(UserRegisterType::class, $user);
         $form->handleRequest($request);
 
-        //$user = "nom";
-        return $this->render('user/profile.html.twig',[
-            "user" => $userService->getProfile($id),
-            "form" => $form->createView()
+        if ($form->isSubmitted() && $form->isValid()) {
+            $userService->edit($id);
+            //$this->getDoctrine()->getManager()->flush();
+
+            return $this->redirectToRoute('user_index', ['id' => $user->getId()]);
+        }
+
+        return $this->render('user/edit.html.twig', [
+            'user' => $user,
+            'form' => $form->createView(),
         ]);
+    }
+
+    /**
+    * @Route("/{id}", name="user_delete", methods="DELETE")
+    */
+    public function delete(Request $request, User $user): Response
+    {
+        if ($this->isCsrfTokenValid('delete'.$user->getId(), $request->request->get('_token'))) {
+            $em = $this->getDoctrine()->getManager();
+            $em->remove($user);
+            $em->flush();
+        }
+
+        return $this->redirectToRoute('user_index');
     }
 
     /**
