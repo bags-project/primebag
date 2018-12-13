@@ -6,6 +6,7 @@ use App\Entity\User;
 use App\Entity\Article;
 use App\Form\ArticleType;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
@@ -67,7 +68,7 @@ class AdminController extends AbstractController
             // $owner = $manager->find( User::class, '1');
             // $article->setOwner($owner);
 
-            // Upload
+            // Upload poster :
             if(!empty($article->getPosterUrl() )) {
                 $article->setPoster( $article->getPosterUrl() );
             }
@@ -76,13 +77,32 @@ class AdminController extends AbstractController
                 $file = $article->getPosterFile();
                 $filename = md5( uniqid() ).'.'.$file->guessExtension();
         
-                $file->move( './assets/img', $filename );
+                $file->move( './assets/img/poster/', $filename );
         
                 $article->setPoster( $filename );
             }
-
             $manager->persist($article);
             $manager->flush();
+
+            // Upload altPicture1 :
+            // if(!empty($article->getAltPicture1Url() )) {
+            //     $article->setAltPicture1( $article->getAltPicture1Url() );
+            // }
+            // else
+            // {
+            //     $file1 = $article->getAltPicture1File();
+            //     $filename1 = md5( uniqid() ).'.'.$file1->guessExtension();
+        
+            //     $file1->move( './assets/img/poster/', $filename1 );
+        
+            //     $article->setAltPicture1( $filename1 );
+            // }
+            // var_dump($article);
+            // $manager->persist($article);
+            // $manager->flush();
+
+
+
 
             return $this->redirectToRoute('admin_article', ['id' => $article->getId()]);
 
@@ -102,15 +122,19 @@ class AdminController extends AbstractController
     /**
     * ===================== Effacer article ========================
     * @Route("/admin/{id}/del", name="admin_del")
+    * @return Response
     */
-    public function delete(Article $article, Request $request)
+    public function delete(Article $article)
+    // public function delete(Article $article, Request $request)
     {
-        if ($this->isCsrfTokenValid('delete'.$article->getId(), $request->request->get('_token'))) {
+        // if ($this->isCsrfTokenValid('delete'.$article->getId(), $request->request->get('_token')))
+        // {
             $em = $this->getDoctrine()->getManager();
             $em->remove($article);
             $em->flush();
-        }
+        // }
 
+        // return new Response('Article supprimé');
         return $this->redirectToRoute('admin_article');
     }
 
