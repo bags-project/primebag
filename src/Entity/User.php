@@ -1,13 +1,20 @@
 <?php
 
 namespace App\Entity;
-
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Component\Security\Core\Validator\Constraints as SecurityAssert;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+use Symfony\Component\Security\Core\User\UserInterface;
+
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\UserRepository")
+ * @UniqueEntity("email")
  */
-class User
+class User implements UserInterface 
 {
     /**
      * @ORM\Id()
@@ -18,16 +25,37 @@ class User
 
     /**
      * @ORM\Column(type="string", length=50)
+     * @Assert\Length(
+     * min = 3,
+     * max = 50,
+     * minMessage = "Votre prénom doit dépassé 3 caractères.",
+     * maxMessage = "Votre prénom doit ne doit pas dépassé 50 caractères."
+     * )
+     * @Assert\NotBlank(
+     * message ="Vous devez remplir votre prénom."
+     * )
      */
     private $firstName;
 
     /**
      * @ORM\Column(type="string", length=50)
+     * @Assert\Length(
+     * min = 3,
+     * max = 50,
+     * minMessage = "Votre nom doit dépassé 3 caractères.",
+     * maxMessage = "Votre nom doit ne doit pas dépassé 50 caractères."
+     * )
+     * @Assert\NotBlank(
+     * message ="Vous devez remplir votre nom."
+     * )
      */
     private $lastName;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\NotBlank(
+     * message ="Vous devez remplir votre adresse."
+     * )
      */
     private $address;
 
@@ -42,23 +70,47 @@ class User
     private $phoneNumber;
 
     /**
+     * @var string $email
      * @ORM\Column(type="string", length=100)
+     * @ORM\Column(name="email", type="string", length=100, unique=true)
+     * @Assert\Email(
+     * message = "L'email '{{ value }}' n'est pas valide.",
+     * checkMX = true
+     * )
+     * @Assert\NotBlank(
+     *  message ="Votre adresse mail ne peut pas être vide."
+     * )
      */
     private $email;
 
     /**
+     * @Assert\NotBlank(
+     *  message ="Vous n'avez pas rempli de mot de passe."
+     * )
+     * @Assert\Length(max=4096)
+     */
+    private $plainPassword;
+
+    /**
      * @ORM\Column(type="string", length=255)
+     *  message ="Veuillez confirmer votre mot de passe"
      */
     private $password;
 
     /**
      * @ORM\Column(type="string", length=100)
+     * @Assert\NotBlank(
+     * message ="Vous devez remplir votre nom de ville."
+     * )
      */
     private $city;
 
     /**
-     * @ORM\Column(type="string", length=10)
-     */
+    * @ORM\Column(type="string", length=10)
+    * @Assert\NotBlank(
+    * message ="Vous devez remplir votre code postal."
+    * ) 
+    */
     private $zipCode;
 
     /**
@@ -74,7 +126,20 @@ class User
     /**
      * @ORM\Column(type="array")
      */
-    private $role = [];
+    private $roles = [];
+
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Order", mappedBy="user", orphanRemoval=true)
+     */
+    private $orders;
+
+    public function __construct()
+    {
+        $this->orders = new ArrayCollection();
+        $this->roles = ["ROLE_USER"];
+        $this->countryName = "France";
+        $this->countryCode = "ISO 3166-2:FR";
+    }
 
     public function getId(): ?int
     {
@@ -153,6 +218,16 @@ class User
         return $this;
     }
 
+    public function getPlainPassword(): ?string
+    {
+        return $this->plainPassword;
+    }
+    public function setPlainPassword(string $plainPassword): self
+    {
+        $this->plainPassword = $plainPassword;
+        return $this;
+    }
+
     public function getPassword(): ?string
     {
         return $this->password;
@@ -213,15 +288,68 @@ class User
         return $this;
     }
 
-    public function getRole(): ?array
+    public function getRoles(): ?array
     {
-        return $this->role;
+        return $this->roles;
     }
 
-    public function setRole(array $role): self
+    public function setRoles(array $roles): self
     {
-        $this->role = $role;
+        $this->role = $roles;
 
         return $this;
+    }
+
+    public function __toString() {
+        return 'bonjour';
+    }
+
+    /**
+     * @return Collection|Order[]
+     */
+    public function getOrders(): Collection
+    {
+        return $this->orders;
+    }
+
+    public function addOrder(Order $order): self
+    {
+        if (!$this->orders->contains($order)) {
+            $this->orders[] = $order;
+            $order->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeOrder(Order $order): self
+    {
+        if ($this->orders->contains($order)) {
+            $this->orders->removeElement($order);
+            // set the owning side to null (unless already changed)
+            if ($order->getUser() === $this) {
+                $order->setUser(null);
+            }
+        }
+
+        return $this;
+    }
+
+    public function eraseCredentials()
+    {
+
+    }
+
+    public function getSalt(): ? string
+    {
+        return null;
+    }
+
+    public function getUsername(): ? string
+    {
+
+
+        return null;
+
     }
 }

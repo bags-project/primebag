@@ -31,6 +31,18 @@ class Delivery
      */
     private $trackingNumber;
 
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\Order", inversedBy="deliveries")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $orderRef;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\Carrier", inversedBy="deliveries")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $carrier;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -68,6 +80,30 @@ class Delivery
     public function setTrackingNumber(string $trackingNumber): self
     {
         $this->trackingNumber = $trackingNumber;
+
+        return $this;
+    }
+
+    public function getOrderRef(): ?Order
+    {
+        return $this->orderRef;
+    }
+
+    public function setOrderRef(?Order $orderRef): self
+    {
+        $this->orderRef = $orderRef;
+
+        return $this;
+    }
+
+    public function getCarrier(): ?Carrier
+    {
+        return $this->carrier;
+    }
+
+    public function setCarrier(?Carrier $carrier): self
+    {
+        $this->carrier = $carrier;
 
         return $this;
     }
