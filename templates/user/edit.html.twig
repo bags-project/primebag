@@ -1,0 +1,14 @@
+{% extends 'base.html.twig' %}
+
+{% block title %} Votre compte{% endblock %}
+
+{% block body %}
+
+    <h1>Allo</h1>
+
+    {{ form_start(form) }}
+    {{ form_widget(form) }}
+    <button class="btn">{{ button_label|default('Save') }}</button>
+    {{ form_end(form) }}
+        
+{% endblock %}

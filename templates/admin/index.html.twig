@@ -5,21 +5,37 @@
 {% block body %}
     <h1>Admin - Liste</h1>
 
-        {% for art in articles %}
+    <div class="admin-list">
+        <div class="admin-flex">
+            <div class="admin-flex-child">ID</div>
+            <div class="admin-flex-child admin-img">Image</div>
+            <div class="admin-flex-child">Nom</div>
+            <div class="admin-flex-child desktop">Stock</div>
+            <div class="admin-flex-child desktop">Prix</div>
+            <div class="admin-flex-child">Référence</div>
+            <div class="admin-flex-child">Modifier</div>
+            <div class="admin-flex-child">Supprimer</div>
+        </div>
+    </div>
 
+    {% for art in articles %}
+
+    <div class="admin-list">
         <div class="admin-flex">
             <div class="admin-flex-child">{{ art.id }}</div>
-            <div class="admin-flex-child admin-img"><a href="{{ art.poster }}" target="_blank"><img src="{{ art.poster }}" alt"{{ art.name }}"></a></div>
+            <div class="admin-flex-child admin-img"><a href="{{ asset('assets/img/poster/') }}{{ art.poster }}" target="_blank"><img src="{{ asset('assets/img/poster/') }}{{ art.poster }}" alt"{{ art.name }}"></a></div>
             <div class="admin-flex-child">{{ art.name }}</div>
-
+            <div class="admin-flex-child desktop">{{ art.stock }}</div>
+            <div class="admin-flex-child desktop">{{ art.price }}</div>
+            <div class="admin-flex-child">{{ art.reference }}</div>
             <div class="admin-flex-child"><a href="{{ path('admin_article')}}../{{ art.id }}/edit">🖍</a></div>
             <div class="admin-flex-child"><a href="{{ path('admin_article')}}../{{ art.id }}/del" onclick="if(window.confirm(\'Voulez-vous vraiment supprimer ?\')) {return true;} else {return false;}">X</a></div>
 
             {# <div class="admin-flex-child"><a href="{{ path('admin_edit', {'id':art.id} )) }}">🖍</a></div>
             <div class="admin-flex-child"><a href="{{ path('admin_del', {'id':art.id} )) }}" onclick="if(window.confirm(\'Voulez-vous vraiment supprimer ?\')) {return true;} else {return false;}">X</a></div> #}
-            
         </div>
+    </div>
 
-        {% endfor %}
+    {% endfor %}
 
 {% endblock %}
