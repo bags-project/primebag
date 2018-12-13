@@ -2,10 +2,15 @@
 
 namespace App\Form;
 
+use App\Entity\Brand;
 use App\Entity\Article;
+use App\Entity\Category;
+use App\Entity\ArticleColor;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Form\Extension\Core\Type\FileType;
 
 class ArticleType extends AbstractType
 {
@@ -17,15 +22,28 @@ class ArticleType extends AbstractType
             ->add('altPicture1')
             ->add('altPicture2')
             ->add('altPicture3')
+            // ->add('poster', FileType::class)
+            // ->add('altPicture1', FileType::class)
+            // ->add('altPicture2', FileType::class)
+            // ->add('altPicture3', FileType::class)
             ->add('price')
             ->add('reference')
             ->add('description')
             ->add('stock')
             ->add('matter')
             ->add('discount')
-            ->add('categories')
-            ->add('brand')
-            ->add('articleColor')
+            ->add('categories', EntityType::class, [
+                'class' => Category::class,
+                'choice_label' => 'name'
+            ])
+            ->add('brand', EntityType::class, [
+                'class' => Brand::class,
+                'choice_label' => 'name'
+            ])
+            ->add('articleColor', EntityType::class, [
+                'class' => ArticleColor::class,
+                'choice_label' => 'name'
+            ])
         ;
     }
 

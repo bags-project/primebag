@@ -39,6 +39,19 @@ class UserService
         $this->om->flush();
     }
 
+    public function getProfile($id) 
+    {
+        // $plainPassword = $user->getPlainPassword();
+        // $encoded = $this->encoder->encodePassword($user, $plainPassword);  
+        // $user->setPassword($encoded);
+        //$this->om->persist($user);
+        $this->om->flush();
+
+        $repo = $this->om->getRepository( User::class );
+        return $repo->find( $id );
+    }
+
+
 
 
 

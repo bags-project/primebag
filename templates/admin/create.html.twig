@@ -1,0 +1,29 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Ajout article{% endblock %}
+
+{% block body %}
+
+    <h1>Création d'article</h1>
+
+    {# <form action="" method="post">
+        <input type="text" name="title">
+        <textarea name="content"></textarea>
+        <input type="text" name="image">
+        <button type="submit">Envoyer</button>
+    </form> #}
+
+
+    {{ form_start ( form ) }}
+    {{ form_widget ( form, {'attr': {'class': 'test'}} ) }}
+    <button type="submit">
+        {% if editMode %}
+            Editer
+        {% else %}
+            Ajouter
+        {% endif %}
+    </button>
+    {{ form_end ( form ) }}
+
+
+{% endblock %}

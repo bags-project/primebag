@@ -2,13 +2,19 @@
 
 namespace App\Controller;
 
+use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 
 use App\Entity\User;
 use App\Form\UserRegisterType;
+use App\Form\LoginType;
 use App\Service\UserService;
+
 
 
 class UserController extends AbstractController
@@ -22,6 +28,19 @@ class UserController extends AbstractController
             'controller_name' => 'UserController',
         ]);
     }
+
+    /**
+    * @Route("/user/login", name="user_login")
+    */
+
+    public function loginUser( Request $request, UserService $userService, AuthenticationUtils $authenticationUtils)
+    {
+        return $this->render('user/login.html.twig', [
+            "lastUserName" =>  $authenticationUtils->getLastUsername(),
+
+        ]);
+    }
+
 
     /**
     * @Route("/user/register", name="user_register")
@@ -46,4 +65,34 @@ class UserController extends AbstractController
             "form" =>  $form->createView()
         ]);
     }
+
+    /**
+    * @Route("/user/profile{id}", name="user_profile", requirements={"id"="\d+"})
+    * @IsGranted("ROLE_USER")
+    */
+    public function profilUser($id, Request $request , UserService $userService)
+    {
+        $user = new User ();
+
+        $form = $this->createForm(UserRegisterType::Class, $user);
+
+        $form->handleRequest($request);
+
+        //$user = "nom";
+        return $this->render('user/profile.html.twig',[
+            "user" => $userService->getProfile($id),
+            "form" => $form->createView()
+        ]);
+    }
+
+    /**
+     * @Route("/logout", name ="logout")
+     */
+
+    public function logout()
+    {
+        
+       return $this->render('main/index.html.twig');
+    }
+
 }

@@ -301,7 +301,7 @@ class User implements UserInterface
     }
 
     public function __toString() {
-        return 'bonjour';
+        return "bonjour";
     }
 
     /**
@@ -349,7 +349,7 @@ class User implements UserInterface
     {
 
 
-        return null;
+        return $this->email;
 
     }
 }

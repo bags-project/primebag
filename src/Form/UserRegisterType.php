@@ -8,6 +8,9 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\RepeatedType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+
+
 
 class UserRegisterType extends AbstractType
 {
@@ -26,10 +29,13 @@ class UserRegisterType extends AbstractType
                 'second_options' => array('label' => 'Confirmer mot de passe'),
             ))
             ->add('zipCode')
-            ->add('city')
+            ->add('city', ChoiceType::class, array(
+                'choices' => array(
+                    'test' => 'test'
+                )
+            ))
             //->add('countryName')
             //->add('countryCode')
-            //->add('role')
         ;
     }
 

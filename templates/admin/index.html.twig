@@ -7,11 +7,17 @@
 
         {% for art in articles %}
 
-        <div class="flex-child">
-            <h2>{{ art.name }}</h2>
-            <img src="{{ art.poster }}" alt="image">
-            {{ art.description }}
-            <a href=""><span class="u">Voir</span></a>
+        <div class="admin-flex">
+            <div class="admin-flex-child">{{ art.id }}</div>
+            <div class="admin-flex-child admin-img"><a href="{{ art.poster }}" target="_blank"><img src="{{ art.poster }}" alt"{{ art.name }}"></a></div>
+            <div class="admin-flex-child">{{ art.name }}</div>
+
+            <div class="admin-flex-child"><a href="{{ path('admin_article')}}../{{ art.id }}/edit">🖍</a></div>
+            <div class="admin-flex-child"><a href="{{ path('admin_article')}}../{{ art.id }}/del" onclick="if(window.confirm(\'Voulez-vous vraiment supprimer ?\')) {return true;} else {return false;}">X</a></div>
+
+            {# <div class="admin-flex-child"><a href="{{ path('admin_edit', {'id':art.id} )) }}">🖍</a></div>
+            <div class="admin-flex-child"><a href="{{ path('admin_del', {'id':art.id} )) }}" onclick="if(window.confirm(\'Voulez-vous vraiment supprimer ?\')) {return true;} else {return false;}">X</a></div> #}
+            
         </div>
 
         {% endfor %}
