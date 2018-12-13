@@ -5,6 +5,8 @@ namespace App\Entity;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert; // Ajouté pour formulaire
+use Symfony\Component\HttpFoundation\File\File; // Ajouté pour formulaire upload
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\ArticleRepository")
@@ -29,9 +31,32 @@ class Article
     private $poster;
 
     /**
+     * @Assert\Url
+     */
+     private $posterUrl;
+
+     /**
+      * @Assert\Image(maxSize = "4096k")
+      */
+     private $posterFile;
+
+
+
+    /**
      * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $altPicture1;
+
+    /**
+     * @Assert\Url
+     */
+     private $altPicture1Url;
+
+     /**
+      * @Assert\Image(maxSize = "4096k")
+      */
+     private $altPicture1File;
+
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
@@ -112,6 +137,8 @@ class Article
         return $this;
     }
 
+
+
     public function getPoster(): ?string
     {
         return $this->poster;
@@ -124,6 +151,35 @@ class Article
         return $this;
     }
 
+
+    public function getPosterUrl(): ?string
+    {
+        return $this->posterUrl;
+    }
+
+    public function setPosterUrl(string $poster): self
+    {
+        $this->posterUrl = $poster;
+
+        return $this;
+    }
+
+    public function getPosterFile()
+    {
+        return $this->posterFile;
+    }
+
+    public function setPosterFile($poster): self
+    {
+        $this->posterFile = $poster;
+
+        return $this;
+    }
+
+
+
+
+
     public function getAltPicture1(): ?string
     {
         return $this->altPicture1;
@@ -135,6 +191,35 @@ class Article
 
         return $this;
     }
+
+    public function getAltPicture1Url(): ?string
+    {
+        return $this->altPicture1Url;
+    }
+
+    public function setAltPicture1Url(?string $altPicture1): self
+    {
+        $this->altPicture1Url = $altPicture1;
+
+        return $this;
+    }
+
+    public function getAltPicture1File(): ?string
+    {
+        return $this->altPicture1File;
+    }
+
+    public function setAltPicture1File(?string $altPicture1): self
+    {
+        $this->altPicture1File = $altPicture1;
+
+        return $this;
+    }
+
+
+
+
+
 
     public function getAltPicture2(): ?string
     {

@@ -18,21 +18,25 @@ class ArticleType extends AbstractType
     {
         $builder
             ->add('Name')
-            ->add('poster')
-            ->add('altPicture1')
-            ->add('altPicture2')
-            ->add('altPicture3')
-            // ->add('poster', FileType::class)
-            // ->add('altPicture1', FileType::class)
-            // ->add('altPicture2', FileType::class)
-            // ->add('altPicture3', FileType::class)
+            // ->add('poster')
+            // ->add('altPicture1')
+            // ->add('altPicture2')
+            // ->add('altPicture3')
+            ->add('posterUrl')
+            ->add('posterFile', FileType::class)
+            // ->add('altPicture1Url')
+            // ->add('altPicture1File', FileType::class)
+            // ->add('altPicture2Url')
+            // ->add('altPicture2File', FileType::class)
+            // ->add('altPicture2Url')
+            // ->add('altPicture2File', FileType::class)
             ->add('price')
             ->add('reference')
             ->add('description')
             ->add('stock')
             ->add('matter')
             ->add('discount')
-            ->add('categories', EntityType::class, [
+            ->add('categories', null, [
                 'class' => Category::class,
                 'choice_label' => 'name'
             ])
