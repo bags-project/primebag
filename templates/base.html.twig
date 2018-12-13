@@ -64,7 +64,12 @@
         <div class="header-flex-child flexnowrap">
             <div class="symbol">
             <div>
-                <a href="{{path('user_register')}}"><div class="profil"></div></a><br>
+            {% if is_granted ('ROLE_USER') %}
+            <a href="{{path('user_profile', {id: 1 })}}"><div class="profil"></div></a><br>
+            {% else %}
+            <a href="{{path('user_register')}}"><div class="profil"></div></a><br>
+            {% endif %}
+
             </div>
             <div class="note">Compte</div>
             </div>
@@ -86,13 +91,11 @@
                 <li><a href="#">HOMME</a></li>
                 <li><a href="#">SCOLAIRE</a></li>
                 <li><a href="#">BAGAGES</a></li>
-                {# {% if not app.user %} #}
-                <li><a href="#">Connexion</a></li>
-                {# <a href="{{ path('security_login') }}">Connexion</a> #}
-                {# {% else %} #}
-                <li><a href="#">Déconnexion</a></li>
-                {# <a href="{{ path('security_logout') }}">Déconnexion</a> #}
-                {# {% endif %} #}
+                {% if is_granted ('ROLE_USER') %}
+                <li><a href="{{path('logout')}}">Déconnexion</a></li>
+                {% else %}
+                <li><a href="{{path('user_login')}}">Connexion</a></li>
+                {% endif %}
                 <li><input type="text"><button type="submit">Recherche</button></li>
             </ul>
             </nav>
