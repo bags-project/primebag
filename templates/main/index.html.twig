@@ -5,90 +5,119 @@
 {% block body %}
 
 <div class="card card-image" id="view">
-  <div class="text-white text-center py-5 px-4 my-5">
-    <div>
-      <h2 class="card-title h1-responsive pt-3 mb-5 font-bold"><strong>Pour que l'affaire soit dans le sac</strong></h2>
-      <p class="mx-5 mb-5">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repellat fugiat, laboriosam, voluptatem,
-      </p>
+    <div class="text-white text-center py-5 px-4 my-5">
+        <div>
+            <h2 class="card-title h1-responsive pt-3 mb-5 font-bold"><strong>Pour que l'affaire soit dans le sac</strong></h2>
+            <p class="mx-5 mb-5">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repellat fugiat, laboriosam,
+                voluptatem,
+            </p>
+        </div>
     </div>
-  </div>
 </div>
 
 <main>
 
     <section id="home-one">
-            <!-- One -->
-            <article class="female">
+        <!-- One -->
+        <article class="female">
 
-                <div id="female" class="home-categories">
-                </div>
+            <div id="female" class="home-categories">
+            </div>
 
-                <div class="content">
-                    <h2>Femme</h2>
-                    {# <a href="{{ path('article_gallery', {'category' : 'femme' })}}" class="btn btn-outline-info waves-effect">Découvrir</a></li> #}
-                    <a href="{{ path('woman_gallery')}}" class="btn btn-deep-purple btn-lg active btn-sm" role="button" aria-pressed="true">Découvrir</a>
-                </div>
-                <div class="vitrine">
+            <div class="content">
+                <h2>Femme</h2>
+                {# <a href="{{ path('article_gallery', {'category' : 'femme' })}}" class="btn btn-outline-info waves-effect">Découvrir</a></li>
+                #}
+                <a href="{{ path('woman_gallery')}}" class="btn btn-deep-purple btn-lg active btn-sm" role="button"
+                    aria-pressed="true">Découvrir</a>
+            </div>
+            <div class="vitrine">
 
-                    {% for article in articles %}
+                {% for article in articles %}
 
-                     <a href="{{ path('article_display' , {'id': article.id}) }}"><img src="../../assets/img/poster/{{ article.poster }}" alt=""></a>
+                {% if article.categories[0].name == 'Femme' %}
 
-                    {% endfor %}
+                <a href="{{ path('article_display' , {'id': article.id}) }}"><img src="../../assets/img/poster/{{ article.poster }}"
+                        alt=""></a>
 
-                </div>
-            </article>
+                {% endif %}
 
+                {% endfor %}
 
-            <!-- Two -->
-            <article class="man">
+            </div>
+        </article>
 
-                <div id="man" class="home-categories">
-                </div>
-                <div class="content">
-                    <h2>Homme</h2>
-                    <a href="{{ path('man_gallery')}}" class="btn btn-elegant btn-lg active btn-sm">Découvrir</a></li>
-                </div>
-                <div class="vitrine">
+        <!-- Two -->
+        <article class="man">
 
-                    {% for article in articles %}
-                    <a href="{{ path('article_display' , {'id': article.id}) }}"><img src="../../assets/img/poster/{{ article.poster }}" alt=""></a>
-                    {% endfor %}
+            <div id="man" class="home-categories">
+            </div>
+            <div class="content">
+                <h2>Homme</h2>
+                <a href="{{ path('man_gallery')}}" class="btn btn-elegant btn-lg active btn-sm">Découvrir</a></li>
+            </div>
+            <div class="vitrine">
 
-                </div>
-            </article>
+                {% for article in articles %}
 
-            <!-- Three -->
-            <article class="kid">
+                {% if article.categories[0].name == 'Homme' %}
 
-                <div id="kid" class="home-categories"></div>
-                <div class="content">
-                    <h2>Scolaire</h2>
-                     <a href="{{ path('kid_gallery')}}" class="btn btn-unique btn-lg active btn-sm">Découvrir</a></li>
-                </div>
-                <div class="vitrine">
-                    {% for article in articles %}
-                     <a href="{{ path('article_display' , {'id': article.id}) }}"><img src="../../assets/img/poster/{{ article.poster }}" alt=""></a>
-                    {% endfor %}
-                </div>
+                <a href="{{ path('article_display' , {'id': article.id}) }}"><img src="../../assets/img/poster/{{ article.poster }}"
+                        alt=""></a>
 
-            </article>
+                {% endif %}
 
-            <!-- Four -->
-            <article class="bagages">
+                {% endfor %}
 
-                <div id="bagages" class="home-categories"></div>
-                <div class="content">
-                    <h2>Bagages</h2>
-                    <a href="{{ path('bagage_gallery')}}" class="btn btn-brown btn-lg active btn-sm">Découvrir</a></li>
-                </div>
-                <div class="vitrine">
-                    {% for article in articles %}
-                     <a href="{{ path('article_display' , {'id': article.id}) }}"><img src="../../assets/img/poster/{{ article.poster }}" alt=""></a>
-                    {% endfor %}
-                </div>
+            </div>
+        </article>
 
-            </article>
+        <!-- Three -->
+        <article class="kid">
+
+            <div id="kid" class="home-categories"></div>
+            <div class="content">
+                <h2>Scolaire</h2>
+                <a href="{{ path('kid_gallery')}}" class="btn btn-unique btn-lg active btn-sm">Découvrir</a></li>
+            </div>
+            <div class="vitrine">
+                {% for article in articles %}
+
+                {% if article.categories[0].name == 'Scolaire' %}
+
+                <a href="{{ path('article_display' , {'id': article.id}) }}"><img src="../../assets/img/poster/{{ article.poster }}"
+                        alt=""></a>
+
+                {% endif %}
+
+                {% endfor %}
+
+            </div>
+
+        </article>
+
+        <!-- Four -->
+        <article class="bagages">
+
+            <div id="bagages" class="home-categories"></div>
+            <div class="content">
+                <h2>Bagages</h2>
+                <a href="{{ path('bagage_gallery')}}" class="btn btn-brown btn-lg active btn-sm">Découvrir</a></li>
+            </div>
+            <div class="vitrine">
+                {% for article in articles %}
+
+                {% if article.categories[0].name == 'Bagage' %}
+
+                <a href="{{ path('article_display' , {'id': article.id}) }}"><img src="../../assets/img/poster/{{ article.poster }}"
+                        alt=""></a>
+
+                {% endif %}
+
+                {% endfor %}
+            </div>
+
+        </article>
 
     </section>
 

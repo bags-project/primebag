@@ -11,7 +11,7 @@ class ArticleService {
 
     private $om;
 
-    public function __construct(ObjectManager $om, ArticleRepository $repo ){
+    public function __construct(ObjectManager $om, ArticleRepository $repo){
         $this->om = $om;
     }
 

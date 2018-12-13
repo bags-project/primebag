@@ -6,9 +6,11 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
 
 use App\Service\ArticleService; 
+use App\Service\BrandService; 
 
 use App\Entity\Article;
 use App\Entity\Category;
+use App\Entity\Brand;
 
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Request;
@@ -17,6 +19,7 @@ use Symfony\Component\HttpFoundation\RedirectResponse;
 
 use App\Repository\EventRepository;
 use App\Repository\CategoryRepository;
+use App\Repository\BrandRepository;
 
 use App\Form\FormType;
 use Doctrine\Common\Persistence\ObjectManager;
@@ -33,7 +36,6 @@ class ArticleController extends AbstractController
 
             return $this->render('main/index.html.twig', [
                 'articles' => $articleService->search(),
-
             ]);
      }
 
@@ -74,14 +76,14 @@ class ArticleController extends AbstractController
     /**
      * @Route("/article/gallerie/femme", name="woman_gallery")
      */
-    public function womanGallery(ArticleService $articleService, Request $request)
+    public function womanGallery(ArticleService $articleService, Request $request, BrandService $brandService )
     {      
 
            $path = $request->getPathInfo();
 
            return $this->render('article/gallery/woman.html.twig', [
-               'articles' => $articleService->getAll(),
-               'path' => $path
+               'articles' => $articleService->search(),
+               'brands' => $brandService->getAllBrands(),
            ]);
     }
 
@@ -95,8 +97,8 @@ class ArticleController extends AbstractController
            $path = $request->getPathInfo();
 
            return $this->render('article/gallery/man.html.twig', [
-               'articles' => $articleService->getAll(),
-               'path' => $path
+            'articles' => $articleService->search(),
+            'brands' => $articleService->getAll(),
            ]);
     }
 
@@ -110,8 +112,7 @@ class ArticleController extends AbstractController
            $path = $request->getPathInfo();
 
            return $this->render('article/gallery/kid.html.twig', [
-               'articles' => $articleService->getAll(),
-               'path' => $path
+            'articles' => $articleService->search(),
            ]);
     }
 
@@ -125,8 +126,7 @@ class ArticleController extends AbstractController
            $path = $request->getPathInfo();
 
            return $this->render('article/gallery/bagage.html.twig', [
-               'articles' => $articleService->getAll(),
-               'path' => $path
+            'articles' => $articleService->search(),
            ]);
     }
 

@@ -50,14 +50,18 @@ class ArticleRepository extends ServiceEntityRepository
 
     public function search() 
     {
-        $stmt = $this->createQueryBuilder('article') 
-                     ->andWhere('article.name LIKE :term') 
+        $stmt = $this->createQueryBuilder('art') 
+                     ->innerJoin('art.categories', 'artC' ) 
+                     ->addSelect('artC')
+                     ->innerJoin('art.brand', 'artB' ) 
+                     ->addSelect('artB')
+                     ->andWhere('art.name LIKE :term') 
                      ->setParameter(':term', '%')
                      ->getQuery();
 
         //Système de pagination
-        $limit = 3;
-        $stmt->setMaxResults($limit);
+        // $limit = 3;
+        // $stmt->setMaxResults($limit);
 
         // $stmt->setFirstResult(($page-1) * $limit);
 

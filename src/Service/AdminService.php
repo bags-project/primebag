@@ -12,7 +12,7 @@ class AdminService {
         $this->manager = $manager;
     }
 
-
+    
     public function getAll() {
         // return $this->events;
         $repo = $this->manager->getRepository( Events::class );
