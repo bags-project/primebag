@@ -8,12 +8,18 @@
 
         {% for art in articles %}
 
-        <div class="flex-child">
+        <div class="flex">
             <h2>{{ art.name }}</h2>
             <img src="{{ art.poster }}" alt="image">
-            {{ art.description }}
-            <a href=""><span class="u">Voir</span></a>
+            <p>{{ art.description }}</p>
+            <div>
+                <a href=""><span class="u">Voir</span></a>
+            </div>
+            <div>
+                <a class="btn btn-success" href="?article={{ art.id }}">Ajouter au panier</a>
+            </div>
         </div>
+        <hr>
 
         {% endfor %}
 
