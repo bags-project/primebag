@@ -32,7 +32,7 @@
 
                     {% for article in articles %}
 
-                     <a href="{{ path('article_display' , {'id': article.id}) }}"><img src="../../assets/img/poster/{{ article.poster }}" alt=""></a>
+                     <a href="{{ path('article_display' , {'id': article.id}) }}"><img src="{{ asset('assets/img/poster/') }}{{article.poster}}" alt=""></a>
 
                     {% endfor %}
 
