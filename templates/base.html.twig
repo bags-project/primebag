@@ -19,43 +19,6 @@
         <div id="pub" class="flexbetween desktop">
         <div>
             Satisfait ou remboursé 30 jours
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav mr-auto">
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Femme</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Homme</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Scolaire</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Bagages</a>
-                </li>
-                </li>
-                {% if is_granted ('ROLE_USER') %}
-                <li class="nav-item">
-                    <a class="nav-link" href="{{path('user_profile', {id: 1 })}}">Compte</a>
-                </li>
-                {% else %}
-                <li class="nav-item">
-                    <a class="nav-link" href="{{path('user_register')}}">Compte</a>
-                </li>
-                {% endif %}
-                {% if is_granted ('ROLE_USER') %}
-                <li class="nav-item">
-                    <a class="nav-link" href="{{path('logout')}}">Déconnection</a>
-                </li>
-                {% else %}
-                <li class="nav-item">
-                    <a class="nav-link" href="{{path('user_login')}}">Connection</a>
-                </li>
-                {% endif %}
         </div>
         <div>
             Retour gratuit
@@ -142,14 +105,7 @@
             </main>
 
 
-
         </div>
-
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.4/umd/popper.min.js"></script>
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/js/bootstrap.min.js"></script>
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.5.15/js/mdb.min.js"></script>
-<script type="text/javascript" src="{{ asset('assets/js/script.js')}}"></script>
 
 
         <footer class="footer-flex">
