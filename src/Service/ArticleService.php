@@ -35,4 +35,13 @@ class ArticleService {
         return $repo->findAll();
     }
 
+    public function showCase(){
+        $repo = $this->om->getRepository(Article::class);
+        return $repo->showCase();
+    }
+
+
+
+
+
 }

@@ -76,15 +76,16 @@ class ArticleRepository extends ServiceEntityRepository
         return $stmt->getQuery()->getResult();         
     }  
 
-    // public function searchAll() 
-    // {
-    //     $stmt = $this->createQueryBuilder('article') 
-    //                  ->andWhere('article.name LIKE :term') 
-    //                  ->setParameter(':term', '%')
-    //                  ->getQuery();
 
-    //     //RESULTAT
-    //     return $stmt->getResult();         
-    // }  
+    public function showCase() 
+    {
+        $stmt = $this->createQueryBuilder('art') 
+                     ->andWhere('art.showcase = :term') 
+                     ->setParameter(':term', '1');
+                    
+        return $stmt->getQuery()->getResult();         
+    }  
+
+
 
 }
