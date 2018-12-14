@@ -187,7 +187,7 @@ margin-top: 1rem;
     display: flex;
     justify-content: space-around;
     align-items: center;
-    margin-top: 2rem;
+    margin-top: 0.5rem;
 }
 
 .gallery-card{
@@ -207,15 +207,35 @@ margin-top: 1rem;
     display: flex;
 }
 
-
 .card-price{
     display: flex;
 }
+
+
+#inlineFormCustomSelectPref{
+    border: 1px solid rgb(46, 46, 46);
+    width: 10rem;
+}
+
+.card-title{
+    padding: 0;
+    height: 3rem;
+}
+
+.card-img-top{
+    height: 10rem;
+    width: 10rem;
+    margin-left: 2.3rem;
+}
+
 
 /*GALLERY-------FEMME----------------------*/
 #gallery-jumbotron-femme{
 
     background-color: rgb(76, 51, 145);
+    height: 10rem;
+    padding: 0;
+    margin: 0;
 }
 
 
@@ -228,6 +248,7 @@ margin-top: 1rem;
 #inlineFormCustomSelectPref-woman2{
     border: 1px solid rgb(63, 81, 181);
     width: 10rem;
+
 }
 
 
@@ -242,6 +263,7 @@ margin-top: 1rem;
 #gallery-jumbotron-homme{
 
     background-color: rgb(46, 64, 79);
+    height: 10rem;
 }
 
 #inlineFormCustomSelectPref-man1{
@@ -268,6 +290,8 @@ margin-top: 1rem;
 #gallery-jumbotron-scolaire{
 
     background-color: rgb(136, 14, 79);
+    height: 10rem;
+
 }
 
 #inlineFormCustomSelectPref-kid1{
@@ -312,11 +336,6 @@ margin-top: 1rem;
     border: 1px solid #212121;
     width: 10rem;
 }
-
-
-
-
-
 
 
 /* MEDIA QUERIES */

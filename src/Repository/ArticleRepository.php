@@ -48,7 +48,7 @@ class ArticleRepository extends ServiceEntityRepository
     }
     */
 
-    public function search() 
+    public function search($price) 
     {
         $stmt = $this->createQueryBuilder('art') 
                      ->innerJoin('art.categories', 'artC' ) 
@@ -56,9 +56,16 @@ class ArticleRepository extends ServiceEntityRepository
                      ->innerJoin('art.brand', 'artB' ) 
                      ->addSelect('artB')
                      ->andWhere('art.name LIKE :term') 
-                     ->setParameter(':term', '%')
-                     ->getQuery();
+                     ->setParameter(':term', '%');
+                     
+        //Système de tri
+        if ($price == "upperprice"){
+            $stmt->orderBy('art.price' , 'ASC');
 
+        } else if($price == "lowerprice"){
+            $stmt->orderBy('art.price', 'DESC');
+        }
+                    
         //Système de pagination
         // $limit = 3;
         // $stmt->setMaxResults($limit);
@@ -66,7 +73,7 @@ class ArticleRepository extends ServiceEntityRepository
         // $stmt->setFirstResult(($page-1) * $limit);
 
         //RESULTAT
-        return $stmt->getResult();         
+        return $stmt->getQuery()->getResult();         
     }  
 
     // public function searchAll() 

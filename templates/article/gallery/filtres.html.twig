@@ -1,45 +1,56 @@
- <div id="gallery-filtres" class="row">
+{# Système de filtre dans les galleries #}
 
-            <div class="brand-filtre">
+<div class="brand-filtre">
 
-                <form class="form-inline">
-                    <label class="my-1 mr-2" for="inlineFormCustomSelectPref">Marque</label>
-                    <select class="custom-select my-1 mr-sm-2" id="inlineFormCustomSelectPref-1">
-                        <option selected>...</option>
-                        
-                        {% for brand in brands %}
-                            
-                        <option value="brand"> {{brand.name}} </option>
+    <div id="gallery-filtres" class="row">
 
-                        {% endfor %}
+        <div class="brand-filtre">
+            <form class="form-inline" method="GET" action="#">
+                <label class="my-1 mr-2" for="inlineFormCustomSelectPref">Marque</label>
+                <select name="cat" class="custom-select my-1 mr-sm-2" id="inlineFormCustomSelectPref">
+                    <option selected></option>
 
-                    </select>
-                    <button type="submit" class="btn btn-elegant btn-sm">choisir</button>
-                </form>
-            </div>
+                    {% for brand in brands %}
+                    <option value="{{brand.name}}"> {{brand.name}} </option>
+                    {% endfor %}
 
-            <div class="price-filtre">
+                </select>
+                <button type="submit" class="btn btn-elegant btn-sm">choisir</button>
+            </form>
+        </div>
 
-                <form class="form-inline">
-                    <label class="my-1 mr-2" for="inlineFormCustomSelectPref">Prix</label>
-                    <select class="custom-select my-1 mr-sm-2" id="inlineFormCustomSelectPref-2">
-                        <option selected>...</option>
-                        <option value="upperprice"> Le moins cher </option>
-                        <option value="lowerprice"> Le plus cher </option>
-                    </select>
-                    <button type="submit" class="btn btn-indigo my-1 btn-sm">choisir</button>
-                </form>
-            </div>
+        <div class="price-filtre">
+            <form class="form-inline" method="GET" action="#">
+                <label class="my-1 mr-2" for="inlineFormCustomSelectPref">Prix</label>
+                <select name="price" class="custom-select my-1 mr-sm-2" id="inlineFormCustomSelectPref">
+                    <option selected></option>
+                    <option value="upperprice"> Le moins cher </option>
+                    <option value="lowerprice"> Le plus cher </option>
+                </select>
+                <button type="submit" class="btn btn-elegant my-1 btn-sm">choisir</button>
+            </form>
+        </div>
 
-            <div class="material-filtre">
+        <div class="material-filtre">
+            <form class="form-inline" method="GET" action="#">
+                <label class="my-1 mr-2" for="inlineFormCustomSelectPref">Couleurs</label>
+                <select name="cat" class="custom-select my-1 mr-sm-2" id="inlineFormCustomSelectPref">
 
-                <form class="form-inline">
-                    <label class="my-1 mr-2" for="inlineFormCustomSelectPref">Matière</label>
-                    <select class="custom-select my-1 mr-sm-2" id="inlineFormCustomSelectPref-3">
-                        <option value="">...</option>
+                    <option selected></option>
+                    {% for color in colors %}
+                    <option placeholder="{{color.name}}" value="{{color.name}}">{{color.name}}</option>
+                    {% endfor %}
 
-                    </select>
-                    <button type="submit" class="btn btn-deep-purple my-1 btn-sm">choisir</button>
-                </form>
-            </div>
+                </select>
+                <button type="submit" class="btn btn-elegant my-1 btn-sm">choisir</button>
+            </form>
+        </div>
+
+        {% if cat is not null %}
+        <div>
+            <a id="GetAll" href="{{ path('woman_gallery')}}" class="btn btn-success btn-sm" role="button">Tous les
+                articles</a>
+        </div>
+        {% endif %}
+
     </div>

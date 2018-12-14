@@ -15,9 +15,9 @@ class ArticleService {
         $this->om = $om;
     }
 
-    public function search() {
+    public function search($price) {
         $repo = $this->om->getRepository(Article::class); 
-        return $repo->search();
+        return $repo->search($price);
     }
 
     public function searchAll() {
