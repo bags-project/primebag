@@ -6,7 +6,7 @@ body {
 
 /* ==================== Textes ==================== */
 
-h1 {
+/* h1 {
   font:bold 1.9em "Times New Roman", serif;
   color:#1254A2;
   text-align:center;
@@ -19,15 +19,7 @@ h2 {
   font:bold 1.2em Verdana, sans-serif;
   text-align:center;
   margin:35px 0 40px 0;
-}
-h3 {
-  font:bold 1em Verdana, sans-serif;
-  text-decoration:underline;
-  margin:25px 0 20px 0;
-}
-h4 {
-  font:bold 1em Verdana, sans-serif;
-}
+} */
 
 p, .text {font:0.9em verdana, sans-serif;}
 
@@ -40,7 +32,6 @@ p, .text {font:0.9em verdana, sans-serif;}
 
 .invisible {opacity:0}
 .visible {opacity:1; transition:2s}
-
 
 .b {font-weight:bold}
 .u {text-decoration:underline}
@@ -58,23 +49,21 @@ a:hover {color:#EC0000;}
 /* ==================== Blocs et Navbar ==================== */
 
 header {
-  width:auto;
   background-color: #f7f7f7;
   /* color: #d3d3d3; */
 }
 
 footer {
-  width:auto;
   background-color: #1f1f1f;
   padding:15px;
   margin-top:12px;
   color: #d3d3d3;
 }
 
-.main {
+/* .main {
   margin:30px 0;
   padding:20px;
-}
+} */
 
 #pub {
   background-color:#2d2d2d;
@@ -110,14 +99,12 @@ nav.nav1 li a:hover {
   background-color: #9fbee3;
 }
 
-
 .desktop {
   display: block;
 }
 .mobile {
   display: none;
 }
-
 
 .limit {
   max-width:1300px;
@@ -275,12 +262,22 @@ img, video, iframe {
 
 /* ==================== Tableaux div (remplacent table/tr/td) ==================== */
 
-.border {border:1px solid black}
-
 .boxshadow {box-shadow:5px 5px 5px black;}
 
 .overflow-hidden {
   overflow: hidden;
+}
+
+
+/* ==================== Tableaux div (remplacent table/tr/td) ==================== */
+
+.border {border:1px solid black}
+
+.boxdotted {
+  border:3px dotted #ce2b68;
+  border-radius:14px;
+  padding:12px 12px 12px 14px;
+  margin:50px 50px;
 }
 
 

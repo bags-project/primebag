@@ -27,7 +27,7 @@
 
             <hr>
             <div class="details-shopping-cart">
-               <a href="{{ path('cart_add')}}?articleId={{ article.id }}"><button type="button" class="btn btn-outline-dark waves-effect">Ajouter au panier</button>
+               <a href="{{ path('cart_add', {'id': article.id, 'name': article.name, 'ref': article.reference, 'price': article.price}) }}"><button type="button" class="btn btn-outline-dark waves-effect">Ajouter au panier</button>
             </div>
             <hr>
 

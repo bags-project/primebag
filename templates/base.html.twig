@@ -13,7 +13,7 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.5.15/css/mdb.min.css" rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('assets/css/style2.css') }}">
-    <link rel="stylesheet" href="{{ asset('assets/css/base.css') }}">
+    {# <link rel="stylesheet" href="{{ asset('assets/css/base.css') }}"> #}
 
     <link href="https://fonts.googleapis.com/css?family=Righteous" rel="stylesheet">
 
@@ -30,7 +30,7 @@
     </div> #}
 
     {# Logo et Symboles #}
-    <div class="header-flex">
+    {# <div class="header-flex">
         <div class="header-flex-child">
             <a href="{{ path('home') }}"><img src="{{ asset('assets/img/primebag.png') }}" alt="Primebag"></a>
         </div>
@@ -45,12 +45,15 @@
     
             <div class="symbol">
             <div>
+                {% set cart = app.session.get('cart') %}
+
                 <a href="{{path('cart_content')}}"><div class="basket"></div></a><br>
             </div>
             <div class="note">Panier</div>
+   
             </div>
         </div>
-    </div>
+    </div> #}
 
     {# Menu avec les catégories #}
     <nav id="menu-navbar" class="navbar navbar-expand-lg navbar-dark">

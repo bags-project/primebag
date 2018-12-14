@@ -11,13 +11,13 @@ class ArticleService {
 
     private $om;
 
-    public function __construct(ObjectManager $om, ArticleRepository $repo ){
+    public function __construct(ObjectManager $om, ArticleRepository $repo){
         $this->om = $om;
     }
 
-    public function search() {
+    public function search($price) {
         $repo = $this->om->getRepository(Article::class); 
-        return $repo->search();
+        return $repo->search($price);
     }
 
     public function searchAll() {
