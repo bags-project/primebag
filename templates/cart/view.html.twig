@@ -19,7 +19,6 @@
 
     <div class="container">
         {% for key in cart.name|keys %}
-            {{dump(cart)}}
             <div class="row">
                 <div class="col-6">
                     <h4>Article : {{ attribute(cart.name, key) }}</h4>
@@ -31,9 +30,8 @@
                     <h4>Prix : {{ attribute(cart.price, key) }}</h4>
                 </div>
                 {% set id = attribute(cart.id, key)  %}
-                {{dump(id)}}
                 <div class="col-2">             
-                    <a href="{{ path('cart_remove', {'id': id}) }}">xxxxxxxxxxxxx</a>
+                    <a href="{{ path('cart_remove', {'id': id}) }}">x</a>
                 </div>
             </div>
             <hr />
@@ -42,10 +40,5 @@
         {% endfor %}           
         <button type="submit" class="btn-block btn-success">Valider mon panier</button>
     </div>
-{#  
-    {% if pepito %}
-        <button type="submit" class="btn btn-success">Valider mon panier</button>
-    {% endif %}
-#}
 
 {% endblock %}
