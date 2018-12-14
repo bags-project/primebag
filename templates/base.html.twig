@@ -91,7 +91,7 @@
                 {% if is_granted ('ROLE_USER') %}
 
                 <li class="nav-item">
-                    <a class="btn btn-light btn-sm" href="{{path('user_profile', {id: app.user.id })}}">Compte</a>
+                    <a class="btn btn-light btn-sm" href="{{path('user_profile', {id: app.user.id})}}">Compte</a>
                 </li>
                 {% else %}
 
