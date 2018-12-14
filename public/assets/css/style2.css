@@ -337,8 +337,59 @@ margin-top: 1rem;
     width: 10rem;
 }
 
+/*//////////////////////////////////////////////////*/
+/*                     PANIER                       */
+/*//////////////////////////////////////////////////*/
+#btnRemFromCart{
+    height: 10px;
+    width: 10px;
+    padding-bottom: 30px;
+    padding-left: 15px;
+    padding-right: 25px;
+    margin: 1px;
+    border-radius: 20px;
+    box-shadow: 5px 5px 10px rgba(108, 9, 21, .5);
+}
+.titleListInCart{
+    font-weight: bold;
+    font-size: 1.2rem;
+}
+#cartPosters{
+    background-size: cover;
+    width: 40px;
+    height: 40px;
+}
+.cartDetails{
+    vertical-align:middle;
+    padding-top: 10px;
 
-/* MEDIA QUERIES */
+}
+.cardRemoveFromCart{
+    margin-top : 50px;
+    margin-left:15px;
+}
+.cardAddToCart{
+    margin-top : 50px;
+    margin-left:15px;
+}
+.posterAddToCart{
+    background-size: cover;
+    width: 150px;
+    height: 150px;    
+}
+.liNameAddToCart{
+    background-color: rgba(108, 255, 51, .5);
+}
+
+
+/*//////////////////////////////////////////////////*/
+
+
+
+
+/*//////////////////////////////////////////////////*/
+/*                  MEDIA QUERIES                   */
+/*//////////////////////////////////////////////////*/
 
 /* Photos présentations vitrine */
 @media screen and (max-width: 400px){
@@ -346,14 +397,21 @@ margin-top: 1rem;
         max-width: 120px;
         max-height: 120px;
     }
-
 }
 
 /* Photos présentations vitrine */
-@media screen and (max-width: 600px){
+@media screen and (max-width: 576px){
     .vitrine img {
         max-width: 170px;
         max-height: 170px;
     }
-
 }
+
+
+/* affichage responsive du txt panier */
+@media screen and (max-width: 767px){
+    .cartDetails {
+        text-align: center;
+    }
+}
+/*//////////////////////////////////////////////////*/

@@ -37,18 +37,19 @@ class CartController extends AbstractController
                                         'name' => [],
                                         'ref' => [],
                                         'price' => [],
+                                        'poster' => [],
                                         'quantity' => [] ) );
         }
 
         $cart = $session->get('cart');
 
         //je récup en Get les infos de l'article ajouté au panier
-        //$article = $request->query->get('articleId');
         $article = [
             'id' => $request->query->get('id'),
             'name' => $request->query->get('name'),
             'ref' => $request->query->get('ref'),
             'price' => $request->query->get('price'),
+            'poster' => $request->query->get('poster'),
             //'quantity' => $request->query->get('articleQuantity'),
         ];
 
@@ -63,6 +64,7 @@ class CartController extends AbstractController
             array_push($cart['name'], $article['name']);
             array_push($cart['ref'], $article['ref']);
             array_push($cart['price'], $article['price']);
+            array_push($cart['poster'], $article['poster']);
             //array_push($cart['quantity'], $article['quantity']);
         }
 
@@ -74,7 +76,9 @@ class CartController extends AbstractController
         // ]);
 
         return $this->render('cart/add.html.twig', [
-            'articleName' => $article['name']
+            'articleName' => $article['name'],
+            'articlePrice' => $article['price'],
+            'articlePoster' => $article['poster']      
         ]);
     }
 
@@ -99,11 +103,25 @@ class CartController extends AbstractController
         unset($cart['name'][$key]);
         unset($cart['ref'][$key]);
         unset($cart['price'][$key]);
+        unset($cart['poster'][$key]);
 
         $session->set('cart', $cart);        
 
         return $this->render('cart/remove.html.twig',[
             'articleName' => $itemToDelete
+        ]);
+    }
+
+    
+    /**
+     * @Route("/cart/reset", name="cart_reset")
+     */
+    public function emptyCart(SessionInterface $session)
+    {
+        
+
+        return $this->render('cart/index.html.twig', [
+            'session' => $session
         ]);
     }
 
@@ -121,17 +139,6 @@ class CartController extends AbstractController
     }
 
 
-    /**
-     * @Route("/cart/reset", name="cart_reset")
-     */
-    public function emptyCart(SessionInterface $session)
-    {
-
-
-        return $this->render('cart/index.html.twig', [
-            'session' => $session
-        ]);
-    }
 
 }
 

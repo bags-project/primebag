@@ -6,31 +6,30 @@
 
 <div class="container">
     <div class="row">
-        <div class="col-2">
+
+        <div class="col col-md-3">
         </div>
-        <div class="center col-6">
-            <h2>L'article <strong>"{{ articleName }}"</strong> a bien été ajouté à votre panier.</h2>
+
+        <div class="col-12 col-md-6">
+            <div class="card border-success cardAddToCart" style="width: 18rem;">
+                <img class="card-img-top posterAddToCart border-success" src="{{ asset('assets/img/poster/') }}{{articlePoster}}" alt="Votre article">
+                
+                <div class="card-body">
+                    <h5 class="card-title text-success">Ajout au panier</h5>
+                    <p class="card-text">L'article suivant a bien été ajouté à votre panier :</p>
+                </div>
+                <ul class="list-group list-group-flush ">
+                    <li class="list-group-item border-success liNameAddToCart"><strong>{{ articleName }}</strong></li>
+                    <li class="list-group-item border-success">Prix : {{ articlePrice }} €</li>
+                    <li class="list-group-item border-success"><a href="{{path('home')}}">Continuer mes achats</a></li>
+                    <li class="list-group-item border-success"><a href="{{path('cart_view')}}">Accéder à mon panier</a></li>
+                </ul>
+            </div>
         </div>
-        <div class="col-2">
+
+        <div class="col col-md-3">
         </div>
-    </div>
-    <div class="row">
-        <div class="col-2">
-        </div>
-        <div class="center col-6">
-            <a href="{{path('home')}}">Continuer mes achats</a>
-        </div>
-        <div class="col-2">
-        </div>
-    </div>    
-    <div class="row">
-        <div class="col-2">
-        </div>
-        <div class="center col-6">
-            <a href="{{path('cart_view')}}">Accéder à mon panier</a>
-        </div>
-        <div class="col-2">
-        </div>
+
     </div>    
 </div>
 
