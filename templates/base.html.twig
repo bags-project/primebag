@@ -45,9 +45,12 @@
     
             <div class="symbol">
             <div>
+                {% set cart = app.session.get('cart') %}
+                {% set nbArticles = cart.name|length %}
                 <a href="{{path('cart_content')}}"><div class="basket"></div></a><br>
             </div>
             <div class="note">Panier</div>
+            {{nbArticles}}
             </div>
         </div>
     </div>

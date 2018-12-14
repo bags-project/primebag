@@ -23,7 +23,7 @@ class CartController extends AbstractController
 
 
         return $this->render('cart/view.html.twig', [
-            'session' => $session->get(['cart'])
+            //'session' => $session->get(['cart'])
         ]);
     }
 
@@ -32,49 +32,63 @@ class CartController extends AbstractController
      * @Route("/cart/new", name="cart_add")
      */
     public function addToCart(Request $request, SessionInterface $session){
-        // je verif si un panier existe, sinon j'en crée un vide
-        // $currentSession = $session->get(['cart']);
-        // if (!isset($currentSession)){
-            // //if (null!==($session->get(['cart']))){
-        // if (!isset($session['cart'])){
-        //     $session->set(['cart'], []);
-        //     $session->set(['cart']['articleId'], []);
-        //     $session->set(['cart']['articleName'], []);
-        //     $session->set(['cart']['articleRef'], []);
-        //     $session->set(['cart']['articlePrice'], []);
-        //     $session->set(['cart']['quantity'], []);
-        //  }
         $session = $this->get('session');
-        $session->set('cart', array(
-            'articleId',
-            'articleName',
-            'articleRef',
-            'articlePrice'
-        ));
 
+        // je verif si un panier existe, sinon j'en crée un vide
+        if($session->get('cart') == null){
+            $session->set('cart', array('id' => [], 
+                                        'name' => [],
+                                        'ref' => [],
+                                        'price' => [],
+                                        'quantity' => [] ) );
+        }
 
-        //je récup en Get l'id de l'article sur lequel on a cliqué
-        // $articleId = $request->query->get('article');
-        // // on vérifie si l'id de l'article existe déjà dans le panier
-        // $alreadyIn = array_search($articleId,  $session['cart']['articleId']);
-        // if ($alreadyIn == true){
-        //     // augmenter la quantité
-        // }else{
-            // je le set dans mon pannier
-            //$cart = $session->get(['cart']);
-            $session->set(['cart']['articleId'], $articleId); // est-ce que ça array-push automatiquement ?
-        //}
+        $cart = $session->get('cart');
+
+        //je récup en Get les infos de l'article ajouté au panier
+        //$article = $request->query->get('articleId');
+        $article = [
+            'id' => $request->query->get('id'),
+            'name' => $request->query->get('name'),
+            'ref' => $request->query->get('ref'),
+            'price' => $request->query->get('price'),
+            //'quantity' => $request->query->get('articleQuantity'),
+        ];
+
+        // /!\ ajouter un choix de quantité sur la fiche article /!\ :
+        //on vérifie si l'id de l'article existe déjà dans le panier
+        $alreadyIn = array_search($article['id'],  $cart['id']);
+        if ($alreadyIn == true){
+            // augmenter la quantité
+        }else{
+            // je le Set dans mon pannier
+            array_push($cart['id'], $article['id']);
+            array_push($cart['name'], $article['name']);
+            array_push($cart['ref'], $article['ref']);
+            array_push($cart['price'], $article['price']);
+            //array_push($cart['quantity'], $article['quantity']);
+        }
+
+        // je remet le panier actualisé dans la session
+        $session->set('cart', $cart);
 
         return $this->render('cart/view.html.twig', [
-            'session' => $session->get(['cart'])
+            'session' => $session->get('cart')
         ]);
     }
+
 
     /**
      * @Route("/cart/remove", name="cart_rem")
      */
-    public function remFromCart(SessionInterface $session)
+    public function remFromCart(Request $request, SessionInterface $session)
     {
+        $session = $this->get('session');
+        $cart = $session->get('cart');
+
+        
+        unset($cart[array_search($element, $tab)]);
+
 
 
         return $this->render('cart/index.html.twig', [
@@ -84,7 +98,7 @@ class CartController extends AbstractController
 
 
     /**
-     * @Route("/cart/newvalidattion", name="cart_validate")
+     * @Route("/cart/validation", name="cart_validate")
      */
     public function validateCart(SessionInterface $session)
     {
