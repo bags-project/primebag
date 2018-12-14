@@ -12,6 +12,11 @@ security:
             entity:
                 class: App\Entity\User
                 property: email
+        # managers:
+        #     users:
+        #         admin:
+        #             password: admin
+
     firewalls:
         dev:
             pattern: ^/(_(profiler|wdt)|css|images|js)/
@@ -19,6 +24,18 @@ security:
         manager:
             pattern: ^/manager$
             http_basic: true
+        # admin:
+        #     pattern: ^/admin
+        #     anonymous: true
+
+        #     provider: in_database
+
+            # form_login:
+            #     login_path: admin_account_login
+            #     check_path: admin_account_login
+            # logout:
+            #     path: account_logout
+            #     target: homepage
         main:
             anonymous: true
             provider: db_provider
@@ -41,5 +58,11 @@ security:
     # Easy way to control access for large sections of your site
     # Note: Only the *first* access control that matches will be used
     access_control:
+<<<<<<< HEAD
         #  - { path: ^/admin, roles: ROLE_ADMIN }
         #  - { path: ^/user/pofile, roles: ROLE_USER }
+=======
+         - { path: ^/admin/login, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+        #  - { path: ^/admin, roles: ROLE_ADMIN }
+         - { path: ^/user/pofile, roles: ROLE_USER }
+>>>>>>> master
