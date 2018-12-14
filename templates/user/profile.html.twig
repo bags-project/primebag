@@ -4,12 +4,6 @@
 
 {% block body %}
 
-<p>Username: {{ app.user.id }}</p>
-{% if app.debug %}
-    <p>Request method: {{ app.request.method }}</p>
-    <p>Application Environment: {{ app.environment }}</p>
-{% endif %}
-
     <h1>Votre profil : {{app.user.firstName}}</h1>
 
     <table class="table">
