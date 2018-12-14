@@ -27,7 +27,6 @@ use App\Form\FormType;
 use Doctrine\Common\Persistence\ObjectManager;
 
 
-
 class ArticleController extends AbstractController
 {
     
