@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -14,14 +15,10 @@ class CartController extends AbstractController
     // }
 
     /**
-     * @Route("/cart", name="cart_content")
+     * @Route("/cart", name="cart_view")
      */
     public function show(SessionInterface $session)
     {
-        //$session->set('cart', []);
-        //$cart = $session->get('cart');
-
-
         return $this->render('cart/view.html.twig', [
             //'session' => $session->get(['cart'])
         ]);
@@ -29,7 +26,7 @@ class CartController extends AbstractController
 
 
     /**
-     * @Route("/cart/new", name="cart_add")
+     * @Route("/cart/add", name="cart_add")
      */
     public function addToCart(Request $request, SessionInterface $session){
         $session = $this->get('session');
@@ -72,27 +69,41 @@ class CartController extends AbstractController
         // je remet le panier actualisé dans la session
         $session->set('cart', $cart);
 
-        return $this->render('cart/view.html.twig', [
-            'session' => $session->get('cart')
+        // return $this->render('cart/view.html.twig', [
+        //     'session' => $session->get('cart')
+        // ]);
+
+        return $this->render('cart/add.html.twig', [
+            'articleName' => $article['name']
         ]);
     }
 
 
     /**
-     * @Route("/cart/remove", name="cart_rem")
+     * @Route("/cart/remove", name="cart_remove")
      */
     public function remFromCart(Request $request, SessionInterface $session)
     {
         $session = $this->get('session');
         $cart = $session->get('cart');
 
-        
-        unset($cart[array_search($element, $tab)]);
+        //je recherche l'index correspondant à l'id reçu en Get
+        $receivedId = $request->query->get('id');
+        $key = array_search($receivedId, $cart['id']);
 
+        // je récup le nom avant suppression pour l'afficher sur la page de confirmation
+        $itemToDelete = $cart['name'][$key];
 
+        //et je supprime l'article du panier
+        unset($cart['id'][$key]);
+        unset($cart['name'][$key]);
+        unset($cart['ref'][$key]);
+        unset($cart['price'][$key]);
 
-        return $this->render('cart/index.html.twig', [
-            'session' => $session
+        $session->set('cart', $cart);        
+
+        return $this->render('cart/remove.html.twig',[
+            'articleName' => $itemToDelete
         ]);
     }
 

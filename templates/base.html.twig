@@ -37,23 +37,28 @@
 
         <div class="header-flex-child flexnowrap">
             <div class="symbol">
-            <div>
-                <a href="{{path('user_register')}}"><div class="profil"></div></a><br>
+                <div>
+                    <a href="{{path('user_register')}}"><div class="profil"></div></a><br>
+                </div>
+                <div class="note">Compte</div>
             </div>
-            <div class="note">Compte</div>
-            </div>
-    
+
             <div class="symbol">
-            <div>
+                <div>
+                    <a href="{{path('cart_view')}}"><div class="basket"></div></a><br>
+                </div>
+                <div class="note">Panier</div>
                 {% set cart = app.session.get('cart') %}
-                {% set nbArticles = cart.name|length %}
-                <a href="{{path('cart_content')}}"><div class="basket"></div></a><br>
-            </div>
-            <div class="note">Panier</div>
-            {{nbArticles}}
+                {# Vérif si le panier est initialisé (passé par cart_add) #}
+                {% if cart is not null %}
+                    {% set nbArticles = cart.name|length %}
+                    {{nbArticles}}
+                {% else %}
+                    <span>Vide</span>
+                {% endif %}            
+                </div>
             </div>
         </div>
-    </div>
 
     {# Menu avec les catégories #}
     <nav id="menu-navbar" class="navbar navbar-expand-lg navbar-dark">
@@ -86,7 +91,7 @@
                     <a class="nav-link" href="{{ path('bagage_gallery')}}">Bagages</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ path('cart_content')}}">Panier</a>
+                    <a class="nav-link" href="{{ path('cart_view')}}">Panier</a>
                 </li>
                 {% if is_granted ('ROLE_USER') %}
 
