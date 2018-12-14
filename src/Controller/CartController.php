@@ -81,8 +81,14 @@ class CartController extends AbstractController
     /**
      * @Route("/cart/remove", name="cart_rem")
      */
-    public function remFromCart(SessionInterface $session)
+    public function remFromCart(Request $request, SessionInterface $session)
     {
+        $session = $this->get('session');
+        $cart = $session->get('cart');
+
+        
+        unset($cart[array_search($element, $tab)]);
+
 
 
         return $this->render('cart/index.html.twig', [
@@ -92,7 +98,7 @@ class CartController extends AbstractController
 
 
     /**
-     * @Route("/cart/newvalidattion", name="cart_validate")
+     * @Route("/cart/validation", name="cart_validate")
      */
     public function validateCart(SessionInterface $session)
     {
