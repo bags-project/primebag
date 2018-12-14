@@ -6,20 +6,9 @@ body {
 
 /* ==================== Textes ==================== */
 
-/* h1 {
-  font:bold 1.9em "Times New Roman", serif;
-  color:#1254A2;
-  text-align:center;
-  margin:35px 0 40px 0;
-  text-shadow:1px 0 10px #394954;
+h1 {
+  margin:50px 0;
 }
-h1:hover {text-shadow:2px 0 20px #394954;}
-
-h2 {
-  font:bold 1.2em Verdana, sans-serif;
-  text-align:center;
-  margin:35px 0 40px 0;
-} */
 
 p, .text {font:0.9em verdana, sans-serif;}
 

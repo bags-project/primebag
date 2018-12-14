@@ -27,6 +27,15 @@ class AdminController extends AbstractController
     }
 
 
+    /**
+    * @Route("/admin/login", name="admin_login")
+    */
+    public function admin_login()
+    {
+        return $this->render('admin/login.html.twig', [
+        ]);
+    }
+
 
     /**
     * ===================== Affiche la liste des articles pour admin ========================
