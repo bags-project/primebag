@@ -41,7 +41,6 @@ class Article
      private $posterFile;
 
 
-
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
      */
@@ -56,7 +55,6 @@ class Article
       * @Assert\Image(maxSize = "4096k")
       */
      private $altPicture1File;
-
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
@@ -176,10 +174,6 @@ class Article
         return $this;
     }
 
-
-
-
-
     public function getAltPicture1(): ?string
     {
         return $this->altPicture1;
@@ -215,11 +209,6 @@ class Article
 
         return $this;
     }
-
-
-
-
-
 
     public function getAltPicture2(): ?string
     {

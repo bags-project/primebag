@@ -31,7 +31,7 @@ var source;
 var lists = {};
 var elmt_list = $('#user_register_city');
 
-
+console.log('yoyo');
 
 $(document).ready(function(){
 
@@ -89,7 +89,7 @@ function show_list(response) {
         elmt_list.append(elmt_option); 
     
     });
-    
+
 }
 
 

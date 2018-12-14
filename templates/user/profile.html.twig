@@ -4,42 +4,36 @@
 
 {% block body %}
 
-    <h1>Votre profil : {{user.firstName}}</h1>
+    <h1>Votre profil : {{app.user.firstName}}</h1>
 
     <table class="table">
         <thead>
             <tr>
-                <th>Id</th>
-                <th>FirstName</th>
-                <th>LastName</th>
-                <th>Address</th>
-                <th>SecondaryAddress</th>
-                <th>PhoneNumber</th>
+                <th>Prénom</th>
+                <th>Nom</th>
+                <th>Addresse</th>
+                <th>Deuxième adresse</th>
+                <th>Numéro de téléphone</th>
                 <th>Email</th>
-                <th>City</th>
-                <th>ZipCode</th>
-                <th>CountryName</th>
-                <th>CountryCode</th>
-                <th>Roles</th>
-                <th>actions</th>
+                <th>Ville</th>
+                <th>Code postal</th>
+                <th>Pays</th>
+                <th>Modifier ou supprimer le compte</th>
             </tr>
         </thead>
         <tbody>
             <tr>
-                <td>{{ user.id }}</td>
-                <td>{{ user.firstName }}</td>
-                <td>{{ user.lastName }}</td>
-                <td>{{ user.address }}</td>
-                <td>{{ user.secondaryAddress }}</td>
-                <td>{{ user.phoneNumber }}</td>
-                <td>{{ user.email }}</td>
-                <td>{{ user.city }}</td>
-                <td>{{ user.zipCode }}</td>
-                <td>{{ user.countryName }}</td>
-                <td>{{ user.countryCode }}</td>
-                <td>{{ user.roles ? user.roles|join(', ') : '' }}</td>
+                <td>{{ app.user.firstName }}</td>
+                <td>{{ app.user.lastName }}</td>
+                <td>{{ app.user.address }}</td>
+                <td>{{ app.user.secondaryAddress }}</td>
+                <td>{{ app.user.phoneNumber }}</td>
+                <td>{{ app.user.email }}</td>
+                <td>{{ app.user.city }}</td>
+                <td>{{ app.user.zipCode }}</td>
+                <td>{{ app.user.countryName }}</td>
                 <td>
-                <button type="submit"><a href="{{path('user_edit', {id: user.id })}}">Editer le profil</a></button>
+                <button type="submit"><a href="{{path('user_edit', {id: app.user.id })}}">Editer le profil</a></button>
                 </td>
             </tr>
             <tr>

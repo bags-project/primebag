@@ -13,17 +13,20 @@
         <button type="submit">Envoyer</button>
     </form> #}
 
+    {# {% if isConnected %} #}
 
-    {{ form_start ( form ) }}
-    {{ form_widget ( form ) }}
-    <button type="submit">
-        {% if editMode %}
-            Editer
-        {% else %}
-            Ajouter
-        {% endif %}
-    </button>
-    {{ form_end ( form ) }}
+        {{ form_start ( form ) }}
+        {{ form_widget ( form ) }}
+        <button type="submit">
+            {% if editMode %}
+                Editer
+            {% else %}
+                Ajouter
+            {% endif %}
+        </button>
+        {{ form_end ( form ) }}
+
+    {# {% endif %} #}
 
 
 {% endblock %}

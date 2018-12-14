@@ -84,7 +84,7 @@ class AdminController extends AbstractController
             $manager->persist($article);
             $manager->flush();
 
-            // Upload altPicture1 :
+            //Upload altPicture1 :
             // if(!empty($article->getAltPicture1Url() )) {
             //     $article->setAltPicture1( $article->getAltPicture1Url() );
             // }
@@ -97,7 +97,6 @@ class AdminController extends AbstractController
         
             //     $article->setAltPicture1( $filename1 );
             // }
-            // var_dump($article);
             // $manager->persist($article);
             // $manager->flush();
 
@@ -122,19 +121,22 @@ class AdminController extends AbstractController
     /**
     * ===================== Effacer article ========================
     * @Route("/admin/{id}/del", name="admin_del")
-    * @return Response
     */
-    public function delete(Article $article)
-    // public function delete(Article $article, Request $request)
+    // public function delete(Article $article)
+    public function delete(Article $article, Request $request)
     {
         // if ($this->isCsrfTokenValid('delete'.$article->getId(), $request->request->get('_token')))
         // {
             $em = $this->getDoctrine()->getManager();
             $em->remove($article);
             $em->flush();
+
+            $this->addFlash(
+                'notice',
+                ' est effacé !'
+            );
         // }
 
-        // return new Response('Article supprimé');
         return $this->redirectToRoute('admin_article');
     }
 
