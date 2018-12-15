@@ -5,12 +5,37 @@
 {% block body %}
 
 
-<div id="section_one">This is Section One</div>
-<div id="section_two">This is Section Two</div>
+{# {% if app.user.firstName is defined %}
 
-<button id="button1" type="button" class="btn btn-primary">Primary</button>
-<button id="button2" type="button" class="btn btn-secondary">Secondary</button>
+{{ app.user.firstName }}
 
+{% endif %} #}
 
+<header id="order-process">
+
+    <div class="order-process-step-1"> Compte </div>
+    <div class="order-process-step-2"> Livraison </div>
+    <div class="order-process-step-3"> Paiement </div>
+    <div class="order-process-step-4"> Envoyer </div>
+
+</header>
+
+<main id="main-order-container">
+
+    <div id='order-container'>
+
+        <div id="section_1">This is Section 1</div>
+        <div id="section_2">This is Section 2</div>
+        <div id="section_3">This is Section 3</div>
+        <div id="section_4">This is Section 4</div>
+
+    </div>
+
+    <button id="button1" type="button" class="btn btn-primary"> 1 </button>
+    <button id="button2" type="button" class="btn btn-secondary"> 2 </button>
+    <button id="button3" type="button" class="btn btn-primary"> 3 </button>
+    <button id="button4" type="button" class="btn btn-secondary"> 4</button>
+
+</main>
 
 {% endblock %}

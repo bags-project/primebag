@@ -96,7 +96,7 @@ body,
     background-color: rgb(121, 85, 72);
 }
 
-.content{
+.content {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -126,71 +126,71 @@ body,
 
 }
 
-.count-proposition{
+.count-proposition {
 
     height: 30rem;
     width: 30rem;
 }
 
-article{
+article {
     border-top: 1px solid rgb(69, 86, 102);
 }
 
 
 /*ARTICLES DETAILS-----------------------------------------------------------*/
 
-#details-main{
+#details-main {
     margin-top: 5rem;
     margin-bottom: 5rem;
 }
 
-#details-portfolio{
+#details-portfolio {
     display: flex;
     align-items: center;
 
 }
 
-.list-group-item.active{
+.list-group-item.active {
     background-color: black;
     border: 1px solid black;
 }
 
-.details-info{
+.details-info {
     display: flex;
     flex-direction: column;
     margin-top: 2rem;
 }
 
-.details-shopping-cart{
+.details-shopping-cart {
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
-.tab-content>.active{
-margin-top: 1rem;
+.tab-content>.active {
+    margin-top: 1rem;
 }
 
 /*GALLERY-------ALL----------------------------------------------------------*/
 
-#gallery-title strong{
+#gallery-title strong {
     font-family: 'Righteous', cursive;
     font-size: 4.5rem;
 }
 
-#gallery-display{
+#gallery-display {
     display: flex;
     justify-content: center;
 }
 
-#gallery-filtres{
+#gallery-filtres {
     display: flex;
     justify-content: space-around;
     align-items: center;
     margin-top: 0.5rem;
 }
 
-.gallery-card{
+.gallery-card {
 
     margin: 2rem;
     border: 1px solid black;
@@ -199,30 +199,30 @@ margin-top: 1rem;
     padding: 1rem;
 }
 
-.card-title{
+.card-title {
     height: 4rem;
 }
 
-.card-buttons{
+.card-buttons {
     display: flex;
 }
 
-.card-price{
+.card-price {
     display: flex;
 }
 
 
-#inlineFormCustomSelectPref{
+#inlineFormCustomSelectPref {
     border: 1px solid rgb(46, 46, 46);
     width: 10rem;
 }
 
-.card-title{
+.card-title {
     padding: 0;
     height: 3rem;
 }
 
-.card-img-top{
+.card-img-top {
     height: 10rem;
     width: 10rem;
     margin-left: 2.3rem;
@@ -230,7 +230,7 @@ margin-top: 1rem;
 
 
 /*GALLERY-------FEMME----------------------*/
-#gallery-jumbotron-femme{
+#gallery-jumbotron-femme {
 
     background-color: rgb(76, 51, 145);
     height: 10rem;
@@ -239,20 +239,20 @@ margin-top: 1rem;
 }
 
 
-#inlineFormCustomSelectPref-woman1{
+#inlineFormCustomSelectPref-woman1 {
     border: 1px solid rgb(46, 46, 46);
     width: 10rem;
 }
 
 
-#inlineFormCustomSelectPref-woman2{
+#inlineFormCustomSelectPref-woman2 {
     border: 1px solid rgb(63, 81, 181);
     width: 10rem;
 
 }
 
 
-#inlineFormCustomSelectPref-woman3{
+#inlineFormCustomSelectPref-woman3 {
     border: 1px solid rgb(81, 45, 168);
     width: 10rem;
 }
@@ -260,25 +260,25 @@ margin-top: 1rem;
 
 /*GALLERY-------HOMME---------------------*/
 
-#gallery-jumbotron-homme{
+#gallery-jumbotron-homme {
 
     background-color: rgb(46, 64, 79);
     height: 10rem;
 }
 
-#inlineFormCustomSelectPref-man1{
+#inlineFormCustomSelectPref-man1 {
     border: 1px solid #1C2331;
     width: 10rem;
 }
 
 
-#inlineFormCustomSelectPref-man2{
+#inlineFormCustomSelectPref-man2 {
     border: 1px solid #3F729B;
     width: 10rem;
 }
 
 
-#inlineFormCustomSelectPref-man3{
+#inlineFormCustomSelectPref-man3 {
     border: 1px solid #263238;
     width: 10rem;
 }
@@ -287,26 +287,26 @@ margin-top: 1rem;
 
 /*GALLERY-------KIDS---------------------*/
 
-#gallery-jumbotron-scolaire{
+#gallery-jumbotron-scolaire {
 
     background-color: rgb(136, 14, 79);
     height: 10rem;
 
 }
 
-#inlineFormCustomSelectPref-kid1{
+#inlineFormCustomSelectPref-kid1 {
     border: 1px solid #e53935;
     width: 10rem;
 }
 
 
-#inlineFormCustomSelectPref-kid2{
-    border: 1px solid #880e4f ;
+#inlineFormCustomSelectPref-kid2 {
+    border: 1px solid #880e4f;
     width: 10rem;
 }
 
 
-#inlineFormCustomSelectPref-kid3{
+#inlineFormCustomSelectPref-kid3 {
     border: 1px solid #d50000;
     width: 10rem;
 }
@@ -315,27 +315,28 @@ margin-top: 1rem;
 
 /*GALLERY-------BAGAGES------------------*/
 
-#gallery-jumbotron-bagage{
+#gallery-jumbotron-bagage {
 
     background-color: rgb(153, 96, 50);
 }
 
-#inlineFormCustomSelectPref-bagage1{
+#inlineFormCustomSelectPref-bagage1 {
     border: 1px solid rgb(46, 46, 46);
     width: 10rem;
 }
 
 
-#inlineFormCustomSelectPref-bagage2{
+#inlineFormCustomSelectPref-bagage2 {
     border: 1px solid #3e2723;
     width: 10rem;
 }
 
 
-#inlineFormCustomSelectPref-bagage3{
+#inlineFormCustomSelectPref-bagage3 {
     border: 1px solid #212121;
     width: 10rem;
 }
+
 
 /*//////////////////////////////////////////////////*/
 /*                     PANIER                       */
@@ -362,8 +363,7 @@ margin-top: 1rem;
 .cartDetails{
     vertical-align:middle;
     padding-top: 10px;
-
-}
+}    
 .cardRemoveFromCart{
     margin-top : 50px;
     margin-left:15px;
@@ -381,12 +381,55 @@ margin-top: 1rem;
     background-color: rgba(108, 255, 51, .5);
 }
 #confirmModal{
-	display: none;
+    display: none;
+}
+/*//////////////////////////////////////////////////*/
+
+
+
+/*ORDER------------------------------------*/
+#order-process div {
+    display: flex;
+    width: 25%;
+    height: 5rem;
+
+    justify-content: center;
+    align-items: center;
+
+    color:white;
+    font-weight: 600;
+}
+
+#order-container{
+    width: 255px;
+    background-color: #880e4f;
+}
+
+#order-process {
+    display: flex;
+}
+
+.order-process-step-1 {
+    background-color: rgb(46, 46, 46);
+}
+
+.order-process-step-2 {
+    background-color: rgb(46, 46, 46);
+}
+
+.order-process-step-3 {
+    background-color: rgb(46, 46, 46);
+}
+
+.order-process-step-4 {
+    background-color: rgb(46, 46, 46);
+}
+
+#main-order-container{
+    
 }
 
 
-
-/*//////////////////////////////////////////////////*/
 
 
 
@@ -396,7 +439,7 @@ margin-top: 1rem;
 /*//////////////////////////////////////////////////*/
 
 /* Photos présentations vitrine */
-@media screen and (max-width: 400px){
+@media screen and (max-width: 400px) {
     .vitrine img {
         max-width: 120px;
         max-height: 120px;
@@ -404,6 +447,7 @@ margin-top: 1rem;
 }
 
 /* Photos présentations vitrine */
+@media screen and (max-width: 600px) {}
 @media screen and (max-width: 576px){
     .vitrine img {
         max-width: 170px;

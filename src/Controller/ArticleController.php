@@ -35,10 +35,10 @@ class ArticleController extends AbstractController
      */
     public function listAll(ArticleService $articleService, Request $request)
      {
-       $queryPrice = $request->query->get('price');
+
 
             return $this->render('main/index.html.twig', [
-                'articles' => $articleService->search($queryPrice),
+                'articles' => $articleService->showCase(),
             ]);
      }
 

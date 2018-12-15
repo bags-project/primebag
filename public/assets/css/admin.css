@@ -1,5 +1,7 @@
 body {
   margin:0;
+  background:#fcfcfc url('../img/bg.svg') fixed no-repeat;
+  background-size: cover;
   font:15px Verdana, sans-serif; /* Taille et police par défaut */
 }
 
@@ -7,7 +9,7 @@ body {
 /* ==================== Textes ==================== */
 
 h1 {
-  margin:50px 0;
+  margin:50px auto 80px;
 }
 
 p, .text {font:0.9em verdana, sans-serif;}
@@ -36,6 +38,43 @@ a:hover {color:#EC0000;}
 
 
 /* ==================== Blocs et Navbar ==================== */
+
+
+.admin-navbar {
+  background-color: #2c2c2c;  
+  width: 100%;
+}
+
+.admin-navbar a {
+  display: inline-block;
+  color: #f5f5f5;
+  text-align: center;
+  text-decoration: none;
+  font:1em Verdana, sans-serif;
+  padding: 16px 17px;
+}
+
+.admin-navbar a:hover {
+  background-color: #bebebe;
+  color: black;
+}
+
+.admin-navbar a.active {
+  background-color: #cd280c;
+  color: #f5f5f5;
+  padding: 16px 17px;
+}
+
+.admin-navbar .icon {
+  display: none; /* Menu Burger caché en version desktop */
+}
+
+
+
+
+
+
+
 
 header {
   background-color: #f7f7f7;
@@ -98,7 +137,7 @@ nav.nav1 li a:hover {
 .limit {
   max-width:1300px;
   margin:0px auto;
-  padding:0px;
+  padding:15px;
   display:block;
 }
 
@@ -218,34 +257,21 @@ img, video, iframe {
 .left {text-align:left}
 .right {text-align:right}
 .center {text-align:center}
-.centerbu {text-align:center; font-weight:bold; text-decoration:underline;}
-.imgcenter {margin:22px auto; display:block;}
 
 
 /* ==================== Marges ==================== */
 
-.margin {margin:15px}
-.margin-lr {margin:2px 15px}
-.margin-tb {margin:15px 0}
-.margin-l {margin-left:30px}
-.margin-r {margin-right:30px}
-.margin-bottom {margin-bottom:30px}
-.margintopbottom {margin:50px 0}
-.margin-top0 {margin-top:0}
-.margin-bottom0 {margin-bottom:0}
-.no-margin {margin-top:0; margin-bottom:0}
+.margin {margin:30px}
 
-.galerie {margin:15px; border:1px solid black}
-
+.to-top {
+  text-align:right;
+  margin:80px 30px 50px 0;
+}
 
 /* ==================== Float ==================== */
 
 .floatleft {margin:0 20px 12px 0; float:left;}
-.floatleft2 {margin:15px 20px 15px 0; float:left; border:1px solid black;}
 .floatright {margin:0 0px 12px 20px; float:right;}
-.floatright2 {margin:15px 0px 15px 15px; float:right; border:1px solid black;}
-.floatleftbox {margin:0 20px 12px 0; float:left; text-align:center}
-.floatrightbox {margin:0 0 12px 20px; float:right; text-align:center}
 .clear {clear:both} /* Casser le flux de float */
 
 
@@ -284,7 +310,8 @@ img, video, iframe {
 .admin-flex-child {
   margin:0;
   padding:4px;
-  border:1px solid;
+  border:1px solid #CED4DA;
+  background-color:#FFF;
   flex:1;
 }
 
@@ -303,6 +330,7 @@ img, video, iframe {
 }
 .footer-flex-child {
   padding: 20px;
+  min-width: 300px;
 }
 
 .flex-child {
@@ -335,9 +363,7 @@ img, video, iframe {
   flex-wrap:nowrap;
 }
 
-.footer-flex-child {
-  min-width: 300px;
-}
+
 
 
 .boxflex {
@@ -359,16 +385,18 @@ img, video, iframe {
   margin-top:0px;
 }
 
-
-/* ============ Pour écran largeur supérieur à 1025px ============ */
-
-@media screen and (min-width: 1025px)
-{
-  #burger {
-    display:none;
-  }
+button[type*="submit"] {
+  cursor:pointer;
+  border-radius:7px;
+  background-color:#c0c0c0;
+  border:1px solid #8d8d8d;
+  padding:8px 12px;
+  color: #171717;
+  margin:28px auto;
 }
-
+button[type*="submit"]:hover {
+	background-color:#df1515;
+}
 
 /* ============ Pour écran largeur inférieur à 1024px ============ */
 
@@ -381,63 +409,28 @@ img, video, iframe {
     display: block;
   }
 
-  .sidenav {
-    height: 100%;
-    width: 0;
-    position: fixed;
-    z-index: 1;
-    top: 0;
-    left: 0;
-    background-color: #34363b;
-    overflow-x: hidden;
-    transition: 0.5s;
-    /* padding-top: 20px; */
+  .admin-navbar a:not(:first-child) {
+    display: none; /* Cacher les liens qui ne sont pas en premier */
   }
-  
-  .sidenav a {
-    padding: 8px 8px 8px 30px;
-    text-decoration: none;
-    /* font-size: 25px; */
-    color: #818181;
+
+  .admin-navbar a.icon {
+    float: right; /* Icone Burger Menu */
     display: block;
-    transition: 0.3s;
+    padding: 15px 26px;
+  }
+
+  .admin-navbar.responsive .icon {
+    position: absolute;
+    right: 0;
+    top:0;
+  }
+  .admin-navbar.responsive a {
+    display: block;
     text-align: left;
   }
-  
-  .sidenav a:hover {
-    color: #f4f4f4;
-  }
-  
-  .sidenav .close {
-    position: absolute;
-    top: 0;
-    right: 20px;
-    font-size: 50px;
-    /* margin-left: 50px; */
-  }
 
-
-  .sidenav {padding-top: 15px;}
-  .sidenav a {font-size: 18px;}
-
-
-
-
-
-  .footer-flex, .flexcenter, .flexbetween, .flexaround {
+  .footer-flex {
     flex-direction:column;
-  }
-
-  .boxflex {
-    width:auto;
-    margin:10px 0;
-  }
-
-  .boxflex:first-child {
-    margin-right:0; /* Annuler la marge à droite */
-  }
-  .boxflex:last-child {
-    margin-left:0; /* Annuler la marge à gauche */
   }
 
 
