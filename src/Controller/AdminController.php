@@ -17,12 +17,7 @@ class AdminController extends AbstractController
      */
     public function admin()
     {
-        $repo = $this->getDoctrine()->getRepository(Article::class); // Recup données dans BDD
-        // $articles = $repo->findOneByTitle('Titre article'); // Pour trouver un article
-        $articles = $repo->findAll(); // Pour trouver tous les articles
-
-        return $this->render('admin/index.html.twig', [
-            'articles' => $articles
+        return $this->render('admin/login.html.twig', [
         ]);
     }
 
@@ -131,7 +126,7 @@ class AdminController extends AbstractController
     * ===================== Effacer article ========================
     * @Route("/admin/{id}/del", name="admin_del")
     */
-    // public function delete(Article $article)
+    // methods="DELETE"
     public function delete(Article $article, Request $request)
     {
         // if ($this->isCsrfTokenValid('delete'.$article->getId(), $request->request->get('_token')))
@@ -178,7 +173,7 @@ class AdminController extends AbstractController
 
     /**
     * ===================== Effacer utilisateur ========================
-    * @Route("/admin/user/{id}/del", name="admin_del_user")
+    * @Route("/admin/user/del/{id}", name="admin_del_user")
     */
     public function delete_user(User $user, Request $request)
     {
@@ -188,10 +183,11 @@ class AdminController extends AbstractController
             $emanager->remove($user);
             $emanager->flush();
 
-            $this->addFlash(
-                'notice',
-                ' est effacé !'
-            );
+            // $this->addFlash(
+            //     'notice',
+            //     ' est effacé !'
+            // );
+            
         // }
 
         return $this->redirectToRoute('admin_user');

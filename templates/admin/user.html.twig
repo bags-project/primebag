@@ -11,11 +11,11 @@
 
     <div class="admin-list">
         <div class="admin-flex">
-            <div class="admin-flex-child">ID</div>
-            <div class="admin-flex-child">Nom</div>
-            <div class="admin-flex-child">Prénom</div>
-            <div class="admin-flex-child">Email</div>
-            <div class="admin-flex-child">Supprimer</div>
+            <div class="admin-flex-child b">ID</div>
+            <div class="admin-flex-child b">Nom</div>
+            <div class="admin-flex-child b">Prénom</div>
+            <div class="admin-flex-child b">Email</div>
+            <div class="admin-flex-child b">Supprimer</div>
         </div>
     </div>
 
@@ -37,11 +37,10 @@
             <div class="admin-flex-child">{{ user.lastName }}</div>
             <div class="admin-flex-child">{{ user.firstName }}</div>
             <div class="admin-flex-child">{{ user.email }}</div>
-            <input type="hidden" name="_token" valeur="{{ csrf_token('delete' ~ user.id) }}">
-            <div class="admin-flex-child"><a href="{{ path('admin_user')}}{{ user.id }}/del" onclick="if(window.confirm('Voulez-vous vraiment supprimer cet utilisateur ?')) {return true;} else {return false;}">X</a></div>
+            {# <input type="hidden" name="_token" valeur="{{ csrf_token('delete' ~ user.id) }}"> #}
+            {# <div class="admin-flex-child"><a href="{{ path('admin_user')}}{{ user.id }}/del" onclick="if(window.confirm('Voulez-vous vraiment supprimer cet utilisateur ?')) {return true;} else {return false;}">X</a></div> #}
+            <div class="admin-flex-child"><a href="{{ path('admin_del_user', {'id':user.id}) }}" onclick="if(window.confirm('Voulez-vous vraiment supprimer cet utilisateur ?')) {return true;} else {return false;}">X</a></div>
 
-            {# <div class="admin-flex-child"><a href="{{ path('admin_edit', {'id':user.id} )) }}">🖍</a></div>
-            <div class="admin-flex-child"><a href="{{ path('admin_del', {'id':user.id} )) }}" onclick="if(window.confirm(\'Voulez-vous vraiment supprimer ?\')) {return true;} else {return false;}">X</a></div> #}
         </div>
     </div>
 

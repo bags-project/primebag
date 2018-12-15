@@ -1,6 +1,7 @@
 body {
   margin:0;
-  background:#fcfcfc url('../img/bg.svg') repeat fixed;
+  background:#fcfcfc url('../img/bg.svg') fixed no-repeat;
+  background-size: cover;
   font:15px Verdana, sans-serif; /* Taille et police par défaut */
 }
 
@@ -310,6 +311,7 @@ img, video, iframe {
   margin:0;
   padding:4px;
   border:1px solid #CED4DA;
+  background-color:#FFF;
   flex:1;
 }
 
