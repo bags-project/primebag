@@ -111,4 +111,4 @@ function show_list(response) {
     
 //     $('#confirmModal').show(1000);
 //     //alert(remLink);
-})
+// })
