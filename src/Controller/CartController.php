@@ -2,8 +2,8 @@
 
 namespace App\Controller;
 
+use App\Service\CartService;
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -28,27 +28,23 @@ class CartController extends AbstractController
     /**
      * @Route("/cart/add", name="cart_add")
      */
-    public function addToCart(Request $request, SessionInterface $session){
+    public function addToCart(Request $request, SessionInterface $session, CartService $cartService){
         $session = $this->get('session');
 
         // je verif si un panier existe, sinon j'en crée un vide
         if($session->get('cart') == null){
-            $session->set('cart', array('id' => [], 
-                                        'name' => [],
-                                        'ref' => [],
-                                        'price' => [],
-                                        'quantity' => [] ) );
+            $cartService->setEmptyCart($session);
         }
 
         $cart = $session->get('cart');
 
         //je récup en Get les infos de l'article ajouté au panier
-        //$article = $request->query->get('articleId');
         $article = [
             'id' => $request->query->get('id'),
             'name' => $request->query->get('name'),
             'ref' => $request->query->get('ref'),
             'price' => $request->query->get('price'),
+            'poster' => $request->query->get('poster'),
             //'quantity' => $request->query->get('articleQuantity'),
         ];
 
@@ -63,6 +59,7 @@ class CartController extends AbstractController
             array_push($cart['name'], $article['name']);
             array_push($cart['ref'], $article['ref']);
             array_push($cart['price'], $article['price']);
+            array_push($cart['poster'], $article['poster']);
             //array_push($cart['quantity'], $article['quantity']);
         }
 
@@ -74,10 +71,11 @@ class CartController extends AbstractController
         // ]);
 
         return $this->render('cart/add.html.twig', [
-            'articleName' => $article['name']
+            'articleName' => $article['name'],
+            'articlePrice' => $article['price'],
+            'articlePoster' => $article['poster']      
         ]);
     }
-
 
     /**
      * @Route("/cart/remove", name="cart_remove")
@@ -87,23 +85,39 @@ class CartController extends AbstractController
         $session = $this->get('session');
         $cart = $session->get('cart');
 
-        //je recherche l'index correspondant à l'id reçu en Get
+        //recherche de l'index correspondant à l'id reçu en Get
         $receivedId = $request->query->get('id');
         $key = array_search($receivedId, $cart['id']);
 
         // je récup le nom avant suppression pour l'afficher sur la page de confirmation
         $itemToDelete = $cart['name'][$key];
 
-        //et je supprime l'article du panier
+        //suppr de l'article du panier
         unset($cart['id'][$key]);
         unset($cart['name'][$key]);
         unset($cart['ref'][$key]);
         unset($cart['price'][$key]);
+        unset($cart['poster'][$key]);
 
         $session->set('cart', $cart);        
 
         return $this->render('cart/remove.html.twig',[
             'articleName' => $itemToDelete
+        ]);
+    }
+
+    
+    /**
+     * @Route("/cart/reset", name="cart_reset")
+     */
+    public function emptyCart(SessionInterface $session, CartService $cartService){
+        $session = $this->get('session');
+        $cart = $session->get('cart');
+
+        $cartService->setEmptyCart($session);
+
+        return $this->render('cart/view.html.twig', [
+            'session' => $session
         ]);
     }
 
@@ -114,25 +128,28 @@ class CartController extends AbstractController
     public function validateCart(SessionInterface $session)
     {
 
-
         return $this->render('cart/index.html.twig', [
             'session' => $session
         ]);
     }
 
 
-    /**
-     * @Route("/cart/reset", name="cart_reset")
-     */
-    public function emptyCart(SessionInterface $session)
-    {
+    // /**
+    //  * Route de confirmation de suppression pour que le modal récupère l'id
+    //  * @Route("/cart/{id}", name="cart_rem_confirm", requirements={"id"="\d+"})
+    //  */
+    // public function confirmModalRemFromCart(Request $request, $id, SessionInterface $session)
+    // {
+    //     $session = $this->get('session');
+    //     $cart = $session->get('cart');
 
+    //     //recup de l'id reçu en Get
+    //     $receivedId = $request->query->get('id');
 
-        return $this->render('cart/index.html.twig', [
-            'session' => $session
-        ]);
-    }
-
+    //     return $this->render('cart/view.html.twig',[
+    //         'id' => $receivedId
+    //     ]);
+    // }
 }
 
 
