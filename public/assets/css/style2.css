@@ -139,16 +139,24 @@ article {
 
 /*ARTICLES DETAILS-----------------------------------------------------------*/
 
-#details-main {
-    margin-top: 5rem;
-    margin-bottom: 5rem;
+.details-main {
+    margin-top: 4rem;
+    margin-bottom: 4rem;
 }
+
 
 #details-portfolio {
     display: flex;
     align-items: center;
 
 }
+
+.details-reference{
+    font-style: italic;
+    color: #1C2331;
+    font-size: 0.8rem;
+}
+
 
 .list-group-item.active {
     background-color: black;
@@ -171,7 +179,36 @@ article {
     margin-top: 1rem;
 }
 
+.modal-body{
+height: 30rem;
+width: 30rem;
+}
+
+#zoom-laucher{
+width: 100px;
+height: 100px;
+
+background-color: transparent;
+border: 0px solid transparent;
+border-radius: 0;
+
+}
+
+#zoom-laucher:hover{
+    cursor: pointer;
+}
+
+.details-info h1{
+    margin: 0;
+}
+
+
 /*GALLERY-------ALL----------------------------------------------------------*/
+
+#gallery-main{
+    min-height: 35rem;
+}
+
 
 #gallery-title strong {
     font-family: 'Righteous', cursive;
@@ -192,7 +229,7 @@ article {
 
 .gallery-card {
 
-    margin: 2rem;
+    margin: 1rem;
     border: 1px solid black;
     border-radius: 10px;
 
@@ -205,6 +242,8 @@ article {
 
 .card-buttons {
     display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .card-price {
@@ -228,123 +267,77 @@ article {
     margin-left: 2.3rem;
 }
 
+.card-body{
+    padding:0;
+    margin-top: 0.5rem;
+}
+
+
+.card-brand{
+    margin-bottom: 0.8rem;
+}
+
+.hr-filtre{
+    margin-bottom: 0.5rem;
+
+}
+
+#get-all-articles{
+    margin-top: 1rem;
+}
+
+/* JUMBOTRON All */
+#gallery-jumbotron-homme,
+#gallery-jumbotron-femme,
+#gallery-jumbotron-scolaire,
+#gallery-jumbotron-bagage {
+    height: 10rem;
+}
+
+/* JUMBOTRON All */
+#inlineFormCustomSelectPref-woman1,
+#inlineFormCustomSelectPref-woman2,
+#inlineFormCustomSelectPref-woman3,
+#inlineFormCustomSelectPref-man1,
+#inlineFormCustomSelectPref-man2,
+#inlineFormCustomSelectPref-man3,
+#inlineFormCustomSelectPref-kid1,
+#inlineFormCustomSelectPref-kid2,
+#inlineFormCustomSelectPref-kid3,
+#inlineFormCustomSelectPref-bagage1,
+#inlineFormCustomSelectPref-bagage2,
+#inlineFormCustomSelectPref-bagage3{
+    width: 10rem;
+}
 
 /*GALLERY-------FEMME----------------------*/
 #gallery-jumbotron-femme {
-
     background-color: rgb(76, 51, 145);
-    height: 10rem;
-    padding: 0;
-    margin: 0;
 }
-
-
-#inlineFormCustomSelectPref-woman1 {
-    border: 1px solid rgb(46, 46, 46);
-    width: 10rem;
-}
-
-
-#inlineFormCustomSelectPref-woman2 {
-    border: 1px solid rgb(63, 81, 181);
-    width: 10rem;
-
-}
-
-
-#inlineFormCustomSelectPref-woman3 {
-    border: 1px solid rgb(81, 45, 168);
-    width: 10rem;
-}
-
 
 /*GALLERY-------HOMME---------------------*/
 
 #gallery-jumbotron-homme {
-
     background-color: rgb(46, 64, 79);
-    height: 10rem;
 }
-
-#inlineFormCustomSelectPref-man1 {
-    border: 1px solid #1C2331;
-    width: 10rem;
-}
-
-
-#inlineFormCustomSelectPref-man2 {
-    border: 1px solid #3F729B;
-    width: 10rem;
-}
-
-
-#inlineFormCustomSelectPref-man3 {
-    border: 1px solid #263238;
-    width: 10rem;
-}
-
-
 
 /*GALLERY-------KIDS---------------------*/
 
 #gallery-jumbotron-scolaire {
-
     background-color: rgb(136, 14, 79);
-    height: 10rem;
-
 }
-
-#inlineFormCustomSelectPref-kid1 {
-    border: 1px solid #e53935;
-    width: 10rem;
-}
-
-
-#inlineFormCustomSelectPref-kid2 {
-    border: 1px solid #880e4f;
-    width: 10rem;
-}
-
-
-#inlineFormCustomSelectPref-kid3 {
-    border: 1px solid #d50000;
-    width: 10rem;
-}
-
-
 
 /*GALLERY-------BAGAGES------------------*/
 
 #gallery-jumbotron-bagage {
-
     background-color: rgb(153, 96, 50);
 }
 
-#inlineFormCustomSelectPref-bagage1 {
-    border: 1px solid rgb(46, 46, 46);
-    width: 10rem;
-}
-
-
-#inlineFormCustomSelectPref-bagage2 {
-    border: 1px solid #3e2723;
-    width: 10rem;
-}
-
-
-#inlineFormCustomSelectPref-bagage3 {
-    border: 1px solid #212121;
-    width: 10rem;
-}
-
-<<<<<<< HEAD
 /*ORDER------------------------------------*/
 #main-order-container{
     min-height: 35rem;
 }
 
-=======
->>>>>>> master
 
 /*//////////////////////////////////////////////////*/
 /*                     PANIER                       */
@@ -394,7 +387,6 @@ article {
 /*//////////////////////////////////////////////////*/
 
 
-
 /*ORDER------------------------------------*/
 #order-process div {
     display: flex;
@@ -408,21 +400,20 @@ article {
     font-weight: 400;
 }
 
+#order-process{
+    display: flex;
+}
+
 #order-container{
     background-color: #880e4f;
 }
 
-<<<<<<< HEAD
 #order-help{
     background-color: blue;
-=======
-#order-process {
-    display: flex;
 }
 
 .order-process-step-1 {
     background-color: rgb(46, 46, 46);
->>>>>>> master
 }
 
 
@@ -529,9 +520,6 @@ article {
 
 
 
-
-
-
 /*//////////////////////////////////////////////////*/
 /*                  MEDIA QUERIES                   */
 /*//////////////////////////////////////////////////*/
@@ -545,8 +533,7 @@ article {
 }
 
 /* Photos présentations vitrine */
-@media screen and (max-width: 600px) {}
-@media screen and (max-width: 576px){
+@media screen and (max-width: 600px){
     .vitrine img {
         max-width: 170px;
         max-height: 170px;

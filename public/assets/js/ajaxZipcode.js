@@ -7,20 +7,6 @@ function close_nav() {
 }
 
 
-
-// function function_menu() {
-//   var x = document.getElementById("top_navbar");
-//   if (x.className === "navbar")
-//   {
-//     x.className += " responsive"; // Ajout de la class responsive en version mobile
-//   }
-//   else
-//   {
-//     x.className = "navbar";
-//   }
-// }
-
-
 // =============================================
 // API geo.api.gouv.fr. Retrieve City by ZipCode
 // =============================================
@@ -30,8 +16,6 @@ var zipcode;
 var source;
 var lists = {};
 var elmt_list = $('#user_register_city');
-
-console.log('yoyo');
 
 $(document).ready(function(){
 
@@ -44,12 +28,9 @@ $(document).ready(function(){
         zipcode = $('#user_register_zipcode').val();
         source = 'https://geo.api.gouv.fr/communes?codePostal='+zipcode+'&fields=nom&format=json&geometry=centre';
         setLists(source);   
-        
-        
-        
+
     });
         
-
 });
 
 /**
@@ -58,8 +39,7 @@ $(document).ready(function(){
  * @param (string) url address of Lists 
  * @return (object) lists
  */
-function setLists(url) 
-{
+function setLists(url) {
     // AJAX request
     $.ajax({
         method: "GET",
@@ -111,4 +91,4 @@ function show_list(response) {
     
 //     $('#confirmModal').show(1000);
 //     //alert(remLink);
-})
+// })

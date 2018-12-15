@@ -1,13 +1,13 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello{% endblock %}
+{% block title %} Univers Street-Wear - {{parent()}} {% endblock %}
 
 {% block body %}
 
-{# MAN #}
+{# STREET-WEAR GALLERY #}
 <div id="gallery-jumbotron-scolaire" class="card card-image">
     <div>
-        <h2 id="gallery-title" class="card-title h1-responsive pt-3 mb-5 font-bold"><strong>Scolaire</strong></h2>
+        <h2 id="gallery-title" class="card-title h1-responsive pt-3 mb-5 font-bold"><strong>Street-Wear</strong></h2>
     </div>
 </div>
 
@@ -19,28 +19,30 @@
 
             {% include 'article/gallery/filtres.html.twig' %}
 
-            <hr>
+            <hr class="hr-filtre">
 
             <div id="gallery-display" class="row">
 
                 {% for article in articles %}
-
                 {% if cat is null %}
-
+                {% if article.stock != 0 %}
                 {% if article.categories[0].name == 'Scolaire' %}
 
                 <div class="gallery-card" style="width: 18rem;">
+                    
                     <div>
-                        <img class="card-img-top" src="{{ asset('assets/img/poster/') }}{{ article.poster }}" alt="Card image cap">
+                        <img class="card-img-top" src="{{ asset('assets/img/poster/') }}{{ article.poster }}" alt="produit de chez {{article.brand.name}}">
                     </div>
 
                     <div class="card-body">
+
                         <div>
                             <h5 class="card-title">{{article.name}}</h5>
                             <h4 class="card-brand">{{article.brand.name}}</h4>
                         </div>
                         <div>
-                            <p class="card-color">{{article.articleColor.name}}</p>
+                            <p class="card-color">Couleur :{{article.articleColor.name}}</p>
+                            <p> Stock : {{article.stock}}</p>
                         </div>
                         <hr>
                         <div class="card-price">
@@ -54,29 +56,35 @@
                         </div>
 
                     </div>
+
                 </div>
 
                 {% endif %}
-
+                {% endif %}
                 {% endif %}
 
-                {% if cat is not null %}
 
+
+                {% if cat is not null %}
+                {% if article.stock != 0 %}
                 {% if article.categories[0].name == 'Scolaire' and article.brand.name == cat or article.articleColor.name
                 == cat %}
 
                 <div class="gallery-card" style="width: 18rem;">
+                    
                     <div>
                         <img class="card-img-top" src="{{ asset('assets/img/poster/') }}{{ article.poster }}" alt="Card image cap">
                     </div>
 
                     <div class="card-body">
+
                         <div>
                             <h5 class="card-title">{{article.name}}</h5>
                             <h4 class="card-brand">{{article.brand.name}}</h4>
                         </div>
                         <div>
-                            <p class="card-color">{{article.articleColor.name}}</p>
+                            <p class="card-color">Couleur :{{article.articleColor.name}}</p>
+                            <p> Stock : {{article.stock}}</p>
                         </div>
                         <hr>
                         <div class="card-price">
@@ -90,15 +98,16 @@
                         </div>
 
                     </div>
+
                 </div>
 
                 {% endif %}
-
+                {% endif %}
                 {% endif %}
 
-                {% endfor %}
+            {% endfor %}
 
-            </div>
+        </div>
 </main>
 
 

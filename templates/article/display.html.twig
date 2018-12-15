@@ -4,27 +4,33 @@
 
 {% block body %}
 
-<main id="details-main">
+<main class="details-main">
 
    <div class="container">
       <div class="row">
 
          <div id="details-portfolio" class="col-sm">
-            <img src="../../assets/img/poster/sac1_l.jpg" alt="">
+
+            {# Photo Présentation large #}
+            <img src="../../assets/img/poster/sac1_l.jpg">
          </div>
 
          <div class="col-sm">
 
+
+            {# Présentation produit #}
             <div class="details-info">
                <h2>{{article.brand.name}}</h2>
                <strong>
                   <h1>{{article.name}}</h1>
                </strong>
-               {{article.reference}}
+               <span class="details-reference">Référence : {{article.reference}}</span>
                <hr>
-               <h3>{{article.price}} Euros TTC</h3>
+               <h3>{{article.price}} <i class="fas fa-euro-sign"></i> <span class="details-reference">TTC. Hors frais de livraison</span></h3>
             </div>
 
+
+            {# Detail panier #}
             <hr>
             <div class="details-shopping-cart">
                <a href="{{ path('cart_add', {'id': article.id, 
@@ -37,25 +43,115 @@
             </div>
             <hr>
 
+            {# Description produit #}
             <div class="details-description">
 
                <div class="list-group" id="list-tab" role="tablist">
                   <a class="list-group-item list-group-item-action active" id="list-home-list" data-toggle="list" href="#list-home"
-                     role="tab" aria-controls="home">Description</a>
+                     role="tab" aria-controls="home">Description détaillée du produit</a>
+                  
+                  {# UX : pas de propositions de photos sans photos #}
+                  {# UX : mot clé : ZOOM #}
+                  {% if article.altPicture1 or article.altPicture2 or article.altPicture3  is not defined %}
+                  
                   <a class="list-group-item list-group-item-action" id="list-profile-list" data-toggle="list" href="#list-profile"
-                     role="tab" aria-controls="profile">Photos</a>
+                     role="tab" aria-controls="profile">Zooms détails photos</a>
+
+                  {% endif %}
+
+
                </div>
 
                <div class="tab-content" id="nav-tabContent">
                   <div class="tab-pane fade show active" id="list-home" role="tabpanel" aria-labelledby="list-home-list">
                      {{article.description|trim|nl2br }}
                   </div>
+
+                  {% if article.altPicture1 is defined %}
+
+                  {# ZOOM MODAL photos miniatures #}
                   <div class="tab-pane fade" id="list-profile" role="tabpanel" aria-labelledby="list-profile-list">
 
-                     <img id="zoom_05" src="../../assets/img/poster/{{ article.altPicture1 }}" data-zoom-image="../../assets/img/poster/{{ article.poster }}"
-                        alt="">
-                     <img src="../../assets/img/poster/{{ article.altPicture2 }}" alt="">
-                     <img src="../../assets/img/poster/{{ article.altPicture3 }}" alt="">
+                     <button id="zoom-laucher" type="button" class="" data-toggle="modal" data-target="#basicExampleModal">
+                        <img height="84" width="84" src="../../assets/img/poster/{{ article.altPicture1 }}" alt="sac de chez {{article.brand.name}}"></button>
+
+                     {# Modal 1 #}
+                     <div class="modal fade" id="basicExampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+                        aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                           <div class="modal-content">
+                              <div class="modal-header">
+                                 <h5 class="modal-title" id="exampleModalLabel">{{ article.name }} </h5>
+                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                 </button>
+                              </div>
+                              <div class="modal-body">
+
+                                 {# alt image dynamique avec le nom de marque #}
+                                 <img height="448" width="448" src="../../assets/img/poster/sac1_l.jpg" alt="sac de chez {{article.brand.name}}">
+
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                     {% endif %}
+
+                     {# Modal 2 #}
+
+                     {% if article.altPicture2 is defined %}
+
+                     <button id="zoom-laucher" type="button" class="" data-toggle="modal" data-target="#basicExampleModal">
+                        <img height="84" width="84" src="../../assets/img/poster/{{ article.altPicture2 }}" alt=""></button>
+
+                     <div class="modal fade" id="basicExampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+                        aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                           <div class="modal-content">
+                              <div class="modal-header">
+                                 <h5 class="modal-title" id="exampleModalLabel">{{ article.name }} </h5>
+                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                 </button>
+                              </div>
+                              <div class="modal-body">
+
+                                 <img height="448" width="448" src="../../assets/img/poster/sac1_l.jpg" alt="sac de chez {{article.brand.name}}">
+
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                     {% endif %}
+
+
+                     {# Modal 3 #}
+
+                     {% if article.altPicture2 is defined %}
+
+                     <button id="zoom-laucher" type="button" class="" data-toggle="modal" data-target="#basicExampleModal">
+                        <img height="84" width="84" src="../../assets/img/poster/{{ article.altPicture3 }}" alt=""></button>
+
+                     <div class="modal fade" id="basicExampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+                        aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                           <div class="modal-content">
+                              <div class="modal-header">
+                                 <h5 class="modal-title" id="exampleModalLabel">{{ article.name }} </h5>
+                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                 </button>
+                              </div>
+                              <div class="modal-body">
+
+                                 <img height="448" width="448" src="../../assets/img/poster/sac1_l.jpg" alt="">
+
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                     {% endif %}
+
                   </div>
                </div>
             </div>

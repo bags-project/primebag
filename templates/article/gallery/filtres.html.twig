@@ -1,4 +1,5 @@
-{# Système de filtre dans les galleries #}
+
+{# Système de filtre en INCLUDE dans les galleries correspondantes #}
 
 <div class="brand-filtre">
 
@@ -19,18 +20,6 @@
             </form>
         </div>
 
-        <div class="price-filtre">
-            <form class="form-inline" method="GET" action="#">
-                <label class="my-1 mr-2" for="inlineFormCustomSelectPref">Prix</label>
-                <select name="price" class="custom-select my-1 mr-sm-2" id="inlineFormCustomSelectPref">
-                    <option selected></option>
-                    <option value="upperprice"> Le moins cher </option>
-                    <option value="lowerprice"> Le plus cher </option>
-                </select>
-                <button type="submit" class="btn btn-elegant my-1 btn-sm">choisir</button>
-            </form>
-        </div>
-
         <div class="material-filtre">
             <form class="form-inline" method="GET" action="#">
                 <label class="my-1 mr-2" for="inlineFormCustomSelectPref">Couleurs</label>
@@ -46,11 +35,25 @@
             </form>
         </div>
 
-        {% if cat is not null %}
-        <div>
-            <a id="GetAll" href="{{ path('woman_gallery')}}" class="btn btn-success btn-sm" role="button">Tous les
-                articles</a>
+        <div class="price-filtre">
+            <form class="form-inline" method="GET" action="#">
+                <label class="my-1 mr-2" for="inlineFormCustomSelectPref">Prix</label>
+                <select name="price" class="custom-select my-1 mr-sm-2" id="inlineFormCustomSelectPref">
+                    <option selected></option>
+                    <option value="upperprice"> Prix croissant </option>
+                    <option value="lowerprice"> Prix décroissant </option>
+                </select>
+                <button type="submit" class="btn btn-elegant my-1 btn-sm">choisir</button>
+            </form>
         </div>
+
+        {% if cat is not null %}
+
+        <div>
+            <a id="get-all-articles" href="{{ path('woman_gallery')}}" class="btn btn-success btn-sm" role="button">Afficher tous les
+                articles de la gamme </a>
+        </div>
+
         {% endif %}
 
     </div>
