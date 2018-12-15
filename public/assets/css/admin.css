@@ -1,5 +1,6 @@
 body {
   margin:0;
+  background:#fcfcfc url('../img/bg.svg') repeat fixed;
   font:15px Verdana, sans-serif; /* Taille et police par défaut */
 }
 
@@ -7,7 +8,7 @@ body {
 /* ==================== Textes ==================== */
 
 h1 {
-  margin:50px 0;
+  margin:50px auto 80px;
 }
 
 p, .text {font:0.9em verdana, sans-serif;}
@@ -135,7 +136,7 @@ nav.nav1 li a:hover {
 .limit {
   max-width:1300px;
   margin:0px auto;
-  padding:0px;
+  padding:15px;
   display:block;
 }
 
@@ -259,8 +260,12 @@ img, video, iframe {
 
 /* ==================== Marges ==================== */
 
-.margin {margin:15px}
+.margin {margin:30px}
 
+.to-top {
+  text-align:right;
+  margin:80px 30px 50px 0;
+}
 
 /* ==================== Float ==================== */
 
@@ -304,7 +309,7 @@ img, video, iframe {
 .admin-flex-child {
   margin:0;
   padding:4px;
-  border:1px solid;
+  border:1px solid #CED4DA;
   flex:1;
 }
 

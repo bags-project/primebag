@@ -152,4 +152,52 @@ class AdminController extends AbstractController
 
 
 
+
+
+
+
+
+
+
+    /**
+    * ===================== Affiche la liste des utilisateurs ========================
+    * @Route("/admin/user/", name="admin_user")
+    */
+    public function admin_user()
+    {
+        $repo = $this->getDoctrine()->getRepository(User::class); // Recup données dans BDD
+        $users = $repo->findAll(); // Pour trouver tous les users
+
+        return $this->render('admin/user.html.twig', [
+            'users' => $users
+        ]);
+    }
+
+
+
+
+    /**
+    * ===================== Effacer utilisateur ========================
+    * @Route("/admin/user/{id}/del", name="admin_del_user")
+    */
+    public function delete_user(User $user, Request $request)
+    {
+        // if ($this->isCsrfTokenValid('delete'.$article->getId(), $request->request->get('_token')))
+        // {
+            $emanager = $this->getDoctrine()->getManager();
+            $emanager->remove($user);
+            $emanager->flush();
+
+            $this->addFlash(
+                'notice',
+                ' est effacé !'
+            );
+        // }
+
+        return $this->redirectToRoute('admin_user');
+    }
+
+
+
+
 }

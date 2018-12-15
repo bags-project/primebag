@@ -15,9 +15,9 @@
 
         <nav class="admin-navbar" id="admin-topnavbar">
             <a href="{{ path('home') }}"><img src="{{ asset('assets/img/miniprimebag.png') }}"></a>
-            <a href="{{ path('admin_add') }}">Ajouter</a>
-            <a href="{{ path('admin_article') }}">Modifier/Effacer</a>
-            <a href="#">Lien</a>
+            <a href="{{ path('admin_add') }}">Ajouter article</a>
+            <a href="{{ path('admin_article') }}">Modifier/Effacer article</a>
+            <a href="{{ path('admin_user') }}">Supprimer utilisateur</a>
             <a href="#">Lien</a>
             <a href="#">Lien</a>
             <a href="#">Lien</a>
@@ -29,48 +29,49 @@
 
 
     <!-- Footer -->
-            <footer class="footer-flex">
-            <div class="footer-flex-child">
-                <p><a href="{{ path('home') }}">Primebag</a></p>
-                <p>Bienvenue dans la partie Admin. Vous pouvez voir, ajouter, modifier ou effacer des articles ici.</p>
+    <div class="to-top"><a rel="nofollow" href="#">Haut de page</a></div>
+    <footer class="footer-flex">
+        <div class="footer-flex-child">
+            <p><a href="{{ path('home') }}">Primebag</a></p>
+            <p>Bienvenue dans la partie Admin. Vous pouvez voir, ajouter, modifier ou effacer des articles ici.</p>
+        </div>
+        <div class="footer-flex-child center">
+            <div class="b">
+            Catégories
+            </div><br>
+            <p>
+            <a href="#">Femme</a>
+            </p>
+            <p>
+            <a href="#">Homme</a>
+            </p>
+            <p>
+            <a href="#">Scolaire</a>
+            </p>
+            <p>
+            <a href="#">Bagages</a>
+            </p>          
+        </div>
+        <div class="footer-flex-child">
+            <div class="center b">
+            Suivez-nous
             </div>
-            <div class="footer-flex-child center">
-                <div class="b">
-                Catégories
-                </div><br>
-                <p>
-                <a href="#">Femme</a>
-                </p>
-                <p>
-                <a href="#">Homme</a>
-                </p>
-                <p>
-                <a href="#">Scolaire</a>
-                </p>
-                <p>
-                <a href="#">Bagages</a>
-                </p>          
+            <div class="boxflex">
+            <div class="boxelement">
+                <div id="fb"></div>
+                <div class="text"><a href="#">Facebook</a></div>
             </div>
-            <div class="footer-flex-child">
-                <div class="center b">
-                Suivez-nous
-                </div>
-                <div class="boxflex">
-                <div class="boxelement">
-                    <div id="fb"></div>
-                    <div class="text"><a href="#">Facebook</a></div>
-                </div>
-                <div class="boxelement">
-                    <div id="tw"></div>
-                    <div class="text"><a href="#">Twitter</a></div>
-                </div>
-                <div class="boxelement">
-                    <div id="instagr"></div>
-                    <div class="text"><a href="#">Instagram</a></div>
-                </div>
-                </div>
+            <div class="boxelement">
+                <div id="tw"></div>
+                <div class="text"><a href="#">Twitter</a></div>
             </div>
-            </footer>
+            <div class="boxelement">
+                <div id="instagr"></div>
+                <div class="text"><a href="#">Instagram</a></div>
+            </div>
+            </div>
+        </div>
+    </footer>
     <!-- Footer -->
 
     {% block javascripts %}
