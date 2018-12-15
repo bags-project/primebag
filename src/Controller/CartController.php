@@ -2,8 +2,8 @@
 
 namespace App\Controller;
 
+use App\Service\CartService;
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -28,17 +28,12 @@ class CartController extends AbstractController
     /**
      * @Route("/cart/add", name="cart_add")
      */
-    public function addToCart(Request $request, SessionInterface $session){
+    public function addToCart(Request $request, SessionInterface $session, CartService $cartService){
         $session = $this->get('session');
 
         // je verif si un panier existe, sinon j'en crée un vide
         if($session->get('cart') == null){
-            $session->set('cart', array('id' => [], 
-                                        'name' => [],
-                                        'ref' => [],
-                                        'price' => [],
-                                        'poster' => [],
-                                        'quantity' => [] ) );
+            $cartService->setEmptyCart($session);
         }
 
         $cart = $session->get('cart');
@@ -82,7 +77,6 @@ class CartController extends AbstractController
         ]);
     }
 
-
     /**
      * @Route("/cart/remove", name="cart_remove")
      */
@@ -91,14 +85,14 @@ class CartController extends AbstractController
         $session = $this->get('session');
         $cart = $session->get('cart');
 
-        //je recherche l'index correspondant à l'id reçu en Get
+        //recherche de l'index correspondant à l'id reçu en Get
         $receivedId = $request->query->get('id');
         $key = array_search($receivedId, $cart['id']);
 
         // je récup le nom avant suppression pour l'afficher sur la page de confirmation
         $itemToDelete = $cart['name'][$key];
 
-        //et je supprime l'article du panier
+        //suppr de l'article du panier
         unset($cart['id'][$key]);
         unset($cart['name'][$key]);
         unset($cart['ref'][$key]);
@@ -116,11 +110,13 @@ class CartController extends AbstractController
     /**
      * @Route("/cart/reset", name="cart_reset")
      */
-    public function emptyCart(SessionInterface $session)
-    {
-        
+    public function emptyCart(SessionInterface $session, CartService $cartService){
+        $session = $this->get('session');
+        $cart = $session->get('cart');
 
-        return $this->render('cart/index.html.twig', [
+        $cartService->setEmptyCart($session);
+
+        return $this->render('cart/view.html.twig', [
             'session' => $session
         ]);
     }
@@ -132,14 +128,28 @@ class CartController extends AbstractController
     public function validateCart(SessionInterface $session)
     {
 
-
         return $this->render('cart/index.html.twig', [
             'session' => $session
         ]);
     }
 
 
+    // /**
+    //  * Route de confirmation de suppression pour que le modal récupère l'id
+    //  * @Route("/cart/{id}", name="cart_rem_confirm", requirements={"id"="\d+"})
+    //  */
+    // public function confirmModalRemFromCart(Request $request, $id, SessionInterface $session)
+    // {
+    //     $session = $this->get('session');
+    //     $cart = $session->get('cart');
 
+    //     //recup de l'id reçu en Get
+    //     $receivedId = $request->query->get('id');
+
+    //     return $this->render('cart/view.html.twig',[
+    //         'id' => $receivedId
+    //     ]);
+    // }
 }
 
 

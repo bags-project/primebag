@@ -87,9 +87,28 @@ function show_list(response) {
         elmt_option.attr("value", list.nom );
         elmt_option.text(list.nom);
         elmt_list.append(elmt_option); 
-    
+ 
     });
 
 }
 
 
+// // Modal de confirmation de suppression d'un article du panier
+// var remFromCartButton = $('#btnRemFromCart');
+
+// remFromCartButton.on("click", function(){
+//     // code ci-dessous ne fonctionne pas, bonne route injectée mais interprétée en string dans l'url
+//     // récup de l'id de l'article à supprimer
+//     //var idArticleToRemove = remFromCartButton.val();
+
+
+//     //var remLink = "{{ path('cart_remove', {'id': " + idArticleToRemove + "})|escape('js') }}";
+//     // marche pas non plus; impossible d'accéder à à le route en saisie d'url côté client :
+//     //var remLink = "primebag/public/index.php/cart/remove?id=" + idArticleToRemove;
+
+//     // envoie de l'id dans la route du lien du bouton de confirmation du modal
+//     //$('#linkCartRemove').attr("href", remLink );
+    
+//     $('#confirmModal').show(1000);
+//     //alert(remLink);
+})
