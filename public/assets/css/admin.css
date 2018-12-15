@@ -1,0 +1,438 @@
+body {
+  margin:0;
+  background:#fcfcfc url('../img/bg.svg') fixed no-repeat;
+  background-size: cover;
+  font:15px Verdana, sans-serif; /* Taille et police par défaut */
+}
+
+
+/* ==================== Textes ==================== */
+
+h1 {
+  margin:50px auto 80px;
+}
+
+p, .text {font:0.9em verdana, sans-serif;}
+
+.note {font:0.7em verdana, sans-serif;}
+
+.burger {
+  font-size:30px;
+  cursor:pointer
+}
+
+.invisible {opacity:0}
+.visible {opacity:1; transition:2s}
+
+.b {font-weight:bold}
+.u {text-decoration:underline}
+.i {font-style:italic}
+address {font-style:normal}
+
+a {text-decoration:none}
+a:link {color:#4D6D95;}
+a:visited {color:#4D6D95;}
+a:hover {color:#EC0000;}
+
+.textshadow {text-shadow:0 0 7px rgba(0,0,0,.9);}
+
+
+/* ==================== Blocs et Navbar ==================== */
+
+
+.admin-navbar {
+  background-color: #2c2c2c;  
+  width: 100%;
+}
+
+.admin-navbar a {
+  display: inline-block;
+  color: #f5f5f5;
+  text-align: center;
+  text-decoration: none;
+  font:1em Verdana, sans-serif;
+  padding: 16px 17px;
+}
+
+.admin-navbar a:hover {
+  background-color: #bebebe;
+  color: black;
+}
+
+.admin-navbar a.active {
+  background-color: #cd280c;
+  color: #f5f5f5;
+  padding: 16px 17px;
+}
+
+.admin-navbar .icon {
+  display: none; /* Menu Burger caché en version desktop */
+}
+
+
+
+
+
+
+
+
+header {
+  background-color: #f7f7f7;
+  /* color: #d3d3d3; */
+}
+
+footer {
+  background-color: #1f1f1f;
+  padding:15px;
+  margin-top:12px;
+  color: #d3d3d3;
+}
+
+/* .main {
+  margin:30px 0;
+  padding:20px;
+} */
+
+#pub {
+  background-color:#2d2d2d;
+  padding:8px;
+  color:#d3d3d3;
+}
+
+ul {
+  margin: 0; /* Supprimer les marges par défaut de liste */
+  padding: 0;
+  text-align: center;
+}
+
+nav.nav1 {
+  margin: 0 50px;
+  /* background-color: #eef2f7; */
+}
+
+nav.nav1 ul {
+  display:flex;
+  justify-content: space-around;
+}
+
+nav.nav1 li {
+  list-style-type: none;
+  padding: 12px 14px;
+}
+
+nav.nav1 li a {
+  padding: 12px 14px;
+}
+nav.nav1 li a:hover {
+  background-color: #9fbee3;
+}
+
+.desktop {
+  display: block;
+}
+.mobile {
+  display: none;
+}
+
+.limit {
+  max-width:1300px;
+  margin:0px auto;
+  padding:15px;
+  display:block;
+}
+
+.shadow {
+  box-shadow: 0px -1px 20px 1px rgba(130,135,145,1);
+}
+
+
+
+
+/* ==================== Images & Vidéos ==================== */
+
+img, video, iframe {
+  max-width: 100%; /* Responsive */
+  height: auto;
+}
+
+.admin-img {
+  max-width:80px;
+  max-height:80px;
+}
+
+.profil {
+  position: absolute;
+  margin-left: 13px;
+  margin-top: 11px;
+  width: 14px;
+  height: 6px;
+  border-left: solid 1px#e2e2e2;
+  border-right: solid 1px#e2e2e2;
+  border-top: solid 1px#e2e2e2;
+  border-radius: 6px 6px 0 0;
+}
+.profil:before {
+  content: '';
+  position: absolute;
+  left: 2px;
+  top: -10px;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  border: solid 1px#e2e2e2;
+}
+
+.basket {
+  color:#e2e2e2;
+  position: absolute;
+  margin-left: 8px;
+  margin-top: 4px;
+  width: 13px;
+  height: 12px;
+  border-radius: 1px;
+  border: solid 1px currentColor;
+  background-color: currentColor;
+}
+.basket:before {
+  content: '';
+  position: absolute;
+  left: 3px;
+  top: -8px;
+  width: 5px;
+  height: 6px;
+  border-radius: 4px 4px 0 0;
+  border-top: solid 1px currentColor;
+  border-left: solid 1px currentColor;
+  border-right: solid 1px currentColor;
+}
+
+.symbol {
+  width:50px;
+  height:50px;
+}
+
+
+/* Sprite CSS */
+#fb, #tw, #instagr {
+  display: block;
+  width: 50px;
+  height: 50px;
+  margin: 0 auto 8px;
+}
+
+#fb {
+  background: url('../img/reseauxsociaux.png') 0 0;
+}
+
+#tw {
+  background: url('../img/reseauxsociaux.png') -50px 0;
+}
+
+#instagr {
+  background: url('../img/reseauxsociaux.png') -100px 0;
+}
+
+
+.vieilli {
+  box-shadow: 0 0 65px #CDBE9F inset, 0 0 20px #BEAE8C inset, 0 0 2px #816F47;
+  padding: 20px 24px;
+  border-radius: 10px;
+}
+
+.zoom-effect {
+  transition: 0.5s;
+}
+
+.zoom-effect:hover {
+  cursor: pointer;
+  transform: scale(1.2);
+}
+
+.imgtransi {transition:2s; opacity:0.5}
+.imgtransi:hover {transition:2s; opacity:1}
+
+
+/* ==================== Alignement ==================== */
+
+.left {text-align:left}
+.right {text-align:right}
+.center {text-align:center}
+
+
+/* ==================== Marges ==================== */
+
+.margin {margin:30px}
+
+.to-top {
+  text-align:right;
+  margin:80px 30px 50px 0;
+}
+
+/* ==================== Float ==================== */
+
+.floatleft {margin:0 20px 12px 0; float:left;}
+.floatright {margin:0 0px 12px 20px; float:right;}
+.clear {clear:both} /* Casser le flux de float */
+
+
+/* ==================== Tableaux div (remplacent table/tr/td) ==================== */
+
+.boxshadow {box-shadow:5px 5px 5px black;}
+
+.overflow-hidden {
+  overflow: hidden;
+}
+
+
+/* ==================== Tableaux div (remplacent table/tr/td) ==================== */
+
+.border {border:1px solid black}
+
+.boxdotted {
+  border:3px dotted #ce2b68;
+  border-radius:14px;
+  padding:12px 12px 12px 14px;
+  margin:50px 50px;
+}
+
+
+/* ==================== Flexbox ==================== */
+
+.admin-list {
+  max-width:1300px;
+  margin:0 auto 5px;
+  text-align: center;
+}
+
+.admin-flex {
+  display:flex;
+}
+.admin-flex-child {
+  margin:0;
+  padding:4px;
+  border:1px solid #CED4DA;
+  background-color:#FFF;
+  flex:1;
+}
+
+.header-flex {
+  display:flex;
+  justify-content:space-around;
+  align-items:center;
+  background: #363636;
+  color:#e2e2e2;
+  margin:0;
+}
+
+.footer-flex {
+  display:flex;
+
+}
+.footer-flex-child {
+  padding: 20px;
+  min-width: 300px;
+}
+
+.flex-child {
+  flex:1; /* Meme largeur pour les enfants dans flexbox */
+  width:45%;
+  border:1px dashed #373737;
+  padding:16px;
+  margin:12px;
+}
+
+.flexcenter {
+  display:flex;
+  justify-content:center; /* Flexbox Centré */
+  align-items:center;  /* Aligner verticalement au centre. Utile pour centrer textes trop courts */
+}
+.flexbetween {
+  display:flex;
+  justify-content:space-between;  /* Flexbox Ecarter au max */
+}
+.flexaround {
+  display:flex;
+  justify-content:space-around;  /* Flexbox Espaces tout autour */
+}
+.flexwrap {
+  flex-wrap:wrap;
+}
+
+.flexnowrap {
+  display: flex;
+  flex-wrap:nowrap;
+}
+
+
+
+
+.boxflex {
+  display: flex;
+  justify-content: space-between;
+}
+.boxelement {
+  width: 30%;
+  padding: 15px;
+  text-align: center;
+}
+
+
+
+/* ==================== Formulaire ==================== */
+
+
+.search input[type=text] {
+  margin-top:0px;
+}
+
+button[type*="submit"] {
+  cursor:pointer;
+  border-radius:7px;
+  background-color:#c0c0c0;
+  border:1px solid #8d8d8d;
+  padding:8px 12px;
+  color: #171717;
+  margin:28px auto;
+}
+button[type*="submit"]:hover {
+	background-color:#df1515;
+}
+
+/* ============ Pour écran largeur inférieur à 1024px ============ */
+
+@media screen and (max-width: 1024px)
+{
+  .desktop {
+    display: none;
+  }
+  .mobile {
+    display: block;
+  }
+
+  .admin-navbar a:not(:first-child) {
+    display: none; /* Cacher les liens qui ne sont pas en premier */
+  }
+
+  .admin-navbar a.icon {
+    float: right; /* Icone Burger Menu */
+    display: block;
+    padding: 15px 26px;
+  }
+
+  .admin-navbar.responsive .icon {
+    position: absolute;
+    right: 0;
+    top:0;
+  }
+  .admin-navbar.responsive a {
+    display: block;
+    text-align: left;
+  }
+
+  .footer-flex {
+    flex-direction:column;
+  }
+
+
+
+}

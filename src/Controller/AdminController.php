@@ -17,12 +17,7 @@ class AdminController extends AbstractController
      */
     public function admin()
     {
-        $repo = $this->getDoctrine()->getRepository(Article::class); // Recup données dans BDD
-        // $articles = $repo->findOneByTitle('Titre article'); // Pour trouver un article
-        $articles = $repo->findAll(); // Pour trouver tous les articles
-
-        return $this->render('admin/index.html.twig', [
-            'articles' => $articles
+        return $this->render('admin/login.html.twig', [
         ]);
     }
 
@@ -131,7 +126,7 @@ class AdminController extends AbstractController
     * ===================== Effacer article ========================
     * @Route("/admin/{id}/del", name="admin_del")
     */
-    // public function delete(Article $article)
+    // methods="DELETE"
     public function delete(Article $article, Request $request)
     {
         // if ($this->isCsrfTokenValid('delete'.$article->getId(), $request->request->get('_token')))
@@ -147,6 +142,55 @@ class AdminController extends AbstractController
         // }
 
         return $this->redirectToRoute('admin_article');
+    }
+
+
+
+
+
+
+
+
+
+
+
+    /**
+    * ===================== Affiche la liste des utilisateurs ========================
+    * @Route("/admin/user/", name="admin_user")
+    */
+    public function admin_user()
+    {
+        $repo = $this->getDoctrine()->getRepository(User::class); // Recup données dans BDD
+        $users = $repo->findAll(); // Pour trouver tous les users
+
+        return $this->render('admin/user.html.twig', [
+            'users' => $users
+        ]);
+    }
+
+
+
+
+    /**
+    * ===================== Effacer utilisateur ========================
+    * @Route("/admin/user/del/{id}", name="admin_del_user")
+    */
+    public function delete_user(User $user, Request $request)
+    {
+        // if ($this->isCsrfTokenValid('delete'.$article->getId(), $request->request->get('_token')))
+        // {
+            $emanager = $this->getDoctrine()->getManager();
+            $emanager->remove($user);
+            $emanager->flush();
+
+            // $this->addFlash(
+            //     'notice',
+            //     ' est effacé !'
+            // );
+            
+        // }
+
+        return $this->redirectToRoute('admin_user');
     }
 
 
