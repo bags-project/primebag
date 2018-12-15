@@ -338,6 +338,9 @@ article {
 }
 
 /*ORDER------------------------------------*/
+#main-order-container{
+    min-height: 35rem;
+}
 
 
 #order-process {
@@ -353,18 +356,17 @@ article {
     align-items: center;
 
     color:white;
-    font-weight: 600;
+    font-weight: 400;
 }
 
-
 #order-container{
-    width: 255px;
     background-color: #880e4f;
 }
 
-.order-process-step-1 {
-    background-color: rgb(46, 46, 46);
+#order-help{
+    background-color: blue;
 }
+
 
 .order-process-step-2 {
     background-color: rgb(46, 46, 46);
@@ -378,8 +380,93 @@ article {
     background-color: rgb(46, 46, 46);
 }
 
-#main-order-container{
-    
+/*----------------- ORDER SECTION 1---------------- */
+#order_section_1{
+    width: 100%;
+    background-color: aqua;
+}
+
+
+/*----------------- ORDER SECTION 2---------------- */
+#order_section_2{
+    width: 100%;
+    height: 10rem;
+
+    background-color: red;
+
+    display: flex;
+}
+
+.order_section_2_main{
+    width: 70%;
+    background-color: brown;
+}
+
+.order_section_2_aside{
+    width: 30%;
+    background-color: goldenrod;
+}
+
+/*----------------- ORDER SECTION 3---------------- */
+
+#order_section_3{
+    width: 100%;
+    height: 10rem;
+
+    background-color: gray;
+    display: flex;
+}
+
+.order_section_3_main{
+    width: 70%;
+    background-color: brown;
+}
+
+.order_section_3_aside{
+    width: 30%;
+    background-color: goldenrod;
+}
+
+
+/*----------------- ORDER SECTION 4---------------- */
+
+#order_section_4{
+    width: 100%;
+    height: 10rem;
+
+    background-color: forestgreen;
+    display: flex;
+}
+
+.order_section_4_main{
+    width: 70%;
+    background-color: brown;
+}
+
+.order_section_4_aside{
+    width: 30%;
+    background-color: goldenrod;
+}
+
+
+/*----------------- ORDER SECTION 5---------------- */
+
+#order_section_5{
+    width: 100%;
+    height: 10rem;
+
+    background-color: yellow;
+    display: flex;
+}
+
+.order_section_5_main{
+    width: 70%;
+    background-color: brown;
+}
+
+.order_section_5_aside{
+    width: 30%;
+    background-color: goldenrod;
 }
 
 
