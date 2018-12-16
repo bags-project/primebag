@@ -14,13 +14,6 @@ p, .text {font:0.9em verdana, sans-serif;}
 
 .note {font:0.7em verdana, sans-serif;}
 
-.burger {
-  font-size:30px;
-  cursor:pointer
-}
-
-.invisible {opacity:0}
-.visible {opacity:1; transition:2s}
 
 .b {font-weight:bold}
 .u {text-decoration:underline}
@@ -31,8 +24,6 @@ a {text-decoration:none}
 a:link {color:#4D6D95;}
 a:visited {color:#4D6D95;}
 a:hover {color:#EC0000;}
-
-.textshadow {text-shadow:0 0 7px rgba(0,0,0,.9);}
 
 
 /* ==================== Blocs et Navbar ==================== */
@@ -58,34 +49,6 @@ footer {
   background-color:#2d2d2d;
   padding:8px;
   color:#d3d3d3;
-}
-
-ul {
-  margin: 0; /* Supprimer les marges par défaut de liste */
-  padding: 0;
-  text-align: center;
-}
-
-nav.nav1 {
-  margin: 0 50px;
-  /* background-color: #eef2f7; */
-}
-
-nav.nav1 ul {
-  display:flex;
-  justify-content: space-around;
-}
-
-nav.nav1 li {
-  list-style-type: none;
-  padding: 12px 14px;
-}
-
-nav.nav1 li a {
-  padding: 12px 14px;
-}
-nav.nav1 li a:hover {
-  background-color: #9fbee3;
 }
 
 .desktop {
@@ -114,11 +77,6 @@ nav.nav1 li a:hover {
 img, video, iframe {
   max-width: 100%; /* Responsive */
   height: auto;
-}
-
-.admin-img {
-  max-width:80px;
-  max-height:80px;
 }
 
 .profil {
@@ -218,36 +176,6 @@ img, video, iframe {
 .left {text-align:left}
 .right {text-align:right}
 .center {text-align:center}
-.centerbu {text-align:center; font-weight:bold; text-decoration:underline;}
-.imgcenter {margin:22px auto; display:block;}
-
-
-/* ==================== Marges ==================== */
-
-.margin {margin:15px}
-.margin-lr {margin:2px 15px}
-.margin-tb {margin:15px 0}
-.margin-l {margin-left:30px}
-.margin-r {margin-right:30px}
-.margin-bottom {margin-bottom:30px}
-.margintopbottom {margin:50px 0}
-.margin-top0 {margin-top:0}
-.margin-bottom0 {margin-bottom:0}
-.no-margin {margin-top:0; margin-bottom:0}
-
-.galerie {margin:15px; border:1px solid black}
-
-
-/* ==================== Float ==================== */
-
-.floatleft {margin:0 20px 12px 0; float:left;}
-.floatleft2 {margin:15px 20px 15px 0; float:left; border:1px solid black;}
-.floatright {margin:0 0px 12px 20px; float:right;}
-.floatright2 {margin:15px 0px 15px 15px; float:right; border:1px solid black;}
-.floatleftbox {margin:0 20px 12px 0; float:left; text-align:center}
-.floatrightbox {margin:0 0 12px 20px; float:right; text-align:center}
-.clear {clear:both} /* Casser le flux de float */
-
 
 /* ==================== Tableaux div (remplacent table/tr/td) ==================== */
 
@@ -272,23 +200,7 @@ img, video, iframe {
 
 /* ==================== Flexbox ==================== */
 
-.admin-list {
-  max-width:1300px;
-  margin:0 auto 5px;
-  text-align: center;
-}
-
-.admin-flex {
-  display:flex;
-}
-.admin-flex-child {
-  margin:0;
-  padding:4px;
-  border:1px solid;
-  flex:1;
-}
-
-.header-flex {
+.top-flex {
   display:flex;
   justify-content:space-around;
   align-items:center;
@@ -297,19 +209,19 @@ img, video, iframe {
   margin:0;
 }
 
+.top-flex-child {
+  flex:1; /* Meme largeur pour les enfants dans flexbox */
+  width:45%;
+  padding:12px;
+  margin:0;
+  text-align: center;
+}
+
 .footer-flex {
   display:flex;
 }
 .footer-flex-child {
   padding: 20px;
-}
-
-.flex-child {
-  flex:1; /* Meme largeur pour les enfants dans flexbox */
-  width:45%;
-  border:1px dashed #373737;
-  padding:16px;
-  margin:12px;
 }
 
 .flexcenter {
@@ -379,48 +291,6 @@ img, video, iframe {
   .mobile {
     display: block;
   }
-
-  .sidenav {
-    height: 100%;
-    width: 0;
-    position: fixed;
-    z-index: 1;
-    top: 0;
-    left: 0;
-    background-color: #34363b;
-    overflow-x: hidden;
-    transition: 0.5s;
-    /* padding-top: 20px; */
-  }
-  
-  .sidenav a {
-    padding: 8px 8px 8px 30px;
-    text-decoration: none;
-    /* font-size: 25px; */
-    color: #818181;
-    display: block;
-    transition: 0.3s;
-    text-align: left;
-  }
-  
-  .sidenav a:hover {
-    color: #f4f4f4;
-  }
-  
-  .sidenav .close {
-    position: absolute;
-    top: 0;
-    right: 20px;
-    font-size: 50px;
-    /* margin-left: 50px; */
-  }
-
-
-  .sidenav {padding-top: 15px;}
-  .sidenav a {font-size: 18px;}
-
-
-
 
 
   .footer-flex, .flexcenter, .flexbetween, .flexaround {

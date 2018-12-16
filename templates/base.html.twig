@@ -22,26 +22,26 @@
 
 <header>
 
-    {# Jumbotron logo #}
-    {# <div id="jumbotron-base" class="jumbotron text-center unique-color-dark">
-        <a href="{{path('home')}}">
-            <div class="logo"></div>
-        </a>
-    </div> #}
-
     {# Logo et Symboles #}
-    {# <div class="header-flex">
+    <div class="top-flex">
 
-        <div class="header-flex-child">
+        <div class="top-flex-child">
+        </div>
+
+        <div class="top-flex-child">
             <a href="{{ path('home') }}"><img src="{{ asset('assets/img/primebag.png') }}" alt="Primebag"></a>
         </div>
 
-        <div class="header-flex-child flexnowrap">
+        <div class="top-flex-child flexnowrap">
 
             <div class="symbol">
                 <div>
+                    {% if is_granted ('ROLE_USER') %}
+                    <a href="{{path('user_profile', {'id': app.user.id})}}">
+                    {% else %}
                     <a href="#">
-                        <div class="profil"></div>
+                    {% endif %}
+                    <div class="profil"></div>
                     </a><br>
                 </div>
                 <div class="note">Compte</div>
@@ -49,8 +49,8 @@
 
             <div class="symbol">
                 <div>
-                    <a href="#">
-                        <div class="basket"></div>
+                    <a href="{{ path('cart_view')}}">
+                    <div class="basket"></div>
                     </a><br>
                 </div>
                 <div class="note">Panier</div>
@@ -58,7 +58,7 @@
 
         </div>
 
-    </div> #}
+    </div>
 
     {# Menu avec les catégories #}
     <nav id="menu-navbar" class="navbar navbar-expand-lg navbar-dark">
@@ -67,7 +67,7 @@
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <img src="{{ asset('assets/img/miniprimebag.png') }}" alt="logo primeBag">
+            {# <img src="{{ asset('assets/img/miniprimebag.png') }}" alt="logo primeBag"> #}
 
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item active">
