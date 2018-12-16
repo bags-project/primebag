@@ -26,23 +26,15 @@
 
 
 
-<pre>
-    {{ dump(carts) }}
-</pre>
-
 {% set nbArticles = cart.name|length %}
 
-{{ nbArticles }} #}
-
-<pre>
-    {{ dump(toto) }}
-</pre>
+{{ nbArticles }}  #}
 
 <main id="main-order-container">
 
     <div id="order_section_1">
 
-        <p>Bienvenue sur notre plateforme d'achat en ligne</p>
+        <p>Validation de la commande</p>
         <p>Le {{date | date("d/m/Y") }} à {{date | date("h:i:s") }} </p>
         <div> {{ app.user.firstName }} </div>
         <div> {{ app.user.lastName }} </div>
@@ -54,8 +46,15 @@
         <div id="order_section_2">
 
             <div class="order_section_2_main">Récap Commande
+            
+
+            <pre>
+                {{ dump(app.session.get('cart')) }}
+            </pre>
+            
 
             </div>
+
             <aside class="order_section_2_aside"></aside>
 
         </div>
@@ -73,19 +72,12 @@
             <aside class="order_section_4_aside"></aside>
 
         </div>
-        {# <div id="order_section_5">This is Section 4
-
-            <div class="order_section_2_main"></div>
-            <aside class="order_section_2_aside"></aside>
-
-        </div> #}
 
     </div>
 
     <button id="button1" type="button" class="btn btn-primary"> 1 </button>
     <button id="button2" type="button" class="btn btn-secondary"> 2 </button>
     <button id="button3" type="button" class="btn btn-primary"> 3 </button>
-    {# <button id="button4" type="button" class="btn btn-secondary"> 4</button> #}
 
     </div>
 
