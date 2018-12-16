@@ -17,12 +17,18 @@ class CartController extends AbstractController
     /**
      * @Route("/cart", name="cart_view")
      */
-    public function show(SessionInterface $session)
+    public function show(SessionInterface $session, CartService $cartService)
     {
+        // je verif si un panier existe, sinon j'en crée un vide
+        if($session->get('cart') == null){
+            $cartService->setEmptyCart($session);
+        }
+
         return $this->render('cart/view.html.twig', [
-            //'session' => $session->get(['cart'])
         ]);
     }
+
+
 
 
     /**
@@ -31,7 +37,6 @@ class CartController extends AbstractController
     public function addToCart(Request $request, SessionInterface $session, CartService $cartService){
         $session = $this->get('session');
 
-        // je verif si un panier existe, sinon j'en crée un vide
         if($session->get('cart') == null){
             $cartService->setEmptyCart($session);
         }
@@ -77,6 +82,8 @@ class CartController extends AbstractController
         ]);
     }
 
+
+
     /**
      * @Route("/cart/remove", name="cart_remove")
      */
@@ -99,12 +106,13 @@ class CartController extends AbstractController
         unset($cart['price'][$key]);
         unset($cart['poster'][$key]);
 
-        $session->set('cart', $cart);        
+        $session->set('cart', $cart);
 
         return $this->render('cart/remove.html.twig',[
             'articleName' => $itemToDelete
         ]);
     }
+
 
     
     /**
@@ -122,6 +130,7 @@ class CartController extends AbstractController
     }
 
 
+
     /**
      * @Route("/cart/validation", name="cart_validate")
      */
@@ -132,6 +141,7 @@ class CartController extends AbstractController
             'session' => $session
         ]);
     }
+
 
 
     // /**
