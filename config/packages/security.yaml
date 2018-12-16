@@ -12,30 +12,38 @@ security:
             entity:
                 class: App\Entity\User
                 property: email
+        # in_memory:
+        #     memory:
+        #         users:
+        #             admin:
+        #                 password: admin1234
+        #                 roles: ROLE_ADMIN
+
         # managers:
         #     users:
         #         admin:
-        #             password: admin
+        #             password: admin1234
 
     firewalls:
         dev:
             pattern: ^/(_(profiler|wdt)|css|images|js)/
             security: false
-        manager:
-            pattern: ^/manager$
-            http_basic: true
+        # manager:
+        #     pattern: ^/manager$
+        #     http_basic: true
+
         # admin:
         #     pattern: ^/admin
-        #     anonymous: true
+        #     http_basic: true
 
         #     provider: in_database
 
-            # form_login:
-            #     login_path: admin_account_login
-            #     check_path: admin_account_login
-            # logout:
-            #     path: account_logout
-            #     target: homepage
+        #     form_login:
+        #         login_path: admin_account_login
+        #         check_path: admin_account_login
+        #     logout:
+        #         path: account_logout
+        #         target: homepage
         main:
             anonymous: true
             provider: db_provider
@@ -49,7 +57,7 @@ security:
 
             # activate different ways to authenticate
 
-            # http_basic: true
+            http_basic: true
             # https://symfony.com/doc/current/security.html#a-configuring-how-your-users-will-authenticate
 
             # form_login: true
