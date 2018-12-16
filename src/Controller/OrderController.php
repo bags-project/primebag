@@ -26,4 +26,27 @@ class OrderController extends AbstractController
         ]);
     }
     
+
+    /**
+     * @Route("/buy", name="order_valid")
+     */
+    public function validOrder(SessionInterface $session)
+    {
+        //vérifier avant tout si l'utilisateur est connecté
+
+        //$cart = $session->get('user');
+        $date = new \DateTime();
+
+
+
+
+
+
+        return $this->render('order/buy.html.twig', [
+            //'cart' => $cart,
+            'date' => $date,
+
+        ]);
+    }
+
 }

@@ -633,3 +633,28 @@ border-radius: 0;
     }
 }
 /*//////////////////////////////////////////////////*/
+
+
+/*//////////////////////////////////////////////////*/
+/*                  TUNEL                           */
+/*//////////////////////////////////////////////////*/
+.buyLayerRows{
+    border: 1px solid grey;
+    border-radius: 3px;
+    background-color: #dfe6e9;
+    margin-bottom: 20px;
+    padding: 5px;
+}
+.buyInLayer{
+    border: 1px solid grey;
+    border-radius: 3px;
+    margin-bottom: 8px;
+    padding: 5px;    
+}
+.buyInLayerShipping{
+    border: 1px solid grey;
+    border-radius: 3px;
+    margin-bottom: 5px;
+    padding: 5px;     
+}
+/*//////////////////////////////////////////////////*/
