@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello{% endblock %}
+{% block title %} Détails produits - {{parent()}} {% endblock %}
 
 {% block body %}
 
@@ -17,7 +17,6 @@
 
          <div class="col-sm">
 
-
             {# Présentation produit #}
             <div class="details-info">
                <h2>{{article.brand.name}}</h2>
@@ -28,7 +27,6 @@
                <hr>
                <h3>{{article.price}} <i class="fas fa-euro-sign"></i> <span class="details-reference">TTC. Hors frais de livraison</span></h3>
             </div>
-
 
             {# Detail panier #}
             <hr>
@@ -73,7 +71,7 @@
                   <div class="tab-pane fade" id="list-profile" role="tabpanel" aria-labelledby="list-profile-list">
 
                      <button id="zoom-laucher" type="button" class="" data-toggle="modal" data-target="#basicExampleModal">
-                        <img height="84" width="84" src="../../assets/img/poster/{{ article.altPicture1 }}" alt="sac de chez {{article.brand.name}}"></button>
+                        <img height="84" width="84" src="../../assets/img/poster/{{ article.altPicture1 }}" alt="produit de chez {{article.brand.name}}"></button>
 
                      {# Modal 1 #}
                      <div class="modal fade" id="basicExampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
@@ -89,7 +87,7 @@
                               <div class="modal-body">
 
                                  {# alt image dynamique avec le nom de marque #}
-                                 <img height="448" width="448" src="../../assets/img/poster/sac1_l.jpg" alt="sac de chez {{article.brand.name}}">
+                                 <img height="448" width="448" src="../../assets/img/poster/sac1_l.jpg" alt="produit de chez {{article.brand.name}}">
 
                               </div>
                            </div>
@@ -116,7 +114,7 @@
                               </div>
                               <div class="modal-body">
 
-                                 <img height="448" width="448" src="../../assets/img/poster/sac1_l.jpg" alt="sac de chez {{article.brand.name}}">
+                                 <img height="448" width="448" src="../../assets/img/poster/sac1_l.jpg" alt="produit de chez {{article.brand.name}}">
 
                               </div>
                            </div>
@@ -130,7 +128,7 @@
                      {% if article.altPicture2 is defined %}
 
                      <button id="zoom-laucher" type="button" class="" data-toggle="modal" data-target="#basicExampleModal">
-                        <img height="84" width="84" src="../../assets/img/poster/{{ article.altPicture3 }}" alt=""></button>
+                        <img height="84" width="84" src="../../assets/img/poster/{{ article.altPicture3 }}" alt="produit de chez {{article.brand.name}}"></button>
 
                      <div class="modal fade" id="basicExampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
                         aria-hidden="true">

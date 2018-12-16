@@ -118,6 +118,11 @@ class Article
      */
     private $showcase;
 
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\Tag", inversedBy="articles")
+     */
+    private $tag;
+
     public function __construct()
     {
         $this->categories = new ArrayCollection();
@@ -139,7 +144,6 @@ class Article
 
         return $this;
     }
-
 
     public function getPoster(): ?string
     {
@@ -368,6 +372,18 @@ class Article
     public function setShowcase(?bool $showcase): self
     {
         $this->showcase = $showcase;
+
+        return $this;
+    }
+
+    public function getTag(): ?Tag
+    {
+        return $this->tag;
+    }
+
+    public function setTag(?Tag $tag): self
+    {
+        $this->tag = $tag;
 
         return $this;
     }

@@ -1,30 +1,39 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}{{parent()}}{% endblock %}
+{% block title %} Vitrine - {{parent()}}{% endblock %}
 
 {% block body %}
 
-<div class="card card-image" id="view">
-    <div class="text-white text-center py-5 px-4 my-5">
-        <div>
-            <h2 class="card-title h1-responsive pt-3 mb-5 font-bold"><strong>Pour que l'affaire soit dans le sac</strong></h2>
+{# Décoration de la vitrine #}
+{# <div class="card card-image" id="view">
+    <div class="text-black text-left py-5 px-4 my-5">
+        <div class="title-home-content">
+            <h1 class="card-title h1-responsive pt-3 mb-5 font-bold"><strong>PrimeBag</strong></h1>
             <p class="mx-5 mb-5">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repellat fugiat, laboriosam,
                 voluptatem,
             </p>
         </div>
     </div>
-</div>
+</div> #}
+
+{# Décoration de la vitrine #}
+<header id="home-view">
+    <canvas class="snow"></canvas>
+    <h1><span class="p-primebag">P</span>rime <span class="b-primebag">B</span>ag</h1>
+</header>
 
 <main>
 
     <section id="home-one">
-        <!-- One -->
-        <article class="female">
 
-            <div id="female" class="home-categories">
+        <!-- One -->
+        <article class="woman">
+
+            <div id="woman" class="home-categories">
             </div>
 
-            <div class="content">
+            <div class="content-article">
+                <p>Gamme</p>
                 <h2>Femme</h2>
                 {# <a href="{{ path('article_gallery', {'category' : 'femme' })}}" class="btn btn-outline-info waves-effect">Découvrir</a></li>
                 #}
@@ -37,13 +46,20 @@
 
                 {% if article.categories[0].name == 'Femme' %}
 
-                <a href="{{ path('article_display' , {'id': article.id}) }}"><img src="../../assets/img/poster/{{ article.poster }}"
-                        alt=""></a>
+                <div class="container-info-article">
+                    <a href="{{ path('article_display' , {'id': article.id}) }}"><img height="170" width="170" src="../../assets/img/poster/{{ article.poster }}"
+                            alt="produit de chez {{article.brand.name}}"></a>
+
+                    <div id="{{ article.tag.icon }}" class="info-showcase">
+                        {% if article.tag.name is defined %}
+                        {{article.tag.name}}
+                        {% endif %}
+                    </div>
+
+                </div>
 
                 {% endif %}
-
                 {% endfor %}
-
             </div>
         </article>
 
@@ -52,7 +68,8 @@
 
             <div id="man" class="home-categories">
             </div>
-            <div class="content">
+            <div class="content-article">
+                <p>Gamme</p>
                 <h2>Homme</h2>
                 <a href="{{ path('man_gallery')}}" class="btn btn-elegant btn-lg active btn-sm">Découvrir</a></li>
             </div>
@@ -62,11 +79,19 @@
 
                 {% if article.categories[0].name == 'Homme' %}
 
-                <a href="{{ path('article_display' , {'id': article.id}) }}"><img src="../../assets/img/poster/{{ article.poster }}"
-                        alt=""></a>
+                <div class="container-info-article">
+                    <a href="{{ path('article_display' , {'id': article.id}) }}"><img height="170" width="170" src="../../assets/img/poster/{{ article.poster }}"
+                            alt="produit de chez {{article.brand.name}}"></a>
+
+                    <div id="{{ article.tag.icon }}" class="info-showcase">
+                        {% if article.tag.name is defined %}
+                        {{article.tag.name}}
+                        {% endif %}
+                    </div>
+                </div>
+
 
                 {% endif %}
-
                 {% endfor %}
 
             </div>
@@ -76,7 +101,8 @@
         <article class="kid">
 
             <div id="kid" class="home-categories"></div>
-            <div class="content">
+            <div class="content-article">
+                <p>Gamme</p>
                 <h2>Scolaire</h2>
                 <a href="{{ path('kid_gallery')}}" class="btn btn-unique btn-lg active btn-sm">Découvrir</a></li>
             </div>
@@ -85,8 +111,16 @@
 
                 {% if article.categories[0].name == 'Scolaire' %}
 
-                <a href="{{ path('article_display' , {'id': article.id}) }}"><img src="../../assets/img/poster/{{ article.poster }}"
-                        alt=""></a>
+                <div class="container-info-article">
+                    <a href="{{ path('article_display' , {'id': article.id}) }}"><img height="170" width="170" src="../../assets/img/poster/{{ article.poster }}"
+                            alt="produit de chez {{article.brand.name}}"></a>
+
+                    <div id="{{ article.tag.icon }}" class="info-showcase">
+                        {% if article.tag.name is defined %}
+                        {{article.tag.name}}
+                        {% endif %}
+                    </div>
+                </div>
 
                 {% endif %}
 
@@ -100,21 +134,34 @@
         <article class="bagages">
 
             <div id="bagages" class="home-categories"></div>
-            <div class="content">
-                <h2>Bagages</h2>
+            <div class="content-article">
+                <p>Gamme</p>
+                <h2>Bagage</h2>
                 <a href="{{ path('bagage_gallery')}}" class="btn btn-brown btn-lg active btn-sm">Découvrir</a></li>
             </div>
+
             <div class="vitrine">
                 {% for article in articles %}
 
                 {% if article.categories[0].name == 'Bagage' %}
 
-                <a href="{{ path('article_display' , {'id': article.id}) }}"><img src="../../assets/img/poster/{{ article.poster }}"
-                        alt=""></a>
+                <div class="container-info-article">
+
+                    <a href="{{ path('article_display' , {'id': article.id}) }}"><img height="170" width="170" src="../../assets/img/poster/{{ article.poster }}"
+                            alt="produit de chez {{article.brand.name}}"></a>
+
+                    <div id="{{ article.tag.icon }}" class="info-showcase">
+                        {% if article.tag.name is defined %}
+                        {{article.tag.name}}
+                        {% endif %}
+                    </div>
+
+                </div>
 
                 {% endif %}
 
                 {% endfor %}
+
             </div>
 
         </article>
