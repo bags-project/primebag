@@ -25,7 +25,6 @@
 {{ app.user.firstName }}
 
 
-
 {% set nbArticles = cart.name|length %}
 
 {{ nbArticles }} #}
@@ -46,22 +45,10 @@
 
         <div id="order_section_2">
 
-            <div class="order_section_2_main">Récap Commande
+            <div class="order_section_2_main">Récapitulatif du pannier : 
 
-            {# <pre>
-                {{ dump(cart.price) }}
-            </pre> #}
-
-                {# {% set carts = app.session.get('cart') %} 
-
+                {% set carts = app.session.get('cart') %} 
                 {% set prices = carts.price %}
-
-                {% for price in prices %}
-
-                <p>{{price}}</p>
-            
-                {% endfor %} #}
-
 
             </div>
 

@@ -7,72 +7,81 @@
 <h3>Vérification et validation de la commande</h3>
 
 {# A voir si c'est secured ou si je dois envoyer les infos via le controlleur : #}
-  {% set user = app.user %}
-  {# {{dump(user)}} #}
+{% set user = app.user %}
+{# {{dump(user)}} #}
 
 <div class="container">
-    {# ///////////////////////////////////// #}
-    {# /////////// Encart Client /////////// #}
-    <div class="row buyLayerRows">
-        {# partie gauche : coordonnées #}
-        <div class="col-sm-6 buyInLayer">
-            <strong>Adresse de livraison</strong><br>
-            {{user.firstName}} {{user.lastName}}<br>
-            {{user.address}}<br>
-            {{user.city}}, {{user.zipCode}}<br>
-            {{user.countryName}}<br>
-            {# Téléphone : non présent dans le app.user : à ajouter? #}
-        </div>
-        {# partie droite #}
-        <div class="col-sm-6">
-            <div class="container">
-                <div class="row buyInLayer">
-                    {# droite haut : mode paiement #}
-                    <div class="col-12">
-                        <strong>Mode paiement :</strong><br>
-                        Paypal
+
+    <form method="POST" action="#">
+        {# ///////////////////////////////////// #}
+        {# /////////// Encart Client /////////// #}
+        <div class="row buyLayerRows">
+            {# partie gauche : coordonnées #}
+            <div class="col-sm-6 buyInLayer">
+                <strong>Adresse de livraison</strong><br>
+                {{user.firstName}} {{user.lastName}}<br>
+                {{user.address}}<br>
+                {{user.city}}, {{user.zipCode}}<br>
+                {{user.countryName}}<br>
+                {# Téléphone : non présent dans le app.user : à ajouter? #}
+            </div>
+            {# partie droite #}
+            <div class="col-sm-6">
+                <div class="container">
+                    <div class="row buyInLayer">
+                        {# droite haut : mode paiement #}
+                        <div class="col-12">
+                            <strong>Mode paiement :</strong><br>
+                            Paypal
+                        </div>
                     </div>
-                </div>
-                <div class="row buyInLayer">
-                    {# droite bas : code promo #}
-                    <div class="col-12">
-                        <strong>Code promotionnel</strong>
-                        Noël2018 : -10% sur les sacs en moumoute
+                    <div class="row buyInLayer">
+                        {# droite bas : code promo #}
+                        <div class="col-12">
+                            <strong>Code promotionnel</strong>
+                            Noël2018 : -10% sur les sacs en moumoute
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-    {# //////////////////////////////////////// #}
-    {# /////////// Encart Livraison /////////// #}
-    <div class="row buyLayerRows">
-        {# partie gauche : date estimée #}
-        <div class="col-sm-6 buyInLayerShipping">
-            <strong>Date de livraison estimée :</strong>
-            01/01/2020
+        {# //////////////////////////////////////// #}
+        {# /////////// Encart Livraison /////////// #}
+        <div class="row buyLayerRows">
+            {# partie gauche : date estimée #}
+            <div class="col-sm-6 buyInLayerShipping">
+                <strong>Date de livraison estimée :</strong>
+                01/01/2020
+            </div>
+            {# partie droite : Choix mode de livraison #}
+            <div class="col-sm-6 buyInLayerShipping">
+                <strong>Choix mode de livraison :</strong><br>
+                - Colissimo (3 à 8jours ouvrés)<br>
+                - Chronopost (1 à 3 jours ouvrés)<br>
+                - Retrait en magasin
+            </div>
         </div>
-        {# partie droite : Choix mode de livraison #}
-        <div class="col-sm-6 buyInLayerShipping">
-            <strong>Choix mode de livraison :</strong><br>
-            - Colissimo (3 à 8jours ouvrés)<br>
-            - Chronopost (1 à 3 jours ouvrés)<br>
-            - Retrait en magasin
+        {# //////////////////////////////////////////// #}
+        {# /////////// Encart Récapitulatif /////////// #}
+        <div class="row align-items-center buyLayerRows">
+            <div class="col-sm-8 buyInLayer">
+                <strong>Récapitulatif de commande</strong><br />
+                Articles : <br />
+                Livraison : <br />
+                Code protionnel : <br />
+                Total :
+            </div>
+            <div class="col-sm-4">
+
+                <form action="GET" action"#">
+                    <button name="toto" type="submit" class="btn btn-success btn-block">Acheter</button>
+                </form>
+                
+            </div>
         </div>
-    </div>
-    {# //////////////////////////////////////////// #}
-    {# /////////// Encart Récapitulatif /////////// #}
-    <div class="row align-items-center buyLayerRows">
-        <div class="col-sm-8 buyInLayer">
-            <strong>Récapitulatif de commande</strong><br />
-            Articles : <br />
-            Livraison : <br />
-            Code protionnel : <br />
-            Total :
-        </div>
-        <div class="col-sm-4">
-            <button type="button" class="btn btn-success btn-block">Acheter</button>
-        </div>        
-    </div>    
+
+    </form>
+
 </div>
 
 <p>Des questions à propos de votre commande ? <a href="#">Contactez-nous</a></p>

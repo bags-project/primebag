@@ -193,13 +193,29 @@ class AdminController extends AbstractController
         return $this->redirectToRoute('admin_user');
     }
 
-
-
     /**
      * ===================== Déconnecter admin ========================
      * @Route("/admin/logout", name="admin_logout")
      */
      public function logout() {}
+
+
+    
+        /**
+    * ===================== Suivre les commandes client ========================
+    * @Route("/admin/order", name="admin_order")
+    */
+    public function admin_order()
+    {
+
+        return $this->render('admin/order.html.twig', [
+        ]);
+    }
+
+
+
+
+
 
 
 
