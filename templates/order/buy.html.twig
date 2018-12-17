@@ -8,7 +8,8 @@
 
 {# A voir si c'est secured ou si je dois envoyer les infos via le controlleur : #}
   {% set user = app.user %}
-  {# {{dump(user)}} #}
+  
+  {% set cart = app.session.get('cart') %}
 
 <div class="container">
     {# ///////////////////////////////////// #}
@@ -64,7 +65,8 @@
     <div class="row align-items-center buyLayerRows">
         <div class="col-sm-8 buyInLayer">
             <strong>Récapitulatif de commande</strong><br />
-            Articles : <br />
+            {# {% set totalArticles =  %} #}
+             Articles : {{totalCart}} €<br /> 
             Livraison : <br />
             Code protionnel : <br />
             Total :
@@ -74,6 +76,8 @@
         </div>        
     </div>    
 </div>
+
+{{dump(app.session.get('cart'))}}
 
 <p>Des questions à propos de votre commande ? <a href="#">Contactez-nous</a></p>
 

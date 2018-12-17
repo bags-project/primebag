@@ -18,7 +18,7 @@ class CartService {
         $this->session = $session;
     }
 
-   
+   // Initialisation du panier
     public function setEmptyCart(SessionInterface $session) {
 
         $session->get('session');
@@ -31,6 +31,18 @@ class CartService {
                                     'quantity' => [] ) 
         );
         //$cart = $session->get('cart');     
+    }
+
+    // Calcul du total du panier
+    public function calculateCartTotal(SessionInterface $session){
+        $cart = $session->get('cart');
+        $totalCart = 0;
+
+        // Calcul du total du panier
+        for ($i=0; $i<count($cart['id']); $i++){
+            $totalCart += $cart['price'][$i] * $cart['quantity'][$i];
+        }
+        return $totalCart;
     }
 
 

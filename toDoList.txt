@@ -4,8 +4,8 @@ Pour point étape du mercredi 19/12/2018 :
 - Tunel d'achat
 - Saisie de données dans la DB
 - Communication vers le vendeurs lors de la validation d'une commande
-- Suppression de compte user
 - gestion des commandes admin et user
+- Suppression de compte user
 ----------------------------------------------------------------------
 
 

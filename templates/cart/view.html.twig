@@ -7,12 +7,8 @@
     <h2>Panier</h2>
     
     {% set cart = app.session.get('cart') %}
-<<<<<<< HEAD
-
-=======
-    
->>>>>>> master
     {% set nbArticles = cart.name|length %}
+
     <hr />
     <div class="container">
         <div class="row">
@@ -36,7 +32,7 @@
     {# ///////////////////////// Entête liste /////////////////////////// #}
     <div class="container">
         <div class="row">
-            <div class="col-md-8 d-none d-md-block titleListInCart">
+            <div class="col-md-6 d-none d-md-block titleListInCart">
                 Article
             </div>
             <div class="col-md-2 d-none d-md-block titleListInCart">
@@ -45,6 +41,9 @@
             <div class="col-md-1 d-none d-md-block titleListInCart">                
                 Prix
             </div>
+            <div class="col-md-2 d-none d-md-block titleListInCart">                
+                Quantité
+            </div>            
             <div class="col-1 d-none d-md-block titleListInCart">             
                 Supprimer
             </div>
@@ -55,10 +54,10 @@
     <div class="container">
         {% for key in cart.name|keys %}
             <div class="row">
-                <div class="col-md-2 col-sm-12 cartDetails">
+                <div class="col-md-1 col-sm-12 cartDetails">
                     <img id="cartPosters" src="../assets/img/poster/{{attribute(cart.poster, key)}}" alt="Votre article">
                 </div>            
-                <div class="col-md-6 col-sm-12 cartDetails">
+                <div class="col-md-5 col-sm-12 cartDetails">
                     {{ attribute(cart.name, key) }}
                 </div>
                 <div class="col-md-2 col-sm-12 cartDetails">
@@ -67,6 +66,9 @@
                 <div class="col-md-1 col-sm-12 cartDetails">                
                     {{ attribute(cart.price, key) }} €
                 </div>
+                <div class="col-md-2 col-sm-12 cartDetails">                
+                    x {{ attribute(cart.quantity, key) }}
+                </div>                
                 {% set id = attribute(cart.id, key)  %}
                 <div class="col-md-1  col-sm-12 cartDetails">             
                     <a href="{{ path('cart_remove', {'id': id}) }}" onclick="return confirm('Etes vous sur de vouloir supprimer cet article de votre panier ?')">
