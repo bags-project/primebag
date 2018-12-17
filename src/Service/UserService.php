@@ -43,20 +43,17 @@ class UserService
 
     public function getProfile($id) 
     {
-
         //$client = static::createClient();
-
-
         $this->om->flush();
-
         $repo = $this->om->getRepository( User::class );
         return $repo->find( $id );
     }
 
+
     public function edit($id)
     {
-        $this->om->flush();
 
+        $this->om->flush();
         $repo = $this->om->getRepository( User::class );
         return $repo->find($id);
     }

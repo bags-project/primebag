@@ -92,8 +92,9 @@
                 <li class="nav-item">
                     <a class="nav-link" href="{{ path('bagage_gallery')}}">Bagage</a>
                 </li>
+                {% if is_granted ('ROLE_USER') %}
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ path('cart_view')}}">Panier :
+                    <a class="btn btn-indigo btn-sm" href="{{ path('cart_view')}}">Panier :
                         {% set cart = app.session.get('cart') %}
                         {# Vérif si le panier est initialisé (passé par cart_add) #}
                         {% if cart is not null %}
@@ -104,16 +105,17 @@
                         {% endif %}
                     </a>
                 </li>
+                {% endif %}
                 {% if is_granted ('ROLE_USER') %}
 
                 <li class="nav-item">
-                    <a class="btn btn-light btn-sm" href="{{path('user_profile', {id: app.user.id})}}">Compte</a>
+                    <a class="btn btn-light-blue btn-sm" href="{{path('user_profile', {id: app.user.id})}}">Votre Compte</a>
                 </li>
                 {% else %}
 
                 <div id="account-log" class="dropdown">
 
-                    <a class="btn btn-light dropdown-toggle btn-sm" href="#" role="button" id="dropdownMenuLink"
+                    <a class="btn btn-light-blue dropdown-toggle btn-sm" href="#" role="button" id="dropdownMenuLink"
                         data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         Connection
                     </a>
@@ -148,7 +150,7 @@
 
                 {% if is_granted ('ROLE_USER') %}
                 <li class="nav-item">
-                    <a class="nav-link" href="{{path('logout')}}">Déconnection</a>
+                    <a class="btn btn-amber btn-sm" href="{{path('logout')}}">Déconnection</a>
                 </li>
                 {% else %}
                 {% endif %}

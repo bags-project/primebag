@@ -40,8 +40,6 @@ class AdminService {
     }
 
 
-
-
     // Ajouté pour recherche personnalisé
     public function search($name, $sort, $page)
     {
@@ -54,8 +52,6 @@ class AdminService {
         $repo = $this->om->getRepository( Events::class );
         return $repo->counter();
     }
-
-
 
     public function add($event) {
         $repo = $this->om->getRepository( User::class );

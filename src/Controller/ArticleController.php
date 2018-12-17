@@ -29,6 +29,7 @@ use Doctrine\Common\Persistence\ObjectManager;
 
 class ArticleController extends AbstractController
 {
+    // https://roadtodev.com/fr/blog/symfony-4-reset-password
     
     /**
      * @Route("/", name="home")

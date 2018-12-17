@@ -21,14 +21,15 @@
 
 </header>
 
-{# {% set carts = app.session.get('cart') %}
+{#
 {{ app.user.firstName }}
 
 
 
 {% set nbArticles = cart.name|length %}
 
-{{ nbArticles }}  #}
+{{ nbArticles }} #}
+
 
 <main id="main-order-container">
 
@@ -46,12 +47,21 @@
         <div id="order_section_2">
 
             <div class="order_section_2_main">Récap Commande
-            
 
-            <pre>
-                {{ dump(app.session.get('cart')) }}
-            </pre>
+            {# <pre>
+                {{ dump(cart.price) }}
+            </pre> #}
+
+                {# {% set carts = app.session.get('cart') %} 
+
+                {% set prices = carts.price %}
+
+                {% for price in prices %}
+
+                <p>{{price}}</p>
             
+                {% endfor %} #}
+
 
             </div>
 

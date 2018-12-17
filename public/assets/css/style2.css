@@ -1,4 +1,6 @@
-/*CORPUS-----------------------------------------------------------*/
+/*//////////////////////////////////////////////////*/
+/*                  CORPUS                          */
+/*//////////////////////////////////////////////////*/
 body {
     box-sizing: border-box;
     font-size: 16px;
@@ -6,7 +8,9 @@ body {
 
 
 
-/*HEADER-----------------------------------------------------------*/
+/*//////////////////////////////////////////////////*/
+/*                  HEADER                          */
+/*//////////////////////////////////////////////////*/
 .logo {
     height: 100px;
     width: 330px;
@@ -31,14 +35,18 @@ body {
     margin-top: 0.5rem;
 }
 
-/*FOOTER-----------------------------------------------------------*/
+/*//////////////////////////////////////////////////*/
+/*                  FOOTER                */
+/*//////////////////////////////////////////////////*/
 
 footer {
     padding-top: 1%;
 }
 
 
-/*HOME-----------------------------------------------------------*/
+/*//////////////////////////////////////////////////*/
+/*                  HOME                            */
+/*//////////////////////////////////////////////////*/
 
 #home-view {
     width: 18%;
@@ -212,7 +220,9 @@ margin-bottom: 1rem;
 }
 
 
-/*ARTICLES DETAILS-----------------------------------------------------------*/
+/*//////////////////////////////////////////////////*/
+/*                  ARTICLES DETAILS                */
+/*//////////////////////////////////////////////////*/
 
 .details-main {
     margin-top: 4rem;
@@ -278,7 +288,9 @@ border-radius: 0;
 }
 
 
-/*GALLERY-------ALL----------------------------------------------------------*/
+/*//////////////////////////////////////////////////*/
+/*                  GALLERY                          */
+/*//////////////////////////////////////////////////*/
 
 #gallery-main{
     min-height: 35rem;
@@ -367,7 +379,23 @@ border-radius: 0;
 #gallery-jumbotron-scolaire,
 #gallery-jumbotron-bagage {
     height: 10rem;
+    color: azure;
 }
+
+#gallery-jumbotron-homme h2,
+#gallery-jumbotron-femme h2,
+#gallery-jumbotron-scolaire h2,
+#gallery-jumbotron-bagage h2 {
+margin-left: 2rem;
+}
+
+#gallery-jumbotron-homme p,
+#gallery-jumbotron-femme p,
+#gallery-jumbotron-scolaire p,
+#gallery-jumbotron-bagage p {
+margin-left: 2rem;
+}
+
 
 /* JUMBOTRON All */
 #inlineFormCustomSelectPref-woman1,
@@ -385,29 +413,94 @@ border-radius: 0;
     width: 10rem;
 }
 
+
+
+
 /*GALLERY-------FEMME----------------------*/
 #gallery-jumbotron-femme {
-    background-color: rgba(76, 51, 145);
+    background-color: rgba(76, 51, 145, 0.8);
+    display: flex;
+    align-items: center;
 }
+
+#jumbo-img-woman {
+width: 8rem;
+}
+
 
 /*GALLERY-------HOMME---------------------*/
 
 #gallery-jumbotron-homme {
     background-color: rgb(46, 64, 79);
+    display: flex;
+    align-items: center;
 }
+
+#jumbo-img-man {
+width: 6.7rem;
+}
+
 
 /*GALLERY-------KIDS---------------------*/
 
 #gallery-jumbotron-scolaire {
     background-color: rgb(136, 14, 79);
+    display: flex;
+    align-items: center;
+}
+
+#jumbo-img-kid {
+width: 6.7rem;
 }
 
 /*GALLERY-------BAGAGES------------------*/
 
 #gallery-jumbotron-bagage {
     background-color: rgb(153, 96, 50);
+    display: flex;
+    align-items: center;
 }
 
+#jumbo-img-bagage {
+width: 6.7rem;
+}
+
+
+/*//////////////////////////////////////////////////*/
+/*                   USER                            */
+/*//////////////////////////////////////////////////*/
+
+
+/*---------------- User--------- register */
+
+#user-register{
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-bottom: 3rem;
+}
+
+.regiter-form-left,
+.regiter-form-right
+{
+    border:1px solid grey;
+    border-radius: 25px;
+    padding: 2rem;
+    margin-left: 1rem;
+    margin-right: 1rem;
+}
+
+
+#account-log{
+    margin-top: 0.5rem;
+}
+
+.count-title{
+    display: flex;
+    justify-content: center;
+    margin-top: 3rem;
+    padding-bottom: 0.5rem;
+}
 
 /*//////////////////////////////////////////////////*/
 /*                     PANIER                       */
@@ -467,7 +560,9 @@ border-radius: 0;
 /*//////////////////////////////////////////////////*/
 
 
-/*ORDER------------------------------------*/
+/*//////////////////////////////////////////////////*/
+/*                  ORDER                           */
+/*//////////////////////////////////////////////////*/
 
 #main-order-container{
     min-height: 35rem;

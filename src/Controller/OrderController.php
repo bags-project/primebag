@@ -14,16 +14,24 @@ class OrderController extends AbstractController
     public function index(SessionInterface $session)
     {
 
-        $date = new \DateTime();
+    //     $date = new \DateTime();
+    //     $session = $this->get('session');
+    //     $carts = $session->get('cart');
 
-        $toto = $session->get('cart');
+    //     foreach ($carts as $key => $cart) {
+            
+    //         var_dump($cart->price);
+    //     }
 
 
-        return $this->render('order/order.html.twig', [
-            'controller_name' => 'OrderController',
-            'date'=> $date,
-            'toto' => $toto
-        ]);
+
+
+    //     return $this->render('order/order.html.twig', [
+    //         'controller_name' => 'OrderController',
+    //         'date'=> $date,
+    //         'session' => $session,
+    //         'cart' => $cart
+    //     ]);
     }
     
 

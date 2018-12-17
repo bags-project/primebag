@@ -4,13 +4,30 @@
 
 {% block body %}
 
+
 {# WOMAN GALLERY #}
-<div id="gallery-jumbotron-femme" class="card card-image">
+
+<div id="gallery-jumbotron-femme">
     <div>
-        <h2 id="gallery-title" class="card-title h1-responsive pt-3 mb-5 font-bold"><strong>Femme</strong></h2>
+        <img id="jumbo-img-woman" src="{{ asset('assets/img/logo/woman_univers2.jpg')}}" alt="woman_univers">
     </div>
 
+
+    <div>
+
+        <div>
+            <h2><strong>Gallerie Femme</strong></h2>
+        </div>
+
+        <div>
+            <p>Le chic et l'élegance <br>
+            à emmener partout</p>
+        </div>
+
+    </div>
 </div>
+
+
 
 <main id="gallery-main">
 
@@ -25,12 +42,12 @@
             <div id="gallery-display" class="row">
 
                 {% for article in articles %}
-                 {% if cat is null %}
-                 {% if article.stock != 0 %}
-                 {% if article.categories[0].name == 'Femme' %}
+                {% if cat is null %}
+                {% if article.stock != 0 %}
+                {% if article.categories[0].name == 'Femme' %}
 
                 <div class="gallery-card" style="width: 18rem;">
-                    
+
                     <div>
                         <img class="card-img-top" src="{{ asset('assets/img/poster/') }}{{ article.poster }}" alt="produit de chez {{article.brand.name}}">
                     </div>
@@ -72,7 +89,7 @@
                 == cat %}
 
                 <div class="gallery-card" style="width: 18rem;">
-                    
+
                     <div>
                         <img class="card-img-top" src="{{ asset('assets/img/poster/') }}{{ article.poster }}" alt="Card image cap">
                     </div>
@@ -106,16 +123,11 @@
                 {% endif %}
                 {% endif %}
 
-            {% endfor %}
+                {% endfor %}
 
-        </div>
+            </div>
+
 </main>
 
 
 {% endblock %}
-
-
-
-
-
-                

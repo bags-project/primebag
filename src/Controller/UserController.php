@@ -117,7 +117,7 @@ class UserController extends AbstractController
      * @Route("profile/edit{id}", name="user_edit", methods="GET|POST")
      * 
      */
-    public function edit(Request $request, $id , UserService $userService ,User $user): Response
+    public function edit(Request $request, $id , UserService $userService , User $user): Response
     {
         $form = $this->createForm(UserRegisterType::class, $user);
         $form->handleRequest($request);
@@ -133,6 +133,7 @@ class UserController extends AbstractController
             'form' => $form->createView(),
         ]);
     }
+
 
     /**
     * @Route("/{id}", name="user_delete", methods="DELETE")
