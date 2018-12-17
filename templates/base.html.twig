@@ -95,13 +95,14 @@
                 {% if is_granted ('ROLE_USER') %}
                 <li class="nav-item">
                     <a class="btn btn-indigo btn-sm" href="{{ path('cart_view')}}">Panier :
+                    {# <a id="cartImg" href="{{ path('cart_view')}}"><img src="{{ asset('assets/img/cart.png') }}" alt="Votre panier" /> #}
                         {% set cart = app.session.get('cart') %}
-                        {# Vérif si le panier est initialisé (passé par cart_add) #}
+                        {# Vérif si le panier est initialisé (passé par cart_add ou cart_view) #}
                         {% if cart is not null %}
-                        {% set nbArticles = cart.name|length %}
+                            {% set nbArticles = cart.name|length %}
                         {{nbArticles}}
                         {% else %}
-                        <span>Vide</span>
+                            <span>Vide</span>
                         {% endif %}
                     </a>
                 </li>
@@ -221,6 +222,7 @@
 <script src="{{ asset('assets/js/ajaxZipcode.js') }}"></script>
 <script src="{{ asset('assets/js/order.js') }}"></script>
 <script src="{{ asset('assets/js/snow.js') }}"></script>
+<script src="{{ asset('assets/js/funnel.js') }}"></script>
 
 {% endblock %}
 

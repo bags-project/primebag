@@ -561,6 +561,10 @@ width: 6.7rem;
     /* box-shadow: 5px 5px 10px rgba(108, 9, 21, .5); */
     text-align: center;
 }
+#cartImg{
+    text-decoration-color: orange;
+    padding-left: 10px;
+}
 /*//////////////////////////////////////////////////*/
 
 

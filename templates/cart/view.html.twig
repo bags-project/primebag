@@ -4,22 +4,7 @@
 
 {% block body %}
 
-
-<div class="container">
-    <div class="row">
-        <div class="col-sm">
-            image <h2>Panier</h2>
-        </div>
-        <div class="col-sm">
-            One of three columns
-        </div>
-
-    </div>
-</div>
-    
-
-    Total de votre panier : {{totalCart}} €
-
+<h2>Panier</h2>
 
     {% set cart = app.session.get('cart') %}
     {% set nbArticles = cart.name|length %}
@@ -28,7 +13,7 @@
     <div class="container">
         <div class="row">
             <div class="col-md-6">
-                Vous avez {{nbArticles}} articles dans votre panier :
+                {{nbArticles}} articles. Total : {{totalCart}} €
             </div>
             <div class="col-md-4">
             

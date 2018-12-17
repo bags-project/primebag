@@ -22,7 +22,7 @@
             {{user.address}}<br>
             {{user.city}}, {{user.zipCode}}<br>
             {{user.countryName}}<br>
-            {# Téléphone : non présent dans le app.user : à ajouter? #}
+            Tel : {{user.phoneNumber}}<br>
         </div>
         {# partie droite #}
         <div class="col-sm-6">
@@ -49,15 +49,26 @@
     <div class="row buyLayerRows">
         {# partie gauche : date estimée #}
         <div class="col-sm-6 buyInLayerShipping">
-            <strong>Date de livraison estimée :</strong>
-            01/01/2020
+            {# colissimo par défaut : #}
+            <strong id="shippingTaxes">Frais : 5€ </strong><br />
+            <strong id="deliveryDate">Date de livraison estimée : entre le 20/12/2018 et le 25/12/2018</strong>
+            
         </div>
         {# partie droite : Choix mode de livraison #}
         <div class="col-sm-6 buyInLayerShipping">
             <strong>Choix mode de livraison :</strong><br>
-            - Colissimo (3 à 8jours ouvrés)<br>
-            - Chronopost (1 à 3 jours ouvrés)<br>
-            - Retrait en magasin
+            <div>
+                <input type="radio" id="colissimo" name="modeLivraison" value="5" checked>
+                <label for="colissimo">Colissimo (3 à 8 jours ouvrés. Frais : 5€)</label>
+            </div>
+            <div>
+                <input type="radio" id="chronopost" name="modeLivraison" value="10">
+                <label for="chronopost">Chronopost (1 à 3 jours ouvrés. Frais : 10€)</label>
+            </div>
+            <div>
+                <input type="radio" id="retraitMag" name="modeLivraison" value="0">
+                <label for="retraitMag">Retrait en magasin (Frais : aucun)</label>
+            </div>
         </div>
     </div>
     {# //////////////////////////////////////////// #}
@@ -67,7 +78,7 @@
             <strong>Récapitulatif de commande</strong><br />
             {# {% set totalArticles =  %} #}
              Articles : {{totalCart}} €<br /> 
-            Livraison : <br />
+            <span>Livraison : </span><br />
             Code protionnel : <br />
             Total :
         </div>
@@ -76,8 +87,6 @@
         </div>        
     </div>    
 </div>
-
-{{dump(app.session.get('cart'))}}
 
 <p>Des questions à propos de votre commande ? <a href="#">Contactez-nous</a></p>
 
