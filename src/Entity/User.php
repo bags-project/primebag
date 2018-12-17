@@ -8,6 +8,9 @@ use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\Security\Core\Validator\Constraints as SecurityAssert;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\UserInterface;
+use Bundle\DoctrineUserBundle\Model\UserRepositoryInterface;
+use Symfony\Component\Security\User\UserProviderInterface;
+use Symfony\Component\Security\Exception\UsernameNotFoundException;
 
 
 /**
@@ -132,6 +135,28 @@ class User implements UserInterface
      * @ORM\OneToMany(targetEntity="App\Entity\Order", mappedBy="user", orphanRemoval=true)
      */
     private $orders;
+
+    /**
+     * @var string le token qui servira lors de l'oubli de mot de passe
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    protected $resetToken;
+ 
+    /**
+     * @return string
+     */
+    public function getResetToken(): string
+    {
+        return $this->resetToken;
+    }
+ 
+    /**
+     * @param string $resetToken
+     */
+    public function setResetToken(?string $resetToken): void
+    {
+        $this->resetToken = $resetToken;
+    }
 
     public function __construct()
     {

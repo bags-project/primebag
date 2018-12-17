@@ -7,14 +7,19 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
-
-
+use Symfony\Component\Validator\Constraints\Email;
+use Symfony\Component\Form\Extension\Core\Type\EmailType;
+use Symfony\Component\Security\Csrf\TokenGenerator\TokenGeneratorInterface;
+use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 
+
+
 use App\Entity\User;
 use App\Form\UserRegisterType;
+use App\Form\ResetPasswordType;
 use App\Form\LoginType;
 use App\Service\UserService;
 use App\Repository\UserRepository;
@@ -33,7 +38,7 @@ class UserController extends AbstractController
     }
 
     /**
-    * @Route("/user/login", name="user_login", methods="POST")
+    * @Route("/user/login", name="user_login")
     */
 
     public function loginUser( Request $request, UserService $userService, AuthenticationUtils $authenticationUtils)
@@ -52,6 +57,7 @@ class UserController extends AbstractController
     public function registerUser( Request $request, UserService $userService)
     {
         $user = new User();
+        
         $form = $this->createForm(UserRegisterType::Class, $user);
 
         $form->handleRequest($request);
@@ -137,7 +143,6 @@ class UserController extends AbstractController
 
     /**
     * @Route("/{id}", name="user_delete", methods="DELETE")
-    * 
     */
     public function delete(Request $request, User $user): Response
     {
@@ -147,8 +152,156 @@ class UserController extends AbstractController
             $em->flush();
         }
 
-        return $this->redirectToRoute('user_index');
+        return $this->redirectToRoute('home', [
+            'delete' => $user
+        ]);
     }
+
+    // /**
+    //  * @Route("/forgottenPassword", name="app_forgotten_password")
+    //  */
+    // public function forgottenPassword(): Response
+    // {
+ 
+    //     return $this->render('user/forgotten_password.html.twig');
+    // }
+
+        /**
+     * @Route("user /forgotten_password", name="app_forgotten_password")
+     */
+    public function forgottenPassword(
+        Request $request,
+        UserPasswordEncoderInterface $encoder,
+        \Swift_Mailer $mailer,
+        TokenGeneratorInterface $tokenGenerator
+    ): Response
+    {
+
+        if ($request->isMethod('POST')) {
+
+            $email = $request->request->get('email');
+
+            $entityManager = $this->getDoctrine()->getManager();
+            $user = $entityManager->getRepository(User::class)->findOneByEmail($email);
+            /* @var $user User */
+
+
+            if ($user === null) {
+                $this->addFlash('danger', 'Email Inconnu');
+                return $this->redirectToRoute('home');
+            }
+            $token = $tokenGenerator->generateToken();
+
+            try{
+                $user->setResetToken($token);
+                $entityManager->flush();
+            } catch (\Exception $e) {
+                $this->addFlash('warning', $e->getMessage());
+                return $this->redirectToRoute('home');
+            }
+
+            $url = $this->generateUrl('app_reset_password', array('token' => $token), UrlGeneratorInterface::ABSOLUTE_URL);
+
+            $message = (new \Swift_Message('Forgot Password'))
+                ->setFrom('primebag62@gmail.com')
+                ->setTo($email)
+                ->setBody(
+                    "blablabla voici le token pour reseter votre mot de passe : " . $url,
+                    'text/html'
+                );
+
+                var_dump($email);
+                var_dump($message->setTo($email));
+            
+
+            $mailer->send($message);
+
+            $this->addFlash('token', $url);
+
+
+            $this->addFlash('notice', 'Mail envoyé');
+
+            //var_dump($message);
+
+            //return $this->redirectToRoute('home');
+        }
+
+        return $this->render('user/forgotten_password.html.twig',[
+            'token' => $url
+        ]);
+    }
+
+    /**
+    * @Route("/reset_password/{token}", name="app_reset_password")
+    */
+    public function resetPassword(Request $request, string $token, UserPasswordEncoderInterface $passwordEncoder)
+    {
+ 
+        if ($request->isMethod('POST')) {
+            $entityManager = $this->getDoctrine()->getManager();
+ 
+            $user = $entityManager->getRepository(User::class)->findOneByResetToken($token);
+            /* @var $user User */
+ 
+            if ($user === null) {
+                $this->addFlash('danger', 'Token Inconnu');
+                return $this->redirectToRoute('homepage');
+            }
+ 
+            $user->setResetToken(null);
+            $user->setPassword($passwordEncoder->encodePassword($user, $request->request->get('password')));
+            $entityManager->flush();
+ 
+            $this->addFlash('notice', 'Mot de passe mis à jour');
+ 
+            return $this->redirectToRoute('home');
+        }else {
+ 
+            return $this->render('user/reset_password.html.twig', ['token' => $token]);
+        }
+ 
+    }
+
+    
+
+    // /**
+    //  * @Route("/passwordEdite", name="password_edite",)
+    //  * 
+    //  */
+
+    // public function editAction(Request $request)
+    // {
+    // 	$em = $this->getDoctrine()->getManager();
+    //     $user = $this->getUser();
+    // 	$form = $this->createForm(ResetPasswordType::class, $user);
+
+    // 	$form->handleRequest($request);
+    //     if ($form->isSubmitted() && $form->isValid()) {
+
+    //         $passwordEncoder = $this->get('security.password_encoder');
+    //         $oldPassword = $request->request->get('etiquettebundle_user')['oldPassword'];
+
+    //         // Si l'ancien mot de passe est bon
+    //         if ($passwordEncoder->isPasswordValid($user, $oldPassword)) {
+    //             $newEncodedPassword = $passwordEncoder->encodePassword($user, $user->getPlainPassword());
+    //             $user->setPassword($newEncodedPassword);
+                
+    //             $em->persist($user);
+    //             $em->flush();
+
+    //             $this->addFlash('notice', 'Votre mot de passe à bien été changé !');
+
+    //             return $this->redirectToRoute('profile');
+    //         } else {
+    //             $form->addError(new FormError('Ancien mot de passe incorrect'));
+    //         }
+    //     }
+    	
+    // 	return $this->render('user/password.html.twig', array(
+    // 		'form' => $form->createView(),
+    // 	));
+    // }
+
 
     /**
      * @Route("/logout", name ="logout")
@@ -161,3 +314,5 @@ class UserController extends AbstractController
     }
 
 }
+
+
