@@ -34,6 +34,13 @@ a:link {color:#4D6D95;}
 a:visited {color:#4D6D95;}
 a:hover {color:#EC0000;}
 
+.text-red {
+  color:red;
+}
+.text-green {
+  color:green;
+}
+
 .textshadow {text-shadow:0 0 7px rgba(0,0,0,.9);}
 
 

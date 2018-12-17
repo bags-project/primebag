@@ -195,5 +195,13 @@ class AdminController extends AbstractController
 
 
 
+    /**
+     * ===================== Déconnecter admin ========================
+     * @Route("/admin/logout", name="admin_logout")
+     */
+     public function logout() {}
+
+
+
 
 }
