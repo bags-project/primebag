@@ -6,8 +6,7 @@
 
     <h2>Panier</h2>
     
-    {# {% set cart = app.session.get('cart') %} #}
-    {{dump(cart)}} {#Pourquoi ça marche même si je ne le Set pas au dessus ??? #}
+    {% set cart = app.session.get('cart') %}
     
     {% set nbArticles = cart.name|length %}
     <hr />
