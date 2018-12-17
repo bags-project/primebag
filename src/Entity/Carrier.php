@@ -34,13 +34,14 @@ class Carrier
     private $email;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\Delivery", mappedBy="carrier")
+     * @ORM\OneToMany(targetEntity="App\Entity\Order", mappedBy="carrier")
      */
-    private $deliveries;
+    private $orders;
+
 
     public function __construct()
     {
-        $this->deliveries = new ArrayCollection();
+        $this->orders = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -85,33 +86,34 @@ class Carrier
     }
 
     /**
-     * @return Collection|Delivery[]
+     * @return Collection|Order[]
      */
-    public function getDeliveries(): Collection
+    public function getOrders(): Collection
     {
-        return $this->deliveries;
+        return $this->orders;
     }
 
-    public function addDelivery(Delivery $delivery): self
+    public function addOrder(Order $order): self
     {
-        if (!$this->deliveries->contains($delivery)) {
-            $this->deliveries[] = $delivery;
-            $delivery->setCarrier($this);
+        if (!$this->orders->contains($order)) {
+            $this->orders[] = $order;
+            $order->setCarrier($this);
         }
 
         return $this;
     }
 
-    public function removeDelivery(Delivery $delivery): self
+    public function removeOrder(Order $order): self
     {
-        if ($this->deliveries->contains($delivery)) {
-            $this->deliveries->removeElement($delivery);
+        if ($this->orders->contains($order)) {
+            $this->orders->removeElement($order);
             // set the owning side to null (unless already changed)
-            if ($delivery->getCarrier() === $this) {
-                $delivery->setCarrier(null);
+            if ($order->getCarrier() === $this) {
+                $order->setCarrier(null);
             }
         }
 
         return $this;
     }
+
 }

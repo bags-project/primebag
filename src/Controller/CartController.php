@@ -19,6 +19,9 @@ class CartController extends AbstractController
      */
     public function show(SessionInterface $session, CartService $cartService)
     {
+        
+        
+        
         // je verif si un panier existe, sinon j'en crée un vide
         if($session->get('cart') == null){
             $cartService->setEmptyCart($session);
@@ -50,6 +53,7 @@ class CartController extends AbstractController
             'ref' => $request->query->get('ref'),
             'price' => $request->query->get('price'),
             'poster' => $request->query->get('poster'),
+            'quantity' => $request->query->get('quantity'),
             //'quantity' => $request->query->get('articleQuantity'),
         ];
 
@@ -65,7 +69,7 @@ class CartController extends AbstractController
             array_push($cart['ref'], $article['ref']);
             array_push($cart['price'], $article['price']);
             array_push($cart['poster'], $article['poster']);
-            //array_push($cart['quantity'], $article['quantity']);
+            array_push($cart['quantity'], $article['quantity']);
         }
 
         // je remet le panier actualisé dans la session
@@ -105,6 +109,7 @@ class CartController extends AbstractController
         unset($cart['ref'][$key]);
         unset($cart['price'][$key]);
         unset($cart['poster'][$key]);
+        unset($cart['quantity'][$key]);
 
         $session->set('cart', $cart);
 

@@ -5,6 +5,7 @@ namespace App\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
+use App\Service\CartService;
 
 class OrderController extends AbstractController
 {
@@ -23,9 +24,6 @@ class OrderController extends AbstractController
     //         var_dump($cart->price);
     //     }
 
-
-
-
     //     return $this->render('order/order.html.twig', [
     //         'controller_name' => 'OrderController',
     //         'date'=> $date,
@@ -38,21 +36,20 @@ class OrderController extends AbstractController
     /**
      * @Route("/buy", name="order_valid")
      */
-    public function validOrder(SessionInterface $session)
+    public function validOrder(SessionInterface $session, CartService $cartService)
     {
         //vérifier avant tout si l'utilisateur est connecté
 
-        //$cart = $session->get('user');
         $date = new \DateTime();
 
-
-
-
+        // calcul du total panier
+        $totalCart = $cartService->calculateCartTotal($session);
 
 
         return $this->render('order/buy.html.twig', [
             //'cart' => $cart,
             'date' => $date,
+            'totalCart' => $totalCart
 
         ]);
     }

@@ -88,7 +88,7 @@ class AdminController extends AbstractController
             $manager->persist($article);
             $manager->flush();
 
-            //Upload altPicture1 :
+
             // if(!empty($article->getAltPicture1Url() )) {
             //     $article->setAltPicture1( $article->getAltPicture1Url() );
             // }
@@ -192,6 +192,14 @@ class AdminController extends AbstractController
 
         return $this->redirectToRoute('admin_user');
     }
+
+
+
+    /**
+     * ===================== Déconnecter admin ========================
+     * @Route("/admin/logout", name="admin_logout")
+     */
+     public function logout() {}
 
 
 
