@@ -41,7 +41,6 @@ class Article
      private $posterFile;
 
 
-
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
      */
@@ -56,7 +55,6 @@ class Article
       * @Assert\Image(maxSize = "4096k")
       */
      private $altPicture1File;
-
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
@@ -115,6 +113,16 @@ class Article
      */
     private $articleColor;
 
+    /**
+     * @ORM\Column(type="boolean", nullable=true)
+     */
+    private $showcase;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\Tag", inversedBy="articles")
+     */
+    private $tag;
+
     public function __construct()
     {
         $this->categories = new ArrayCollection();
@@ -136,8 +144,6 @@ class Article
 
         return $this;
     }
-
-
 
     public function getPoster(): ?string
     {
@@ -176,10 +182,6 @@ class Article
         return $this;
     }
 
-
-
-
-
     public function getAltPicture1(): ?string
     {
         return $this->altPicture1;
@@ -215,11 +217,6 @@ class Article
 
         return $this;
     }
-
-
-
-
-
 
     public function getAltPicture2(): ?string
     {
@@ -363,6 +360,30 @@ class Article
     public function setArticleColor(?ArticleColor $articleColor): self
     {
         $this->articleColor = $articleColor;
+
+        return $this;
+    }
+
+    public function getShowcase(): ?bool
+    {
+        return $this->showcase;
+    }
+
+    public function setShowcase(?bool $showcase): self
+    {
+        $this->showcase = $showcase;
+
+        return $this;
+    }
+
+    public function getTag(): ?Tag
+    {
+        return $this->tag;
+    }
+
+    public function setTag(?Tag $tag): self
+    {
+        $this->tag = $tag;
 
         return $this;
     }

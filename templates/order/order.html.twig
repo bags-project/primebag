@@ -1,0 +1,98 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello {{ controller_name }}!{% endblock %}
+
+{% block body %}
+
+
+{# {% if app.user.firstName is defined %}
+
+{{ app.user.firstName }}
+
+{% endif %} #}
+
+<header id="order-process">
+
+    <div id="order-help" class="order-process-step-1"> En cas de questions, n'hésitez pas à nous contacter directement
+        par téléphone </div>
+    <div class="order-process-step-2"> 1. Recap commande </div>
+    <div class="order-process-step-3"> 2. Paiement </div>
+    <div class="order-process-step-4"> 3. Confirmation commande </div>
+
+</header>
+
+{#
+{{ app.user.firstName }}
+
+
+
+{% set nbArticles = cart.name|length %}
+
+{{ nbArticles }} #}
+
+
+<main id="main-order-container">
+
+    <div id="order_section_1">
+
+        <p>Validation de la commande</p>
+        <p>Le {{date | date("d/m/Y") }} à {{date | date("h:i:s") }} </p>
+        <div> {{ app.user.firstName }} </div>
+        <div> {{ app.user.lastName }} </div>
+
+    </div>
+
+    <div id='order-container'>
+
+        <div id="order_section_2">
+
+            <div class="order_section_2_main">Récap Commande
+
+            {# <pre>
+                {{ dump(cart.price) }}
+            </pre> #}
+
+                {# {% set carts = app.session.get('cart') %} 
+
+                {% set prices = carts.price %}
+
+                {% for price in prices %}
+
+                <p>{{price}}</p>
+            
+                {% endfor %} #}
+
+
+            </div>
+
+            <aside class="order_section_2_aside"></aside>
+
+        </div>
+
+        <div id="order_section_3">
+
+            <div class="order_section_3_main">Paiement</div>
+            <aside class="order_section_3_aside"></aside>
+
+        </div>
+
+        <div id="order_section_4">
+
+            <div class="order_section_4_main">Confirmation commande</div>
+            <aside class="order_section_4_aside"></aside>
+
+        </div>
+
+    </div>
+
+    <button id="button1" type="button" class="btn btn-primary"> 1 </button>
+    <button id="button2" type="button" class="btn btn-secondary"> 2 </button>
+    <button id="button3" type="button" class="btn btn-primary"> 3 </button>
+
+    </div>
+
+</main>
+
+
+
+{% endblock %}

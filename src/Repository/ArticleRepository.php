@@ -48,32 +48,44 @@ class ArticleRepository extends ServiceEntityRepository
     }
     */
 
-    public function search() 
+    public function search($price) 
     {
-        $stmt = $this->createQueryBuilder('article') 
-                     ->andWhere('article.name LIKE :term') 
-                     ->setParameter(':term', '%')
-                     ->getQuery();
+        $stmt = $this->createQueryBuilder('art') 
+                     ->innerJoin('art.categories', 'artC' ) 
+                     ->addSelect('artC')
+                     ->innerJoin('art.brand', 'artB' ) 
+                     ->addSelect('artB')
+                     ->andWhere('art.name LIKE :term') 
+                     ->setParameter(':term', '%');
+                     
+        //Système de tri
+        if ($price == "upperprice"){
+            $stmt->orderBy('art.price' , 'ASC');
 
+        } else if($price == "lowerprice"){
+            $stmt->orderBy('art.price', 'DESC');
+        }
+                    
         //Système de pagination
-        $limit = 3;
-        $stmt->setMaxResults($limit);
+        // $limit = 3;
+        // $stmt->setMaxResults($limit);
 
         // $stmt->setFirstResult(($page-1) * $limit);
 
         //RESULTAT
-        return $stmt->getResult();         
+        return $stmt->getQuery()->getResult();         
     }  
 
-    // public function searchAll() 
-    // {
-    //     $stmt = $this->createQueryBuilder('article') 
-    //                  ->andWhere('article.name LIKE :term') 
-    //                  ->setParameter(':term', '%')
-    //                  ->getQuery();
 
-    //     //RESULTAT
-    //     return $stmt->getResult();         
-    // }  
+    public function showCase() 
+    {
+        $stmt = $this->createQueryBuilder('art') 
+                     ->andWhere('art.showcase = :term') 
+                     ->setParameter(':term', '1');
+                    
+        return $stmt->getQuery()->getResult();         
+    }  
+
+
 
 }

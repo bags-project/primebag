@@ -7,20 +7,6 @@ function close_nav() {
 }
 
 
-
-// function function_menu() {
-//   var x = document.getElementById("top_navbar");
-//   if (x.className === "navbar")
-//   {
-//     x.className += " responsive"; // Ajout de la class responsive en version mobile
-//   }
-//   else
-//   {
-//     x.className = "navbar";
-//   }
-// }
-
-
 // =============================================
 // API geo.api.gouv.fr. Retrieve City by ZipCode
 // =============================================
@@ -30,8 +16,6 @@ var zipcode;
 var source;
 var lists = {};
 var elmt_list = $('#user_register_city');
-
-
 
 $(document).ready(function(){
 
@@ -44,12 +28,9 @@ $(document).ready(function(){
         zipcode = $('#user_register_zipcode').val();
         source = 'https://geo.api.gouv.fr/communes?codePostal='+zipcode+'&fields=nom&format=json&geometry=centre';
         setLists(source);   
-        
-        
-        
+
     });
         
-
 });
 
 /**
@@ -58,8 +39,7 @@ $(document).ready(function(){
  * @param (string) url address of Lists 
  * @return (object) lists
  */
-function setLists(url) 
-{
+function setLists(url) {
     // AJAX request
     $.ajax({
         method: "GET",
@@ -87,9 +67,28 @@ function show_list(response) {
         elmt_option.attr("value", list.nom );
         elmt_option.text(list.nom);
         elmt_list.append(elmt_option); 
-    
+ 
     });
-    
+
 }
 
 
+// // Modal de confirmation de suppression d'un article du panier
+// var remFromCartButton = $('#btnRemFromCart');
+
+// remFromCartButton.on("click", function(){
+//     // code ci-dessous ne fonctionne pas, bonne route injectée mais interprétée en string dans l'url
+//     // récup de l'id de l'article à supprimer
+//     //var idArticleToRemove = remFromCartButton.val();
+
+
+//     //var remLink = "{{ path('cart_remove', {'id': " + idArticleToRemove + "})|escape('js') }}";
+//     // marche pas non plus; impossible d'accéder à à le route en saisie d'url côté client :
+//     //var remLink = "primebag/public/index.php/cart/remove?id=" + idArticleToRemove;
+
+//     // envoie de l'id dans la route du lien du bouton de confirmation du modal
+//     //$('#linkCartRemove').attr("href", remLink );
+    
+//     $('#confirmModal').show(1000);
+//     //alert(remLink);
+// })

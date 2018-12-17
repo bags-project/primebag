@@ -4,29 +4,104 @@
 
 {% block body %}
 
-    <h1>Panier</h1>
-    <p>Vous avez X objets dans voter panier.</p>
-    {{ dump(session) }}
-    {{ dump(app) }}
+    <h2>Panier</h2>
+    
+    {# {% set cart = app.session.get('cart') %} #}
+    {{dump(cart)}} {#Pourquoi ça marche même si je ne le Set pas au dessus ??? #}
+    
+    {% set nbArticles = cart.name|length %}
+    <hr />
     <div class="container">
         <div class="row">
-{#
-            {% for article in cart %}
-                <div class="col-12">
-                    <h3>{{ session.articleName }}</h3>
-                    {#<img src="{{ article.poster }}" alt="image">
-                    {{ article.price }}
-                    {{ article.quantity }}#}
- {#}                   <hr>
-                </div>
-            {% endfor %}
-  #}          
+            <div class="col-md-6">
+                Vous avez {{nbArticles}} articles dans votre panier :
+            </div>
+            <div class="col-md-4">
+            
+                <a href="{{ path('order_valid') }}">
+                    <button type="submit" class="btn-block btn-primary">Passer la commande</button>
+                </a>
+            </div>
+            <div class="col-md-2">
+                <a href="{{ path('cart_reset') }}" onclick="return confirm('Etes vous sur de vouloir vider votre panier ?')">
+                    <button type="submit" class="btn-block btn-warning">Vider le panier</button>
+                </a>
+            </div>            
         </div>
     </div>
+    <hr />
+    {# ///////////////////////// Entête liste /////////////////////////// #}
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8 d-none d-md-block titleListInCart">
+                Article
+            </div>
+            <div class="col-md-2 d-none d-md-block titleListInCart">
+                Référence
+            </div>
+            <div class="col-md-1 d-none d-md-block titleListInCart">                
+                Prix
+            </div>
+            <div class="col-1 d-none d-md-block titleListInCart">             
+                Supprimer
+            </div>
+        </div>
+        <hr />
+    </div>
+    {# //////////////////////////// Contenu liste //////////////////////////// #}
+    <div class="container">
+        {% for key in cart.name|keys %}
+            <div class="row">
+                <div class="col-md-2 col-sm-12 cartDetails">
+                    <img id="cartPosters" src="../assets/img/poster/{{attribute(cart.poster, key)}}" alt="Votre article">
+                </div>            
+                <div class="col-md-6 col-sm-12 cartDetails">
+                    {{ attribute(cart.name, key) }}
+                </div>
+                <div class="col-md-2 col-sm-12 cartDetails">
+                    {{ attribute(cart.ref, key) }} 
+                </div>
+                <div class="col-md-1 col-sm-12 cartDetails">                
+                    {{ attribute(cart.price, key) }} €
+                </div>
+                {% set id = attribute(cart.id, key)  %}
+                <div class="col-md-1  col-sm-12 cartDetails">             
+                    <a href="{{ path('cart_remove', {'id': id}) }}" onclick="return confirm('Etes vous sur de vouloir supprimer cet article de votre panier ?')">
+                        <button id="btnRemFromCart" type="button" class="btn btn-light" value="{{ attribute(cart.id, key) }}">x</button>
+                    </a>
+                </div>
+            </div>
+            <hr />
+        {% else %}
+            <p>Votre panier est vide.</p>
+        {% endfor %}           
+    </div>
+    {# ////////////////////////////////////////////////////////////////////////// #}
 
+    
 
-
-
-
+    {# //////////////////// Modal de confirmation //////////////////////// #}
+    {# <div id="confirmModal" class="modal" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Suppression</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <p>Etes-vous sûr de vouloir supprimer cet article de votre panier ?</p>
+                </div>
+                <div class="modal-footer"> #}
+                    {# -------------------- récup du href en JS #}
+    {#                 <a id="linkCartRemove" href="">{#{{ path('cart_remove', {'id': id}) }}"> #}
+                        {# <button type="button" class="btn btn-danger" data-dismiss="modal">Supprimer</button>
+                    </a>
+                    <button type="button" class="btn btn-primary">Annuler</button>
+                </div>
+            </div>
+        </div>
+    </div> #}
 
 {% endblock %}

@@ -1,0 +1,49 @@
+{% extends 'admin/adminbase.html.twig' %}
+
+{% block title %}Admin{% endblock %}
+
+{% block body %}
+    <h1 class="center progressive">Admin - Liste d'utilisateurs</h1>
+
+    
+
+    
+
+    <div class="admin-list">
+        <div class="admin-flex">
+            <div class="admin-flex-child b">ID</div>
+            <div class="admin-flex-child b">Nom</div>
+            <div class="admin-flex-child b">Prénom</div>
+            <div class="admin-flex-child b">Email</div>
+            <div class="admin-flex-child b">Supprimer</div>
+        </div>
+    </div>
+
+    {% for user in users %}
+
+        {# {% for label, messages in app.flashes %}
+            {% for message in messages %}
+                <div class="flash-{{ label }}">
+                    <div class="boxdotted">
+                        <h2 class="center">{{ user.id }}{{ message }}</h2>
+                    </div>
+                </div>
+            {% endfor %}
+        {% endfor %} #}
+
+    <div class="admin-list">
+        <div class="admin-flex">
+            <div class="admin-flex-child">{{ user.id }}</div>
+            <div class="admin-flex-child">{{ user.lastName }}</div>
+            <div class="admin-flex-child">{{ user.firstName }}</div>
+            <div class="admin-flex-child">{{ user.email }}</div>
+            {# <input type="hidden" name="_token" valeur="{{ csrf_token('delete' ~ user.id) }}"> #}
+            {# <div class="admin-flex-child"><a href="{{ path('admin_user')}}{{ user.id }}/del" onclick="if(window.confirm('Voulez-vous vraiment supprimer cet utilisateur ?')) {return true;} else {return false;}">X</a></div> #}
+            <div class="admin-flex-child"><a href="{{ path('admin_del_user', {'id':user.id}) }}" onclick="if(window.confirm('Voulez-vous vraiment supprimer cet utilisateur ?')) {return true;} else {return false;}">X</a></div>
+
+        </div>
+    </div>
+
+    {% endfor %}
+
+{% endblock %}

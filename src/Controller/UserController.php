@@ -23,6 +23,7 @@ class UserController extends AbstractController
 {
     /**
      * @Route("/user", name="user")
+     * @IsGranted("ROLE_ADMIN")
      */
     public function index(UserRepository $userRepository): Response
     {
@@ -71,28 +72,60 @@ class UserController extends AbstractController
 
     /**
     * @Route("/user/profile{id}", name="user_profile", requirements={"id"="\d+"}, methods="GET")
-    * @IsGranted("ROLE_USER")
+    * 
     */
-    public function profilUser(User $user ,$id, UserService $userService): Response
+    public function profilUser(User $user, UserService $userService): Response
     {
-        
+    
+    
         return $this->render('user/profile.html.twig', ['user' => $user]);
-
+        
+        
     }
 
     /**
-     * @Route("user/edit{id}", name="user_edit",  requirements={"id"="\d+"} , methods="GET|POST")
+     * @Route("user/{id}", name="user_show", methods="GET")
+     * 
      */
-    public function edit(Request $request, User $user, UserService $userService): Response
+    public function show(User $user): Response
+    {
+        return $this->render('user/show.html.twig', ['user' => $user]);
+    }
+
+    // /**
+    //  * @Route("user/edit{id}", name="user_edit", methods="GET")
+    //  */
+    // public function edit(Request $request, User $user, UserService $userService, $id ): Response
+    // {
+    //     $form = $this->createForm(UserRegisterType::class, $user);
+    //     $form->handleRequest($request);
+
+    //     if ($form->isSubmitted() && $form->isValid()) {
+    //         $userService->edit($id);
+    //         //$this->getDoctrine()->getManager()->flush();
+
+    //         return $this->redirectToRoute('user_index', ['id' => $user->getId()]);
+    //     }
+
+    //     return $this->render('user/edit.html.twig', [
+    //         'user' => $user,
+    //         'form' => $form->createView(),
+    //     ]);
+    // }
+
+    /**
+     * @Route("profile/edit{id}", name="user_edit", methods="GET|POST")
+     * 
+     */
+    public function edit(Request $request, $id , UserService $userService , User $user): Response
     {
         $form = $this->createForm(UserRegisterType::class, $user);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
             $userService->edit($id);
-            //$this->getDoctrine()->getManager()->flush();
 
-            return $this->redirectToRoute('user_index', ['id' => $user->getId()]);
+            return $this->redirectToRoute('user_edit', ['id' => $user->getId()]);
         }
 
         return $this->render('user/edit.html.twig', [
@@ -101,8 +134,10 @@ class UserController extends AbstractController
         ]);
     }
 
+
     /**
     * @Route("/{id}", name="user_delete", methods="DELETE")
+    * 
     */
     public function delete(Request $request, User $user): Response
     {

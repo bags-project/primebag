@@ -1,0 +1,108 @@
+<?php
+
+namespace App\Controller;
+
+use App\Entity\Contact;
+use App\Form\ContactType;
+use App\Notification\ContactNotification;
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Validator\Constraints\Email;
+use Symfony\Component\Form\Extension\Core\Type\EmailType;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+
+class EmailController extends AbstractController
+{
+    /**
+     * @Route("/contact", name="contact)
+     */
+    // public function contact(\Swift_Mailer $mailer)
+    // public function contact(Contact $contact, Request $request, ContactNotification $notification)
+    // {
+        // $email = new Contact();
+        // $email->setContact($contact);
+        // $form = $this->createForm(ContactType::class, $email);
+
+        // $form->handleRequest($request);
+
+        // if ($form->isSubmitted() && $form->isValid()) {
+
+        //     $notification->notify($contact);
+
+        //     $this->addFlash('success', 'Email envoyé !')
+ 
+        //     $message = (new \Swift_Message('Client Email'))
+        //         ->setSubject('Message client')
+        //         ->setFrom('client@gmail.com')
+        //         ->setTo('PrimeBag62@gmail.com')
+        //         ->setBody("Vous lisez un message client");
+
+        //     $mailer->send($message);
+
+        //     $email = $form->getData();
+
+        // }
+
+    //     return $this->render('email/contact.html.twig', [
+    //         // 'contact' => $contact,
+    //         // 'form' => $form->createView()
+    //         ]);
+
+    // }
+
+
+
+    //PrimeBag62@gmail.com
+    //Pass : Webforce3
+    //https://stackoverflow.com/questions/39363613/swiftmailer-attachment-error-unable-to-open-file-for-reading-on-symfony2-proje
+
+
+    /**
+     * @Route("/email", name="email")
+     */
+    public function index(\Swift_Mailer $mailer)
+    {
+
+        $message = (new \Swift_Message('Hello Email'))
+            ->setFrom('primebag62@gmail.com')
+            ->setTo('primebag62@gmail.com')
+            ->setBody('Here is the message itself')
+        // ->attach(\Swift_Attachment::fromPath('my-document.pdf'))
+        /*
+
+         RENDU DE LA PAGE HTML
+
+        ->setBody(
+            $this->renderView(
+                // templates/emails/registration.html.twig
+                'emails/registration.html.twig',
+                array('name' => $name)
+            ),
+            'text/html'
+        
+        
+         * If you also want to include a plaintext version of the message
+        ->addPart(
+            $this->renderView(
+                'emails/registration.txt.twig',
+                array('name' => $name)
+            ),
+            'text/plain'
+        )
+        */
+        ;
+
+        $mailer->send($message);
+
+        return $this->render('email/index.html.twig', [
+
+        ]);
+
+    }
+        
+
+
+
+
+
+}

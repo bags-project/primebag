@@ -4,37 +4,118 @@
 
 {% block body %}
 
-    <h1>Créer un compte</h1>
+<main>
+
+    <div class="count-title">
+        <h3>Création de compte</h3>
+    </div>
+
+    <div id="user-register" class="container-fluid">
+
+        <div class="regiter-form-left">
+
+            <h4>1. Vos informations personnelles</h4>
+
+            {% form_theme form 'bootstrap_4_layout.html.twig' %}
+            {{form_start(form, {'attr': {'novalidate' : 'novalidate' , 'class': 'form-horizontal', 'method':
+            'POST'}})}}
+
+            <div class="form-group">
+                {{ form_label(form.firstName , 'Votre prénom') }}
+                {{ form_widget(form.firstName) }}
+            </div>
+
+            <div class="form-group">
+                {{ form_label(form.lastName, 'Votre nom') }}
+                {{ form_widget(form.lastName) }}
+            </div>
+
+            <div class="form-group">
+                {{ form_label(form.zipCode , 'Votre code postale') }}
+                {{ form_widget(form.zipCode) }}
+            </div>
+
+            <div class="form-group">
+                {{ form_label(form.city , 'Votre ville') }}
+                {{ form_widget(form.city) }}
+            </div>
+
+            <div class="form-group">
+                {{ form_label(form.address , 'Votre adresse') }}
+                {{ form_widget(form.address) }}
+            </div>
+
+            <div class="form-group">
+                {{ form_label(form.secondaryAddress , 'Votre seconde adresse (optionnel)') }}
+                {{ form_widget(form.secondaryAddress) }}
+            </div>
+
+            <div class="form-group">
+                {{ form_label(form.phoneNumber , 'Votre téléphone (optionnel)') }}
+                {{ form_widget(form.phoneNumber) }}
+            </div>
+
+        </div>
 
 
+        <div class="regiter-form-right">
 
-    {{form_start(form, {'attr': {'novalidate' : 'novalidate' , 'class': 'form-horizontal', 'method': 'POST'}})}}
-    
-        {{form_label(form.firstName, 'Votre prénom', {'label_attr': {'class' : 'col-sm-2 control-label'}}) }}
-            {{form_widget(form.firstName, {'attr': {'novalide': 'novalidate', 'class' : 'form-horizontal'}}) }}
-        {{form_label(form.lastName, 'Votre nom', {'label_attr': {'class' : 'col-sm-2 control-label'}}) }}
-            {{form_widget(form.lastName, {'attr': {'novalide': 'novalidate', 'class' : 'form-horizontal'}}) }}
-        {{form_label(form.plainPassword.first, 'Votre mot de passe', {'label_attr': {'class' : 'col-sm-2 control-label'}}) }}
-            {{form_widget(form.plainPassword.first, {'attr': {'novalide': 'novalidate', 'class' : 'form-horizontal'}}) }}
-        {{form_label(form.plainPassword.second, 'Confirmer votre mot de passe', {'label_attr': {'class' : 'col-sm-2 control-label'}}) }}
-            {{form_widget(form.plainPassword.second, {'attr': {'novalide': 'novalidate', 'class' : 'form-horizontal'}}) }}    
-        {{form_label(form.email, 'Votre adresse mail', {'label_attr': {'class' : 'col-sm-2 control-label'}}) }}
-            {{form_widget(form.email, {'attr': {'novalide': 'novalidate', 'class' : 'form-horizontal'}}) }}
+            <h4>2. Vos informations de connection</h4>
 
+            <div class="form-group">
+                {{ form_label(form.email , 'Votre email*') }}
+                {{ form_widget(form.email) }}
+            </div>
 
-        {{form_label(form.address, 'Votre adresse', {'label_attr': {'class' : 'col-sm-2 control-label'}}) }}
-            {{form_widget(form.address, {'attr': {'novalide': 'novalidate', 'class' : 'form-horizontal'}}) }}
-         {{form_label(form.zipCode, 'Votre code postal', {'label_attr': {'class' : 'col-sm-2 control-label'}}) }}
-            {{form_widget(form.zipCode, {'attr': {'novalide': 'novalidate', 'class' : 'user_register[zipCode]'}}) }}
-        {{form_label(form.city, 'Votre votre ville', {'label_attr': {'class' : 'col-sm-2 control-label'}}) }}
-            {{form_widget(form.city, {'attr': {'novalide': 'novalidate', 'class' : 'user_register[city]'}}) }}
+            <div class="form-group">
+                {{ form_label(form.plainPassword.first , 'Votre mot de passe') }}
+                {{ form_widget(form.plainPassword.first) }}
+            </div>
 
-        {{form_label(form.secondaryAddress, 'Autre adresse (optionnel)', {'label_attr': {'class' : 'col-sm-2 control-label'}}) }}
-            {{form_widget(form.secondaryAddress, {'attr': {'novalide': 'novalidate', 'class' : 'form-horizontal'}}) }}
-        {{form_label(form.phoneNumber, 'Votre numéro de téléphone (optionnel)', {'label_attr': {'class' : 'col-sm-2 control-label'}}) }}
-            {{form_widget(form.phoneNumber, {'attr': {'novalide': 'novalidate', 'class' : 'form-horizontal'}}) }}
-       
-        {{form_widget(form)}}
-        <button type="submit">S'inscrire</button>
-    {{form_end(form)}}
+            <div class="form-group">
+                {{ form_label(form.plainPassword.second , 'Confirmation du mot de passe') }}
+                {{ form_widget(form.plainPassword.second) }}
+            </div>
+
+            <button class="btn btn-primary" type="submit">S'inscrire</button>
+
+            {{form_end(form)}}
+            * votre email est votre login
+        </div>
+
+    </div>
+</main>
 {% endblock %}
+
+{#
+{{form_label(form.firstName, 'Votre prénom', {'label_attr': {'class' : 'col-sm-2 control-label'}}) }}
+{{form_widget(form.firstName, {'attr': {'novalide': 'novalidate', 'class' : 'form-horizontal'}}) }} #}
+
+{# {{form_label(form.lastName, 'Votre nom', {'label_attr': {'class' : 'col-sm-2 control-label'}}) }}
+{{form_widget(form.lastName, {'attr': {'novalide': 'novalidate', 'class' : 'form-horizontal'}}) }} #}
+
+{# {{form_label(form.plainPassword.first, 'Votre mot de passe', {'label_attr': {'class' : 'col-sm-2
+control-label'}}) }}
+{{form_widget(form.plainPassword.first, {'attr': {'novalide': 'novalidate', 'class' : 'form-horizontal'}}) }}
+
+{{form_label(form.plainPassword.second, 'Confirmer votre mot de passe', {'label_attr': {'class' : 'col-sm-2
+control-label'}}) }}
+{{form_widget(form.plainPassword.second, {'attr': {'novalide': 'novalidate', 'class' : 'form-horizontal'}}) }}
+
+{{form_label(form.email, 'Votre adresse mail', {'label_attr': {'class' : 'col-sm-2 control-label'}}) }}
+{{form_widget(form.email, {'attr': {'novalide': 'novalidate', 'class' : 'form-horizontal'}}) }} #}
+
+{# {{form_label(form.address, 'Votre adresse', {'label_attr': {'class' : 'col-sm-2 control-label'}}) }}
+{{form_widget(form.address, {'attr': {'novalide': 'novalidate', 'class' : 'form-horizontal'}}) }}
+{{form_label(form.zipCode, 'Votre code postal', {'label_attr': {'class' : 'col-sm-2 control-label'}}) }}
+{{form_widget(form.zipCode, {'attr': {'novalide': 'novalidate', 'class' : 'user_register[zipCode]'}}) }} #}
+{# {{form_label(form.city, 'Votre votre ville', {'label_attr': {'class' : 'col-sm-2 control-label'}}) }}
+{{form_widget(form.city, {'attr': {'novalide': 'novalidate', 'class' : 'user_register[city]'}}) }}
+{{form_label(form.secondaryAddress, 'Autre adresse (optionnel)', {'label_attr': {'class' : 'col-sm-2
+control-label'}}) }}
+{{form_widget(form.secondaryAddress, {'attr': {'novalide': 'novalidate', 'class' : 'form-horizontal'}}) }}
+#}
+{#
+{{form_label(form.phoneNumber, 'Votre numéro de téléphone (optionnel)', {'label_attr': {'class' : 'col-sm-2
+control-label'}}) }}
+{{form_widget(form.phoneNumber, {'attr': {'novalide': 'novalidate', 'class' : 'form-horizontal'}}) }} #}
