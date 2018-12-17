@@ -33,7 +33,7 @@ class UserController extends AbstractController
     }
 
     /**
-    * @Route("/user/login", name="user_login", methods="POST")
+    * @Route("/user/login", name="user_login")
     */
 
     public function loginUser( Request $request, UserService $userService, AuthenticationUtils $authenticationUtils)

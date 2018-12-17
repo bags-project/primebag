@@ -35,27 +35,28 @@ class ArticleController extends AbstractController
      * @Route("/", name="home")
      */
     public function listAll(ArticleService $articleService, Request $request)
-     {
-
-
+    {
             return $this->render('main/index.html.twig', [
                 'articles' => $articleService->showCase(),
             ]);
-     }
+    }
 
-
+    
     /**
      * @Route("/article/{id}", name="article_display", requirements={"id"="\d+"})
      */
-    public function display(ArticleService $articleService, $id, Article $article)
+    public function display(ArticleService $articleService, $id, Article $article, Request $request)
     {
            $brandName = $article->getBrand()->getName();
            $colorName = $article->getArticleColor()->getName();
+           $queryQuantity = $request->query->get('quantity');
+
         //    $categoryName = $article->getcategories()[0]->getName();
 
            return $this->render('article/display.html.twig', [
            'article' => $articleService->getOne($id),
            'brandName' => $brandName,
+           'quantity' => $queryQuantity
         //    'categoryName' => $categoryName
            ]);
     }

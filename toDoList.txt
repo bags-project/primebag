@@ -13,6 +13,7 @@ Compte Paypal de test :
 Toto
 Rigolo
 primebag62@gmail.com
+Webforce3
 
 _____________________A VERIFIER_______________________________________
 ARTICLE
@@ -35,8 +36,9 @@ Faire un controller info ? (qui route vers FAQ, Nous contacter, Besoin d'aide, Q
 
 
 Pb constatés :
-- Footer : il ne reste pas en bas si la page est quasi vide
-- Livraison : - besoin d'un poid de colis (donc d'article > poid)
+- Livraison : - besoin d'un poid de colis (donc d'article > poid) :
+                => Réponse d'Haiou : prix de livraison fixe, supplément à la charge du vendeur s'il y a
+
 	          - table ShippingMethod (Pour la poste, colissimo (3 à 8j) / chronopost(1 à 3j) / )
               notion de retrait en magasin : une valeur "Magasin" dans le transporteur ? Dans ce cas pb avec la table Delivery
 - table Delivery : Pourquoi l'avoir créée ? (pourquoi avoir choisi du N:N entre Order et Carrier ?)

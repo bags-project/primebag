@@ -66,8 +66,8 @@ class EmailController extends AbstractController
         $message = (new \Swift_Message('Hello Email'))
             ->setFrom('primebag62@gmail.com')
             ->setTo('primebag62@gmail.com')
-            ->setBody('Here is the message itself')
-        // ->attach(\Swift_Attachment::fromPath('my-document.pdf'))
+            ->setBody('salut pepito')
+            ->attach(\Swift_Attachment::fromPath('public/assets/pdf/1.pdf'))
         /*
 
          RENDU DE LA PAGE HTML

@@ -24,22 +24,50 @@
                   <h1>{{article.name}}</h1>
                </strong>
                <span class="details-reference">Référence : {{article.reference}}</span>
+               <div>
+                  Article en stock : {{article.stock}}
+               </div>
                <hr>
-               <h3>{{article.price}} <i class="fas fa-euro-sign"></i> <span class="details-reference">TTC. Hors frais de livraison</span></h3>
+               <h3>{{article.price}} <i class="fas fa-euro-sign"></i> <span class="details-reference">TTC. Hors frais
+                     de livraison</span></h3>
             </div>
 
             {# Detail panier #}
             <hr>
             <div class="details-shopping-cart">
+
+
+               {% if quantity == 0 %}
+
+               <form method="GET" action="#">
+                  Quantité à mettre dans le pannier : <input type="number" name="quantity" min="0" max="{{article.stock}}">
+                  <button type="submit">go</button>
+               </form>
+
+               {% endif %}
+
+
+               {% if quantity > 0 %}
+
+               Quantité choisie : {{quantity}}
+
                <a href="{{ path('cart_add', {'id': article.id, 
                                              'name': article.name, 
                                              'ref': article.reference, 
                                              'price': article.price,
-                                             'poster': article.poster}) }}">
-                  <button type="button" class="btn btn-outline-dark waves-effect">Ajouter au panier</button>
+                                             'poster': article.poster,
+                                             'quantity': quantity}) }}">
+                  <button type="submit" class="btn btn-outline-dark waves-effect">Ajouter au panier</button>
                </a>
+
+               {% endif %}
+
             </div>
+
+
+
             <hr>
+
 
             {# Description produit #}
             <div class="details-description">
@@ -47,11 +75,11 @@
                <div class="list-group" id="list-tab" role="tablist">
                   <a class="list-group-item list-group-item-action active" id="list-home-list" data-toggle="list" href="#list-home"
                      role="tab" aria-controls="home">Description détaillée du produit</a>
-                  
+
                   {# UX : pas de propositions de photos sans photos #}
                   {# UX : mot clé : ZOOM #}
-                  {% if article.altPicture1 or article.altPicture2 or article.altPicture3  is not defined %}
-                  
+                  {% if article.altPicture1 or article.altPicture2 or article.altPicture3 is not defined %}
+
                   <a class="list-group-item list-group-item-action" id="list-profile-list" data-toggle="list" href="#list-profile"
                      role="tab" aria-controls="profile">Zooms détails photos</a>
 

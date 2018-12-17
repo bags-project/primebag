@@ -19,6 +19,9 @@ class CartController extends AbstractController
      */
     public function show(SessionInterface $session, CartService $cartService)
     {
+        
+        
+        
         // je verif si un panier existe, sinon j'en crée un vide
         if($session->get('cart') == null){
             $cartService->setEmptyCart($session);
