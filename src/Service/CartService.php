@@ -29,16 +29,15 @@ class CartService {
                                     'price' => [],
                                     'poster' => [],
                                     'quantity' => [] ) 
-        );
-        //$cart = $session->get('cart');     
+        );    
     }
+
 
     // Calcul du total du panier
     public function calculateCartTotal(SessionInterface $session){
         $cart = $session->get('cart');
         $totalCart = 0;
 
-        // Calcul du total du panier
         for ($i=0; $i<count($cart['id']); $i++){
             $totalCart += $cart['price'][$i] * $cart['quantity'][$i];
         }
