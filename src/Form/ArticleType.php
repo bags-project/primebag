@@ -2,6 +2,7 @@
 
 namespace App\Form;
 
+use App\Entity\Tag;
 use App\Entity\Brand;
 use App\Entity\Article;
 use App\Entity\Category;
@@ -36,6 +37,11 @@ class ArticleType extends AbstractType
             ->add('stock')
             ->add('matter')
             ->add('discount')
+            ->add('showcase')
+            ->add('tag', EntityType::class, [
+                'class' => Tag::class,
+                'choice_label' => 'name'
+            ])
             ->add('categories', null, [
                 'class' => Category::class,
                 'choice_label' => 'name'
