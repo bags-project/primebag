@@ -3,7 +3,7 @@
 {% block title %}Admin{% endblock %}
 
 {% block body %}
-    <h1 class="center progressive">Admin - Liste</h1>
+    <h1 class="center progressive">Admin - Liste des articles</h1>
     
 
         <div class="admin-list">
@@ -28,7 +28,7 @@
                 {% for message in messages %}
                     <div class="flash-{{ label }}">
                         <div class="boxdotted">
-                            <h2 class="center">{{ art.name }}{{ message }}</h2>
+                            <h2 class="center">{{ message }}</h2>
                         </div>
                     </div>
                 {% endfor %}
@@ -41,7 +41,7 @@
                 <div class="admin-flex-child">{{ art.brand.name }}</div>
                 <div class="admin-flex-child">{{ art.name }}</div>
                 <div class="admin-flex-child">{{ art.categories[0].name }}</div>
-                {% if art.stock < 1 %}
+                {% if art.stock <= 2 %}
                 <div class="admin-flex-child desktop text-red">
                 {% else %}
                 <div class="admin-flex-child desktop text-green">
