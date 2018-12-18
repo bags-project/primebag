@@ -1,6 +1,8 @@
 <?php
 namespace App\Notification;
 
+use Twig\Environment;
+
 class ContactNotification {
 
     /**

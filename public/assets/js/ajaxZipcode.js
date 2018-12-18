@@ -15,7 +15,7 @@ function close_nav() {
 var zipcode; 
 var source;
 var lists = {};
-var elmt_list = $('#user_register_city');
+var elmt_list = $('.list');
 
 $(document).ready(function(){
 
@@ -23,9 +23,9 @@ $(document).ready(function(){
     // Retrieve lists
     // ====================
 
-    $("#user_register_zipcode").blur(function(){
+    $(".zipcode").blur(function(){
 
-        zipcode = $('#user_register_zipcode').val();
+        zipcode = $('.zipcode').val();
         source = 'https://geo.api.gouv.fr/communes?codePostal='+zipcode+'&fields=nom&format=json&geometry=centre';
         setLists(source);   
 

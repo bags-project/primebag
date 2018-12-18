@@ -12,18 +12,15 @@ security:
             entity:
                 class: App\Entity\User
                 property: email
-        # in_memory:
-        #     memory:
-        #         users:
-        #             admin:
-        #                 password: admin1234
-        #                 roles: ROLE_ADMIN
 
         # managers:
-        #     users:
-        #         admin:
-        #             password: admin1234
-        #             roles: ROLE_ADMIN
+        #     memory:
+        #         users:
+        #             admin@mail.com: 
+        #                 password: admin
+        #                 roles: 'ROLE_ADMIN'
+
+
 
     firewalls:
         dev:
