@@ -29,6 +29,7 @@ use Doctrine\Common\Persistence\ObjectManager;
 
 class ArticleController extends AbstractController
 {
+    // https://roadtodev.com/fr/blog/symfony-4-reset-password
     
     /**
      * @Route("/", name="home")
@@ -40,7 +41,7 @@ class ArticleController extends AbstractController
             ]);
     }
 
-
+    
     /**
      * @Route("/article/{id}", name="article_display", requirements={"id"="\d+"})
      */
@@ -83,39 +84,45 @@ class ArticleController extends AbstractController
     public function womanGallery(ArticleService $articleService, Request $request, BrandService $brandService , ArticleColorService $articleColorService  )
     {      
            
-    $path = $request->getPathInfo();
-
     $queryCategories = $request->query->get('cat');
     $queryPrice = $request->query->get('price');
+    $page = $request->query->get('page');
+
+    if(empty($page)){
+        $page = 1; 
+    }
 
     return $this->render('article/gallery/woman.html.twig', [
-        'articles' => $articleService->search($queryPrice), 
+        'articles' => $articleService->search($queryPrice, $page), 
         'brands' => $brandService->getAllBrands(),
         'colors' => $articleColorService->getAllColors(),
         'cat' => $queryCategories ,
-        'path' => $path
+        'page' => $page
         ]);
     }
-
 
     /**
      * @Route("/article/gallerie/homme", name="man_gallery")
      */
     public function manGallery(ArticleService $articleService, Request $request, BrandService $brandService, ArticleColorService $articleColorService )
     {      
-       $path = $request->getPathInfo();
-
-       $queryCategories = $request->query->get('cat');
-       $queryPrice = $request->query->get('price');
-   
-       return $this->render('article/gallery/man.html.twig', [
-           'articles' => $articleService->search($queryPrice), 
-           'brands' => $brandService->getAllBrands(),
-           'colors' => $articleColorService->getAllColors(),
-           'cat' => $queryCategories ,
-           'path' => $path
-           ]);
-    }
+        $queryCategories = $request->query->get('cat');
+        $queryPrice = $request->query->get('price');
+        $page = $request->query->get('page');
+    
+        if(empty($page)){
+            $page = 1; 
+        }
+    
+        return $this->render('article/gallery/man.html.twig', [
+            'articles' => $articleService->search($queryPrice, $page), 
+            'brands' => $brandService->getAllBrands(),
+            'colors' => $articleColorService->getAllColors(),
+            'cat' => $queryCategories ,
+            'page' => $page
+            ]);
+        }
+    
 
 
     /**
@@ -128,13 +135,18 @@ class ArticleController extends AbstractController
 
        $queryCategories = $request->query->get('cat');
        $queryPrice = $request->query->get('price');
+       $page = $request->query->get('page');
+
+       if(empty($page)){
+        $page = 1; 
+       }
    
        return $this->render('article/gallery/kid.html.twig', [
-           'articles' => $articleService->search($queryPrice), 
-           'brands' => $brandService->getAllBrands(),
-           'colors' => $articleColorService->getAllColors(),
-           'cat' => $queryCategories ,
-           'path' => $path
+            'articles' => $articleService->search($queryPrice, $page), 
+            'brands' => $brandService->getAllBrands(),
+            'colors' => $articleColorService->getAllColors(),
+            'cat' => $queryCategories ,
+            'page' => $page
            ]);
     }
 
@@ -145,17 +157,18 @@ class ArticleController extends AbstractController
     public function bagageGallery(ArticleService $articleService, Request $request, BrandService $brandService , ArticleColorService $articleColorService )
     {      
 
-       $path = $request->getPathInfo();
+    //    $path = $request->getPathInfo();
 
        $queryCategories = $request->query->get('cat');
        $queryPrice = $request->query->get('price');
+       $page = $request->query->get('page');
    
        return $this->render('article/gallery/bagage.html.twig', [
-           'articles' => $articleService->search($queryPrice), 
-           'brands' => $brandService->getAllBrands(),
-           'colors' => $articleColorService->getAllColors(),
-           'cat' => $queryCategories ,
-           'path' => $path
+            'articles' => $articleService->search($queryPrice, $page), 
+            'brands' => $brandService->getAllBrands(),
+            'colors' => $articleColorService->getAllColors(),
+            'cat' => $queryCategories ,
+            'page' => $page
            ]);
     }
 

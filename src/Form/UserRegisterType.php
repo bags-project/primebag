@@ -5,7 +5,12 @@ namespace App\Form;
 use App\Entity\User;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
+
 use Symfony\Component\OptionsResolver\OptionsResolver;
+
+use Symfony\Component\Form\FormEvent;
+use Symfony\Component\Form\FormEvents;
+
 use Symfony\Component\Form\Extension\Core\Type\RepeatedType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
@@ -30,14 +35,42 @@ class UserRegisterType extends AbstractType
             ))
             ->add('zipCode')
             ->add('city', ChoiceType::class, array(
-                'choices' => array(
-                    'test' => 'test'
-                )
-            ))
+            'choices' => array('Arras' => 'Arras')
+            ));
+
             //->add('countryName')
             //->add('countryCode')
-        ;
-    }
+        
+        $builder->addEventListener(
+            FormEvents::PRE_SET_DATA,
+            function (FormEvent $event) {
+
+                $form = $event->getForm();
+                // var_dump($form);
+    
+                // this would be your entity, i.e. SportMeetup
+                $data = $event->getData();
+                // var_dump($data);
+                
+                $city = $data->getCity();
+                var_dump($city);
+                $positions = null === $city ? array() : $city->getAvailablePositions();
+    
+                $form->add('city', ChoiceType::class, array(
+                    'choices' => $positions
+                ));
+
+
+
+    
+            }
+    );
+
+}
+
+
+
+    
 
     public function configureOptions(OptionsResolver $resolver)
     {

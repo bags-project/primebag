@@ -38,11 +38,11 @@
                 <div>
                     {% if is_granted ('ROLE_USER') %}
                     <a href="{{path('user_profile', {'id': app.user.id})}}">
-                    {% else %}
-                    <a href="#">
-                    {% endif %}
-                    <div class="profil"></div>
-                    </a><br>
+                        {% else %}
+                        <a href="#">
+                            {% endif %}
+                            <div class="profil"></div>
+                        </a><br>
                 </div>
                 <div class="note">Compte</div>
             </div>
@@ -50,7 +50,7 @@
             <div class="symbol">
                 <div>
                     <a href="{{ path('cart_view')}}">
-                    <div class="basket"></div>
+                        <div class="basket"></div>
                     </a><br>
                 </div>
                 <div class="note">Panier</div>
@@ -109,7 +109,8 @@
                 {% if is_granted ('ROLE_USER') %}
 
                 <li class="nav-item">
-                    <a class="btn btn-light-blue btn-sm" href="{{path('user_profile', {id: app.user.id})}}">Votre Compte</a>
+                    <a class="btn btn-light-blue btn-sm" href="{{path('user_profile', {id: app.user.id})}}">Votre
+                        Compte</a>
                 </li>
                 {% else %}
 
@@ -154,6 +155,15 @@
                 </li>
                 {% else %}
                 {% endif %}
+
+                {% if is_granted ('ROLE_USER') %}
+
+                <li id="user_name" class="nav-item">
+                    Bonjour {{ app.user.firstName }} Bienvenue !
+                </li>
+
+                {% endif %}
+
             </ul>
         </div>
     </nav>

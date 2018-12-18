@@ -48,7 +48,7 @@ class ArticleRepository extends ServiceEntityRepository
     }
     */
 
-    public function search($price) 
+    public function search($price, $page) 
     {
         $stmt = $this->createQueryBuilder('art') 
                      ->innerJoin('art.categories', 'artC' ) 
@@ -67,15 +67,13 @@ class ArticleRepository extends ServiceEntityRepository
         }
                     
         //Système de pagination
-        // $limit = 3;
-        // $stmt->setMaxResults($limit);
-
-        // $stmt->setFirstResult(($page-1) * $limit);
+        $limit = 20;
+        $stmt->setMaxResults($limit);
+        $stmt->setFirstResult(($page-1) * $limit);
 
         //RESULTAT
         return $stmt->getQuery()->getResult();         
     }  
-
 
     public function showCase() 
     {

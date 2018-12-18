@@ -21,17 +21,40 @@
 
         <div>
             <p>Le chic et l'élegance <br>
-            à emmener partout</p>
+                à emmener partout</p>
         </div>
 
     </div>
 </div>
 
-
-
 <main id="gallery-main">
 
     <div class="container">
+
+        {# Pagination #}
+        <nav aria-label="Page navigation example">
+            <ul class="pagination pg-blue justify-content-center">
+
+                {% if page > 1 %}
+                <li class="page-item ">
+
+                    {% elseif page == 1 %}
+                <li class="page-item disabled ">
+
+                    {% endif %}
+
+                    <a class="page-link" href="?page={{page -1}}">Précédent</a>
+                </li>
+
+                <li class="page-item ">
+                    <span id="numberPage-pagination-woman" class="page-link">{{page}}</span>
+                </li>
+
+                <li class="page-item">
+                    <a class="page-link" href="?page={{page +1}}">Suivant</a>
+                </li>
+            </ul>
+        </nav>
 
         <div id="gallery-filtres" class="row">
 

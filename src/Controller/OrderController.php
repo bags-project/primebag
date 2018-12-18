@@ -17,29 +17,38 @@ class OrderController extends AbstractController
     public function index(SessionInterface $session)
     {
 
-        $date = new \DateTime();
-        $session = $this->get('session');
-        $cart = $session->get('cart');
+    //     $date = new \DateTime();
+    //     $session = $this->get('session');
+    //     $carts = $session->get('cart');
 
-        return $this->render('order/order.html.twig', [
-            'controller_name' => 'OrderController',
-            'date'=> $date,
-            'session' => $session,
-            'cart' => $cart
-        ]);
+    //     foreach ($carts as $key => $cart) {
+            
+    //         var_dump($cart->price);
+    //     }
+
+
+
+
+    //     return $this->render('order/order.html.twig', [
+    //         'controller_name' => 'OrderController',
+    //         'date'=> $date,
+    //         'session' => $session,
+    //         'cart' => $cart
+    //     ]);
     }
     
 
     /**
      * @Route("/buy", name="order_valid")
      */
-    public function validOrder(\Swift_Mailer $mailer, SessionInterface $session)
+    public function validOrder(SessionInterface $session, \Swift_Mailer $mailer)
     {
         //vérifier avant tout si l'utilisateur est connecté
 
         //$cart = $session->get('user');
         $date = new \DateTime();
 
+        $order = 12;
 
 
 
@@ -88,65 +97,63 @@ class OrderController extends AbstractController
 
 
 
+        // DECLENCHEUR ?
+       
+               $message = (new \Swift_Message('Mail nouvelle preparation de commande'))
+               ->setFrom('primebag62@gmail.com')
+               ->setTo('primebag62@gmail.com')
+               ->setBody(
+                   '<html>' .
+                   ' <body>' .
+                   ' <h1>Nouvelle commande</h1>'.
+                   // 'En date du'. $date.
+                   ' Une nouvelle commande numéro '. $order .
+                   ' </body>' .
+                   '</html>',
+                     'text/html' // Mark the content-type as HTML
+                   );
+       
+               $mailer->send($message);
+       
+               $message = (new \Swift_Message('Confirmation de nouvelle commande'))
+               ->setFrom('primebag62@gmail.com')
+               ->setTo('guillaume.goubel.pro@gmail.com')
+               ->setBody(
+                   '<html>' .
+                   '<body>'.
+                   '<header>' .
+                     '<h1>FACTURE' .
+                       '<h2>Prime Bag − Vente de sacs </h2>' .
+                     '</h1>' .  //
+                   '</header>' .
+                   '<h2></h2>'.
+                   '<table>'.
+                   '<tr>'.
+                       '<td>Carmen</td>'.
+                       '<td>33 ans</td>'.
+                       '<td>Espagne</td>'.
+                   '</tr>'.
+                   '<tr>'.
+                       '<td>Michelle</td>'.
+                       '<td>26 ans</td>'.
+                       '<td>États-Unis</td>'.
+                   '</table>'.
+                       '</html>',  
+                               'text/html' // Mark the content-type as HTML
+                   );
+       
+                   $mailer->send($message);
+           
 
 
 
 
 
-            $order = 12;
-
-
- // DECLENCHEUR ?
-
-        $message = (new \Swift_Message('Mail nouvelle preparation de commande'))
-        ->setFrom('primebag62@gmail.com')
-        ->setTo('primebag62@gmail.com')
-        ->setBody(
-            '<html>' .
-            ' <body>' .
-            ' <h1>Nouvelle commande</h1>'.
-            // 'En date du'. $date.
-            ' Une nouvelle commande numéro '. $order .
-            ' </body>' .
-            '</html>',
-              'text/html' // Mark the content-type as HTML
-            );
-
-        $mailer->send($message);
-
-        $message = (new \Swift_Message('Confirmation de nouvelle commande'))
-        ->setFrom('primebag62@gmail.com')
-        ->setTo('guillaume.goubel.pro@gmail.com')
-        ->setBody(
-            '<html>' .
-            '<body>'.
-            '<header>' .
-              '<h1>FACTURE' .
-                '<h2>Prime Bag − Vente de sacs </h2>' .
-              '</h1>' .  //
-            '</header>' .
-            '<h2></h2>'.
-            '<table>'.
-            '<tr>'.
-                '<td>Carmen</td>'.
-                '<td>33 ans</td>'.
-                '<td>Espagne</td>'.
-            '</tr>'.
-            '<tr>'.
-                '<td>Michelle</td>'.
-                '<td>26 ans</td>'.
-                '<td>États-Unis</td>'.
-            '</table>'.
-                '</html>',  
-                        'text/html' // Mark the content-type as HTML
-            );
-
-            $mailer->send($message);
-    
 
         return $this->render('order/buy.html.twig', [
             //'cart' => $cart,
             'date' => $date,
+
         ]);
     }
 

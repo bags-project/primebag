@@ -7,10 +7,8 @@ use App\Form\ContactType;
 use App\Notification\ContactNotification;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
-
 use Symfony\Component\Validator\Constraints\Email;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
-
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class EmailController extends AbstractController
@@ -52,6 +50,8 @@ class EmailController extends AbstractController
 
     // }
 
+
+
     //PrimeBag62@gmail.com
     //Pass : Webforce3
     //https://stackoverflow.com/questions/39363613/swiftmailer-attachment-error-unable-to-open-file-for-reading-on-symfony2-proje
@@ -67,7 +67,7 @@ class EmailController extends AbstractController
             ->setFrom('primebag62@gmail.com')
             ->setTo('primebag62@gmail.com')
             ->setBody('salut pepito')
-            // ->attach(\Swift_Attachment::fromPath('public/assets/pdf/1.pdf'))
+            ->attach(\Swift_Attachment::fromPath('public/assets/pdf/1.pdf'))
         /*
 
          RENDU DE LA PAGE HTML
