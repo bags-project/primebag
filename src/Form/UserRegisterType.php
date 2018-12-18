@@ -35,14 +35,13 @@ class UserRegisterType extends AbstractType
             ))
             ->add('zipCode')
             ->add('city', ChoiceType::class, array(
-            'choices' => array('Arras' => 'Arras')
             ));
 
             //->add('countryName')
             //->add('countryCode')
         
         $builder->addEventListener(
-            FormEvents::PRE_SET_DATA,
+            FormEvents::PRE_SUBMIT,
             function (FormEvent $event) {
 
                 $form = $event->getForm();
@@ -52,16 +51,12 @@ class UserRegisterType extends AbstractType
                 $data = $event->getData();
                 // var_dump($data);
                 
-                $city = $data->getCity();
-                var_dump($city);
-                $positions = null === $city ? array() : $city->getAvailablePositions();
+                // $city = $data->getCity();
+                $city = $data['city'];
     
                 $form->add('city', ChoiceType::class, array(
-                    'choices' => $positions
+                    'choices' => [ $city => $city ]
                 ));
-
-
-
     
             }
     );

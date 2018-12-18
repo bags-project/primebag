@@ -95,16 +95,17 @@
                 {% if is_granted ('ROLE_USER') %}
                 <li class="nav-item">
                     <a class="btn btn-indigo btn-sm" href="{{ path('cart_view')}}">Panier :
-                    {# <a id="cartImg" href="{{ path('cart_view')}}"><img src="{{ asset('assets/img/cart.png') }}" alt="Votre panier" /> #}
-                        {% set cart = app.session.get('cart') %}
-                        {# Vérif si le panier est initialisé (passé par cart_add ou cart_view) #}
-                        {% if cart is not null %}
+                        {# <a id="cartImg" href="{{ path('cart_view')}}"><img src="{{ asset('assets/img/cart.png') }}"
+                                alt="Votre panier" /> #}
+                            {% set cart = app.session.get('cart') %}
+                            {# Vérif si le panier est initialisé (passé par cart_add ou cart_view) #}
+                            {% if cart is not null %}
                             {% set nbArticles = cart.name|length %}
-                        {{nbArticles}}
-                        {% else %}
+                            {{nbArticles}}
+                            {% else %}
                             <span>Vide</span>
-                        {% endif %}
-                    </a>
+                            {% endif %}
+                        </a>
                 </li>
                 {% endif %}
                 {% if is_granted ('ROLE_USER') %}
@@ -167,6 +168,17 @@
             </ul>
         </div>
     </nav>
+
+    {% for message in app.flashes('notice') %}
+    <div id="alert" class="flash-notice alert alert-success">
+        <h2 class="alert-heading">Well done!</h2>
+        {{ message }}
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    {% endfor %}
+
 </header>
 <!--Main Navigation-->
 
@@ -181,7 +193,7 @@
             Vous trouverez tous les cadeaux les plus désirables du moment parmi Guess, Lancel ou bien encore Paul
             Marius.</p>
         <p><a href="{{ path('admin_article') }}">Admin</a> | <a href="{{ path('admin_add') }}">Admin Ajout</a></p>
-        <p><a href="{{ path('contact') }}">Contactez-nous</a> | <a href="{{ path('cgv') }}">CGV</a></p>
+        {# <p><a href="{{ path('contact') }}">Contactez-nous</a> | <a href="{{ path('cgv') }}">CGV</a></p> #} #}
     </div>
     <div class="footer-flex-child center">
         <div class="b">

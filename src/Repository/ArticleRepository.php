@@ -67,7 +67,7 @@ class ArticleRepository extends ServiceEntityRepository
         }
                     
         //Système de pagination
-        $limit = 20;
+        $limit = 30;
         $stmt->setMaxResults($limit);
         $stmt->setFirstResult(($page-1) * $limit);
 

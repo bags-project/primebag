@@ -1,30 +1,35 @@
 {% extends 'base.html.twig' %}
 
-{% block title %} Univers Bagages - {{parent()}} {% endblock %}
+{% block title %} Univers Street-Wear - {{parent()}} {% endblock %}
 
 {% block body %}
 
-{# LUGGAGE GALLERY #}
+{# STREET-WEAR GALLERY #}
 <div id="gallery-jumbotron-bagage">
     <div>
-        <img id="jumbo-img-bagage" src="{{ asset('assets/img/logo/bagages_univers.jpg')}}" alt="bagage_univers">
+        <img id="jumbo-img-kid" src="{{ asset('assets/img/logo/kid_univers.jpg')}}" alt="woman_univers">
     </div>
 
     <div>
 
         <div>
-            <h2><strong>Gallerie Bagages</strong></h2>
+            <h2><strong>Gallerie Scolaire</strong></h2>
         </div>
 
         <div>
             <p>Pratique et robuste <br>
-            en toutes circonstances</p>
+                en toutes circonstances</p>
         </div>
 
     </div>
 </div>
 
-{# Pagination #}
+
+<main id="gallery-main">
+
+    <div class="container">
+
+        {# Pagination #}
         <nav aria-label="Page navigation example">
             <ul class="pagination pg-blue justify-content-center">
 
@@ -40,7 +45,7 @@
                 </li>
 
                 <li class="page-item ">
-                    <span id="numberPage-pagination-bagage" class="page-link">{{page}}</span>
+                    <span id="numberPage-pagination-kid" class="page-link">{{page}}</span>
                 </li>
 
                 <li class="page-item">
