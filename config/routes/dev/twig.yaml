@@ -1,3 +1,2 @@
-_errors:
-    resource: '@TwigBundle/Resources/config/routing/errors.xml'
-    prefix: /_error
+# twig:
+#     exception_controller: App\Controller\ExceptionController::showException
