@@ -137,7 +137,7 @@ class AdminController extends AbstractController
 
             $this->addFlash(
                 'notice',
-                ' est effacé !'
+                'Article effacé !'
             );
         // }
 
@@ -185,7 +185,7 @@ class AdminController extends AbstractController
 
             // $this->addFlash(
             //     'notice',
-            //     ' est effacé !'
+            //     'Utilisateur effacé !'
             // );
             
         // }
@@ -197,9 +197,11 @@ class AdminController extends AbstractController
 
     /**
      * ===================== Déconnecter admin ========================
-     * @Route("/admin/logout", name="admin_logout")
+     * @Route("/logout", name="logout")
      */
-     public function logout() {}
+     public function logout() {
+        return $this->render('main/index.html.twig');
+     }
 
     
     
