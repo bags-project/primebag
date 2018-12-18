@@ -16,13 +16,12 @@ class CartController extends AbstractController
      */
     public function show(SessionInterface $session, CartService $cartService)
     {
-        
-        $totalCart = $cartService->calculateCartTotal($session);
-        
         // je verif si un panier existe, sinon j'en crée un vide
         if($session->get('cart') == null){
             $cartService->setEmptyCart($session);
         }
+        
+        $totalCart = $cartService->calculateCartTotal($session);
 
         return $this->render('cart/view.html.twig', [
             'totalCart' => $totalCart
