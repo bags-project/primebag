@@ -181,6 +181,7 @@ class UserController extends AbstractController
 
             $email = $request->request->get('email');
 
+
             $entityManager = $this->getDoctrine()->getManager();
             $user = $entityManager->getRepository(User::class)->findOneByEmail($email);
             /* @var $user User */
@@ -202,6 +203,7 @@ class UserController extends AbstractController
 
             $url = $this->generateUrl('app_reset_password', array('token' => $token), UrlGeneratorInterface::ABSOLUTE_URL);
 
+
             $message = (new \Swift_Message('Forgot Password'))
                 ->setFrom('primebag62@gmail.com')
                 ->setTo($email)
@@ -214,7 +216,9 @@ class UserController extends AbstractController
                 var_dump($message->setTo($email));
             
 
-            $mailer->send($message);
+            var_dump($mailer->send($message));
+
+            
 
             $this->addFlash('token', $url);
 
@@ -226,9 +230,9 @@ class UserController extends AbstractController
             //return $this->redirectToRoute('home');
         }
 
-        return $this->render('user/forgotten_password.html.twig',[
-            'token' => $url
-        ]);
+        $url = null;
+
+        return $this->render('user/forgotten_password.html.twig');
     }
 
     /**

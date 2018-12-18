@@ -37,7 +37,7 @@ class UserService
         
         $plainPassword = $user->getPlainPassword();
         $encoded = $this->encoder->encodePassword($user, $plainPassword);  
-        $user->setEmail($request->request->get('email'));
+        //$user->setEmail($request->request->get('email'));
         $user->setPassword($encoded);
         $this->om->persist($user);
         $this->om->flush();

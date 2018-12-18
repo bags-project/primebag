@@ -31,7 +31,6 @@ class UserRegisterType extends AbstractType
             ->add('zipCode')
             ->add('city', ChoiceType::class, array(
                 'choices' => array(
-                    'test' => 'test'
                 )
             ))
             //->add('countryName')
