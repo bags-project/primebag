@@ -270,6 +270,10 @@ img, video, iframe {
   margin-top:0px;
 }
 
+.margin15 {
+  margin:15px;
+}
+
 
 /* ============ Pour écran largeur supérieur à 1025px ============ */
 
