@@ -24,9 +24,30 @@
     </div>
 </div>
 
-<main id="gallery-main">
+{# Pagination #}
+        <nav aria-label="Page navigation example">
+            <ul class="pagination pg-blue justify-content-center">
 
-    <div class="container">
+                {% if page > 1 %}
+                <li class="page-item ">
+
+                    {% elseif page == 1 %}
+                <li class="page-item disabled ">
+
+                    {% endif %}
+
+                    <a class="page-link" href="?page={{page -1}}">Précédent</a>
+                </li>
+
+                <li class="page-item ">
+                    <span id="numberPage-pagination-bagage" class="page-link">{{page}}</span>
+                </li>
+
+                <li class="page-item">
+                    <a class="page-link" href="?page={{page +1}}">Suivant</a>
+                </li>
+            </ul>
+        </nav>
 
         <div id="gallery-filtres" class="row">
 
@@ -42,7 +63,7 @@
                 {% if article.categories[0].name == 'Bagage' %}
 
                 <div class="gallery-card" style="width: 18rem;">
-                    
+
                     <div>
                         <img class="card-img-top" src="{{ asset('assets/img/poster/') }}{{ article.poster }}" alt="produit de chez {{article.brand.name}}">
                     </div>
@@ -80,11 +101,12 @@
 
                 {% if cat is not null %}
                 {% if article.stock != 0 %}
-                {% if article.categories[0].name == 'Bagage' and article.brand.name == cat or article.articleColor.name
+                {% if article.categories[0].name == 'Bagage' and article.brand.name == cat or
+                article.articleColor.name
                 == cat %}
 
                 <div class="gallery-card" style="width: 18rem;">
-                    
+
                     <div>
                         <img class="card-img-top" src="{{ asset('assets/img/poster/') }}{{ article.poster }}" alt="Card image cap">
                     </div>
@@ -118,9 +140,9 @@
                 {% endif %}
                 {% endif %}
 
-            {% endfor %}
+                {% endfor %}
 
-        </div>
+            </div>
 </main>
 
 

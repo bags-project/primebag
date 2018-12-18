@@ -201,6 +201,23 @@ class AdminController extends AbstractController
      */
      public function logout() {}
 
+    
+    
+    
+    
+    
+    /**
+    * ===================== Suivre les commandes client ========================
+    * @Route("/admin/order", name="admin_order")
+    */
+    public function admin_order()
+    {
+
+        return $this->render('admin/order.html.twig', [
+        ]);
+    }
+
+
 
 
 

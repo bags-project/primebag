@@ -58,15 +58,15 @@
         <div class="col-sm-6 buyInLayerShipping">
             <strong>Choix mode de livraison :</strong><br>
             <div>
-                <input type="radio" id="colissimo" name="modeLivraison" value="5" checked>
+                <input type="radio" id="colissimo" name="modeLivraison" value="colissimo" checked>
                 <label for="colissimo">Colissimo (3 à 8 jours ouvrés. Frais : 5€)</label>
             </div>
             <div>
-                <input type="radio" id="chronopost" name="modeLivraison" value="10">
+                <input type="radio" id="chronopost" name="modeLivraison" value="chronopost">
                 <label for="chronopost">Chronopost (1 à 3 jours ouvrés. Frais : 10€)</label>
             </div>
             <div>
-                <input type="radio" id="retraitMag" name="modeLivraison" value="0">
+                <input type="radio" id="retraitMag" name="modeLivraison" value="retraitMag">
                 <label for="retraitMag">Retrait en magasin (Frais : aucun)</label>
             </div>
         </div>
@@ -76,11 +76,10 @@
     <div class="row align-items-center buyLayerRows">
         <div class="col-sm-8 buyInLayer">
             <strong>Récapitulatif de commande</strong><br />
-            {# {% set totalArticles =  %} #}
-             Articles : {{totalCart}} €<br /> 
-            <span>Livraison : </span><br />
-            Code protionnel : <br />
-            Total :
+            Articles :<span id="spanTotalCart"></span> € {#{{totalCart}} #} <br />  
+            Livraison : <span id="spanDelivery">5</span> €<br />
+            Code protionnel : <span></span><br />
+            Total :<span id="spanTotalCost"></span>€
         </div>
         <div class="col-sm-4">
             <button type="button" class="btn btn-success btn-block">Acheter</button>
@@ -91,5 +90,65 @@
 <p>Des questions à propos de votre commande ? <a href="#">Contactez-nous</a></p>
 
 
+{% endblock %}
 
+{% block javascripts %}
+    <script>
+    // Fonction de changement du DOM (frais et dates livraison) sur le tunnel d'achat
+    var shippingTaxes = 5;
+    var totalCart = {{totalCart}};
+    var totalCost = totalCart + shippingTaxes;  
+    //parseFloat(totalCart);
+
+    $('#spanTotalCart').text(totalCart);
+    $('#spanTotalCost').text(totalCost);
+
+    var today = new Date();
+    var in1days = new Date();
+    var in3days = new Date();
+    var in8days = new Date();
+
+    in1days.setDate(today.getDate()+1);
+    in3days.setDate(today.getDate()+3);
+    in8days.setDate(today.getDate()+8);
+
+    $('input:radio[name=modeLivraison]').change(function () {
+        //alert("function on change");
+        if ($("input[name='modeLivraison']:checked").val() == 'colissimo') {
+            // alert("colissimo checked");
+            $('#shippingTaxes').text("Frais : 5€");
+            $('#spanDelivery').text("5€");
+            $('#deliveryDate').text("Date de livraison estimée : entre le " + in3days.toLocaleDateString() + 
+                                    " et le " + in8days.toLocaleDateString() );
+            var shippingTaxes = 5;
+            var totalCost = totalCart + shippingTaxes;                                    
+        }else if ($("input[name='modeLivraison']:checked").val() == 'chronopost') {
+            // alert("chronopost checked");
+            $('#shippingTaxes').text("Frais : 10€");
+            $('#spanDelivery').text("10€");
+            $('#deliveryDate').text("Date de livraison estimée : entre le " + in1days.toLocaleDateString() + 
+                                    " et le " + in3days.toLocaleDateString() );            
+            // $("#spanDelivery").attr("value", 10);
+            var shippingTaxes = 10;   
+            var totalCost = totalCart + shippingTaxes;                                                  
+        }else {
+            // alert("retraint magasin checked");
+            $('#shippingTaxes').text("Frais : aucun");
+            $('#spanDelivery').text("Aucun");
+            $('#deliveryDate').text("Vous pouvez retirer votre commande à tout moment. (Consultez les horaires d'ouvertures de la boutique)");              
+            // $("#spanDelivery").attr("value", 0);
+            var shippingTaxes = 0;     
+            var totalCost = totalCart + shippingTaxes;         
+        }
+
+        $('#spanTotalCart').text(totalCart);
+        //$("#spanTotalCart").attr("value", totalCart);
+        $('#spanTotalCost').text(totalCost);
+
+        //console.log(shippingTaxes);
+        //return shippingTaxes;      
+
+    });
+        
+    </script>
 {% endblock %}
