@@ -11,16 +11,13 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 class CartController extends AbstractController
 {
 
-    // public function createCart(SessionInterface $session){
-    // }
-
     /**
      * @Route("/cart", name="cart_view")
      */
     public function show(SessionInterface $session, CartService $cartService)
     {
         
-        
+        $totalCart = $cartService->calculateCartTotal($session);
         
         // je verif si un panier existe, sinon j'en crée un vide
         if($session->get('cart') == null){
@@ -28,6 +25,7 @@ class CartController extends AbstractController
         }
 
         return $this->render('cart/view.html.twig', [
+            'totalCart' => $totalCart
         ]);
     }
 
@@ -54,15 +52,21 @@ class CartController extends AbstractController
             'price' => $request->query->get('price'),
             'poster' => $request->query->get('poster'),
             'quantity' => $request->query->get('quantity'),
-            //'quantity' => $request->query->get('articleQuantity'),
         ];
 
-        // /!\ ajouter un choix de quantité sur la fiche article /!\ :
-        //on vérifie si l'id de l'article existe déjà dans le panier
-        $alreadyIn = array_search($article['id'],  $cart['id']);
-        if ($alreadyIn == true){
-            // augmenter la quantité
-        }else{
+        // //on vérifie si l'id de l'article existe déjà dans le panier
+        // $alreadyIn = array_search($article['id'],  $cart['id']);
+        // if ($alreadyIn == true){
+        //     // Si c'est le cas, MàJ de la quantité
+        //     $nbArticlesInCart = count($cart['id']);
+        //     for($i=0; $i<$nbArticlesInCart; $i++){
+        //         if($cart['id'] == $article['id']){
+        //             $article['quantity'] += $cart['quantity'];
+        //             $cart['quantity'] = $article['quantity'];
+        //         }
+        //     }  
+        // }else{
+
             // je le Set dans mon pannier
             array_push($cart['id'], $article['id']);
             array_push($cart['name'], $article['name']);
@@ -70,14 +74,11 @@ class CartController extends AbstractController
             array_push($cart['price'], $article['price']);
             array_push($cart['poster'], $article['poster']);
             array_push($cart['quantity'], $article['quantity']);
-        }
+
+        // }
 
         // je remet le panier actualisé dans la session
         $session->set('cart', $cart);
-
-        // return $this->render('cart/view.html.twig', [
-        //     'session' => $session->get('cart')
-        // ]);
 
         return $this->render('cart/add.html.twig', [
             'articleName' => $article['name'],
@@ -105,11 +106,17 @@ class CartController extends AbstractController
 
         //suppr de l'article du panier
         unset($cart['id'][$key]);
+        $cart['id'] = array_values($cart['id']); //je réinitialise les index des tableaux pour éviter les trous de clé. Sinon less for($i...) ne passeront plus
         unset($cart['name'][$key]);
+        $cart['name'] = array_values($cart['name']);
         unset($cart['ref'][$key]);
+        $cart['ref'] = array_values($cart['ref']);
         unset($cart['price'][$key]);
+        $cart['price'] = array_values($cart['price']);
         unset($cart['poster'][$key]);
+        $cart['poster'] = array_values($cart['poster']);
         unset($cart['quantity'][$key]);
+        $cart['quantity'] = array_values($cart['quantity']);
 
         $session->set('cart', $cart);
 

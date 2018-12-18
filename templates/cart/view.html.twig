@@ -4,8 +4,8 @@
 
 {% block body %}
 
-    <h2>Panier</h2>
-    
+<h2>Panier</h2>
+
     {% set cart = app.session.get('cart') %}
     {% set nbArticles = cart.name|length %}
 
@@ -13,7 +13,7 @@
     <div class="container">
         <div class="row">
             <div class="col-md-6">
-                Vous avez {{nbArticles}} articles dans votre panier :
+                {{nbArticles}} articles. Total : {{totalCart}} €
             </div>
             <div class="col-md-4">
             
@@ -72,7 +72,7 @@
                 {% set id = attribute(cart.id, key)  %}
                 <div class="col-md-1  col-sm-12 cartDetails">             
                     <a href="{{ path('cart_remove', {'id': id}) }}" onclick="return confirm('Etes vous sur de vouloir supprimer cet article de votre panier ?')">
-                        <button id="btnRemFromCart" type="button" class="btn btn-light" value="{{ attribute(cart.id, key) }}">x</button>
+                         <button id="btnRemFromCart" type="button" class="btn btn-light" {#value="{{ attribute(cart.id, key) }}"#}>x</button> 
                     </a>
                 </div>
             </div>

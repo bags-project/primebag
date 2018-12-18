@@ -14,41 +14,40 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 class EmailController extends AbstractController
 {
     /**
-     * @Route("/contact", name="contact)
+     * @Route("/contact", name="contact")
      */
-    // public function contact(\Swift_Mailer $mailer)
-    // public function contact(Contact $contact, Request $request, ContactNotification $notification)
-    // {
-        // $email = new Contact();
+    public function contact(\Swift_Mailer $mailer, Request $request, ContactNotification $notification)
+    {
+        $email = new Contact();
         // $email->setContact($contact);
-        // $form = $this->createForm(ContactType::class, $email);
+        $form = $this->createForm(ContactType::class, $email);
 
-        // $form->handleRequest($request);
+        $form->handleRequest($request);
 
-        // if ($form->isSubmitted() && $form->isValid()) {
+        if ($form->isSubmitted() && $form->isValid()) {
 
-        //     $notification->notify($contact);
+            // $notification->notify($contact);
 
-        //     $this->addFlash('success', 'Email envoyé !')
+            $this->addFlash('success', 'Email envoyé !');
  
-        //     $message = (new \Swift_Message('Client Email'))
-        //         ->setSubject('Message client')
-        //         ->setFrom('client@gmail.com')
-        //         ->setTo('PrimeBag62@gmail.com')
-        //         ->setBody("Vous lisez un message client");
+            $message = (new \Swift_Message('Client Email'))
+                ->setSubject('Message client')
+                ->setFrom('client@gmail.com')
+                ->setTo('primebag62@gmail.com')
+                ->setBody("Vous lisez un message client");
 
-        //     $mailer->send($message);
+            $mailer->send($message);
 
-        //     $email = $form->getData();
+            // $email = $form->getData();
 
-        // }
+        }
 
-    //     return $this->render('email/contact.html.twig', [
-    //         // 'contact' => $contact,
-    //         // 'form' => $form->createView()
-    //         ]);
+        return $this->render('email/contact.html.twig', [
+            // 'contact' => $contact,
+            'form' => $form->createView()
+            ]);
 
-    // }
+    }
 
 
 
