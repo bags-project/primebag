@@ -64,10 +64,15 @@ class UserController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) 
         {
-
             $userService->registerUser( $user );
 
+            $this->addFlash(
+                'notice',
+                'Votre compte a été ajouté avec succès!'
+            );
+
             return $this->redirectToRoute('home');
+
         }
 
         return $this->render('user/registerUser.html.twig', [

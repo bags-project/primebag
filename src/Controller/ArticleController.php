@@ -162,6 +162,10 @@ class ArticleController extends AbstractController
        $queryCategories = $request->query->get('cat');
        $queryPrice = $request->query->get('price');
        $page = $request->query->get('page');
+
+       if(empty($page)){
+        $page = 1; 
+       }
    
        return $this->render('article/gallery/bagage.html.twig', [
             'articles' => $articleService->search($queryPrice, $page), 
