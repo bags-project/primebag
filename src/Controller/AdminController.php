@@ -135,6 +135,11 @@ class AdminController extends AbstractController
             $em->remove($article);
             $em->flush();
 
+            $this->addFlash(
+                'notice',
+                'Article effacé !'
+            );
+
         // }
 
         return $this->redirectToRoute('admin_article');
