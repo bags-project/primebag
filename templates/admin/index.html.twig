@@ -17,6 +17,7 @@
                 <div class="admin-flex-child desktop">Prix</div>
                 <div class="admin-flex-child">Référence</div>
                 <div class="admin-flex-child desktop">Vitrine</div>
+                {# <div class="admin-flex-child desktop">Tag</div> #}
                 <div class="admin-flex-child">Modifier</div>
                 <div class="admin-flex-child">Supprimer</div>
             </div>
@@ -56,6 +57,7 @@
                 {% else %}
                 <div class="admin-flex-child desktop">Non</div>
                 {% endif %}
+                {# <div class="admin-flex-child">{{ art.tag[0].name }}</div> #}
                 <div class="admin-flex-child"><a href="{{ path('admin_article')}}../{{ art.id }}/edit">🖍</a></div>
                 {# <form method="post" action="{{ path('admin_article')}}../{{ art.id }}/del"> #}
                     <input type="hidden" name="_method" value="DELETE">
