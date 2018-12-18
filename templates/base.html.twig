@@ -110,8 +110,7 @@
                 {% if is_granted ('ROLE_USER') %}
 
                 <li class="nav-item">
-                    <a class="btn btn-light-blue btn-sm" href="{{path('user_profile', {id: app.user.id})}}">Votre
-                        Compte</a>
+                    <a class="btn btn-light-blue btn-sm" href="{{path('user_profile', {id: app.user.id})}}">Votre Compte - {{app.user.firstName}}</a>
                 </li>
                 {% else %}
 

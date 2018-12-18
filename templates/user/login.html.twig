@@ -4,14 +4,20 @@
 
 {% block body %}
 
-    <h1>Se connecter</h1>
+<div class="limit">
 
-        <form method = "post">
-        <input type="text" placehoder="Votre adresse mail" name="_username" value="">
-        <input type="password" placehoder="Votre mot de passe" name="_password" value="">
-        
-        <button type ="submit">Connection</button>
-    </form>
+    <h1 class="center">Se connecter</h1>
+
+    <div class="center">
+
+        <form method ="post">
+            Adresse mail : <input type="text" class="margin15" placehoder="Votre adresse mail" name="_username" value=""> <br/>
+            Mot de passe : <input type="password" class="margin15" placehoder="Votre mot de passe" name="_password" value="">
+            <br/>
+            <button type ="submit">Connection</button>
+        </form>
+    </div>
+</div>
 
 
 {% endblock %}
