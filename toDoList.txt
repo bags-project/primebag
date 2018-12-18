@@ -6,6 +6,7 @@ Pour point étape du mercredi 19/12/2018 :
 - Communication vers le vendeurs lors de la validation d'une commande - En cours -
 - Suppression de compte user - OK -
 - gestion des commandes admin et user
+- Suppression de compte user
 ----------------------------------------------------------------------
 
 

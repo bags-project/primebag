@@ -5,6 +5,7 @@ namespace App\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
+use App\Service\CartService;
 
 use Symfony\Component\Validator\Constraints\Email;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
@@ -26,9 +27,6 @@ class OrderController extends AbstractController
     //         var_dump($cart->price);
     //     }
 
-
-
-
     //     return $this->render('order/order.html.twig', [
     //         'controller_name' => 'OrderController',
     //         'date'=> $date,
@@ -41,14 +39,14 @@ class OrderController extends AbstractController
     /**
      * @Route("/buy", name="order_valid")
      */
-    public function validOrder(SessionInterface $session, \Swift_Mailer $mailer)
+    public function validOrder(SessionInterface $session, CartService $cartService)
     {
         //vérifier avant tout si l'utilisateur est connecté
 
-        //$cart = $session->get('user');
         $date = new \DateTime();
 
-        $order = 12;
+        // calcul du total panier
+        $totalCart = $cartService->calculateCartTotal($session);
 
 
 
@@ -153,6 +151,7 @@ class OrderController extends AbstractController
         return $this->render('order/buy.html.twig', [
             //'cart' => $cart,
             'date' => $date,
+            'totalCart' => $totalCart
 
         ]);
     }

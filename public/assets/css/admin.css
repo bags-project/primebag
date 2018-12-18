@@ -316,10 +316,11 @@ img, video, iframe {
 }
 .admin-flex-child {
   margin:0;
-  padding:4px;
+  padding:8px;
   border:1px solid #CED4DA;
   background-color:#FFF;
   flex:1;
+  overflow: hidden;
 }
 
 .header-flex {

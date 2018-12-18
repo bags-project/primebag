@@ -8,7 +8,8 @@
 
 {# A voir si c'est secured ou si je dois envoyer les infos via le controlleur : #}
   {% set user = app.user %}
-  {# {{dump(user)}} #}
+  
+  {% set cart = app.session.get('cart') %}
 
 <div class="container">
     {# ///////////////////////////////////// #}
@@ -21,7 +22,7 @@
             {{user.address}}<br>
             {{user.city}}, {{user.zipCode}}<br>
             {{user.countryName}}<br>
-            {# Téléphone : non présent dans le app.user : à ajouter? #}
+            Tel : {{user.phoneNumber}}<br>
         </div>
         {# partie droite #}
         <div class="col-sm-6">
@@ -48,15 +49,26 @@
     <div class="row buyLayerRows">
         {# partie gauche : date estimée #}
         <div class="col-sm-6 buyInLayerShipping">
-            <strong>Date de livraison estimée :</strong>
-            01/01/2020
+            {# colissimo par défaut : #}
+            <strong id="shippingTaxes">Frais : 5€ </strong><br />
+            <strong id="deliveryDate">Date de livraison estimée : entre le 20/12/2018 et le 25/12/2018</strong>
+            
         </div>
         {# partie droite : Choix mode de livraison #}
         <div class="col-sm-6 buyInLayerShipping">
             <strong>Choix mode de livraison :</strong><br>
-            - Colissimo (3 à 8jours ouvrés)<br>
-            - Chronopost (1 à 3 jours ouvrés)<br>
-            - Retrait en magasin
+            <div>
+                <input type="radio" id="colissimo" name="modeLivraison" value="colissimo" checked>
+                <label for="colissimo">Colissimo (3 à 8 jours ouvrés. Frais : 5€)</label>
+            </div>
+            <div>
+                <input type="radio" id="chronopost" name="modeLivraison" value="chronopost">
+                <label for="chronopost">Chronopost (1 à 3 jours ouvrés. Frais : 10€)</label>
+            </div>
+            <div>
+                <input type="radio" id="retraitMag" name="modeLivraison" value="retraitMag">
+                <label for="retraitMag">Retrait en magasin (Frais : aucun)</label>
+            </div>
         </div>
     </div>
     {# //////////////////////////////////////////// #}
@@ -64,10 +76,10 @@
     <div class="row align-items-center buyLayerRows">
         <div class="col-sm-8 buyInLayer">
             <strong>Récapitulatif de commande</strong><br />
-            Articles : <br />
-            Livraison : <br />
-            Code protionnel : <br />
-            Total :
+            Articles :<span id="spanTotalCart"></span> € {#{{totalCart}} #} <br />  
+            Livraison : <span id="spanDelivery">5</span> €<br />
+            Code protionnel : <span></span><br />
+            Total :<span id="spanTotalCost"></span>€
         </div>
         <div class="col-sm-4">
             <button type="button" class="btn btn-success btn-block">Acheter</button>
@@ -78,5 +90,65 @@
 <p>Des questions à propos de votre commande ? <a href="#">Contactez-nous</a></p>
 
 
+{% endblock %}
 
+{% block javascripts %}
+    <script>
+    // Fonction de changement du DOM (frais et dates livraison) sur le tunnel d'achat
+    var shippingTaxes = 5;
+    var totalCart = {{totalCart}};
+    var totalCost = totalCart + shippingTaxes;  
+    //parseFloat(totalCart);
+
+    $('#spanTotalCart').text(totalCart);
+    $('#spanTotalCost').text(totalCost);
+
+    var today = new Date();
+    var in1days = new Date();
+    var in3days = new Date();
+    var in8days = new Date();
+
+    in1days.setDate(today.getDate()+1);
+    in3days.setDate(today.getDate()+3);
+    in8days.setDate(today.getDate()+8);
+
+    $('input:radio[name=modeLivraison]').change(function () {
+        //alert("function on change");
+        if ($("input[name='modeLivraison']:checked").val() == 'colissimo') {
+            // alert("colissimo checked");
+            $('#shippingTaxes').text("Frais : 5€");
+            $('#spanDelivery').text("5€");
+            $('#deliveryDate').text("Date de livraison estimée : entre le " + in3days.toLocaleDateString() + 
+                                    " et le " + in8days.toLocaleDateString() );
+            var shippingTaxes = 5;
+            var totalCost = totalCart + shippingTaxes;                                    
+        }else if ($("input[name='modeLivraison']:checked").val() == 'chronopost') {
+            // alert("chronopost checked");
+            $('#shippingTaxes').text("Frais : 10€");
+            $('#spanDelivery').text("10€");
+            $('#deliveryDate').text("Date de livraison estimée : entre le " + in1days.toLocaleDateString() + 
+                                    " et le " + in3days.toLocaleDateString() );            
+            // $("#spanDelivery").attr("value", 10);
+            var shippingTaxes = 10;   
+            var totalCost = totalCart + shippingTaxes;                                                  
+        }else {
+            // alert("retraint magasin checked");
+            $('#shippingTaxes').text("Frais : aucun");
+            $('#spanDelivery').text("Aucun");
+            $('#deliveryDate').text("Vous pouvez retirer votre commande à tout moment. (Consultez les horaires d'ouvertures de la boutique)");              
+            // $("#spanDelivery").attr("value", 0);
+            var shippingTaxes = 0;     
+            var totalCost = totalCart + shippingTaxes;         
+        }
+
+        $('#spanTotalCart').text(totalCart);
+        //$("#spanTotalCart").attr("value", totalCart);
+        $('#spanTotalCost').text(totalCost);
+
+        //console.log(shippingTaxes);
+        //return shippingTaxes;      
+
+    });
+        
+    </script>
 {% endblock %}

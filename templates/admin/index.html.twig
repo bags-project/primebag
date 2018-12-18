@@ -8,13 +8,15 @@
 
         <div class="admin-list">
             <div class="admin-flex">
-                <div class="admin-flex-child">ID</div>
+                <div class="admin-flex-child desktop">ID</div>
                 <div class="admin-flex-child admin-img">Image</div>
+                <div class="admin-flex-child">Marque</div>
                 <div class="admin-flex-child">Nom</div>
+                <div class="admin-flex-child">Catégorie</div>
                 <div class="admin-flex-child desktop">Stock</div>
                 <div class="admin-flex-child desktop">Prix</div>
                 <div class="admin-flex-child">Référence</div>
-                <div class="admin-flex-child">Vitrine</div>
+                <div class="admin-flex-child desktop">Vitrine</div>
                 <div class="admin-flex-child">Modifier</div>
                 <div class="admin-flex-child">Supprimer</div>
             </div>
@@ -34,9 +36,11 @@
 
         <div class="admin-list">
             <div class="admin-flex">
-                <div class="admin-flex-child">{{ art.id }}</div>
-                <div class="admin-flex-child admin-img"><a href="{{ asset('assets/img/poster/') }}{{ art.poster }}" target="_blank"><img src="{{ asset('assets/img/poster/') }}{{ art.poster }}" alt"{{ art.name }}"></a></div>
+                <div class="admin-flex-child desktop">{{ art.id }}</div>
+                <div class="admin-flex-child admin-img"><a href="{{ asset('assets/img/poster/') }}{{ art.poster }}" target="_blank"><img src="{{ asset('assets/img/poster/') }}{{ art.poster }}" alt="{{ art.name }}"></a></div>
+                <div class="admin-flex-child">{{ art.brand.name }}</div>
                 <div class="admin-flex-child">{{ art.name }}</div>
+                <div class="admin-flex-child">{{ art.categories[0].name }}</div>
                 {% if art.stock < 1 %}
                 <div class="admin-flex-child desktop text-red">
                 {% else %}
@@ -48,9 +52,9 @@
                 <div class="admin-flex-child">{{ art.reference }}</div>
                 {% if art.showcase == 1 %}
                 {# <div class="admin-flex-child">{{ art.showcase }}</div> #}
-                <div class="admin-flex-child">Oui</div>
+                <div class="admin-flex-child desktop">Oui</div>
                 {% else %}
-                <div class="admin-flex-child">Non</div>
+                <div class="admin-flex-child desktop">Non</div>
                 {% endif %}
                 <div class="admin-flex-child"><a href="{{ path('admin_article')}}../{{ art.id }}/edit">🖍</a></div>
                 {# <form method="post" action="{{ path('admin_article')}}../{{ art.id }}/del"> #}

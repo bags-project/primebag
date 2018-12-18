@@ -6,8 +6,15 @@
 
     <h1 class="center">Formulaire de contact</h1>
 
-    {{ form( form ) }}
-
+    <div class="limit">
+        {{ form_start ( form ) }}
+        {{ form_widget ( form ) }}
+        <div class="center">
+            <button type="submit">Envoyer</button>
+        </div>
+        {{ form_end ( form ) }}
+    </div>
+    <br>
 
 
 {% endblock %}
