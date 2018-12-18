@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.8.3
+-- version 4.7.4
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1
--- Généré le :  mar. 18 déc. 2018 à 01:22
--- Version du serveur :  10.1.36-MariaDB
--- Version de PHP :  7.2.10
+-- Généré le :  mar. 18 déc. 2018 à 17:20
+-- Version du serveur :  10.1.26-MariaDB
+-- Version de PHP :  7.1.9
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -52,7 +52,7 @@ CREATE TABLE `article` (
 --
 
 INSERT INTO `article` (`id`, `brand_id`, `article_color_id`, `name`, `poster`, `alt_picture1`, `alt_picture2`, `alt_picture3`, `price`, `reference`, `description`, `stock`, `matter`, `discount`, `showcase`, `tag_id`) VALUES
-(1, 2, 8, 'Bols mary jackson capri', '19SAXP23_7019.jpg', '19SAXP23_7019alt1.jpg', '', '', 99, '19SAXP23', 'Composition\r\nExtérieur : 100% polyurethane\r\nIntérieur : 100% polyester', 10, 'polyurethane / polyester', 0, NULL, NULL),
+(1, 2, 8, 'Bols mary jackson capri', '19SAXP23_7019.jpg', '19SAXP23_7019alt1.jpg', '', '', 99, '19SAXP23', 'Composition\r\nExtérieur : 100% polyurethane\r\nIntérieur : 100% polyester', 10, 'polyurethane / polyester', 0, 1, 1),
 (2, 2, 8, 'Bols mexican cards loverty', '19SAXPDP.jpg', '19SAXPDPalt1.jpg', '19SAXPDPalt2.jpg', '', 69, '19SAXPDP', 'Composition\r\nExtérieur : 100% polyurethane\r\nIntérieur : 100% polyester', 10, 'polyurethane / polyester', 0, NULL, NULL),
 (3, 2, 4, 'Bols abby siberia', '19SAXPGF.jpg', '19SAXPGFalt1.jpg', '19SAXPGFalt2.jpg', '19SAXPGFalt3.jpg', 69, '19SAXPGF', 'Extérieur : 100% polyurethane\r\nIntérieur : 100% polyester', 1, 'polyurethane / polyester', NULL, NULL, NULL),
 (4, 2, 8, 'Bols poppy flower', '19SAXFBB.jpg', '19SAXFBBalt1.jpg', '19SAXFBBalt2.jpg', '19SAXFBBalt3.jpg', 69, '19SAXFBB', 'Composition\r\nExtérieur : 100% polyurethane\r\nIntérieur : 100% polyester', 20, 'polyurethane / polyester', 0, NULL, NULL),
@@ -138,8 +138,6 @@ CREATE TABLE `article_color` (
 --
 
 INSERT INTO `article_color` (`id`, `name`) VALUES
-(1, 'Amethyste'),
-(2, 'Bordeaux'),
 (3, 'Camel'),
 (4, 'Noir'),
 (5, 'Blanc'),
@@ -212,22 +210,7 @@ INSERT INTO `category` (`id`, `name`, `description`, `poster`) VALUES
 (1, 'Femme', 'Sacs femme : faites vous plaisir en jouant avec les tendances grâce à nos sélections de sacs femme ! Des marques de luxe à la mode urbaine, trouvez votre bonheur sur Primebag !', 'http://placehold.it/350x150'),
 (2, 'Homme', 'Sacs homme : faites vous plaisir en jouant avec les tendances grâce à nos sélections de sacs homme ! Des marques de luxe à la mode urbaine, trouvez votre style sur Primebag !', 'http://placehold.it/350x150'),
 (3, 'Scolaire', 'Sacs à dos tendance pour toutes les activités, découvrez toutes les collections de sacs scolaires sur notre site Primebag.', 'http://placehold.it/350x150'),
-(4, 'Bagages', 'Entrez dans l\'Univers La Bagagerie et découvrez toutes les dernières Collections de Bagages. Que vous voyagiez en train, en avion ou en voiture, nos bagages  rendront votre voyage plus facile.', 'http://placehold.it/350x150');
-
--- --------------------------------------------------------
-
---
--- Structure de la table `delivery`
---
-
-CREATE TABLE `delivery` (
-  `id` int(11) NOT NULL,
-  `order_ref_id` int(11) NOT NULL,
-  `carrier_id` int(11) NOT NULL,
-  `sent_at` datetime NOT NULL,
-  `shipping_cost` double DEFAULT NULL,
-  `tracking_number` varchar(20) COLLATE utf8mb4_unicode_ci NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+(4, 'Bagage', 'Entrez dans l\'Univers La Bagagerie et découvrez toutes les dernières Collections de Bagages. Que vous voyagiez en train, en avion ou en voiture, nos bagages  rendront votre voyage plus facile.', 'http://placehold.it/350x150');
 
 -- --------------------------------------------------------
 
@@ -246,7 +229,9 @@ CREATE TABLE `migration_versions` (
 INSERT INTO `migration_versions` (`version`) VALUES
 ('20181211110922'),
 ('20181214131121'),
-('20181215201024');
+('20181215201024'),
+('20181217133217'),
+('20181217162139');
 
 -- --------------------------------------------------------
 
@@ -262,7 +247,11 @@ CREATE TABLE `order` (
   `created_at` datetime NOT NULL,
   `order_number` varchar(20) COLLATE utf8mb4_unicode_ci NOT NULL,
   `payment_date` datetime DEFAULT NULL,
-  `payment_reference` varchar(20) COLLATE utf8mb4_unicode_ci DEFAULT NULL
+  `payment_reference` varchar(20) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `carrier_id` int(11) DEFAULT NULL,
+  `sent_at` datetime DEFAULT NULL,
+  `shipping_cost` double DEFAULT NULL,
+  `tracking_number` varchar(20) COLLATE utf8mb4_unicode_ci DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
@@ -306,12 +295,23 @@ CREATE TABLE `payment_method` (
 -- --------------------------------------------------------
 
 --
+-- Structure de la table `shipping_method`
+--
+
+CREATE TABLE `shipping_method` (
+  `id` int(11) NOT NULL,
+  `name` varchar(20) COLLATE utf8mb4_unicode_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
 -- Structure de la table `tag`
 --
 
 CREATE TABLE `tag` (
   `id` int(11) NOT NULL,
-  `name` varchar(10) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `name` varchar(20) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `icon` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
@@ -320,7 +320,7 @@ CREATE TABLE `tag` (
 --
 
 INSERT INTO `tag` (`id`, `name`, `icon`) VALUES
-(1, 'icone', 'icone.ico');
+(1, 'icone', 'pas cher');
 
 -- --------------------------------------------------------
 
@@ -341,17 +341,18 @@ CREATE TABLE `user` (
   `zip_code` varchar(10) COLLATE utf8mb4_unicode_ci NOT NULL,
   `country_name` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
   `country_code` varchar(20) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `roles` longtext COLLATE utf8mb4_unicode_ci NOT NULL COMMENT '(DC2Type:array)'
+  `roles` longtext COLLATE utf8mb4_unicode_ci NOT NULL COMMENT '(DC2Type:array)',
+  `reset_token` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Déchargement des données de la table `user`
 --
 
-INSERT INTO `user` (`id`, `first_name`, `last_name`, `address`, `secondary_address`, `phone_number`, `email`, `password`, `city`, `zip_code`, `country_name`, `country_code`, `roles`) VALUES
-(1, 'haiou', 'king', '20 rue erftg', NULL, NULL, '1234@1234.fr', '$2y$13$0budA9b0KH0dVSAdVBg7P.WfAkawQjk8Rbgw/thx8iZmVpNdywTvO', 'Lille', '59000', 'France', 'ISO 3166-2:FR', 'a:1:{i:0;s:10:\"ROLE_ADMIN\";}'),
-(2, '1234', '1234', 'rue poubelle', NULL, NULL, '1234@gmail.com', '$2y$13$xbDEaOXfyBpqLtTng1F5m.rxf.beXab33.7fT3bVjSaE1tph/SnXS', 'test', '59000', 'France', 'ISO 3166-2:FR', 'a:1:{i:0;s:9:\"ROLE_USER\";}'),
-(3, 'megamanx', 'megamanx', 'rue megamanx', NULL, NULL, 'megamanx@gmail.com', '$2y$13$yPt.ej1Dz5zZNKinn4PicO.bKNlMvFWUfzk9ldr2k838iTTPNy4Ry', 'test', '59000', 'France', 'ISO 3166-2:FR', 'a:1:{i:0;s:9:\"ROLE_USER\";}');
+INSERT INTO `user` (`id`, `first_name`, `last_name`, `address`, `secondary_address`, `phone_number`, `email`, `password`, `city`, `zip_code`, `country_name`, `country_code`, `roles`, `reset_token`) VALUES
+(1, 'haiou', 'king', '20 rue erftg', NULL, NULL, '1234@1234.fr', '$2y$13$0budA9b0KH0dVSAdVBg7P.WfAkawQjk8Rbgw/thx8iZmVpNdywTvO', 'Lille', '59000', 'France', 'ISO 3166-2:FR', 'a:1:{i:0;s:10:\"ROLE_ADMIN\";}', NULL),
+(9, 'toto', 'toto', '37 rue du parc', NULL, NULL, 'toto@gmail.com', '$2y$13$KL635Z66.TtYQtk.tEF/TOsCS3g92b67zUSPQxrny8ihQBv1Hgvtq', 'Forest-sur-Marque', '59510', 'France', 'ISO 3166-2:FR', 'a:1:{i:0;s:9:\"ROLE_USER\";}', NULL),
+(10, 'toto2', 'toto2', '37 rue du parc', NULL, NULL, 'toto3@gmail.com', '$2y$13$nVk9jpZ7N1gte/Fbcwmd..wQJEVbVySpRAT4mbYY1x08Fnp5u.GTO', 'Hem', '59510', 'France', 'ISO 3166-2:FR', 'a:1:{i:0;s:9:\"ROLE_USER\";}', NULL);
 
 --
 -- Index pour les tables déchargées
@@ -399,14 +400,6 @@ ALTER TABLE `category`
   ADD PRIMARY KEY (`id`);
 
 --
--- Index pour la table `delivery`
---
-ALTER TABLE `delivery`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `IDX_3781EC10E238517C` (`order_ref_id`),
-  ADD KEY `IDX_3781EC1021DFC797` (`carrier_id`);
-
---
 -- Index pour la table `migration_versions`
 --
 ALTER TABLE `migration_versions`
@@ -419,7 +412,8 @@ ALTER TABLE `order`
   ADD PRIMARY KEY (`id`),
   ADD KEY `IDX_F52993985AA1164F` (`payment_method_id`),
   ADD KEY `IDX_F5299398A76ED395` (`user_id`),
-  ADD KEY `IDX_F5299398D7707B45` (`order_status_id`);
+  ADD KEY `IDX_F5299398D7707B45` (`order_status_id`),
+  ADD KEY `IDX_F529939821DFC797` (`carrier_id`);
 
 --
 -- Index pour la table `order_content`
@@ -439,6 +433,12 @@ ALTER TABLE `order_status`
 -- Index pour la table `payment_method`
 --
 ALTER TABLE `payment_method`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Index pour la table `shipping_method`
+--
+ALTER TABLE `shipping_method`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -488,12 +488,6 @@ ALTER TABLE `category`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
--- AUTO_INCREMENT pour la table `delivery`
---
-ALTER TABLE `delivery`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
---
 -- AUTO_INCREMENT pour la table `order`
 --
 ALTER TABLE `order`
@@ -512,6 +506,12 @@ ALTER TABLE `payment_method`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
+-- AUTO_INCREMENT pour la table `shipping_method`
+--
+ALTER TABLE `shipping_method`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT pour la table `tag`
 --
 ALTER TABLE `tag`
@@ -521,7 +521,7 @@ ALTER TABLE `tag`
 -- AUTO_INCREMENT pour la table `user`
 --
 ALTER TABLE `user`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- Contraintes pour les tables déchargées
@@ -543,16 +543,10 @@ ALTER TABLE `article_category`
   ADD CONSTRAINT `FK_53A4EDAA7294869C` FOREIGN KEY (`article_id`) REFERENCES `article` (`id`) ON DELETE CASCADE;
 
 --
--- Contraintes pour la table `delivery`
---
-ALTER TABLE `delivery`
-  ADD CONSTRAINT `FK_3781EC1021DFC797` FOREIGN KEY (`carrier_id`) REFERENCES `carrier` (`id`),
-  ADD CONSTRAINT `FK_3781EC10E238517C` FOREIGN KEY (`order_ref_id`) REFERENCES `order` (`id`);
-
---
 -- Contraintes pour la table `order`
 --
 ALTER TABLE `order`
+  ADD CONSTRAINT `FK_F529939821DFC797` FOREIGN KEY (`carrier_id`) REFERENCES `carrier` (`id`),
   ADD CONSTRAINT `FK_F52993985AA1164F` FOREIGN KEY (`payment_method_id`) REFERENCES `payment_method` (`id`),
   ADD CONSTRAINT `FK_F5299398A76ED395` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`),
   ADD CONSTRAINT `FK_F5299398D7707B45` FOREIGN KEY (`order_status_id`) REFERENCES `order_status` (`id`);

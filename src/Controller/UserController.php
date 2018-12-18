@@ -147,7 +147,7 @@ class UserController extends AbstractController
 
 
     /**
-    * @Route("/{id}", name="user_delete", methods="DELETE")
+    * @Route("/user/delete/{id}", name="user_delete", methods="DELETE")
     */
     public function delete(Request $request, User $user): Response
     {
@@ -216,10 +216,6 @@ class UserController extends AbstractController
                     "blablabla voici le token pour reseter votre mot de passe : " . $url,
                     'text/html'
                 );
-
-                var_dump($email);
-                var_dump($message->setTo($email));
-            
 
             $mailer->send($message);
 
