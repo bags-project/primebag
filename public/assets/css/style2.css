@@ -252,6 +252,23 @@ border-radius: 0;
     margin: 0;
 }
 
+#list-profile{
+    display: flex;
+}
+
+.modal-content{
+    height: 60rem ;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.modal-body{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+}
 
 /*//////////////////////////////////////////////////*/
 /*                  GALLERY                          */
