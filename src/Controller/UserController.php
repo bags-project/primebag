@@ -216,7 +216,7 @@ class UserController extends AbstractController
                 var_dump($message->setTo($email));
             
 
-            var_dump($mailer->send($message));
+            $mailer->send($message);
 
             
 
