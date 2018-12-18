@@ -67,7 +67,7 @@
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            {# <img src="{{ asset('assets/img/miniprimebag.png') }}" alt="logo primeBag"> #}
+        {# <img src="{{ asset('assets/img/miniprimebag.png') }}" alt="logo primeBag"> #}
 
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item active">
@@ -94,14 +94,16 @@
                 </li>
                 {% if is_granted ('ROLE_USER') %}
                 <li class="nav-item">
-                    <a class="btn btn-indigo btn-sm" href="{{ path('cart_view')}}">Panier :
+                    <a class="btn btn-sm" href="{{ path('cart_view')}}">
                         {# <a id="cartImg" href="{{ path('cart_view')}}"><img src="{{ asset('assets/img/cart.png') }}"
                                 alt="Votre panier" /> #}
+                            <span><img src="{{asset('assets/img/logo/shopping-cart.png')}}" alt="caddy-logo"></span>
+                            
                             {% set cart = app.session.get('cart') %}
                             {# Vérif si le panier est initialisé (passé par cart_add ou cart_view) #}
                             {% if cart is not null %}
                             {% set nbArticles = cart.name|length %}
-                            {{nbArticles}}
+                            <span>{{nbArticles}}</span>
                             {% else %}
                             <span>Vide</span>
                             {% endif %}
