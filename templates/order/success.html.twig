@@ -1,0 +1,38 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Confirmation de commande{% endblock %}
+
+{% block body %}
+
+<div class="container">
+    <div class="row">
+
+        <div class="col col-md-3">
+        </div>
+
+        <div class="col-12 col-md-6">
+            <div class="card border-success cardAddToCart" style="width: 18rem;">
+                <img class="card-img-top posterAddToCart border-success" src="{{ asset('assets/img/primebag.png') }}" alt="logo Primebag">
+                
+                <div class="card-body">
+                    <h5 class="card-title text-success">Confirmation de commande</h5>
+                    <p class="card-text">Votre commande a été validée.</p>
+                </div>
+                {# <ul class="list-group list-group-flush ">
+                    <li class="list-group-item border-success liNameAddToCart"><strong>{{ articleName }}</strong></li>
+                    <li class="list-group-item border-success">Prix : {{ articlePrice }} €</li>
+                    <li class="list-group-item border-success"><a href="{{path('home')}}">Continuer mes achats</a></li>
+                    <li class="list-group-item border-success"><a href="{{path('cart_view')}}">Accéder à mon panier</a></li>
+                </ul> #}
+            </div>
+        </div>
+
+        <div class="col col-md-3">
+        </div>
+
+    </div>    
+</div>
+
+
+
+{% endblock %}

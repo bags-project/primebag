@@ -2,13 +2,15 @@
 
 namespace App\Controller;
 
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\Routing\Annotation\Route;
-use Symfony\Component\HttpFoundation\Session\SessionInterface;
+use App\Entity\Order;
 use App\Service\CartService;
-
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Validator\Constraints\Email;
+
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
+use Symfony\Component\HttpFoundation\Session\SessionInterface;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class OrderController extends AbstractController
 {
@@ -39,7 +41,7 @@ class OrderController extends AbstractController
     /**
      * @Route("/buy", name="order_valid")
      */
-    public function validOrder(SessionInterface $session, CartService $cartService)
+    public function validOrder(SessionInterface $session, CartService $cartService, Request $request)
     {
         //vérifier avant tout si l'utilisateur est connecté
 
@@ -48,13 +50,75 @@ class OrderController extends AbstractController
         // calcul du total panier
         $totalCart = $cartService->calculateCartTotal($session);
 
+        return $this->render('order/buy.html.twig', [
+            'date' => $date,
+            'totalCart' => $totalCart
+
+        ]);
+    }
+
+
+
+    /**
+     * @Route("/buy/success", name="order_success")
+     */
+    public function confirmValidatedOrder(SessionInterface $session, CartService $cartService, Request $request)
+    {
+        //var_dump($request->request->all());
+            // array (size=2)
+            // 'stripeToken' => string 'tok_1DiqqXCDiJ3Czp9nLqosnDmC' (length=28)
+            // 'modeLivraison' => string 'colissimo' (length=9)
+
+        $totalCosts = "";
+        // calcul du total panier
+        $totalCart = $cartService->calculateCartTotal($session);
+
+        //calcul du montant total incluant les frais de livraison
+        $resultRequest = $request->request->all();
+        switch ($resultRequest['modeLivraison']) {
+            case 'colissimo':
+                $totalCosts = ($totalCart + 5) * 100; // *100 car unité par défaut en centimes
+                break;
+            case 'chronopost':
+                $totalCosts = ($totalCart + 10) * 100;
+                break;
+            case 'retraitMag':
+                $totalCosts = $totalCart * 100;
+                break;
+        }
+
+        ////////////// Instantiation du débit Stripe ////////////////
+        \Stripe\Stripe::setApiKey("sk_test_IbRJdPR6m2D43LVKjP9zHJa5");        
+
+        \Stripe\Charge::create([
+            "amount" => $totalCosts,//2000, // en centimes
+            "currency" => "eur",
+            "source" => $resultRequest['stripeToken'],//$request->request->get('stripeToken'), // obtained with Stripe.js
+            "description" => "Paiement de (nom) pour la commande (numCommande)"
+        ]);
+        /////////////////////////////////////////////////////////////
+
+
+        $date = new \DateTime();
+
+        //Ecrire les données dans la DB
+        // + ajouter un champ stripeToken
+
+        //Vider le panier une fois les traitements finis
+
+        return $this->render('order/success.html.twig', [
+            'date' => $date,
+            'totalCosts' => $totalCosts,
+
+        ]);
+    }
 
 
 
 
 
-
-
+    
+}
 
 
 
@@ -148,12 +212,4 @@ class OrderController extends AbstractController
 
 
 
-        return $this->render('order/buy.html.twig', [
-            //'cart' => $cart,
-            'date' => $date,
-            'totalCart' => $totalCart
 
-        ]);
-    }
-
-}

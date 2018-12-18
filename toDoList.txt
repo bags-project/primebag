@@ -10,11 +10,6 @@ Pour point étape du mercredi 19/12/2018 :
 ----------------------------------------------------------------------
 
 
-Compte Paypal de test :
-Toto
-Rigolo
-primebag62@gmail.com
-Webforce3
 
 _____________________A VERIFIER_______________________________________
 ARTICLE
@@ -31,6 +26,9 @@ USER
 
 CART
 -afficher en dessous : ces articles pourraient aussi vous intérressser... + liste d'articles en rapport
+
+CONFIRM COMMANDE
+- voir avec Flo cmt récup les infos du user connecté à partir du controlleur (équivallent dump(app.user))
 
 INFORMATION
 Faire un controller info ? (qui route vers FAQ, Nous contacter, Besoin d'aide, Qui sommes nous...
@@ -50,6 +48,19 @@ Exemple de tunel :
 amazon : Bienvenue->Adresse->articles->Embalage->Livraison->Paiement->Validation
 
 
-
-
-
+-----------------------------------------------------
+Compte Paypal de test :
+Toto
+Rigolo
+primebag62@gmail.com
+Webforce3
+-----------------------------------------------------
+Compte Stripe de test :
+primebag62@gmail.com
+Num CB test : 4242 4242 4242 4242
+              random CVC (3chiffres)
+	      date d'expiration future
+	      random 5 chiffres zip code
+-----------------------------------------------------
+/!\ PREREQUIS : composer require stripe/stripe-php
+-----------------------------------------------------

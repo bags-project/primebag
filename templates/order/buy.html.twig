@@ -30,15 +30,32 @@
                 <div class="row buyInLayer">
                     {# droite haut : mode paiement #}
                     <div class="col-12">
-                        <strong>Mode paiement :</strong><br>
-                        Paypal
+                        {# <strong>Carte de crédit :</strong><br> #}
+                        
+                        
+                        <form action="{{ path('order_success') }}" method="post" id="payment-form">
+                            <div class="form-row">
+                                <label for="card-element">
+                                    Carte de crédit
+                                </label>
+                                <div id="card-element">
+                                    <!-- A Stripe Element will be inserted here. -->
+                                </div>
+
+                                <!-- Used to display form errors. -->
+                                <div id="card-errors" role="alert"></div>
+                            </div>
+                            {# <button>Submit Payment</button> #}
+                        {# </form> #}
+
+
                     </div>
                 </div>
                 <div class="row buyInLayer">
                     {# droite bas : code promo #}
                     <div class="col-12">
-                        <strong>Code promotionnel</strong>
-                        Noël2018 : -10% sur les sacs en moumoute
+                        <strong>Code promotionnel : </strong>
+                        Aucune promotion disponible pour le moment.
                     </div>
                 </div>
             </div>
@@ -58,16 +75,16 @@
         <div class="col-sm-6 buyInLayerShipping">
             <strong>Choix mode de livraison :</strong><br>
             <div>
-                <input type="radio" id="colissimo" name="modeLivraison" value="colissimo" checked>
+                <input type="radio" id="retraitMag" name="modeLivraison" value="retraitMag" checked>
+                <label for="retraitMag">Retrait en magasin (Frais : aucun)</label>
+            </div>            
+            <div>
+                <input type="radio" id="colissimo" name="modeLivraison" value="colissimo">
                 <label for="colissimo">Colissimo (3 à 8 jours ouvrés. Frais : 5€)</label>
             </div>
             <div>
                 <input type="radio" id="chronopost" name="modeLivraison" value="chronopost">
                 <label for="chronopost">Chronopost (1 à 3 jours ouvrés. Frais : 10€)</label>
-            </div>
-            <div>
-                <input type="radio" id="retraitMag" name="modeLivraison" value="retraitMag">
-                <label for="retraitMag">Retrait en magasin (Frais : aucun)</label>
             </div>
         </div>
     </div>
@@ -82,7 +99,8 @@
             Total :<span id="spanTotalCost"></span>€
         </div>
         <div class="col-sm-4">
-            <button type="button" class="btn btn-success btn-block">Acheter</button>
+            <button class="btn btn-success btn-block">Acheter</button>
+            </form>
         </div>        
     </div>    
 </div>
@@ -92,13 +110,99 @@
 
 {% endblock %}
 
+
+
 {% block javascripts %}
-    <script>
-    // Fonction de changement du DOM (frais et dates livraison) sur le tunnel d'achat
+
+<script>
+    //////////////////////////////////////////////////////////////////////////////
+    /////////////////////////////// Stripe ///////////////////////////////////////
+    // Create a Stripe client.
+    var stripe = Stripe('pk_test_4Ps2dWTAyilOKjxOqD3tnKRx');
+
+    // Create an instance of Elements.
+    var elements = stripe.elements();
+
+    // Custom styling can be passed to options when creating an Element.
+    // (Note that this demo uses a wider set of styles than the guide below.)
+    var style = {
+    base: {
+        color: '#32325d',
+        //lineHeight: '18px',
+        fontFamily: '"Helvetica Neue", Helvetica, sans-serif',
+        fontSmoothing: 'antialiased',
+        fontSize: '16px',
+        '::placeholder': {
+        color: '#aab7c4'
+        }
+    },
+    invalid: {
+        color: '#fa755a',
+        iconColor: '#fa755a'
+    }
+    };
+
+    // Create an instance of the card Element.
+    var card = elements.create('card', {style: style});
+
+    // Add an instance of the card Element into the `card-element` <div>.
+    card.mount('#card-element');
+
+    // Handle real-time validation errors from the card Element.
+    card.addEventListener('change', function(event) {
+    var displayError = document.getElementById('card-errors');
+    if (event.error) {
+        displayError.textContent = event.error.message;
+    } else {
+        displayError.textContent = '';
+    }
+    });
+
+    // Handle form submission.
+    var form = document.getElementById('payment-form');
+    form.addEventListener('submit', function(event) {
+    event.preventDefault();
+
+    stripe.createToken(card).then(function(result) {
+        if (result.error) {
+        // Inform the user if there was an error.
+        var errorElement = document.getElementById('card-errors');
+        errorElement.textContent = result.error.message;
+        } else {
+        // Send the token to your server.
+        stripeTokenHandler(result.token);
+        }
+    });
+    });
+
+    // Submit the form with the token ID.
+    function stripeTokenHandler(token) {
+    // Insert the token ID into the form so it gets submitted to the server
+    var form = document.getElementById('payment-form');
+    var hiddenInput = document.createElement('input');
+    hiddenInput.setAttribute('type', 'hidden');
+    hiddenInput.setAttribute('name', 'stripeToken');
+    hiddenInput.setAttribute('value', token.id);
+    form.appendChild(hiddenInput);
+
+    // Submit the form
+    form.submit();
+    }
+    ////////////////////////////////////////////////////////////////////////////////////
+
+
+    ////////////////////////////////////////////////////////////////////////////////////
+    // Fonction de changement du DOM (frais et dates livraison) sur le tunnel d'achat //
     var shippingTaxes = 5;
     var totalCart = {{totalCart}};
     var totalCost = totalCart + shippingTaxes;  
     //parseFloat(totalCart);
+    
+    {# {% set totalCost %}
+    {{totalCost}} = totalCost;
+    </script>
+    {{dump(totalCost)}}
+    <script> #}
 
     $('#spanTotalCart').text(totalCart);
     $('#spanTotalCost').text(totalCost);
@@ -144,11 +248,8 @@
         $('#spanTotalCart').text(totalCart);
         //$("#spanTotalCart").attr("value", totalCart);
         $('#spanTotalCost').text(totalCost);
-
-        //console.log(shippingTaxes);
-        //return shippingTaxes;      
-
     });
+    ////////////////////////////////////////////////////////////////////////////////////
         
-    </script>
+</script>
 {% endblock %}
