@@ -8,7 +8,7 @@
 
         <div class="admin-list">
             <div class="admin-flex">
-                <div class="admin-flex-child">ID</div>
+                <div class="admin-flex-child desktop">ID</div>
                 <div class="admin-flex-child">Commande n°</div>
                 <div class="admin-flex-child">Client</div>
                 <div class="admin-flex-child">Date de création</div>
@@ -18,6 +18,7 @@
                 <div class="admin-flex-child">Date Envoi</div>
                 <div class="admin-flex-child">Frais envoi</div>
                 <div class="admin-flex-child">N° suivi</div>
+                <div class="admin-flex-child">Modifier</div>
             </div>
         </div>
 
@@ -27,7 +28,7 @@
 
             <div class="admin-list">
                 <div class="admin-flex">
-                    <div class="admin-flex-child">{{ ord.id }}</div>
+                    <div class="admin-flex-child desktop">{{ ord.id }}</div>
                     <div class="admin-flex-child">{{ ord.orderNumber }}</div>
                     <div class="admin-flex-child">{{ ord.user.firstName }} {{ ord.user.lastName }}<br>{{ ord.user.email }}</div>
                     <div class="admin-flex-child">{{ ord.createdAt | date('d-m-Y H:i') }}</div>
@@ -37,6 +38,7 @@
                     <div class="admin-flex-child">{{ ord.sentAt | date('d-m-Y H:i') }}</div>
                     <div class="admin-flex-child">{{ ord.shippingCost }} €</div>
                     <div class="admin-flex-child">{{ ord.trackingNumber }}</div>
+                    <div class="admin-flex-child"><a href="{{ path('admin')}}/{{ ord.id }}/order_edit">🖍</a></div>
                 </div>
             </div>
 

@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\User;
 use App\Entity\Order;
 use App\Entity\Article;
+use App\Form\OrderType;
 use App\Form\ArticleType;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -34,7 +35,7 @@ class AdminController extends AbstractController
 
 
     /**
-    * ===================== Affiche la liste des articles pour admin ========================
+    * ===================== Affiche tous les articles sur une page pour admin ========================
     * @Route("/admin/all/", name="admin_all")
     */
     public function admin_article_all()
@@ -206,32 +207,28 @@ class AdminController extends AbstractController
     */
     public function delete_user(User $user, Request $request)
     {
-        // if ($this->isCsrfTokenValid('delete'.$article->getId(), $request->request->get('_token')))
-        // {
-            $emanager = $this->getDoctrine()->getManager();
-            $emanager->remove($user);
+        $emanager = $this->getDoctrine()->getManager();
+        $emanager->remove($user);
 
-            $emanager->flush();
+        $emanager->flush();
 
-            $this->addFlash(
-                'notice',
-                'Utilisateur effacé !'
-            );
+        $this->addFlash(
+            'notice',
+            'Utilisateur effacé !'
+        );
             
-        // }
-
         return $this->redirectToRoute('admin_user');
     }
 
 
 
     /**
-     * ===================== Déconnecter admin ========================
-     * @Route("/logout", name="logout")
-     */
-     public function logout() {
-        return $this->render('main/index.html.twig');
-     }
+    * ===================== Déconnecter admin ========================
+    * @Route("/logout", name="logout")
+    */
+    public function logout() {
+    return $this->render('main/index.html.twig');
+    }
 
 
 
@@ -254,6 +251,34 @@ class AdminController extends AbstractController
     
     
 
+
+    /**
+    * ===================== Editer une commande ========================
+    * @Route("/admin/{id}/order_edit", name="admin_order_edit")
+    */
+    public function admin_order_edit(Request $request)
+    {
+        $order = new Order();
+
+        $form = $this->createForm(OrderType::class, $order);
+        $form->handleRequest($request);
+
+        // dump($order);
+
+        if ($form->isSubmitted() and $form->isValid()) {
+
+            $manager = $this->getDoctrine()->getManager();
+
+
+            return $this->redirectToRoute('admin_order_edit', ['id' => $order->getId()]);
+
+        }
+
+
+        return $this->render('admin/order_edit.html.twig', [
+            'form' => $form->createView()
+        ]);
+    }
 
 
 
