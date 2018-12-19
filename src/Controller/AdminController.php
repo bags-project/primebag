@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\User;
+use App\Entity\Order;
 use App\Entity\Article;
 use App\Form\ArticleType;
 use Symfony\Component\HttpFoundation\Request;
@@ -46,7 +47,6 @@ class AdminController extends AbstractController
             'articles' => $articles
         ]);
     }
-
 
 
 
@@ -233,21 +233,26 @@ class AdminController extends AbstractController
         return $this->render('main/index.html.twig');
      }
 
-    
-    
-    
-    
-    
+
+
+
+
+
     /**
-    * ===================== Suivre les commandes client ========================
+    * ===================== Affiche la liste des commandes pour admin ========================
     * @Route("/admin/order", name="admin_order")
     */
     public function admin_order()
     {
+        $repo = $this->getDoctrine()->getRepository(Order::class); // Recup données dans BDD
+        $orders = $repo->findAll(); // Pour trouver toutes les commandes
 
         return $this->render('admin/order.html.twig', [
+            'orders' => $orders
         ]);
     }
+    
+    
 
 
 
