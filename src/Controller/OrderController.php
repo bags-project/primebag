@@ -4,6 +4,8 @@ namespace App\Controller;
 
 use App\Entity\Order;
 use App\Service\CartService;
+use App\Service\Order;
+
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Validator\Constraints\Email;
@@ -11,6 +13,9 @@ use Symfony\Component\Validator\Constraints\Email;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+
+
+
 
 class OrderController extends AbstractController
 {
@@ -114,10 +119,17 @@ class OrderController extends AbstractController
     }
 
 
+    /**
+     * @Route("/buy/orderShow", name="order_show")
+     */
+     public function searchOrder(Order $order,  Request $request, OrderBidonService $orderBidonService )
+     {
 
+     return $this->render('order/show.html.twig', [
+         'orders' => $orderBidonService-> searchOrder()
+    ]);
 
-
-    
+   } 
 }
 
 
@@ -205,11 +217,3 @@ class OrderController extends AbstractController
             //        );
        
             //        $mailer->send($message);
-           
-
-
-
-
-
-
-

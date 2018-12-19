@@ -27,4 +27,15 @@ class InfoController extends AbstractController
     }
 
 
+     /**
+     * @Route("/our", name="our")
+     */
+     public function our()
+     {
+         return $this->render('info/our.html.twig', [
+         ]);
+     }
+ 
+
+
 }

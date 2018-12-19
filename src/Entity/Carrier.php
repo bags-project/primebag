@@ -38,10 +38,16 @@ class Carrier
      */
     private $orders;
 
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\ShippingMethod", mappedBy="carrier")
+     */
+    private $shippingMethod;
+
 
     public function __construct()
     {
         $this->orders = new ArrayCollection();
+        $this->shippingMethod = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -110,6 +116,37 @@ class Carrier
             // set the owning side to null (unless already changed)
             if ($order->getCarrier() === $this) {
                 $order->setCarrier(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|ShippingMethod[]
+     */
+    public function getShippingMethod(): Collection
+    {
+        return $this->shippingMethod;
+    }
+
+    public function addShippingMethod(ShippingMethod $shippingMethod): self
+    {
+        if (!$this->shippingMethod->contains($shippingMethod)) {
+            $this->shippingMethod[] = $shippingMethod;
+            $shippingMethod->setCarrier($this);
+        }
+
+        return $this;
+    }
+
+    public function removeShippingMethod(ShippingMethod $shippingMethod): self
+    {
+        if ($this->shippingMethod->contains($shippingMethod)) {
+            $this->shippingMethod->removeElement($shippingMethod);
+            // set the owning side to null (unless already changed)
+            if ($shippingMethod->getCarrier() === $this) {
+                $shippingMethod->setCarrier(null);
             }
         }
 
