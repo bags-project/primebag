@@ -4,6 +4,8 @@
 
 {% block body %}
 
+<div id="view-cart-container">
+
 <h2>Panier</h2>
 
     {% set cart = app.session.get('cart') %}
@@ -108,5 +110,7 @@
             </div>
         </div>
     </div> #}
+
+</div>
 
 {% endblock %}

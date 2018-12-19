@@ -91,7 +91,6 @@
                         <div class="card-buttons">
                             <a href="{{ path('article_display' , {'id': article.id}) }}" class="btn btn-primary btn-lg active btn-sm"
                                 role="button" aria-pressed="true">Détails</a>
-                            <a href="#" class="btn btn-primary btn-lg active btn-sm" role="button" aria-pressed="true">Panier</a>
                         </div>
 
                     </div>
@@ -101,8 +100,6 @@
                 {% endif %}
                 {% endif %}
                 {% endif %}
-
-
 
                 {% if cat is not null %}
                 {% if article.stock != 0 %}
@@ -134,7 +131,7 @@
                         <div class="card-buttons">
                             <a href="{{ path('article_display' , {'id': article.id}) }}" class="btn btn-primary btn-lg active btn-sm"
                                 role="button" aria-pressed="true">Détails</a>
-                            <a href="#" class="btn btn-primary btn-lg active btn-sm" role="button" aria-pressed="true">Panier</a>
+
                         </div>
 
                     </div>

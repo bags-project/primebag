@@ -14,13 +14,25 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.5.15/css/mdb.min.css" rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('assets/css/style2.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/base.css') }}">
+    {#
     <link href="https://fonts.googleapis.com/css?family=Righteous" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Paytone+One" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Lobster+Two" rel="stylesheet"> #}
+    <link href="https://fonts.googleapis.com/css?family=Playfair+Display+SC" rel="stylesheet">
 
     {% endblock %}
 </head>
 
 <header>
+
+    <div class="presentation">
+
+        <div>
+            <h1>PrimeBag</h1>
+            <p>Les grandes marques à portée de main</p>
+        </div>
+
+    </div>
 
     {# Logo et Symboles #}
     {# <div class="top-flex">
@@ -61,59 +73,65 @@
     </div> #}
 
     {# Menu avec les catégories #}
-    <nav id="menu-navbar" class="navbar navbar-expand-lg navbar-dark">
+    <nav id="menu-navbar" class="navbar navbar-expand-lg navbar-light">
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
             aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        {# <img src="{{ asset('assets/img/miniprimebag.png') }}" alt="logo primeBag"> #}
+            {# <img src="{{ asset('assets/img/miniprimebag.png') }}" alt="logo primeBag"> #}
 
             <ul class="navbar-nav mr-auto">
-                <li class="nav-item active">
+                <li id="item-nav" class="nav-item">
                     <a class="nav-link" href="{{path('home')}}">Accueil <span class="sr-only">(current)</span></a>
                 </li>
-                <li class="nav-item">
+                <li id="item-nav" class="nav-item">
                     <a class="nav-link" href="">Qui sommes-nous?</a>
                 </li>
 
-                <li class="nav-item">
+                <li id="item-nav" class="nav-item">
                     <a class="nav-link" href="{{ path('woman_gallery')}}">Femme</a>
                 </li>
 
-                <li class="nav-item">
+                <li id="item-nav" class="nav-item">
                     <a class="nav-link" href="{{ path('man_gallery')}}">Homme</a>
                 </li>
 
-                <li class="nav-item">
+                <li id="item-nav" class="nav-item">
                     <a class="nav-link" href="{{ path('kid_gallery')}}">Scolaire</a>
                 </li>
 
-                <li class="nav-item">
+                <li id="item-nav" class="nav-item">
                     <a class="nav-link" href="{{ path('bagage_gallery')}}">Bagage</a>
                 </li>
+
                 {% if is_granted ('ROLE_USER') %}
                 <li class="nav-item">
-                    <a class="btn btn-sm" href="{{ path('cart_view')}}">
-                        {# <a id="cartImg" href="{{ path('cart_view')}}"><img src="{{ asset('assets/img/cart.png') }}"
-                                alt="Votre panier" /> #}
-                            <span><img src="{{asset('assets/img/logo/shopping-cart.png')}}" alt="caddy-logo"></span>
-                            
-                            {% set cart = app.session.get('cart') %}
-                            {# Vérif si le panier est initialisé (passé par cart_add ou cart_view) #}
-                            {% if cart is not null %}
-                            {% set nbArticles = cart.name|length %}
-                            <span>{{nbArticles}}</span>
-                            {% else %}
-                            <span>Vide</span>
-                            {% endif %}
+
+                    <div class="caddy-contents">
+                        <a href="{{ path('cart_view')}}">
+                            {# <a id="cartImg" href="{{ path('cart_view')}}"><img src="{{ asset('assets/img/cart.png') }}"
+                                    alt="Votre panier" /> #}
+                                <div><img height="40" width="40" src="{{asset('assets/img/logo/shopping-cart.png')}}"
+                                        alt="caddy-logo"></div>
+                                {% set cart = app.session.get('cart') %}
+                                {# Vérif si le panier est initialisé (passé par cart_add ou cart_view) #}
+                                {% if cart is not null %}
+                                {% set nbArticles = cart.name|length %}
+                                <div class="caddy-value">{{nbArticles}}</div>
+                                {% else %}
+                                <div class="caddy-value">0</div>
+                                {% endif %}
                         </a>
+                    </div>
                 </li>
+
                 {% endif %}
                 {% if is_granted ('ROLE_USER') %}
 
-                <li class="nav-item">
-                    <a class="btn btn-light-blue btn-sm" href="{{path('user_profile', {id: app.user.id})}}">Votre Compte - {{app.user.firstName}}</a>
+                <li id="button-nav" class="nav-item">
+                    <a class="btn btn-light-blue btn-sm" href="{{path('user_profile', {id: app.user.id})}}">Votre
+                        Compte</a>
                 </li>
                 {% else %}
 
@@ -153,27 +171,32 @@
                 {% endif %}
 
                 {% if is_granted ('ROLE_USER') %}
-                <li class="nav-item">
+                <li id="button-nav" class="nav-item">
                     <a class="btn btn-amber btn-sm" href="{{path('logout')}}">Déconnexion</a>
                 </li>
                 {% else %}
                 {% endif %}
 
                 {% if is_granted ('ROLE_USER') %}
-
-                <li id="user_name" class="nav-item">
-                    Bonjour {{ app.user.firstName }} Bienvenue !
+                <li id="user-name" class="nav-item">
+                    Bonjour {{ app.user.firstName }} !
                 </li>
-
                 {% endif %}
+
+
+
+
 
             </ul>
         </div>
     </nav>
 
+
+    {# MESSAGE FLAH #}
     {% for message in app.flashes('notice') %}
+
     <div id="alert" class="flash-notice alert alert-success">
-        <h2 class="alert-heading">Well done!</h2>
+        <h2 class="alert-heading">Félicitations!</h2>
         {{ message }}
         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
             <span aria-hidden="true">&times;</span>
