@@ -8,21 +8,35 @@
 
         <div class="admin-list">
             <div class="admin-flex">
-                <div class="admin-flex-child desktop">ID</div>
-                <div class="admin-flex-child desktop">ID</div>
-
+                <div class="admin-flex-child">ID</div>
+                <div class="admin-flex-child">Commande n°</div>
+                <div class="admin-flex-child">Client</div>
+                <div class="admin-flex-child">Date de création</div>
+                <div class="admin-flex-child">Méthode Paiement</div>
+                <div class="admin-flex-child">Référence Paiement</div>
+                <div class="admin-flex-child">Date Paiement</div>
+                <div class="admin-flex-child">Date Envoi</div>
+                <div class="admin-flex-child">Frais envoi</div>
+                <div class="admin-flex-child">N° suivi</div>
             </div>
         </div>
+
+        {# {{dump(orders)}} #}
 
         {% for ord in orders %}
 
             <div class="admin-list">
                 <div class="admin-flex">
-                    {# <div class="admin-flex-child desktop">{{ ord.id }}</div> #}
-                    <div class="admin-flex-child desktop">test</div>
-                    <div class="admin-flex-child desktop">test</div>
-                   
-
+                    <div class="admin-flex-child">{{ ord.id }}</div>
+                    <div class="admin-flex-child">{{ ord.orderNumber }}</div>
+                    <div class="admin-flex-child">{{ ord.user.firstName }} {{ ord.user.lastName }}<br>{{ ord.user.email }}</div>
+                    <div class="admin-flex-child">{{ ord.createdAt | date('d-m-Y H:i') }}</div>
+                    <div class="admin-flex-child">{{ ord.paymentMethod.name }}</div>
+                    <div class="admin-flex-child">{{ ord.paymentReference }}</div>
+                    <div class="admin-flex-child">{{ ord.paymentDate | date('d-m-Y H:i') }}</div>
+                    <div class="admin-flex-child">{{ ord.sentAt | date('d-m-Y H:i') }}</div>
+                    <div class="admin-flex-child">{{ ord.shippingCost }} €</div>
+                    <div class="admin-flex-child">{{ ord.trackingNumber }}</div>
                 </div>
             </div>
 
