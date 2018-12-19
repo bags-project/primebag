@@ -213,12 +213,13 @@ class AdminController extends AbstractController
         // {
             $emanager = $this->getDoctrine()->getManager();
             $emanager->remove($user);
+
             $emanager->flush();
 
-            // $this->addFlash(
-            //     'notice',
-            //     'Utilisateur effacé !'
-            // );
+            $this->addFlash(
+                'notice',
+                'Utilisateur effacé !'
+            );
             
         // }
 
