@@ -55,7 +55,7 @@ class ArticleRepository extends ServiceEntityRepository
                      ->addSelect('artC')
                      ->innerJoin('art.brand', 'artB' ) 
                      ->addSelect('artB')
-                     ->innerJoin('art.tag', 'artT' ) 
+                     ->leftJoin('art.tag', 'artT' ) 
                      ->addSelect('artT')
                      ->andWhere('art.name LIKE :term') 
                      ->setParameter(':term', '%');
@@ -69,7 +69,7 @@ class ArticleRepository extends ServiceEntityRepository
         }
                     
         //Système de pagination
-        $limit = 100;
+        $limit = 35;
         $stmt->setMaxResults($limit);
         $stmt->setFirstResult(($page-1) * $limit);
 
