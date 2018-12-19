@@ -9,38 +9,60 @@ body {
 /*//////////////////////////////////////////////////*/
 /*                  HEADER                          */
 /*//////////////////////////////////////////////////*/
-.presentation{
+.presentation-header-top {
     display: flex;
     align-items: center;
-    justify-content: flex-start;
+    justify-content: center;
     margin-left: 4.3rem;
-    padding-top: 2rem;
-    margin-bottom: 2rem;
 }
 
-.presentation h1{
-margin: 0;
-font-family: 'Playfair Display SC', serif;
-margin-top: 1rem;
+.presentation-header-right {
+    border: 0.7px solid black;
+    border-radius: 5px;
+    display: flex;
+    text-align: center;
+    justify-content: center;
+    flex-direction: column;
+
+    font-size: 0.9rem;
+    padding: 0.5rem;
+
+    margin-left: 5rem;
 }
 
-/* .logo {
-    height: 100px;
-    width: 330px;
-    background-image: url("../img/logo/minprimebag.png");
-} */
+.presentation-header-right a {
+    font-size: 12px;
+}
 
-#jumbotron-base {
+.presentation-header-top h1 {
     margin: 0;
-    padding: 0;
+    font-family: 'Playfair Display SC', serif;
 }
 
+.our-presentation-down {
+    padding: 5rem;
+}
+
+.our-presentation-text {
+    margin-bottom: 3rem;
+}
+
+.our-presentation-horaire {
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+}
+
+.our-google-map {
+    margin-top: 5rem;
+}
+
+/*Navbar-------------------------*/
 #menu-navbar {
     font-weight: 400;
     background-color: white;
 }
 
-#navbarSupportedContent{
+#navbarSupportedContent {
     padding-left: 2.5rem;
 
 }
@@ -56,9 +78,15 @@ margin-top: 1rem;
     margin-top: 0.8rem;
 }
 
-#button-nav{
-margin-top: 0.5rem;
+#button-nav {
+    margin-top: 0.5rem;
 }
+
+#header-content {
+    margin: 0;
+    text-decoration: none;
+}
+
 /*CADDY---LOGO-----------------------*/
 
 .caddy-value {
@@ -72,7 +100,7 @@ margin-top: 0.5rem;
     font-size: 1.6rem;
 }
 
-.caddy-empty{
+.caddy-empty {
 
     position: relative;
     bottom: 3rem;
@@ -84,7 +112,7 @@ margin-top: 0.5rem;
     font-size: 1.5rem;
 }
 
-.caddy-contents{
+.caddy-contents {
     margin-top: 0.5rem;
     margin-right: 1rem;
 }
@@ -93,10 +121,10 @@ margin-top: 0.5rem;
     height: 3rem;
 }
 
-#alert{
+#alert {
     position: absolute;
     top: 8rem;
-    left:35rem;
+    left: 35rem;
 
     width: 55rem;
     height: 8rem;
@@ -248,7 +276,7 @@ article {
 /*//////////////////////////////////////////////////*/
 
 
-#our-main-controller{
+#our-main-controller {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -257,7 +285,7 @@ article {
     margin-top: 5rem;
 }
 
-.our-presentation{
+.our-presentation {
     width: 50rem;
     height: 50rem;
 
@@ -270,14 +298,14 @@ article {
     flex-direction: column;
 }
 
-.our-presentation img{
+.our-presentation img {
     width: 10rem;
     height: 7rem;
-    
+
     border-radius: 5px;
 }
 
-.our-presentation-up{
+.our-presentation-up {
     width: 100%;
     height: 20%;
     border-bottom: 1px solid black;
@@ -286,7 +314,7 @@ article {
     align-items: center;
 }
 
-.our-presentation-down{
+.our-presentation-down {
     width: 100%;
     height: 80%;
     display: flex;
@@ -296,7 +324,7 @@ article {
     flex-direction: column;
 }
 
-.our-part-left{
+.our-part-left {
     height: 100%;
     border-right: 1px solid black;
 }
@@ -586,6 +614,9 @@ article {
     background-color: rgb(153, 96, 50)
 }
 
+#article-showcase{
+    max-height: 140px;
+}
 
 
 /*//////////////////////////////////////////////////*/
@@ -628,7 +659,7 @@ article {
     min-height: 40rem;
 }
 
-#user-name{
+#user-name {
     margin-top: 1.3rem;
     color: black;
     margin-left: 3rem;
@@ -681,14 +712,14 @@ article {
     min-height: 40rem;
 }
 
-  #add-container {
+#add-container {
     min-height: 40rem;
     display: flex;
     align-items: center;
     justify-content: center;
-} 
+}
 
- #card-add {
+#card-add {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -698,7 +729,7 @@ article {
     margin: 0;
 }
 
- #add-card-body h5 {
+#add-card-body h5 {
     text-align: center;
 }
 
@@ -706,13 +737,13 @@ article {
     text-align: center;
 }
 
- #add-list{
+#add-list {
     margin-top: 1rem;
-}     
+}
 
 /*--------- Cart----- remove */
 
-#remove-container{
+#remove-container {
     min-height: 30rem;
 
     display: flex;
@@ -720,15 +751,15 @@ article {
     align-items: center;
 }
 
-#remove-cart{
+#remove-cart {
     display: flex;
     justify-content: center;
     flex-direction: column;
     align-items: center;
 }
 
-#remove-cart p{
-text-align: center;
+#remove-cart p {
+    text-align: center;
 }
 
 
@@ -905,6 +936,36 @@ text-align: center;
 }
 
 
+/*//////////////////////////////////////////////////*/
+
+
+/*//////////////////////////////////////////////////*/
+/*                  TUNEL                           */
+/*//////////////////////////////////////////////////*/
+.buyLayerRows {
+    border: 1px solid grey;
+    border-radius: 3px;
+    background-color: #dfe6e9;
+    margin-bottom: 20px;
+    padding: 5px;
+}
+
+.buyInLayer {
+    border: 1px solid grey;
+    border-radius: 3px;
+    margin-bottom: 8px;
+    padding: 5px;
+}
+
+.buyInLayerShipping {
+    border: 1px solid grey;
+    border-radius: 3px;
+    margin-bottom: 5px;
+    padding: 5px;
+}
+
+
+
 
 /*//////////////////////////////////////////////////*/
 /*                  MEDIA QUERIES                   */
@@ -934,7 +995,7 @@ text-align: center;
         margin-top: 1rem;
         margin-bottom: 1rem;
     }
-    
+
 }
 
 /* margin présentations vitrine */
@@ -944,7 +1005,7 @@ text-align: center;
         margin-top: 0rem;
         margin-bottom: 0rem;
     }
-    
+
 }
 
 /* affichage responsive du txt panier */
@@ -954,151 +1015,56 @@ text-align: center;
     }
 }
 
-/*//////////////////////////////////////////////////*/
+/* affichage responsive du header */
+@media screen and (max-width: 700px) {
+    .presentation-header-top {
+        margin-left: 1.7rem;
+    }
 
-
-/*//////////////////////////////////////////////////*/
-/*                  TUNEL                           */
-/*//////////////////////////////////////////////////*/
-.buyLayerRows {
-    border: 1px solid grey;
-    border-radius: 3px;
-    background-color: #dfe6e9;
-    margin-bottom: 20px;
-    padding: 5px;
+    .presentation-header-right {
+        margin-left: 0.3rem;
+        border: 1px solid transparent;
+    }
 }
 
-.buyInLayer {
-    border: 1px solid grey;
-    border-radius: 3px;
-    margin-bottom: 8px;
-    padding: 5px;
+
+/* affichage responsive du qui sommes nous? */
+@media screen and (max-width: 900px) {
+    .our-presentation {
+        width: 30rem;
+        height: 55rem;
+        padding: 0;
+    }
+
+    .our-presentation img {
+        height: 7rem;
+        padding: 1rem;
+    }
+
+    .our-presentation-down {
+        padding: 1rem;
+    }
 }
 
-.buyInLayerShipping {
-    border: 1px solid grey;
-    border-radius: 3px;
-    margin-bottom: 5px;
-    padding: 5px;
+/* affichage responsive du qui sommes nous? */
+@media screen and (max-width: 500px) {
+    .our-presentation {
+        width: 22rem;
+        height: 45rem;
+        padding: 0;
+
+        font-size: 0.8rem;
+    }
+
+    .our-presentation img {
+        height: 5rem;
+        padding: 0.5rem;
+    }
+
+    .our-presentation-down {
+        padding: 1rem;
+    }
 }
-
-/*//////////////////////////////////////////////////*/
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -1117,17 +1083,18 @@ text-align: center;
     -webkit-transition: box-shadow 150ms ease;
     transition: box-shadow 150ms ease;
     width: 400px;
-  }
-  
-  .StripeElement--focus {
+}
+
+.StripeElement--focus {
     box-shadow: 0 1px 3px 0 #cfd7df;
-  }
-  
-  .StripeElement--invalid {
+}
+
+.StripeElement--invalid {
     border-color: #fa755a;
-  }
-  
-  .StripeElement--webkit-autofill {
+}
+
+.StripeElement--webkit-autofill {
     background-color: #fefde5 !important;
-  }
-  /*///////////////////////////////////////////////////////////////*/
+}
+
+/*///////////////////////////////////////////////////////////////*/
