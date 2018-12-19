@@ -52,12 +52,11 @@ class UserService
     }
 
 
-    public function edit($id)
+    public function edit()
     {
 
         $this->om->flush();
-        $repo = $this->om->getRepository( User::class );
-        return $repo->find($id);
+
     }
 
 

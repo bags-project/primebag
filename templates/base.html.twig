@@ -130,7 +130,7 @@
                 {% if is_granted ('ROLE_USER') %}
 
                 <li id="button-nav" class="nav-item">
-                    <a class="btn btn-light-blue btn-sm" href="{{path('user_profile', {id: app.user.id})}}">Votre
+                    <a class="btn btn-light-blue btn-sm" href="{{path('user_profile')}}">Votre
                         Compte</a>
                 </li>
                 {% else %}
@@ -197,6 +197,17 @@
 
     <div id="alert" class="flash-notice alert alert-success">
         <h2 class="alert-heading">Félicitations!</h2>
+        {{ message }}
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    {% endfor %}
+
+    {% for message in app.flashes('danger') %}
+
+    <div id="alert" class="flash-danger alert alert-danger">
+        <h2 class="alert-heading">Attention!</h2>
         {{ message }}
         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
             <span aria-hidden="true">&times;</span>

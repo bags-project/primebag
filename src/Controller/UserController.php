@@ -24,33 +24,22 @@ use App\Form\LoginType;
 use App\Service\UserService;
 use App\Repository\UserRepository;
 
+
 class UserController extends AbstractController
 {
-    /**
-     * @Route("/user", name="user")
-     * @IsGranted("ROLE_ADMIN")
-     */
-    public function index(UserRepository $userRepository): Response
-    {
-        
-        return $this->render('user/index.html.twig',
-        ['users' => $userRepository->findAll()]);
-    }
+    //private $user;
+
 
     /**
     * @Route("/user/login", name="user_login")
     */
 
-    public function loginUser( Request $request, UserService $userService, AuthenticationUtils $authenticationUtils)
+    public function loginUser( Request $request, AuthenticationUtils $authenticationUtils)
     {
 
-
-
-
             $this->addFlash(
-                'notice',
-                'Votre compte a été ajouté avec succès! 
-                 Vous pouvez dès maintenant vous connecter à votre compte.'
+                'danger',
+                'Il y a une erreur de saisir dans votre identifiant ou votre mot de passe.'
             );
 
 
@@ -90,14 +79,14 @@ class UserController extends AbstractController
     }
 
     /**
-    * @Route("/user/profile{id}", name="user_profile", requirements={"id"="\d+"}, methods="GET")
+    * @Route("/user/profile", name="user_profile")
     * 
     */
-    public function profilUser(User $user, UserService $userService): Response
+    public function profilUser(UserService $userService): Response
     {
     
     
-        return $this->render('user/profile.html.twig', ['user' => $user]);
+        return $this->render('user/profile.html.twig');
         
         
     }
@@ -124,22 +113,22 @@ class UserController extends AbstractController
     // }
 
     /**
-     * @Route("user/profile/edit{id}", name="user_edit", methods="GET|POST")
+     * @Route("user/profile/edit", name="user_edit")
      * 
      */
-    public function edit(Request $request, $id , UserService $userService , User $user): Response
+    public function edit(Request $request, UserService $userService): Response
     {
-        $form = $this->createForm(UserRegisterType::class, $user);
+        $form = $this->createForm(UserRegisterType::class, $this->getUser());
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $userService->edit($id);
+            $userService->edit();
 
-            return $this->redirectToRoute('user_edit', ['id' => $user->getId()]);
+            return $this->redirectToRoute('user_edit');
         }
 
         return $this->render('user/edit.html.twig', [
-            'user' => $user,
+            'user' => $this->getUser(),
             'form' => $form->createView(),
         ]);
     }
@@ -193,7 +182,7 @@ class UserController extends AbstractController
 
             if ($user === null) {
                 $this->addFlash('danger', 'Email Inconnu');
-                return $this->redirectToRoute('home');
+                return $this->redirectToRoute('app_forgotten_password');
             }
             $token = $tokenGenerator->generateToken();
 
@@ -202,7 +191,7 @@ class UserController extends AbstractController
                 $entityManager->flush();
             } catch (\Exception $e) {
                 $this->addFlash('warning', $e->getMessage());
-                return $this->redirectToRoute('home');
+                return $this->redirectToRoute('app_forgotten_password');
             }
 
             $url = $this->generateUrl('app_reset_password', array('token' => $token), UrlGeneratorInterface::ABSOLUTE_URL);
@@ -212,22 +201,25 @@ class UserController extends AbstractController
                 ->setFrom('primebag62@gmail.com')
                 ->setTo($email)
                 ->setBody(
-                    "blablabla voici le token pour reseter votre mot de passe : " . $url,
+                    "Voici le lien pour changer votre mot de passe : " . $url,
                     'text/html'
                 );
 
             $mailer->send($message);
 
+            //var_dump($email);
+
+
             
 
-            $this->addFlash('token', $url);
+            //$this->addFlash('token', $url);
 
 
-            $this->addFlash('notice', 'Mail envoyé');
+            $this->addFlash('notice', 'Vous avez réussi un email à l\'adresse suivante : ' . $email);
 
             //var_dump($message);
 
-            //return $this->redirectToRoute('home');
+            return $this->redirectToRoute('home');
         }
 
         $url = null;
