@@ -17,6 +17,14 @@ class InfoController extends AbstractController
     }
 
 
+    /**
+     * @Route("/faq", name="faq")
+     */
+    public function faq()
+    {
+        return $this->render('info/faq.html.twig', [
+        ]);
+    }
 
 
 }

@@ -113,9 +113,6 @@ class AdminController extends AbstractController
 
             $manager = $this->getDoctrine()->getManager();
 
-            // $owner = $manager->find( User::class, '1');
-            // $article->setOwner($owner);
-
             // Upload poster :
             if(!empty($article->getPosterUrl() )) {
                 $article->setPoster( $article->getPosterUrl() );
@@ -213,12 +210,13 @@ class AdminController extends AbstractController
         // {
             $emanager = $this->getDoctrine()->getManager();
             $emanager->remove($user);
+
             $emanager->flush();
 
-            // $this->addFlash(
-            //     'notice',
-            //     'Utilisateur effacé !'
-            // );
+            $this->addFlash(
+                'notice',
+                'Utilisateur effacé !'
+            );
             
         // }
 
