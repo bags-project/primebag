@@ -1,0 +1,38 @@
+{% extends 'base.html.twig' %}
+
+{% block title %} Univers Femme - {{parent()}} {% endblock %}
+
+{% block body %}
+
+<main id="our-main">
+
+    <div id="our-main-controller" class="container-fluid">
+        <div class="row">
+            <div class="col-6">
+                <div class="our-presentation">
+
+                    <div class="our-presentation-up">
+                        <div>
+                            <h1>PrimeBag</h1>
+                        </div>
+
+                        <div>
+                            <img src="{{ asset('assets/img/logo/poster_accueil1.jpg') }}" alt="">
+                        </div>
+                        <div>
+                            <img src="{{ asset('assets/img/logo/poster_accueil2.jpg') }}" alt="">
+                        </div>
+                    </div>
+                    <div class="our-presentation-down"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</main>
+
+
+
+
+
+{% endblock %}
