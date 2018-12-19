@@ -43,12 +43,19 @@ class UserController extends AbstractController
 
     public function loginUser( Request $request, UserService $userService, AuthenticationUtils $authenticationUtils)
     {
-        return $this->render('user/login.html.twig', [
-            "lastUserName" =>  $authenticationUtils->getLastUsername(),
 
-        ]);
+
+
+
+            $this->addFlash(
+                'notice',
+                'Votre compte a été ajouté avec succès! 
+                 Vous pouvez dès maintenant vous connecter à votre compte.'
+            );
+
+
+        return $this->render('user/login.html.twig');
     }
-
 
     /**
     * @Route("/user/register", name="user_register")
@@ -95,15 +102,6 @@ class UserController extends AbstractController
         
     }
 
-    /**
-     * @Route("user/{id}", name="user_show", methods="GET")
-     * 
-     */
-    public function show(User $user): Response
-    {
-        return $this->render('user/show.html.twig', ['user' => $user]);
-    }
-
     // /**
     //  * @Route("user/edit{id}", name="user_edit", methods="GET")
     //  */
@@ -126,7 +124,7 @@ class UserController extends AbstractController
     // }
 
     /**
-     * @Route("profile/edit{id}", name="user_edit", methods="GET|POST")
+     * @Route("user/profile/edit{id}", name="user_edit", methods="GET|POST")
      * 
      */
     public function edit(Request $request, $id , UserService $userService , User $user): Response
@@ -173,7 +171,7 @@ class UserController extends AbstractController
     // }
 
         /**
-     * @Route("user /forgotten_password", name="app_forgotten_password")
+     * @Route("user/forgotten_password", name="app_forgotten_password")
      */
     public function forgottenPassword(
         Request $request,
