@@ -135,15 +135,27 @@ class UserController extends AbstractController
 
 
     /**
-    * @Route("/user/delete/{id}", name="user_delete", methods="DELETE")
+    * @Route("/user/delete/{id}", name="user_delete")
     */
     public function delete(Request $request, User $user): Response
     {
-        if ($this->isCsrfTokenValid('delete'.$user->getId(), $request->request->get('_token'))) {
-            $em = $this->getDoctrine()->getManager();
-            $em->remove($user);
-            $em->flush();
-        }
+
+
+        $em = $this->getDoctrine()->getManager();
+        $em->remove($user);
+
+        $em->flush();
+
+        $this->addFlash(
+            'notice',
+            'Utilisateur effacé !'
+        );
+
+        // if ($this->isCsrfTokenValid('delete'.$user->getId(), $request->request->get('_token'))) {
+        //     $em = $this->getDoctrine()->getManager();
+        //     $em->remove($user);
+        //     $em->flush();
+        // }
 
         return $this->redirectToRoute('home', [
             'delete' => $user
