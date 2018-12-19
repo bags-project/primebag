@@ -16,7 +16,7 @@
     <div>
 
         <div>
-            <h2><strong>Gallerie Femme</strong></h2>
+            <h2><strong>Galerie Femme</strong></h2>
         </div>
 
         <div>
@@ -80,6 +80,7 @@
                         <div>
                             <h5 class="card-title">{{article.name}}</h5>
                             <h4 class="card-brand">{{article.brand.name}}</h4>
+                            {# <h4 class="card-brand">{{article.tag.name}}</h4> #}
                         </div>
                         <div>
                             <p class="card-color">Couleur :{{article.articleColor.name}}</p>
@@ -93,7 +94,6 @@
                         <div class="card-buttons">
                             <a href="{{ path('article_display' , {'id': article.id}) }}" class="btn btn-primary btn-lg active btn-sm"
                                 role="button" aria-pressed="true">Détails</a>
-                            <a href="#" class="btn btn-primary btn-lg active btn-sm" role="button" aria-pressed="true">Panier</a>
                         </div>
 
                     </div>
@@ -135,7 +135,6 @@
                         <div class="card-buttons">
                             <a href="{{ path('article_display' , {'id': article.id}) }}" class="btn btn-primary btn-lg active btn-sm"
                                 role="button" aria-pressed="true">Détails</a>
-                            <a href="#" class="btn btn-primary btn-lg active btn-sm" role="button" aria-pressed="true">Panier</a>
                         </div>
 
                     </div>

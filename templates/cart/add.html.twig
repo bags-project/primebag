@@ -4,21 +4,22 @@
 
 {% block body %}
 
-<div class="container">
+<div id="add-container" class="container">
+    
     <div class="row">
 
-        <div class="col col-md-3">
-        </div>
+        {# <div class="col col-md-3">
+        </div> #}
 
         <div class="col-12 col-md-6">
-            <div class="card border-success cardAddToCart" style="width: 18rem;">
-                <img class="card-img-top posterAddToCart border-success" src="{{ asset('assets/img/poster/') }}{{articlePoster}}" alt="Votre article">
+            <div id="card-add" class="card border-success cardAddToCart" style="width: 18rem;">
+                <img id="card-img-add" class="card-img-top posterAddToCart border-success" src="{{ asset('assets/img/poster/') }}{{articlePoster}}" alt="Votre article">
                 
-                <div class="card-body">
+                <div id="add-card-body" class="card-body">
                     <h5 class="card-title text-success">Ajout au panier</h5>
                     <p class="card-text">L'article suivant a bien été ajouté à votre panier :</p>
                 </div>
-                <ul class="list-group list-group-flush ">
+                <ul id="add-list" class="list-group list-group-flush ">
                     <li class="list-group-item border-success liNameAddToCart"><strong>{{ articleName }}</strong></li>
                     <li class="list-group-item border-success">Prix : {{ articlePrice }} €</li>
                     <li class="list-group-item border-success"><a href="{{path('home')}}">Continuer mes achats</a></li>
@@ -27,10 +28,11 @@
             </div>
         </div>
 
-        <div class="col col-md-3">
-        </div>
+        {# <div class="col col-md-3">
+        </div> #}
 
-    </div>    
+    </div>  
+
 </div>
 
 

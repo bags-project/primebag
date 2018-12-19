@@ -68,7 +68,8 @@ class UserController extends AbstractController
 
             $this->addFlash(
                 'notice',
-                'Votre compte a été ajouté avec succès!'
+                'Votre compte a été ajouté avec succès! 
+                 Vous pouvez dès maintenant vous connecter à votre compte.'
             );
 
             return $this->redirectToRoute('home');
