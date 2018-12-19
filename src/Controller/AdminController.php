@@ -34,18 +34,62 @@ class AdminController extends AbstractController
 
     /**
     * ===================== Affiche la liste des articles pour admin ========================
-    * @Route("/admin/article/", name="admin_article")
+    * @Route("/admin/all/", name="admin_all")
     */
-    public function admin_article()
+    public function admin_article_all()
     {
         $repo = $this->getDoctrine()->getRepository(Article::class); // Recup données dans BDD
         // $articles = $repo->findOneByTitle('Titre article'); // Pour trouver un article
         $articles = $repo->findAll(); // Pour trouver tous les articles
 
-        return $this->render('admin/index.html.twig', [
+        return $this->render('admin/all.html.twig', [
             'articles' => $articles
         ]);
     }
+
+
+
+
+    /**
+    * ===================== Affiche la liste des articles avec pagination ========================
+    * @Route("/admin/page/{page<\d+>?1}", name="admin_article")
+    * // Regex : d pour nombre, + pour un ou plusieurs, ? pour optionnel, 1 pour valeur par défaut
+    */
+    public function admin_page($page = 1)
+    {
+        $repo = $this->getDoctrine()->getRepository(Article::class); // Recup données dans BDD
+    
+        $limit = 10;
+        $start = $page * $limit - $limit;
+        // 1*10 - 10 = 0
+        // 2*10 - 10 = 10
+        $total = count($repo->findAll());
+        $pages = ceil($total / $limit); // ceil arrondit au nb supérieur
+
+        return $this->render('admin/index.html.twig', [
+            'articles' => $repo->findBy([], [], $limit, $start),
+            'pages' => $pages,
+            'page' => $page
+
+        ]);
+    }
+
+
+    /**
+    * ===================== Affiche 20 premiers articles ========================
+    * @Route("/admin/page1/", name="admin_page1")
+    */
+    public function admin_p1()
+    {
+        $repo = $this->getDoctrine()->getRepository(Article::class); // Recup données dans BDD
+        $articles = $repo->findBy([], [], 20, 0); // Sans critère de recherche, ordre par défaut, par 20 articles, à partir de l'index 0
+
+        return $this->render('admin/all.html.twig', [
+            'articles' => $articles
+        ]);
+    }
+
+
 
 
     /**
@@ -107,7 +151,7 @@ class AdminController extends AbstractController
 
 
 
-            return $this->redirectToRoute('admin_article', ['id' => $article->getId()]);
+            return $this->redirectToRoute('admin_all', ['id' => $article->getId()]);
 
         }
 
@@ -142,7 +186,7 @@ class AdminController extends AbstractController
 
         // }
 
-        return $this->redirectToRoute('admin_article');
+        return $this->redirectToRoute('admin_all');
     }
 
     /**
