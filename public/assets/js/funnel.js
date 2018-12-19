@@ -1,3 +1,4 @@
+////////////////////////////////////////////////////////////////
 // Fonction de changement du DOM (frais et dates livraison) sur le tunnel d'achat
 //$(document).ready(function () {
 

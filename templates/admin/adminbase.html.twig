@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="fr">
     <head>
         <meta charset="UTF-8">
         <title>{% block title %}Primebag{% endblock %}</title>
@@ -17,6 +17,7 @@
             <a href="{{ path('home') }}"><img src="{{ asset('assets/img/miniprimebag.png') }}" alt="logo primeBag"></a>
             <a href="{{ path('admin_login') }}">Admin</a>
             <a href="{{ path('admin_add') }}">Ajouter article</a>
+            <a href="{{ path('admin_all') }}">Tout sur une page</a>
             <a href="{{ path('admin_article') }}">Modifier/Effacer article</a>
             <a href="{{ path('admin_user') }}">Supprimer utilisateur</a>
             <a href="{{ path('logout') }}">Déconnecter</a>
