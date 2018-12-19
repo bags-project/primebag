@@ -24,21 +24,24 @@ class EmailController extends AbstractController
 
         $form->handleRequest($request);
 
+        // var_dump($form);
+
         if ($form->isSubmitted() && $form->isValid()) {
 
             // $notification->notify($contact);
 
             $this->addFlash('success', 'Email envoyé !');
  
-            $message = (new \Swift_Message('Client Email'))
+            $mail = (new \Swift_Message('Client Email'))
                 ->setSubject('Message client')
                 ->setFrom('client@gmail.com')
                 ->setTo('primebag62@gmail.com')
-                ->setBody("Vous lisez un message client");
+                // ->setBody('Ceci est un test du texte du message client');
+                ->setBody( $email->getMessage())
+                ;
 
-            $mailer->send($message);
+            $mailer->send($mail);
 
-            // $email = $form->getData();
 
         }
 

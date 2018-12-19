@@ -1,0 +1,33 @@
+{% extends 'admin/adminbase.html.twig' %}
+
+{% block title %}Admin - Commandes{% endblock %}
+
+{% block body %}
+    <h1 class="center progressive">Toutes les commandes</h1>
+    
+
+        <div class="admin-list">
+            <div class="admin-flex">
+                <div class="admin-flex-child desktop">ID</div>
+                <div class="admin-flex-child desktop">ID</div>
+
+            </div>
+        </div>
+
+        {% for ord in orders %}
+
+            <div class="admin-list">
+                <div class="admin-flex">
+                    {# <div class="admin-flex-child desktop">{{ ord.id }}</div> #}
+                    <div class="admin-flex-child desktop">test</div>
+                    <div class="admin-flex-child desktop">test</div>
+                   
+
+                </div>
+            </div>
+
+        {% endfor %}
+
+
+
+{% endblock %}

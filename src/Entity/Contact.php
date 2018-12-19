@@ -21,7 +21,6 @@ class Contact {
 
     /**
      * @var string|null
-     * @Assert\NotBlank()
      * @Assert\Regex(
      *    pattern="/[0-9]{10}/"
      * )
@@ -43,7 +42,10 @@ class Contact {
     */
     private $message;
 
+    
+    protected $subject;
 
+    protected $body;
 
 
     public function getFirstName(): ?string
@@ -105,6 +107,28 @@ class Contact {
         $this->message = $message;
 
         return $this;
+    }
+
+
+
+    public function getSubject()
+    {
+        return $this->subject;
+    }
+
+    public function setSubject($subject)
+    {
+        $this->subject = $subject;
+    }
+
+    public function getBody()
+    {
+        return $this->body;
+    }
+
+    public function setBody($body)
+    {
+        $this->body = $body;
     }
 
 

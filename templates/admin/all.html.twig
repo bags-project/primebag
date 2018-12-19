@@ -16,8 +16,8 @@
                 <div class="admin-flex-child desktop">Stock</div>
                 <div class="admin-flex-child desktop">Prix</div>
                 <div class="admin-flex-child">Référence</div>
-                <div class="admin-flex-child desktop">Vitrine</div>
-                {# <div class="admin-flex-child desktop">Tag</div> #}
+                <div class="admin-flex-child">Vitrine</div>
+                <div class="admin-flex-child">Tag</div>
                 <div class="admin-flex-child">Modifier</div>
                 <div class="admin-flex-child">Supprimer</div>
             </div>
@@ -41,6 +41,7 @@
                     <div class="admin-flex-child admin-img"><a href="{{ asset('assets/img/poster/') }}{{ art.poster }}" target="_blank"><img src="{{ asset('assets/img/poster/') }}{{ art.poster }}" alt="{{ art.name }}"></a></div>
                     <div class="admin-flex-child">{{ art.brand.name }}</div>
                     <div class="admin-flex-child">{{ art.name }}</div>
+                    {# {{dump(art.categories)}} #}
                     <div class="admin-flex-child">{{ art.categories[0].name }}</div>
                     {% if art.stock <= 2 %}
                     <div class="admin-flex-child desktop text-red">
@@ -53,15 +54,23 @@
                     <div class="admin-flex-child">{{ art.reference }}</div>
                     {% if art.showcase == 1 %}
                     {# <div class="admin-flex-child">{{ art.showcase }}</div> #}
-                    <div class="admin-flex-child desktop">Oui</div>
+                    <div class="admin-flex-child">Oui</div>
                     {% else %}
-                    <div class="admin-flex-child desktop">Non</div>
+                    <div class="admin-flex-child">Non</div>
                     {% endif %}
-                    {# <div class="admin-flex-child">{{ art.tag[0].name }}</div> #}
-                    <div class="admin-flex-child"><a href="{{ path('admin_all')}}../{{ art.id }}/edit">🖍</a></div>
+
+                    {# {{dump(art.tag)}} #}
+
+                    {% if art.tag.name is defined %}
+                    <div class="admin-flex-child">{{art.tag.name}}</div>
+                    {% else %}
+                    <div class="admin-flex-child">null</div>
+                    {% endif %}
+
+                    <div class="admin-flex-child"><a href="{{ path('admin')}}/{{ art.id }}/edit">🖍</a></div>
                     {# <input type="hidden" name="_method" value="DELETE">
                     <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ art.id) }}"> #}
-                    <div class="admin-flex-child"><a href="{{ path('admin_all')}}../{{ art.id }}/del" onclick="if(window.confirm('Voulez-vous vraiment supprimer ?')) {return true;} else {return false;}">X</a></div>
+                    <div class="admin-flex-child"><a href="{{ path('admin')}}/{{ art.id }}/del" onclick="if(window.confirm('Voulez-vous vraiment supprimer ?')) {return true;} else {return false;}">X</a></div>
                     {# <div class="admin-flex-child"><a href="{{ path('admin_edit', {'id':art.id} )) }}">🖍</a></div>
                     <div class="admin-flex-child"><a href="{{ path('admin_del', {'id':art.id} )) }}" onclick="if(window.confirm(\'Voulez-vous vraiment supprimer ?\')) {return true;} else {return false;}">X</a></div> #}
                 </div>

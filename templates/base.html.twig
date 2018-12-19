@@ -86,7 +86,7 @@
                     <a class="nav-link" href="{{path('home')}}">Accueil <span class="sr-only">(current)</span></a>
                 </li>
                 <li id="item-nav" class="nav-item">
-                    <a class="nav-link" href="">Qui sommes-nous?</a>
+                    <a class="nav-link" href="{{path('our')}}">Qui sommes-nous?</a>
                 </li>
 
                 <li id="item-nav" class="nav-item">
@@ -105,7 +105,7 @@
                     <a class="nav-link" href="{{ path('bagage_gallery')}}">Bagage</a>
                 </li>
 
-                {% if is_granted ('ROLE_USER') %}
+
                 <li class="nav-item">
 
                     <div class="caddy-contents">
@@ -122,11 +122,10 @@
                                 {% else %}
                                 <div class="caddy-value">0</div>
                                 {% endif %}
-                        </a>
+                            </a>
                     </div>
                 </li>
 
-                {% endif %}
                 {% if is_granted ('ROLE_USER') %}
 
                 <li id="button-nav" class="nav-item">
@@ -139,7 +138,7 @@
 
                     <a class="btn btn-light-blue dropdown-toggle btn-sm" href="#" role="button" id="dropdownMenuLink"
                         data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        Connection
+                        Connexion
                     </a>
 
                     <div class="dropdown-menu">
@@ -217,8 +216,8 @@
             passerez pas non plus à côté des sacs matelassés, le cadeau à l’impact maximum ou du sac léopard et python.<br><br>
             Vous trouverez tous les cadeaux les plus désirables du moment parmi Guess, Lancel ou bien encore Paul
             Marius.</p>
-        <p><a href="{{ path('admin_article') }}">Admin</a> | <a href="{{ path('admin_add') }}">Admin Ajout</a></p>
-        {# <p><a href="{{ path('contact') }}">Contactez-nous</a> | <a href="{{ path('cgv') }}">CGV</a></p> #}
+        <p><a href="{{ path('admin_article') }}" rel="nofollow">Admin</a></p>
+        <p><a href="{{ path('contact') }}">Contactez-nous</a> | <a href="{{ path('cgv') }}">CGV</a> | <a href="{{ path('faq') }}">FAQ</a></p>
     </div>
     <div class="footer-flex-child center">
         <div class="b">
@@ -267,6 +266,7 @@
 <script src="{{ asset('assets/js/ajaxZipcode.js') }}"></script>
 <script src="{{ asset('assets/js/checkout.js.js') }}"></script>
 {% block javascripts %}
+
 {% endblock %}
 
 </body>

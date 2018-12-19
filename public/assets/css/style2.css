@@ -64,12 +64,12 @@ margin-top: 0.5rem;
 .caddy-value {
     position: relative;
     bottom: 2.75rem;
-    left: 0.75rem;
+    left: 0.90rem;
 
-    font-weight: 600;
+    font-weight: 500;
 
     color: red;
-    font-size: 1.7rem;
+    font-size: 1.6rem;
 }
 
 .caddy-empty{
@@ -81,7 +81,7 @@ margin-top: 0.5rem;
     font-weight: 600;
 
     color: red;
-    font-size: 2rem;
+    font-size: 1.5rem;
 }
 
 .caddy-contents{
@@ -243,6 +243,47 @@ article {
     background-color: whitesmoke;
 }
 
+/*//////////////////////////////////////////////////*/
+/*                  OUR                             */
+/*//////////////////////////////////////////////////*/
+
+
+#our-main-controller{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    margin-bottom: 5rem;
+    margin-top: 5rem;
+}
+
+.our-presentation{
+
+    width: 50rem;
+    height: 25rem;
+
+    border: 1px solid black;
+    border-radius: 25px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.our-presentation-up{
+    width: 100%;
+    height: 30%;
+    border-bottom: 1px solid black;
+}
+
+
+.our-presentation-down{
+    width: 100%;
+    height: 70%;
+}
+
+
 
 /*//////////////////////////////////////////////////*/
 /*                  ARTICLES DETAILS                */
@@ -336,7 +377,6 @@ article {
 #gallery-main {
     min-height: 35rem;
 }
-
 
 #gallery-title strong {
     font-family: 'Righteous', cursive;

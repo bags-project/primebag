@@ -2,13 +2,114 @@
 
 {% block title %} Votre compte{% endblock %}
 
+
+
+
 {% block body %}
 
-    <h1>Modifier votre compte</h1>
+{% if app.user.email == user.email %}
+
+        <div class="count-title">
+            <h3>Modifier votre compte</h3>
+        </div>
+
+        <div id="user-register" class="container-fluid">
+
+        <div class="regiter-form-left">
+
+            <h4>1. Vos informations personnelles</h4>
+
+            {% form_theme form 'bootstrap_4_layout.html.twig' %}
+            {{form_start(form, {'attr': {'novalidate' : 'novalidate' , 'class': 'form-horizontal', 'method':
+            'POST'}})}}
+
+            <div class="form-group">
+                {{ form_label(form.firstName , 'Votre prénom') }}
+                {{ form_widget(form.firstName)}}
+            </div>
+
+            <div class="form-group">
+                {{ form_label(form.lastName, 'Votre nom') }}
+                {{ form_widget(form.lastName)}}
+            </div>
+
+            <div class="form-group">
+                {{ form_label(form.zipCode , 'Votre code postale') }}
+                {{ form_widget(form.zipCode) }}
+                <input type="button" id="btSubmit" value="vérifier code postale" />
+            </div>
+
+            <div class="form-group">
+                {{ form_label(form.city , 'Votre ville') }}
+                {{ form_widget(form.city)}}
+            </div>
+
+            <div class="form-group">
+                {{ form_label(form.address,'Votre adresse') }}
+                {{ form_widget(form.address)}}
+            </div>
+
+            <div class="form-group">
+                {{ form_label(form.secondaryAddress , 'Votre seconde adresse (optionnel)') }}
+                {{ form_widget(form.secondaryAddress) }}
+            </div>
+
+            <div class="form-group">
+                {{ form_label(form.phoneNumber , 'Votre téléphone (optionnel)') }}
+                {{ form_widget(form.phoneNumber) }}
+            </div>
+
+        </div>
+
+
+        <div class="regiter-form-right">
+
+            <h4>2. Vos informations de connexion</h4>
+
+            <div class="form-group">
+                Mot de passe : <input type="password" class="margin15" placehoder="Votre mot de passe" name="_password" value="">             
+            </div>
+
+
+            <div class="form-group">
+                {{ form_label(form.email , 'Votre email*') }}
+                {{ form_widget(form.email) }}
+            </div>
+
+            <div class="form-group">
+                {{ form_label(form.plainPassword.first , 'Votre mot de passe') }}
+                {{ form_widget(form.plainPassword.first) }}
+            </div>
+
+            <div class="form-group">
+                {{ form_label(form.plainPassword.second , 'Confirmation du mot de passe') }}
+                {{ form_widget(form.plainPassword.second) }}
+            </div>
+
+            <button class="btn btn-primary" type="submit">{{ button_label|default('Sauvagarder les modifications') }}</button>
+
+            {{form_end(form)}}
+            * votre email est votre login
+        </div>
+
+    </div>
+</main>
 
     {{ form_start(form) }}
     {{ form_widget(form) }}
     <button class="btn">{{ button_label|default('Save') }}</button>
     {{ form_end(form) }}
-        
+
+
+{% else %}
+
+    <h1>Erreur 404</h1>
+    <p>
+        The requested page couldn't be located. Checkout for any URL
+        misspelling or <a href="{{ path('home') }}">return to the homepage</a>.
+    </p>
+
+{% endif %}
+
 {% endblock %}
+

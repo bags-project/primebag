@@ -21,6 +21,12 @@ class ShippingMethod
      */
     private $name;
 
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\Carrier", inversedBy="shippingMethod")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $carrier;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -34,6 +40,18 @@ class ShippingMethod
     public function setName(string $name): self
     {
         $this->name = $name;
+
+        return $this;
+    }
+
+    public function getCarrier(): ?Carrier
+    {
+        return $this->carrier;
+    }
+
+    public function setCarrier(?Carrier $carrier): self
+    {
+        $this->carrier = $carrier;
 
         return $this;
     }

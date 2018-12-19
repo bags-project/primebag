@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Order;
 use App\Service\CartService;
+
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Validator\Constraints\Email;
@@ -11,6 +12,7 @@ use Symfony\Component\Validator\Constraints\Email;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+
 
 class OrderController extends AbstractController
 {
@@ -112,12 +114,6 @@ class OrderController extends AbstractController
 
         ]);
     }
-
-
-
-
-
-    
 }
 
 
@@ -205,11 +201,3 @@ class OrderController extends AbstractController
             //        );
        
             //        $mailer->send($message);
-           
-
-
-
-
-
-
-
