@@ -113,9 +113,6 @@ class AdminController extends AbstractController
 
             $manager = $this->getDoctrine()->getManager();
 
-            // $owner = $manager->find( User::class, '1');
-            // $article->setOwner($owner);
-
             // Upload poster :
             if(!empty($article->getPosterUrl() )) {
                 $article->setPoster( $article->getPosterUrl() );
