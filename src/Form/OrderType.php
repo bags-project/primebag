@@ -8,6 +8,8 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
 
 class OrderType extends AbstractType
 {
@@ -18,14 +20,20 @@ class OrderType extends AbstractType
             // ->add('orderNumber')
             // ->add('paymentDate')
             // ->add('paymentReference')
-            // ->add('sentAt')
+            ->add('sentAt', DateTimeType::class, [
+                'label' => 'Date d\'expédition :',
+                'date_widget' => 'single_text'
+            ])
             // ->add('shippingCost')
-            // ->add('trackingNumber')
+            ->add('trackingNumber', TextType::class, [
+                'label' => 'Numéro de suivi :'
+            ])
             // ->add('paymentMethod')
             // ->add('user')
             ->add('orderStatus', EntityType::class, [
                 'class' => OrderStatus::class,
-                'choice_label' => 'name'
+                'choice_label' => 'name',
+                'label' => 'Statut de la commande :'
             ])
             // ->add('carrier')
         ;

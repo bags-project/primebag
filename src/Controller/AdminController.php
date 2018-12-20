@@ -102,11 +102,11 @@ class AdminController extends AbstractController
     {
         if (!$article)
         {
-            $article = new Article();
+            $article = new Article(); // new c'est que pour ajouter. Pour éditer, on récup grace au paramètre "Article $article" dans la fonction
         }   
 
         $form = $this->createForm(ArticleType::class, $article);
-        $form->handleRequest($request);
+        $form->handleRequest($request); // Analyse la requete et recherche tous les champs du formulaire. Fait le lien entre les champs et l'entité Article
 
         // dump($article);
 
@@ -127,6 +127,7 @@ class AdminController extends AbstractController
         
                 $article->setPoster( $filename );
             }
+
             $manager->persist($article);
             $manager->flush();
 
@@ -255,10 +256,11 @@ class AdminController extends AbstractController
     /**
     * ===================== Editer une commande ========================
     * @Route("/admin/{id}/order_edit", name="admin_order_edit")
+    * @return Response
     */
-    public function admin_order_edit(Request $request)
+    public function admin_order_edit(Order $order, Request $request)
     {
-        $order = new Order();
+        // Grace à "Order $order", on récup les données d'Order
 
         $form = $this->createForm(OrderType::class, $order);
         $form->handleRequest($request);
@@ -269,6 +271,8 @@ class AdminController extends AbstractController
 
             $manager = $this->getDoctrine()->getManager();
 
+            $manager->persist($order);
+            $manager->flush();
 
             return $this->redirectToRoute('admin_order_edit', ['id' => $order->getId()]);
 

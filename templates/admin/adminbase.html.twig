@@ -42,29 +42,23 @@
     <div class="to-top"><a rel="nofollow" href="#">Haut de page</a></div>
     <footer class="footer-flex">
         <div class="footer-flex-child">
-            <p><a href="{{ path('home') }}">Primebag</a></p>
+            <p><a href="{{ path('home') }}"><img src="{{ asset('assets/img/primebag.png') }}" alt="Logo Primebag"></a></p>
             <p>Bienvenue dans la partie Admin. Vous pouvez voir, ajouter, modifier ou effacer des articles ici. Vous pouvez aussi supprimer des utilisateurs ou éditer des commandes.</p>
         </div>
         <div class="footer-flex-child center">
             <div class="b">
-            Catégories
+            Consulter
             </div><br>
             <p>
-            <a href="#">Femme</a>
+            <a href="{{ path('cgv') }}">CGV</a>
             </p>
             <p>
-            <a href="#">Homme</a>
-            </p>
-            <p>
-            <a href="#">Scolaire</a>
-            </p>
-            <p>
-            <a href="#">Bagages</a>
+            <a href="{{ path('faq') }}">FAQ</a>
             </p>          
         </div>
         <div class="footer-flex-child">
             <div class="center b">
-            Partagez ou Suivez-nous
+            Mes réseaux sociaux
             </div>
             <div class="boxflex">
             <div class="boxelement">
@@ -73,7 +67,7 @@
             </div>
             <div class="boxelement">
                 <div id="tw"></div>
-                <div class="text"><a href="#">Twitter</a></div>
+                <div class="text"><a href="https://twitter.com/TwitterDev?ref_src=twsrc%5Etfw">Twitter</a><script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script></div>
             </div>
             <div class="boxelement">
                 <div id="instagr"></div>
