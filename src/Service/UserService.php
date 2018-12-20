@@ -8,6 +8,7 @@ use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 use App\Entity\User;
 use App\Form\UserRegisterType;
 
+
 class UserService 
 {
     private $om;
@@ -50,17 +51,6 @@ class UserService
         $this->om->flush();
 
     }
-
-
-
-
-
-
-
-
-
-
-
 
 
     public function getOne($id) {

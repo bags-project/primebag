@@ -3,6 +3,7 @@
 namespace App\Service;
 
 use App\Entity\Carrier;
+use App\Entity\Order;
 
 use App\Entity\OrderContent;
 use App\Repository\OrderRepository;

@@ -74,7 +74,8 @@
                 {% set id = attribute(cart.id, key)  %}
                 <div class="col-md-1  col-sm-12 cartDetails">             
                     <a href="{{ path('cart_remove', {'id': id}) }}" onclick="return confirm('Etes vous sur de vouloir supprimer cet article de votre panier ?')">
-                         <button id="btnRemFromCart" type="button" class="btn btn-light" {#value="{{ attribute(cart.id, key) }}"#}>x</button> 
+                         {# <button id="btnRemFromCart" type="button" class="btn btn-light" value="{{ attribute(cart.id, key) }}">X</button>  #}
+                         <img id="btnRemFromCart" src="{{ asset('assets/img/logo/denied.png') }}" alt="logo enlever le produit">
                     </a>
                 </div>
             </div>
