@@ -162,7 +162,7 @@
     {# MESSAGE FLAH - LOG SUCCESS #}
     {% for message in app.flashes('notice') %}
     <div id="alert" class="flash-notice alert alert-success">
-        <h2 class="alert-heading">Félicitations!</h2>
+        <h2 class="alert-heading">Félicitations !</h2>
         {{ message }}
         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
             <span aria-hidden="true">&times;</span>
@@ -172,7 +172,7 @@
 
     {% for message in app.flashes('success') %}
     <div id="alert" class="flash-notice alert alert-success">
-        <h2 class="alert-heading">Mail envoyé!</h2>
+        <h2 class="alert-heading">Succès !</h2>
         {{ message }}
         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
             <span aria-hidden="true">&times;</span>
@@ -183,7 +183,7 @@
     {% for message in app.flashes('danger') %}
 
     <div id="alert" class="flash-danger alert alert-danger">
-        <h2 class="alert-heading">Attention!</h2>
+        <h2 class="alert-heading">Attention !</h2>
         {{ message }}
         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
             <span aria-hidden="true">&times;</span>

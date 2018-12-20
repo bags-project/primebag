@@ -175,7 +175,7 @@ class UserController extends AbstractController
                 $entityManager->flush();
             } 
             
-            // En cas d'erreur , alors un addFlash('warning') s'affoche
+            // En cas d'erreur , alors un addFlash('warning') s'affiche
 
             catch (\Exception $e) {
                 $this->addFlash('warning', $e->getMessage());
@@ -189,6 +189,8 @@ class UserController extends AbstractController
             $url = $this->generateUrl('app_reset_password', array('token' => $token), UrlGeneratorInterface::ABSOLUTE_URL);
 
 
+            // Envoie de mail via Swift_Message
+
             $message = (new \Swift_Message('Mot de passe oublié?'))
                 ->setFrom('primebag62@gmail.com')
                 ->setTo($email)
@@ -199,7 +201,9 @@ class UserController extends AbstractController
 
             $mailer->send($message);
 
-            $this->addFlash('notice', 'Vous avez reçu un email à l\'adresse suivante : ' . $email);
+            // Si le mail est envoyé, un addFlash('mail') est affiché et l'utilisateur est redirectionné vers la page d'accueil
+
+            $this->addFlash('success', 'Vous avez reçu un email à l\'adresse suivante : ' . $email);
 
             return $this->redirectToRoute('home');
         }
