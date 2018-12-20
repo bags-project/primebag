@@ -1,53 +1,29 @@
 Pour point étape du mercredi 19/12/2018 : 
 
 - Panier, ou à défaut achat direct  OK
-- Tunel d'achat - En cours -
-- Saisie de données dans la DB 
-- Communication vers le vendeurs lors de la validation d'une commande - En cours -
-- Suppression de compte user - OK -
-- gestion des commandes admin et user
-- Suppression de compte user
+- Tunel d'achat - OK
+- Saisie de données dans la DB -OK
+- Communication vers le vendeurs lors de la validation d'une commande - OK
+- Suppression de compte user - OK 
+- gestion des commandes admin et user : OK
+- Suppression de compte user : OK
 ----------------------------------------------------------------------
 
 
 
 _____________________A VERIFIER_______________________________________
+Améliorations possibles :
 ARTICLE
-- fiche article : ajouter "quantité en stock"
-
-- supprimer bouton "panier" de la gallerie article, ou alors modifier en "ajouter au panier" pour ajout rapide
 - ajouter moteur de recherche
 
 BACK OFFICE
 - ajouter ds le back-office une option fiche produit pour référencement naturel (alt="Sac Nafnaf maron")
 
-USER
-- Remplacer le bouton Compte + lien Déconnexion par un encart Utilisateur : toto, avec sous-menu Déconnexion, Compte
-
 CART
 -afficher en dessous : ces articles pourraient aussi vous intérressser... + liste d'articles en rapport
 
-CONFIRM COMMANDE
-- voir avec Flo cmt récup les infos du user connecté à partir du controlleur (équivallent dump(app.user))
 
-INFORMATION
-Faire un controller info ? (qui route vers FAQ, Nous contacter, Besoin d'aide, Qui sommes nous...
-
-
-Pb constatés :
-- Livraison : - besoin d'un poid de colis (donc d'article > poid) :
-                => Réponse d'Haiou : prix de livraison fixe, supplément à la charge du vendeur s'il y a
-
-	          - table ShippingMethod (Pour la poste, colissimo (3 à 8j) / chronopost(1 à 3j) / )
-              notion de retrait en magasin : une valeur "Magasin" dans le transporteur ? Dans ce cas pb avec la table Delivery
-- table Delivery : Pourquoi l'avoir créée ? (pourquoi avoir choisi du N:N entre Order et Carrier ?)
-
-
-
-Exemple de tunel :
-amazon : Bienvenue->Adresse->articles->Embalage->Livraison->Paiement->Validation
-
-
+-----------------------------------------------------
 -----------------------------------------------------
 Compte Paypal de test :
 Toto

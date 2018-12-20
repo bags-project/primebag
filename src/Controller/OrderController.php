@@ -116,7 +116,7 @@ class OrderController extends AbstractController
         $currentUser = $this->getUser();
         dump($currentUser);
         $curentUserId = $currentUser->getId();
-        $orderNumber = date('Y-m-d') .'-'. $curentUserId;
+        $orderNumber = date('Y-m-d-H.m.s') .'-'. $curentUserId;
         //pour le setPaymentDate
         $paymentDate = $today;
         //setPaymentReference
