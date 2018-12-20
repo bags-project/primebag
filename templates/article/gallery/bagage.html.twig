@@ -11,18 +11,14 @@
     <div>
         <img id="jumbo-img-kid" src="{{ asset('assets/img/logo/bagages_univers.jpg')}}" alt="bagages_univers">
     </div>
-
     <div>
-
         <div>
             <h2><strong>Galerie Bagage</strong></h2>
         </div>
-
         <div>
             <p>Pratique et robuste <br>
                 en toutes circonstances</p>
         </div>
-
     </div>
 </div>
 
@@ -54,6 +50,7 @@
                 </li>
             </ul>
         </nav>
+
 
         <div id="gallery-filtres" class="row">
 
@@ -101,10 +98,8 @@
 
                 {% if cat is not null %}
                 {% if article.stock != 0 %}
-                {% if article.categories[0].name == 'Bagage' and article.brand.name == cat or
-                article.articleColor.name
-                == cat %}
-
+                {% if article.categories[0].name == 'Bagage' and article.brand.name == cat or article.articleColor.name == cat %}
+            
                 <div class="gallery-card" style="width: 18rem;">
 
                     <div>

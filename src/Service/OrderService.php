@@ -2,7 +2,6 @@
 
 namespace App\Service;
 
-use App\Entity\Order;
 use App\Entity\Carrier;
 
 use App\Entity\OrderContent;
@@ -73,6 +72,8 @@ class OrderService
     }  
 
 }
+
+
 // Enreg Order
 // Enreg contents
 // exec. addOrderContent pr faire le lien ??

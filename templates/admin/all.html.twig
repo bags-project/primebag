@@ -5,7 +5,7 @@
 {% block body %}
     <h1 class="center progressive">Admin - Tous les articles</h1>
     
-
+        {# Tableau #}
         <div class="admin-list">
             <div class="admin-flex">
                 <div class="admin-flex-child desktop">ID</div>
@@ -25,6 +25,7 @@
 
         {% for art in articles %}
 
+            {# Message Flash #}
             {% for label, messages in app.flashes %}
                 {% for message in messages %}
                     <div class="boxdotted flash-{{ label }}">

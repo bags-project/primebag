@@ -35,11 +35,11 @@
                {% if quantity == 0 %}
                <form method="GET" action="#">
                   Quantité à mettre dans le pannier : <input type="number" name="quantity" value="1" min="0" max="{{article.stock}}">
-                  <button type="submit">go</button>
+                  <button id="quantity-choice-btn" type="submit"> Choisir </button>
                </form>
                {% endif %}
                {% if quantity > 0 %}
-               Quantité choisie : {{quantity}}
+               <strong> Quantité choisie : <span class="details-quantity"> {{quantity}} </span> </strong>
                <a href="{{ path('cart_add', {'id': article.id, 
                                              'name': article.name, 
                                              'ref': article.reference, 

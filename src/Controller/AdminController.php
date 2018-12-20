@@ -169,7 +169,6 @@ class AdminController extends AbstractController
     * ===================== Effacer article ========================
     * @Route("/admin/{id}/del", name="admin_del")
     */
-    // methods="DELETE"
     public function delete(Article $article, Request $request)
     {
         // if ($this->isCsrfTokenValid('delete'.$article->getId(), $request->request->get('_token')))
@@ -223,17 +222,6 @@ class AdminController extends AbstractController
 
 
 
-    /**
-    * ===================== Déconnecter admin ========================
-    * @Route("/logout", name="logout")
-    */
-    public function logout() {
-    return $this->render('main/index.html.twig');
-    }
-
-
-
-
 
 
     /**
@@ -274,6 +262,11 @@ class AdminController extends AbstractController
             $manager->persist($order);
             $manager->flush();
 
+            $this->addFlash(
+                'notice',
+                'Commande éditée !'
+            );
+
             return $this->redirectToRoute('admin_order_edit', ['id' => $order->getId()]);
 
         }
@@ -285,6 +278,19 @@ class AdminController extends AbstractController
     }
 
 
+
+
+
+
+    /**
+    * ===================== Déconnecter admin ========================
+    * @Route("/logout", name="logout")
+    */
+    public function logout() {
+        return $this->render('main/index.html.twig');
+    }
+    
+    
 
 
 }
