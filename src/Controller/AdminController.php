@@ -128,27 +128,13 @@ class AdminController extends AbstractController
                 $article->setPoster( $filename );
             }
 
+            $this->addFlash(
+                'notice',
+                'Mission accomplie !'
+            );
+
             $manager->persist($article);
             $manager->flush();
-
-
-            // if(!empty($article->getAltPicture1Url() )) {
-            //     $article->setAltPicture1( $article->getAltPicture1Url() );
-            // }
-            // else
-            // {
-            //     $file1 = $article->getAltPicture1File();
-            //     $filename1 = md5( uniqid() ).'.'.$file1->guessExtension();
-        
-            //     $file1->move( './assets/img/poster/', $filename1 );
-        
-            //     $article->setAltPicture1( $filename1 );
-            // }
-            // $manager->persist($article);
-            // $manager->flush();
-
-
-
 
             return $this->redirectToRoute('admin_all', ['id' => $article->getId()]);
 
@@ -193,13 +179,14 @@ class AdminController extends AbstractController
     */
     public function admin_user()
     {
-        $repo = $this->getDoctrine()->getRepository(User::class); // Recup données dans BDD
+        $repo = $this->getDoctrine()->getRepository(User::class); // Select de l'entité User
         $users = $repo->findAll(); // Pour trouver tous les users
 
         return $this->render('admin/user.html.twig', [
             'users' => $users
-        ]);
+        ]); // On donne la valeur $users à la variable users
     }
+
 
     /**
     * ===================== Effacer utilisateur ========================

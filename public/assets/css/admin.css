@@ -213,6 +213,14 @@ img, video, iframe {
   max-height:80px;
 }
 
+.grayscale {
+  filter: grayscale(60%);
+  transition:1s;
+}
+.grayscale:hover {
+  filter: grayscale(0%);
+}
+
 .profil {
   position: absolute;
   margin-left: 13px;
