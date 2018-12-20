@@ -5,22 +5,18 @@
         <title>{% block title %}Primebag{% endblock %}</title>
         <meta name="Robots" content="noindex, nofollow">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-
         {% block stylesheets %}
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
         <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.min.css" rel="stylesheet">
-        <link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.5.15/css/mdb.min.css" rel="stylesheet">
         <link rel="stylesheet" href="{{ asset('assets/css/admin.css') }}">
         {% endblock %}
     </head>
 
         <nav class="admin-navbar" id="admin-topnavbar">
-            <a href="{{ path('home') }}"><img src="{{ asset('assets/img/miniprimebag.png') }}" alt="logo primeBag"></a>
-            {# <a href="{{ path('admin_login') }}">Admin</a> #}
+            <a href="{{ path('admin') }}"><img src="{{ asset('assets/img/miniprimebag.png') }}" alt="logo primeBag"></a>
             <a href="{{ path('admin_add') }}">Ajouter article</a>
             <a href="{{ path('admin_all') }}">Tous les articles</a>
             <a href="{{ path('admin_article') }}">Edit/Suppr article</a>
-            <a href="{{ path('admin_user') }}">Suppr. client</a>
+            <a href="{{ path('admin_user') }}">Suppr client</a>
             <a href="{{ path('admin_order') }}">Commandes</a>
             <a href="{{ path('logout') }}">Déconnecter</a>
             <a href="#" class="icon" onclick="function_menu()">&#9776;</a>
@@ -43,7 +39,7 @@
     <footer class="footer-flex">
         <div class="footer-flex-child">
             <p><a href="{{ path('home') }}"><img src="{{ asset('assets/img/primebag.png') }}" alt="Logo Primebag"></a></p>
-            <p>Bienvenue dans la partie Admin. Vous pouvez voir, ajouter, modifier ou effacer des articles ici. Vous pouvez aussi supprimer des utilisateurs ou éditer des commandes.</p>
+            <p>Bienvenue dans la partie <a href="{{ path('admin') }}">Admin</a>. Vous pouvez voir, ajouter, modifier ou effacer des articles ici. Vous pouvez aussi supprimer des utilisateurs ou éditer des commandes.</p>
         </div>
         <div class="footer-flex-child center">
             <div class="b">
@@ -61,18 +57,19 @@
             Mes réseaux sociaux
             </div>
             <div class="boxflex">
-            <div class="boxelement">
-                <div id="fb"></div>
-                <div class="text"><a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://www.primebag.com%2F&amp;src=sdkpreparse" class="fb-xfbml-parse-ignore">Facebook</a></div>
-            </div>
-            <div class="boxelement">
-                <div id="tw"></div>
-                <div class="text"><a href="https://twitter.com/TwitterDev?ref_src=twsrc%5Etfw">Twitter</a><script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script></div>
-            </div>
-            <div class="boxelement">
-                <div id="instagr"></div>
-                <div class="text"><a href="#">Instagram</a></div>
-            </div>
+                <div class="boxelement">
+                    <div id="fb"></div>
+                    <div class="fb-share-button" data-href="https://www.primebag.com" data-layout="button" data-size="small" data-mobile-iframe="false"><a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fwww.primebag.com%2F&amp;src=sdkpreparse" class="fb-xfbml-parse-ignore">Facebook</a>
+                    </div>
+                </div>
+                <div class="boxelement">
+                    <div id="tw"></div>
+                    <div class="text"><a href="https://twitter.com/Primebag1?ref_src=twsrc%5Etfw" class="twitter-follow-button" data-show-screen-name="false" data-lang="fr" data-show-count="false">Twitter</a><script async src="https://platform.twitter.com/widgets.js"></script></div>
+                </div>
+                <div class="boxelement">
+                    <div id="instagr"></div>
+                    <div class="text"><a href="https://www.instagram.com/primebag62/" target="_blank">Instagram</a></div>
+                </div>
             </div>
         </div>
     </footer>
