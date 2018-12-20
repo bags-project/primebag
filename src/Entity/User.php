@@ -90,7 +90,11 @@ class User implements UserInterface
      * @Assert\NotBlank(
      *  message ="Vous n'avez pas rempli de mot de passe."
      * )
-     * @Assert\Length(max=4096)
+     * @Assert\Length(
+     * min = 6,
+     * minMessage = "Votre mot de passe doit dépassé 6 caractères.",
+     * )
+     * 
      */
     private $plainPassword;
 
@@ -373,9 +377,6 @@ class User implements UserInterface
 
     public function getUsername(): ? string
     {
-
-
         return $this->email;
-
     }
 }

@@ -7,8 +7,6 @@
 
 {% block body %}
 
-{% if app.user.email == user.email %}
-
         <div class="count-title">
             <h3>Modifier votre compte</h3>
         </div>
@@ -94,22 +92,6 @@
 
     </div>
 </main>
-
-    {{ form_start(form) }}
-    {{ form_widget(form) }}
-    <button class="btn">{{ button_label|default('Save') }}</button>
-    {{ form_end(form) }}
-
-
-{% else %}
-
-    <h1>Erreur 404</h1>
-    <p>
-        The requested page couldn't be located. Checkout for any URL
-        misspelling or <a href="{{ path('home') }}">return to the homepage</a>.
-    </p>
-
-{% endif %}
 
 {% endblock %}
 

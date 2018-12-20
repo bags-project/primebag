@@ -9,7 +9,23 @@ body {
 /* ==================== Textes ==================== */
 
 h1 {
-  margin:50px auto 80px;
+  margin:50px auto 100px;
+  text-shadow:0 0 7px rgba(0,0,0,.9);
+  font:bold 2.6em "Times New Roman", serif;
+}
+h1:hover {
+  text-shadow:0 0 12px rgba(0,0,0,.9);
+}
+
+h2 {
+  margin:30px 0;
+  font:bold 2em Verdana, sans-serif;
+}
+
+h3 {
+  margin:0 0 20px;
+  font:1.6em Verdana, sans-serif;
+  text-decoration:underline;
 }
 
 p, .text {font:0.9em verdana, sans-serif;}
@@ -73,7 +89,7 @@ a:hover {color:#EC0000;}
 }
 
 .admin-navbar .icon {
-  display: none; /* Menu Burger caché en version desktop */
+  display: none; /* Icone Menu Burger caché en version desktop */
 }
 
 
@@ -203,9 +219,9 @@ img, video, iframe {
   margin-top: 11px;
   width: 14px;
   height: 6px;
-  border-left: solid 1px#e2e2e2;
-  border-right: solid 1px#e2e2e2;
-  border-top: solid 1px#e2e2e2;
+  border-left: solid 1px#444444;
+  border-right: solid 1px#444444;
+  border-top: solid 1px#444444;
   border-radius: 6px 6px 0 0;
 }
 .profil:before {
@@ -216,11 +232,11 @@ img, video, iframe {
   width: 8px;
   height: 8px;
   border-radius: 50%;
-  border: solid 1px#e2e2e2;
+  border: solid 1px#444444;
 }
 
 .basket {
-  color:#e2e2e2;
+  color:#444444;
   position: absolute;
   margin-left: 8px;
   margin-top: 4px;
@@ -302,7 +318,7 @@ img, video, iframe {
 
 .to-top {
   text-align:right;
-  margin:80px 30px 50px 0;
+  margin:120px 30px 80px 0;
 }
 
 /* ==================== Float ==================== */
@@ -367,7 +383,7 @@ img, video, iframe {
 }
 .footer-flex-child {
   padding: 20px;
-  min-width: 300px;
+  min-width: 350px;
 }
 
 .flex-child {
@@ -383,14 +399,30 @@ img, video, iframe {
   justify-content:center; /* Flexbox Centré */
   align-items:center;  /* Aligner verticalement au centre. Utile pour centrer textes trop courts */
 }
+
 .flexbetween {
   display:flex;
   justify-content:space-between;  /* Flexbox Ecarter au max */
 }
+.flexbetween-child {
+  border:1px solid grey;
+  padding:15px;
+  border-radius:12px;
+}
+
 .flexaround {
   display:flex;
   justify-content:space-around;  /* Flexbox Espaces tout autour */
 }
+.flexaround-child {
+  border:1px solid #CED4DA;
+  padding:15px;
+  margin:15px;
+  border-radius:12px;
+  background-color:#FFF;
+  flex: 1;
+}
+
 .flexwrap {
   flex-wrap:wrap;
 }
@@ -400,15 +432,12 @@ img, video, iframe {
   flex-wrap:nowrap;
 }
 
-
-
-
 .boxflex {
   display: flex;
   justify-content: space-between;
 }
 .boxelement {
-  width: 30%;
+  width: 33%;
   padding: 15px;
   text-align: center;
 }
@@ -432,7 +461,7 @@ button[type*="submit"] {
   margin:28px auto;
 }
 button[type*="submit"]:hover {
-	background-color:#df1515;
+	background-color:#3076eb;
 }
 
 /* ============ Pour écran largeur inférieur à 1024px ============ */
@@ -466,7 +495,7 @@ button[type*="submit"]:hover {
     text-align: left;
   }
 
-  .footer-flex {
+  .footer-flex, .flexaround, .flexbetween {
     flex-direction:column;
   }
 
