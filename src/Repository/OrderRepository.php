@@ -19,7 +19,19 @@ class OrderRepository extends ServiceEntityRepository
         parent::__construct($registry, Order::class);
     }
 
-    
+    public function searchOrder() 
+    {
 
+        $stmt = $this->createQueryBuilder('ord') 
+        ->innerJoin('ord.orderContents', 'ordC' )      
+        ->addSelect('ordC')
+        ->innerJoin('ord.orderStatus', 'ordS' )      
+        ->addSelect('ordS')
+        ->innerJoin('ord.paymentMethod', 'ordPM' )      
+        ->addSelect('ordPM');
+
+        return $stmt->getQuery()->getResult();    
+
+    }
 
 }

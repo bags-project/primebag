@@ -19,32 +19,16 @@ class OrderContentRepository extends ServiceEntityRepository
         parent::__construct($registry, OrderContent::class);
     }
 
-    // /**
-    //  * @return OrderContent[] Returns an array of OrderContent objects
-    //  */
-    /*
-    public function findByExampleField($value)
+    public function searchOrderContents() 
     {
-        return $this->createQueryBuilder('o')
-            ->andWhere('o.exampleField = :val')
-            ->setParameter('val', $value)
-            ->orderBy('o.id', 'ASC')
-            ->setMaxResults(10)
-            ->getQuery()
-            ->getResult()
-        ;
-    }
-    */
 
-    /*
-    public function findOneBySomeField($value): ?OrderContent
-    {
-        return $this->createQueryBuilder('o')
-            ->andWhere('o.exampleField = :val')
-            ->setParameter('val', $value)
-            ->getQuery()
-            ->getOneOrNullResult()
-        ;
+        $stmt = $this->createQueryBuilder('ordContents') 
+        ->innerJoin('ordContents.articleRef', 'ordR' )      
+        ->addSelect('ordR');
+
+        return $stmt->getQuery()->getResult();    
+
     }
-    */
+
+
 }
