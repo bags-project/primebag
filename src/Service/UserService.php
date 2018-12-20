@@ -66,4 +66,14 @@ class UserService
 
 
 
+
+
+
+
+
+
+    public function getOne($id) {
+        $repo = $this->om->getRepository(User::class); 
+        return $repo->find($id);
+    }
 }
