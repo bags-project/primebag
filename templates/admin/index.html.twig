@@ -4,7 +4,7 @@
 
 {% block body %}
     <h1 class="center progressive">Admin - Liste des articles</h1>
-    
+
     {# Pagination #}
     <div class="center margin">
         <div class="pagination">
@@ -78,7 +78,7 @@
                 {% else %}
                 <div class="admin-flex-child">null</div>
                 {% endif %}
-                
+
                 <div class="admin-flex-child"><a href="{{ path('admin')}}/{{ art.id }}/edit">🖍</a></div>
                 <div class="admin-flex-child"><a href="{{ path('admin')}}/{{ art.id }}/del" onclick="if(window.confirm('Voulez-vous vraiment supprimer ?')) {return true;} else {return false;}">X</a></div>
             </div>
@@ -91,6 +91,7 @@
         <div class="pagination">
             <a class="{% if page == 1 %}disabled{% endif %}" href="{{ path('admin_article', {'page': page - 1}) }}"> « </a>
 
+            {# Boucle de 1 au nombre de pages #}
             {% for i in 1..pages %}
             <a class="page-item {% if page == i %}active{% endif %}" href="{{ path('admin_article', {'page': i}) }}">{{ i }}</a>
 
