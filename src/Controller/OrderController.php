@@ -112,6 +112,7 @@ class OrderController extends AbstractController
         $today = new \DateTime();  // obligé de passer par un new Datetime car setCreatedAt attend un objet de type Date
         // Pour le setOrderNumber
         $currentUser = $this->getUser();
+        dump($currentUser);
         $curentUserId = $currentUser->getId();
         $orderNumber = date('Y-m-d') .'-'. $curentUserId;
         //pour le setPaymentDate
@@ -165,7 +166,7 @@ class OrderController extends AbstractController
         
         ///////////////////////////////////////////////
         //Envoie des mails vers User & Seller
-        $oderService->sendMails();
+        $orderService->sendMails($orderNumber, $currentUser);
 
 
         ///////////////////////////////////////////////
