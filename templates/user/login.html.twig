@@ -6,19 +6,40 @@
 
 <div class="limit">
 
-    <h1 class="center">Se connecter</h1>
+    <h1 id="log-title" class="center">Se connecter</h1>
 
     <div class="center">
 
-        <form method ="post">
-            Adresse mail : <input type="text" class="margin15" placehoder="Votre adresse mail" name="_username" value=""> <br/>
-            Mot de passe : <input type="password" class="margin15" placehoder="Votre mot de passe" name="_password" value="">
-            <br/>
+        <form method="post">
+            Adresse mail : <input type="text" class="margin15" placehoder="Votre adresse mail" name="_username" value="">
+            <br />
+            Mot de passe : <input type="password" class="margin15" placehoder="Votre mot de passe" name="_password"  value="">
+            <br />
             <div class="margin15">
-                <button type="submit">Connexion</button>
+                <button class="btn btn-primary btn-sm" type="submit">Connexion</button>
             </div>
         </form>
     </div>
+
+    <div class="user-login-info">
+        
+        <div class="log1">
+            <p>Vous n'avez pas encore de compte ?<p>
+            <a href="{{path('user_register')}}"> L'inscription, c'est par ici !</a>
+        </div>
+
+        <div class="log2">
+            <p>Vous avez oublié votre mot de passe ?</p>
+            <p><a href="{{path('app_forgotten_password')}}">Oublie de mot de passe?</a>
+        </div>
+
+        <div class="log3">
+            <p>Vous avez un souci de connection ?</p>
+            <p>Contactez nous par téléphone aux horaires indiqués en bas de cette page.</p>
+        </div>
+
+    </div>
+
 </div>
 
 

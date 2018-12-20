@@ -15,6 +15,16 @@ class ArticleService {
         $this->om = $om;
     }
 
+    public function showCase(){
+        $repo = $this->om->getRepository(Article::class);
+        return $repo->showCase();
+    }
+
+    public function getOne($id) {
+        $repo = $this->om->getRepository(Article::class); 
+        return $repo->find($id);
+    }
+
     public function search($price, $page) {
         $repo = $this->om->getRepository(Article::class); 
         return $repo->search($price, $page);
@@ -25,20 +35,12 @@ class ArticleService {
         return $repo->searchAll();
     }
 
-    public function getOne($id) {
-        $repo = $this->om->getRepository(Article::class); 
-        return $repo->find($id);
-    }
-
     public function getAll(){
         $repo = $this->om->getRepository(Article::class);
         return $repo->findAll();
     }
 
-    public function showCase(){
-        $repo = $this->om->getRepository(Article::class);
-        return $repo->showCase();
-    }
+
 
 
 

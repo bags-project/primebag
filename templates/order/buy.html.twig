@@ -3,9 +3,9 @@
 {% block title %}Se connecter - {{parent()}}{% endblock %}
 
 {% block body %}
-
+<div class="buy-title">
 <h3>Vérification et validation de la commande</h3>
-
+</div>
 {# A voir si c'est secured ou si je dois envoyer les infos via le controlleur : #}
   {% set user = app.user %}
   
@@ -106,7 +106,6 @@
 </div>
 
 <p>Des questions à propos de votre commande ? <a href="#">Contactez-nous</a></p>
-
 
 {% endblock %}
 

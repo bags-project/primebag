@@ -7,79 +7,70 @@
 <main>
     <section id="home-one">
 
+        {# 4 GALLERIES #}
+
         <!-- Woman -->
         <article class="woman">
 
-            <div id="woman" class="home-categories">
-            </div>
-
+            <div id="woman" class="home-categories"></div>
             <div class="content-article">
                 <p>Gamme</p>
                 <h2>Femme</h2>
-                <a href="{{ path('woman_gallery')}}" class="btn btn-deep-purple btn-lg active btn-sm" role="button"
-                    aria-pressed="true">Découvrir</a>
+                <a href="{{ path('woman_gallery')}}" class="btn btn-deep-purple btn-lg active btn-sm" role="button"aria-pressed="true">Découvrir</a>
             </div>
 
             <div class="vitrine">
+                {# dans L'ensemble des articles récupérer ceux des femmes #}
                 {% for article in articles %}
-                {% if article.categories[0].name == 'Femme' %}
+                    {% if article.categories[0].name == 'Femme' %}
 
                 <div class="container-info-article">
-                    <a href="{{ path('article_display' , {'id': article.id}) }}"><img id="article-showcase" height="170" width="170" src="{{ asset('assets/img/poster/') }}{{ article.poster }}"
-                            alt="produit de chez {{article.brand.name}}"></a>
+                    <a href="{{ path('article_display' , {'id': article.id}) }}"><img id="article-showcase" height="170" width="170" src="{{ asset('assets/img/poster/') }}{{ article.poster }}"alt="produit de chez {{article.brand.name}}"></a>  
                     <div id="{{ article.tag.icon }}" class="info-showcase">
                         
+                        {# Si l'article possède un tag, l'afficher #}
                         {% if article.tag.name is defined %}
-                        {{article.tag.name}}
+                            {{article.tag.name}}
                         {% endif %}
 
                     </div>
                 </div>
 
-                {% endif %}
+                    {% endif %}
                 {% endfor %}
             </div>
         </article>
 
-
-
         <!-- Man -->
         <article class="man">
 
-            <div id="man" class="home-categories">
-            </div>
+            <div id="man" class="home-categories"></div>
             <div class="content-article">
                 <p>Gamme</p>
                 <h2>Homme</h2>
                 <a href="{{ path('man_gallery')}}" class="btn btn-elegant btn-lg active btn-sm">Découvrir</a></li>
             </div>
             <div class="vitrine">
-
                 {% for article in articles %}
+                    {% if article.categories[0].name == 'Homme' %}
 
-                {% if article.categories[0].name == 'Homme' %}
-
-                <div class="container-info-article">
-                    <a href="{{ path('article_display' , {'id': article.id}) }}"><img id="article-showcase" height="170" width="170" src="{{ asset('assets/img/poster/') }}{{ article.poster }}"
-                            alt="produit de chez {{article.brand.name}}"></a>
-
-                    <div id="{{ article.tag.icon }}" class="info-showcase">
-                        {% if article.tag.name is defined %}
-                        {{article.tag.name}}
-                        {% endif %}
+                    <div class="container-info-article">
+                        <a href="{{ path('article_display' , {'id': article.id}) }}"><img id="article-showcase" height="170" width="170" src="{{ asset('assets/img/poster/') }}{{ article.poster }}"alt="produit de chez {{article.brand.name}}"></a>              
+                        <div id="{{ article.tag.icon }}" class="info-showcase">
+                            {% if article.tag.name is defined %}
+                                {{article.tag.name}}
+                            {% endif %}
+                        </div>
                     </div>
-                </div>
 
-
-                {% endif %}
+                    {% endif %}
                 {% endfor %}
-
             </div>
+
         </article>
 
         <!-- Kids -->
         <article class="kid">
-
             <div id="kid" class="home-categories"></div>
             <div class="content-article">
                 <p>Gamme</p>
@@ -88,31 +79,24 @@
             </div>
             <div class="vitrine">
                 {% for article in articles %}
+                    {% if article.categories[0].name == 'Scolaire' %}
 
-                {% if article.categories[0].name == 'Scolaire' %}
-
-                <div class="container-info-article">
-                    <a href="{{ path('article_display' , {'id': article.id}) }}"><img id="article-showcase" height="170" width="170" src="{{ asset('assets/img/poster/') }}{{ article.poster }}"
-                            alt="produit de chez {{article.brand.name}}"></a>
-
-                    <div id="{{ article.tag.icon }}" class="info-showcase">
-                        {% if article.tag.name is defined %}
-                        {{article.tag.name}}
-                        {% endif %}
+                    <div class="container-info-article">
+                        <a href="{{ path('article_display' , {'id': article.id}) }}"><img id="article-showcase" height="170" width="170" src="{{ asset('assets/img/poster/') }}{{ article.poster }}"alt="produit de chez {{article.brand.name}}"></a>
+                        <div id="{{ article.tag.icon }}" class="info-showcase">
+                            {% if article.tag.name is defined %}
+                                {{article.tag.name}}
+                            {% endif %}
                     </div>
                 </div>
 
-                {% endif %}
-
+                    {% endif %}
                 {% endfor %}
-
             </div>
-
         </article>
 
         <!-- bagages -->
         <article class="bagages">
-
             <div id="bagages" class="home-categories"></div>
             <div class="content-article">
                 <p>Gamme</p>
@@ -122,32 +106,23 @@
 
             <div class="vitrine">
                 {% for article in articles %}
-
-                {% if article.categories[0].name == 'Bagage' %}
+                    {% if article.categories[0].name == 'Bagage' %}
 
                 <div class="container-info-article">
-
-                    <a href="{{ path('article_display' , {'id': article.id}) }}"><img id="article-showcase" height="170" width="170" src="{{ asset('assets/img/poster/') }}{{ article.poster }}"
-                            alt="produit de chez {{article.brand.name}}"></a>
-
+                    <a href="{{ path('article_display' , {'id': article.id}) }}"><img id="article-showcase" height="170" width="170" src="{{ asset('assets/img/poster/') }}{{ article.poster }}"alt="produit de chez {{article.brand.name}}"></a>
                     <div id="{{ article.tag.icon }}" class="info-showcase">
                         {% if article.tag.name is defined %}
-                        {{article.tag.name}}
+                            {{article.tag.name}}
                         {% endif %}
                     </div>
-
                 </div>
 
-                {% endif %}
-
+                    {% endif %}
                 {% endfor %}
 
             </div>
-
         </article>
-
     </section>
-
 </main>
 
 {% endblock %}

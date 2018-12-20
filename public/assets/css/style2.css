@@ -426,15 +426,28 @@ article {
 
 .details-quantity{
     color:white ;
-    border: 1px solid black;
+    border: 1px solid rgb(63, 114, 155);
     padding: 5px 9px 5px 9px;
-    background-color: black;
+    background-color: rgb(63, 114, 155);
     border-radius: 50%;
 }
 
 #quantity-choice-btn{
     background-color: black;
     color: white;
+    font-size:0.8rem;
+    border:1px solid black;
+    border-radius:0.4rem;
+}
+
+#quantity-choice-btn:hover {
+    background-color: grey;
+        border:1px solid grey;
+}
+
+.details-customers-info{
+    padding-top: 2rem;
+    font-size: 0.8rem;
 }
 
 
@@ -667,6 +680,18 @@ article {
     margin-top: 0.5rem;
 }
 
+#count-creat{
+    color:green;
+    font-weight: 600;
+}
+
+#forgot-pass{
+    color:red;
+    font-weight: 600;
+}
+
+
+
 .count-title {
     display: flex;
     justify-content: center;
@@ -693,7 +718,26 @@ article {
 }
 
 
+.user-login-info{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-top: 3rem;
+}
 
+.user-login-info p{
+    margin: 0;
+    font-size: 0.8rem;
+}
+
+.log1,.log2,.log3{
+    margin-top: 1.5rem;
+
+}
+
+#log-title{
+    margin-top: 5rem;
+}
 
 /*//////////////////////////////////////////////////*/
 /*                     PANIER                       */
@@ -792,11 +836,39 @@ article {
 
 
 #view-cart-container h2{
-    margin-left: 5rem;
     margin-top: 1rem;
 }
 
+/*--------- Cart----- show */
 
+.cart-show-title{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#view-cart-container h2{
+    margin-top: 1.5rem;
+    padding: 0;
+}
+
+.cart-show-title p{
+    margin-top: 1.5rem;
+    padding-left: 2rem;
+}
+
+.customers-info-count{
+    font-size: 0.8rem;
+}
+
+.cart-order-info{
+    font-size: 1.5rem;
+}
+
+.order-view-cart a{
+    font-size: 1.8rem;
+    text-decoration: none;
+}
 
 /* /////////////////// */
 
@@ -982,7 +1054,7 @@ article {
 }
 
 
-/*//////////////////////////////////////////////////*/
+
 
 
 /*//////////////////////////////////////////////////*/
@@ -1010,6 +1082,14 @@ article {
     padding: 5px;
 }
 
+.buy-title{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+}
 
 
 

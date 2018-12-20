@@ -58,118 +58,116 @@
             <div id="gallery-display" class="row">
 
                 {% for article in articles %}
-                {% if cat is null %}
-                {% if article.stock != 0 %}
-                {% if article.categories[0].name == 'Scolaire' %}
+                    {% if cat is null %}
+                        {% if article.stock != 0 %}
+                            {% if article.categories[0].name == 'Scolaire' %}
 
-                <div class="gallery-card" style="width: 18rem;">
+                                <div class="gallery-card" style="width: 18rem;">
 
-                    <div>
-                        <img class="card-img-top" src="{{ asset('assets/img/poster/') }}{{ article.poster }}" alt="produit de chez {{article.brand.name}}">
-                    </div>
+                                    <div>
+                                        <img class="card-img-top" src="{{ asset('assets/img/poster/') }}{{ article.poster }}" alt="une photo d'un produit {{article.brand.name}}">
+                                    </div>
 
-                    <div class="card-body">
+                                    <div class="card-body">
 
-                        <div>
-                            <h5 class="card-title">{{article.name}}</h5>
-                            <h4 class="card-brand">{{article.brand.name}}</h4>
-                        </div>
-                        <div>
-                            <p class="card-color">Couleur :{{article.articleColor.name}}</p>
-                            <p> Stock : {{article.stock}}</p>
-                        </div>
-                        <hr>
-                        <div class="card-price">
-                            <h2>{{article.price}}</h2>
-                            <i class="fas fa-euro-sign"></i>
-                        </div>
-                        <div class="card-buttons">
-                            <a href="{{ path('article_display' , {'id': article.id}) }}" class="btn btn-primary btn-lg active btn-sm"
-                                role="button" aria-pressed="true">Détails</a>
-                        </div>
+                                        <div>
+                                            <h5 class="card-title">{{article.name}}</h5>
+                                            <h4 class="card-brand">{{article.brand.name}}</h4>
+                                        </div>
+                                        <div>
+                                            <p class="card-color">Couleur :{{article.articleColor.name}}</p>
+                                            <p> Stock : {{article.stock}}</p>
+                                        </div>
+                                        <hr>
+                                        <div class="card-price">
+                                            <h2>{{article.price}}</h2>
+                                            <i class="fas fa-euro-sign"></i>
+                                        </div>
+                                        <div class="card-buttons">
+                                            <a href="{{ path('article_display' , {'id': article.id}) }}" class="btn btn-primary btn-lg active btn-sm"
+                                                role="button" aria-pressed="true">Détails</a>
+                                        </div>
 
-                    </div>
+                                    </div>
 
-                </div>
+                                </div>
 
-                {% endif %}
-                {% endif %}
-                {% endif %}
+                            {% endif %}
+                        {% endif %}
+                    {% endif %}
 
-                {% if cat is not null %}
-                {% if article.stock != 0 %}
-                {% if article.categories[0].name == 'Scolaire' and article.brand.name == cat %}
-                
-                <div class="gallery-card" style="width: 18rem;">
+                    {% if cat is not null %}
+                        {% if article.stock != 0 %}
+                            {% if article.categories[0].name == 'Scolaire' and article.brand.name == cat %}
 
-                    <div>
-                        <img class="card-img-top" src="{{ asset('assets/img/poster/') }}{{ article.poster }}" alt="Card image cap">
-                    </div>
+                                <div class="gallery-card" style="width: 18rem;">
 
-                    <div class="card-body">
+                                    <div>
+                                        <img class="card-img-top" src="{{ asset('assets/img/poster/') }}{{ article.poster }}" alt="une photo d'un produit {{article.brand.name}}">
+                                    </div>
 
-                        <div>
-                            <h5 class="card-title">{{article.name}}</h5>
-                            <h4 class="card-brand">{{article.brand.name}}</h4>
-                        </div>
-                        <div>
-                            <p class="card-color">Couleur :{{article.articleColor.name}}</p>
-                            <p> Stock : {{article.stock}}</p>
-                        </div>
-                        <hr>
-                        <div class="card-price">
-                            <h2>{{article.price}}</h2>
-                            <i class="fas fa-euro-sign"></i>
-                        </div>
-                        <div class="card-buttons">
-                            <a href="{{ path('article_display' , {'id': article.id}) }}" class="btn btn-primary btn-lg active btn-sm"
-                                role="button" aria-pressed="true">Détails</a>
+                                    <div class="card-body">
 
-                        </div>
-                    </div>
-                </div>
+                                        <div>
+                                            <h5 class="card-title">{{article.name}}</h5>
+                                            <h4 class="card-brand">{{article.brand.name}}</h4>
+                                        </div>
+                                        <div>
+                                            <p class="card-color">Couleur :{{article.articleColor.name}}</p>
+                                            <p> Stock : {{article.stock}}</p>
+                                        </div>
+                                        <hr>
+                                        <div class="card-price">
+                                            <h2>{{article.price}}</h2>
+                                            <i class="fas fa-euro-sign"></i>
+                                        </div>
+                                        <div class="card-buttons">
+                                            <a href="{{ path('article_display' , {'id': article.id}) }}" class="btn btn-primary btn-lg active btn-sm"
+                                                role="button" aria-pressed="true">Détails</a>
+                                        </div>
+                                    </div>
+                                </div>
 
-                {% endif %}
-                {% endif %}
-                {% endif %}
+                            {% endif %}
+                        {% endif %}
+                    {% endif %}
 
-                {% if cat is not null %}
-                {% if article.stock != 0 %}
-                {% if article.categories[0].name == 'Scolaire' and article.articleColor.name == cat %}
-                
-                <div class="gallery-card" style="width: 18rem;">
+                    {% if cat is not null %}
+                        {% if article.stock != 0 %}
+                            {% if article.categories[0].name == 'Scolaire' and article.articleColor.name == cat %}
 
-                    <div>
-                        <img class="card-img-top" src="{{ asset('assets/img/poster/') }}{{ article.poster }}" alt="Card image cap">
-                    </div>
+                                <div class="gallery-card" style="width: 18rem;">
 
-                    <div class="card-body">
+                                    <div>
+                                        <img class="card-img-top" src="{{ asset('assets/img/poster/') }}{{ article.poster }}" alt=" une photo d'un produit {{article.brand.name}}">
+                                    </div>
 
-                        <div>
-                            <h5 class="card-title">{{article.name}}</h5>
-                            <h4 class="card-brand">{{article.brand.name}}</h4>
-                        </div>
-                        <div>
-                            <p class="card-color">Couleur :{{article.articleColor.name}}</p>
-                            <p> Stock : {{article.stock}}</p>
-                        </div>
-                        <hr>
-                        <div class="card-price">
-                            <h2>{{article.price}}</h2>
-                            <i class="fas fa-euro-sign"></i>
-                        </div>
-                        <div class="card-buttons">
-                            <a href="{{ path('article_display' , {'id': article.id}) }}" class="btn btn-primary btn-lg active btn-sm"
-                                role="button" aria-pressed="true">Détails</a>
+                                    <div class="card-body">
 
-                        </div>
-                    </div>
-                </div>
+                                        <div>
+                                            <h5 class="card-title">{{article.name}}</h5>
+                                            <h4 class="card-brand">{{article.brand.name}}</h4>
+                                        </div>
+                                        <div>
+                                            <p class="card-color">Couleur :{{article.articleColor.name}}</p>
+                                            <p> Stock : {{article.stock}}</p>
+                                        </div>
+                                        <hr>
+                                        <div class="card-price">
+                                            <h2>{{article.price}}</h2>
+                                            <i class="fas fa-euro-sign"></i>
+                                        </div>
+                                        <div class="card-buttons">
+                                            <a href="{{ path('article_display' , {'id': article.id}) }}" class="btn btn-primary btn-lg active btn-sm"
+                                                role="button" aria-pressed="true">Détails</a>
 
-                {% endif %}
-                {% endif %}
-                {% endif %}
+                                        </div>
+                                    </div>
+                                </div>
 
+                            {% endif %}
+                        {% endif %}
+                    {% endif %}
                 {% endfor %}
             </div>
 </main>

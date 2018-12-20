@@ -43,7 +43,7 @@ class UserController extends AbstractController
 
             $this->addFlash(
                 'danger',
-                'Attention , il semble y avoir un souçi d\'authentification. Merci de vous logger avec vos bons identifiants'
+                'Attention , il semble y avoir un souci d\'authentification. Merci de vous connecter avec vos bons identifiants'
             );
 
         // Si l'autentification réussi l'utilisateur est connecté et rediriger automatiquement vers la page d'accueil 

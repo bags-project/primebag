@@ -21,7 +21,6 @@
     <link href="https://fonts.googleapis.com/css?family=Playfair+Display+SC" rel="stylesheet">
 
     {% endblock %}
-
     <meta property="og:title" content="Primebag - Sac à main, Bagage, Cartable, Besace aux meilleurs prix">
     <meta property="og:description" content="Les plus grandes marques de sacs (Desigual, Lancaster, Lacoste, Fossile, Eastpak...) sont sur Primebag.com">
     <meta property="og:type" content="website">
@@ -77,11 +76,11 @@
                     <a class="nav-link" href="{{ path('bagage_gallery')}}">Bagage</a>
                 </li>
 
-
                 <li class="nav-item">
 
                     <div class="caddy-contents">
                         <a href="{{ path('cart_view')}}">
+                            {# LOGO ARTICLE #}
                             {# <a id="cartImg" href="{{ path('cart_view')}}"><img src="{{ asset('assets/img/cart.png') }}"
                                     alt="Votre panier" /> #}
                                 <div><img height="40" width="40" src="{{asset('assets/img/logo/shopping-cart.png')}}"
@@ -97,22 +96,20 @@
                             </a>
                     </div>
                 </li>
-
+                
+                {# Vers le compte #}
                 {% if is_granted ('ROLE_USER') %}
 
                 <li id="button-nav" class="nav-item">
-                    <a class="btn btn-light-blue btn-sm" href="{{path('user_profile')}}">Votre
-                        Compte</a>
+                    <a class="btn btn-light-blue btn-sm" href="{{path('user_profile')}}">Votre Compte</a>
                 </li>
                 {% else %}
 
+                 {# Vers le log #}
                 <div id="account-log" class="dropdown">
-
                     <a class="btn btn-light-blue dropdown-toggle btn-sm" href="#" role="button" id="dropdownMenuLink"
-                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        Connexion
-                    </a>
-
+                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> Connexion </a>    
+                    
                     <div class="dropdown-menu">
                         <form action="{{path('user_login')}}" method="post" class="px-2 py-3">
                             <div class="form-group">
@@ -122,42 +119,36 @@
                             </div>
                             <div class="form-group">
                                 <label for="exampleDropdownFormPassword1">Mot de passe</label>
-                                <input type="password" class="form-control" id="exampleDropdownFormPassword1"
-                                    placeholder="Password" name="_password">
+                                <input type="password" class="form-control" id="exampleDropdownFormPassword1"placeholder="Password" name="_password">
                             </div>
-                            <div class="form-check">
-                                <input type="checkbox" class="form-check-input" id="dropdownCheck">
-                                <label class="form-check-label" for="dropdownCheck">
-                                    Se souvenir de moi
-                                </label>
-                            </div>
-                            <button type="submit" class="btn btn-primary">Se connecter</button>
+                            <button type="submit" class="btn btn-primary btn-sm">Se connecter</button>
                         </form>
+
                         <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="{{path('user_register')}}">Vous n'avez pas de compte? Inscrivez
-                            vous !</a>
-                        <a class="dropdown-item" href="{{path('app_forgotten_password')}}">Oublie de mot de passe?</a>
+                        <a id ="count-creat" class="dropdown-item" href="{{path('user_register')}}">Vous n'avez pas de compte? Inscrivez vous !</a>
+                        <a id ="forgot-pass" class="dropdown-item" href="{{path('app_forgotten_password')}}">Mot de passe oublié?</a>
                     </div>
+
                 </div>
                 {% endif %}
 
+                {# Vers la deconnexion #}
                 {% if is_granted ('ROLE_USER') %}
-                <li id="button-nav" class="nav-item">
-                    <a class="btn btn-amber btn-sm" href="{{path('logout')}}">Déconnexion</a>
-                </li>
+                    <li id="button-nav" class="nav-item">
+                        <a class="btn btn-amber btn-sm" href="{{path('logout')}}">Déconnexion</a>
+                    </li>
                 {% else %}
                 {% endif %}
 
+                {# Affichage du nom du User #}
                 {% if is_granted ('ROLE_USER') %}
                 <li id="user-name" class="nav-item">
                     Bonjour {{ app.user.firstName }} !
                 </li>
                 {% endif %}
-
             </ul>
         </div>
     </nav>
-
 
     {# MESSAGE FLAH - LOG SUCCESS #}
     {% for message in app.flashes('notice') %}
@@ -215,7 +206,6 @@
   js.src = 'https://connect.facebook.net/fr_FR/sdk.js#xfbml=1&version=v3.2';
   fjs.parentNode.insertBefore(js, fjs);
 }(document, 'script', 'facebook-jssdk'));</script>
-
 
 <!-- Footer -->
 <footer class="footer-flex">

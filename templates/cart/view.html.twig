@@ -6,7 +6,9 @@
 
 <div id="view-cart-container">
 
-<h2>Panier</h2>
+    <div class="cart-show-title">
+        <h2>Panier</h2>
+    </div>
 
     {% set cart = app.session.get('cart') %}
     {% set nbArticles = cart.name|length %}
@@ -15,10 +17,10 @@
     <div class="container">
         <div class="row">
             <div class="col-md-6">
-                {{nbArticles}} articles. Total : {{totalCart}} €
+                <strong class="cart-order-info">{{nbArticles}} articles. Total : {{totalCart}} €</strong>
             </div>
             <div class="col-md-4">
-            
+
                 <a href="{{ path('order_valid') }}">
                     <button type="submit" class="btn-block btn-primary">Passer la commande</button>
                 </a>
@@ -27,7 +29,7 @@
                 <a href="{{ path('cart_reset') }}" onclick="return confirm('Etes vous sur de vouloir vider votre panier ?')">
                     <button type="submit" class="btn-block btn-warning">Vider le panier</button>
                 </a>
-            </div>            
+            </div>
         </div>
     </div>
     <hr />
@@ -40,13 +42,13 @@
             <div class="col-md-2 d-none d-md-block titleListInCart">
                 Référence
             </div>
-            <div class="col-md-1 d-none d-md-block titleListInCart">                
+            <div class="col-md-1 d-none d-md-block titleListInCart">
                 Prix
             </div>
-            <div class="col-md-2 d-none d-md-block titleListInCart">                
+            <div class="col-md-2 d-none d-md-block titleListInCart">
                 Quantité
-            </div>            
-            <div class="col-1 d-none d-md-block titleListInCart">             
+            </div>
+            <div class="col-1 d-none d-md-block titleListInCart">
                 Supprimer
             </div>
         </div>
@@ -55,38 +57,40 @@
     {# //////////////////////////// Contenu liste //////////////////////////// #}
     <div class="container">
         {% for key in cart.name|keys %}
-            <div class="row">
-                <div class="col-md-1 col-sm-12 cartDetails">
-                    <img id="cartPosters" src="../assets/img/poster/{{attribute(cart.poster, key)}}" alt="Votre article">
-                </div>            
-                <div class="col-md-5 col-sm-12 cartDetails">
-                    {{ attribute(cart.name, key) }}
-                </div>
-                <div class="col-md-2 col-sm-12 cartDetails">
-                    {{ attribute(cart.ref, key) }} 
-                </div>
-                <div class="col-md-1 col-sm-12 cartDetails">                
-                    {{ attribute(cart.price, key) }} €
-                </div>
-                <div class="col-md-2 col-sm-12 cartDetails">                
-                    x {{ attribute(cart.quantity, key) }}
-                </div>                
-                {% set id = attribute(cart.id, key)  %}
-                <div class="col-md-1  col-sm-12 cartDetails">             
-                    <a href="{{ path('cart_remove', {'id': id}) }}" onclick="return confirm('Etes vous sur de vouloir supprimer cet article de votre panier ?')">
-                         {# <button id="btnRemFromCart" type="button" class="btn btn-light" value="{{ attribute(cart.id, key) }}">X</button>  #}
-                         <img id="btnRemFromCart" src="{{ asset('assets/img/logo/denied.png') }}" alt="logo enlever le produit">
-                    </a>
-                </div>
+        <div class="row">
+            <div class="col-md-1 col-sm-12 cartDetails">
+                <img id="cartPosters" src="../assets/img/poster/{{attribute(cart.poster, key)}}" alt="Votre article">
             </div>
-            <hr />
+            <div class="col-md-5 col-sm-12 cartDetails">
+                {{ attribute(cart.name, key) }}
+            </div>
+            <div class="col-md-2 col-sm-12 cartDetails">
+                {{ attribute(cart.ref, key) }}
+            </div>
+            <div class="col-md-1 col-sm-12 cartDetails">
+                {{ attribute(cart.price, key) }} €
+            </div>
+            <div class="col-md-2 col-sm-12 cartDetails">
+                x {{ attribute(cart.quantity, key) }}
+            </div>
+            {% set id = attribute(cart.id, key) %}
+            <div class="col-md-1  col-sm-12 cartDetails">
+                <a href="{{ path('cart_remove', {'id': id}) }}" onclick="return confirm('Etes vous sur de vouloir supprimer cet article de votre panier ?')">
+                    {# <button id="btnRemFromCart" type="button" class="btn btn-light" value="{{ attribute(cart.id, key) }}">X</button>
+                    #}
+                    <img id="btnRemFromCart" src="{{ asset('assets/img/logo/denied.png') }}" alt="logo enlever le produit">
+                </a>
+            </div>
+        </div>
+        <hr />
         {% else %}
-            <p>Votre panier est vide.</p>
-        {% endfor %}           
+        <p>Votre panier est vide.</p>
+        {% endfor %}
+        <a class="order-view-cart" href="{{path('home')}}">Continuer mes achats</a>
     </div>
     {# ////////////////////////////////////////////////////////////////////////// #}
 
-    
+
 
     {# //////////////////// Modal de confirmation //////////////////////// #}
     {# <div id="confirmModal" class="modal" tabindex="-1" role="dialog">
@@ -103,7 +107,7 @@
                 </div>
                 <div class="modal-footer"> #}
                     {# -------------------- récup du href en JS #}
-    {#                 <a id="linkCartRemove" href="">{#{{ path('cart_remove', {'id': id}) }}"> #}
+                    {# <a id="linkCartRemove" href="">{#{{ path('cart_remove', {'id': id}) }}"> #}
                         {# <button type="button" class="btn btn-danger" data-dismiss="modal">Supprimer</button>
                     </a>
                     <button type="button" class="btn btn-primary">Annuler</button>

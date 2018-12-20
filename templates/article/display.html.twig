@@ -15,6 +15,7 @@
 
             {# Présentation produit #}
             <div class="details-info">
+             <p class="customers-info-count">Avez-vous un compte pour passer une commande ? <a href="{{path('user_register')}}"> L'inscription, c'est par ici !</a></p>
                <h2>{{article.brand.name}}</h2>
                <strong>
                   <h1>{{article.name}}</h1>
@@ -25,29 +26,29 @@
                </div>
                <hr>
                <h3>{{article.price}} <i class="fas fa-euro-sign"></i> <span class="details-reference">TTC. Hors frais
-                     de livraison</span></h3>
+                     de livraison éventuels</span></h3>
             </div>
 
-            {# Detail panier #}
             <hr>
-
+            {# Detail inclusion panier #}
             <div class="details-shopping-cart">
                {% if quantity == 0 %}
-               <form method="GET" action="#">
-                  Quantité à mettre dans le pannier : <input type="number" name="quantity" value="1" min="0" max="{{article.stock}}">
-                  <button id="quantity-choice-btn" type="submit"> Choisir </button>
-               </form>
+                  <form method="GET" action="#">
+                     Quantité à mettre dans le pannier : <input type="number" name="quantity" value="1" min="0" max="{{article.stock}}">
+                     <button id="quantity-choice-btn" type="submit"> Choisir </button>
+                  </form>
                {% endif %}
+              
                {% if quantity > 0 %}
-               <strong> Quantité choisie : <span class="details-quantity"> {{quantity}} </span> </strong>
-               <a href="{{ path('cart_add', {'id': article.id, 
-                                             'name': article.name, 
-                                             'ref': article.reference, 
-                                             'price': article.price,
-                                             'poster': article.poster,
-                                             'quantity': quantity}) }}">
-                  <button id="cartQuantity" type="submit" class="btn btn-outline-dark waves-effect">Ajouter au panier</button>
-               </a>
+                  <strong> Quantité choisie : <span class="details-quantity"> {{quantity}} </span> </strong>
+                     <a href="{{ path('cart_add', {'id': article.id, 
+                                                   'name': article.name, 
+                                                   'ref': article.reference, 
+                                                   'price': article.price,
+                                                   'poster': article.poster,
+                                                   'quantity': quantity}) }}">
+                        <button id="cartQuantity" type="submit" class="btn btn-outline-dark waves-effect">Ajouter au panier</button>
+                     </a>
                {% endif %}
             </div>
 
@@ -64,102 +65,99 @@
                   <a class="list-group-item list-group-item-action" id="list-profile-list" data-toggle="list" href="#list-profile"
                      role="tab" aria-controls="profile">Zooms détails photos</a>
                   {% endif %}
-               </div>
+                  </div>
 
-               <div class="tab-content" id="nav-tabContent">
+                  <div class="tab-content" id="nav-tabContent">
 
                   <div class="tab-pane fade show active" id="list-home" role="tabpanel" aria-labelledby="list-home-list">
                      {{article.description|trim|nl2br }}
                   </div>
-                  
-
+               
                   {% if article.altPicture1 != null %}
                   {# ZOOM MODAL photos miniatures #}
-                  <div class="tab-pane fade" id="list-profile" role="tabpanel" aria-labelledby="list-profile-list">
+                     <div class="tab-pane fade" id="list-profile" role="tabpanel" aria-labelledby="list-profile-list">
 
-                     <button id="zoom-laucher" type="button" class="" data-toggle="modal" data-target="#basicExampleModal">
-                        <img height="84" width="84" src="../../assets/img/poster/{{ article.altPicture1 }}" alt="produit de chez {{article.brand.name}}"></button>
-
-
-                     {# Modal 1 #}
-                     <div class="modal fade" id="basicExampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-                        aria-hidden="true">
-                        <div class="modal-dialog" role="document">
-                           <div class="modal-content">
-                              <div class="modal-header">
-                                 <h5 class="modal-title" id="exampleModalLabel">{{ article.name }} </h5>
-                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                    <span aria-hidden="true">&times;</span>
-                                 </button>
-                              </div>
-                              <div class="modal-body">
-                                 {# alt image dynamique avec le nom de marque #}
-                                 <img height="448" width="448" src="../../assets/img/poster/{{ article.altPicture1 }}"
-                                    alt="produit de chez {{article.brand.name}}">
+                        <button id="zoom-laucher" type="button" class="" data-toggle="modal" data-target="#basicExampleModal">
+                           <img height="84" width="84" src="../../assets/img/poster/{{ article.altPicture1 }}" alt="produit de chez {{article.brand.name}}"></button>
+   
+                        {# Modal 1 #}
+                        <div class="modal fade" id="basicExampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+                           aria-hidden="true">
+                           <div class="modal-dialog" role="document">
+                              <div class="modal-content">
+                                 <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLabel">{{ article.name }} </h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                       <span aria-hidden="true">&times;</span>
+                                    </button>
+                                 </div>
+                                 <div class="modal-body">
+                                    {# alt image dynamique avec le nom de marque #}
+                                    <img height="448" width="448" src="../../assets/img/poster/{{ article.altPicture1 }}"
+                                       alt="produit de chez {{article.brand.name}}">
+                                 </div>
                               </div>
                            </div>
                         </div>
-                     </div>
                      {% endif %}
 
 
                      {# Modal 2 #}
                      {% if article.altPicture2 != null %}
-
-                     <div class="tab-pane fade" id="list-profile" role="tabpanel" aria-labelledby="list-profile-list"></div>
-
-                     <button id="zoom-laucher" type="button" class="" data-toggle="modal" data-target="#basicExampleModal2">
-                        <img height="84" width="84" src="../../assets/img/poster/{{ article.altPicture2 }}" alt="produit de chez {{article.brand.name}}"></button>
-
-                     <div class="modal fade" id="basicExampleModal2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-                        aria-hidden="true">
-                        <div class="modal-dialog" role="document">
-                           <div class="modal-content">
-                              <div class="modal-header">
-                                 <h5 class="modal-title" id="exampleModalLabel">{{ article.name }} </h5>
-                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                    <span aria-hidden="true">&times;</span>
-                                 </button>
-                              </div>
-                              <div class="modal-body">
-                                 {# alt image dynamique avec le nom de marque #}
-                                 <img height="448" width="448" src="../../assets/img/poster/{{ article.altPicture2 }}"
-                                    alt="produit de chez {{article.brand.name}}">
+                        <div class="tab-pane fade" id="list-profile" role="tabpanel" aria-labelledby="list-profile-list"></div>
+   
+                        <button id="zoom-laucher" type="button" class="" data-toggle="modal" data-target="#basicExampleModal2">
+                           <img height="84" width="84" src="../../assets/img/poster/{{ article.altPicture2 }}" alt="produit de chez {{article.brand.name}}"></button>
+   
+                        <div class="modal fade" id="basicExampleModal2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+                           aria-hidden="true">
+                           <div class="modal-dialog" role="document">
+                              <div class="modal-content">
+                                 <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLabel">{{ article.name }} </h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                       <span aria-hidden="true">&times;</span>
+                                    </button>
+                                 </div>
+                                 <div class="modal-body">
+                                    {# alt image dynamique avec le nom de marque #}
+                                    <img height="448" width="448" src="../../assets/img/poster/{{ article.altPicture2 }}"
+                                       alt="produit de chez {{article.brand.name}}">
+                                 </div>
                               </div>
                            </div>
                         </div>
-                     </div>
                      {% endif %}
 
 
                      {# Modal 3 #}
                      {% if article.altPicture3 != null %}
 
-                     <div class="tab-pane fade" id="list-profile" role="tabpanel" aria-labelledby="list-profile-list"></div>
-
-                     <button id="zoom-laucher" type="button" class="" data-toggle="modal" data-target="#basicExampleModal3">
-                        <img height="84" width="84" src="../../assets/img/poster/{{ article.altPicture3 }}" alt="produit de chez {{article.brand.name}}"></button>
-
-                     <div class="modal fade" id="basicExampleModal3" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-                        aria-hidden="true">
-                        <div class="modal-dialog" role="document">
-                           <div class="modal-content">
-                              <div class="modal-header">
-                                 <h5 class="modal-title" id="exampleModalLabel">{{ article.name }} </h5>
-                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                    <span aria-hidden="true">&times;</span>
-                                 </button>
-                              </div>
-                              <div class="modal-body">
-                                 <img height="448" width="448" src="../../assets/img/poster/{{ article.altPicture3 }}"
-                                    alt="">
+                        <div class="tab-pane fade" id="list-profile" role="tabpanel" aria-labelledby="list-profile-list"></div>
+   
+                        <button id="zoom-laucher" type="button" class="" data-toggle="modal" data-target="#basicExampleModal3">
+                           <img height="84" width="84" src="../../assets/img/poster/{{ article.altPicture3 }}" alt="produit de chez {{article.brand.name}}"></button>
+   
+                        <div class="modal fade" id="basicExampleModal3" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+                           aria-hidden="true">
+                           <div class="modal-dialog" role="document">
+                              <div class="modal-content">
+                                 <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLabel">{{ article.name }} </h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                       <span aria-hidden="true">&times;</span>
+                                    </button>
+                                 </div>
+                                 <div class="modal-body">
+                                    <img height="448" width="448" src="../../assets/img/poster/{{ article.altPicture3 }}"
+                                       alt="">
+                                 </div>
                               </div>
                            </div>
                         </div>
-                     </div>
-                     {% endif %}
-
+                   {% endif %}
                </div>
+               <p class="details-customers-info"><strong> Une question? </strong>:<a href="{{ path('faq') }}" target = "_blank">Consultez notre FAQ </a> | <a href="{{ path('contact') }}" target = "_blank"> Contactez-nous par mail</a> | ou par téléphone aux horaires indiqués au bas de cette page.</p>
             </div>
          </div>
       </div>

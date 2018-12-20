@@ -39,7 +39,6 @@ class ArticleController extends AbstractController
             ]);
     }
 
-    
     /**
      * @Route("/article/{id}", name="article_display", requirements={"id"="\d+"})
      */
@@ -49,16 +48,13 @@ class ArticleController extends AbstractController
            $colorName = $article->getArticleColor()->getName();
            $queryQuantity = $request->query->get('quantity');
 
-        //    $categoryName = $article->getcategories()[0]->getName();
-
            return $this->render('article/display.html.twig', [
            'article' => $articleService->getOne($id),
            'brandName' => $brandName,
            'quantity' => $queryQuantity
-        //    'categoryName' => $categoryName
+        //    
            ]);
     }
-
 
     /**
      * @Route("/article/gallerie/femme", name="woman_gallery")
@@ -83,7 +79,6 @@ class ArticleController extends AbstractController
         ]);
     }
 
-
     /**
      * @Route("/article/gallerie/homme", name="man_gallery")
      */
@@ -105,7 +100,6 @@ class ArticleController extends AbstractController
             'page' => $page
             ]);
         }
-
 
     /**
      * @Route("/article/gallerie/scolaire", name="kid_gallery")
@@ -129,7 +123,6 @@ class ArticleController extends AbstractController
             'page' => $page
            ]);
     }
-
 
     /**
      * @Route("/article/gallerie/bagage", name="bagage_gallery")
