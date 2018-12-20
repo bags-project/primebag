@@ -94,7 +94,7 @@ class OrderService
         ' <body>' .
         ' <h1>Nouvelle commande</h1>'.
         // 'En date du'. $date.
-        ' Une nouvelle commande numéro '. $orderNumber . 'a été créée.'
+        ' Une nouvelle commande numéro '. $orderNumber . 'a été créée.'.
         ' </body>' .
         '</html>',
             'text/html' // Mark the content-type as HTML
