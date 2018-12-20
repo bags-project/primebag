@@ -170,6 +170,15 @@
 
 {% block body %}{% endblock %}
 
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = 'https://connect.facebook.net/fr_FR/sdk.js#xfbml=1&version=v3.1';
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
 
 <!-- Footer -->
 <footer class="footer-flex">
@@ -184,30 +193,30 @@
             Catégories
         </div><br>
         <p>
-            <a href="#">Femme</a>
+            <a href="{{ path('woman_gallery')}}">Femme</a>
         </p>
         <p>
-            <a href="#">Homme</a>
+            <a href="{{ path('man_gallery')}}">Homme</a>
         </p>
         <p>
-            <a href="#">Scolaire</a>
+            <a href="{{ path('kid_gallery')}}">Scolaire</a>
         </p>
         <p>
-            <a href="#">Bagages</a>
+            <a href="{{ path('bagage_gallery')}}">Bagages</a>
         </p>
     </div>
     <div class="footer-flex-child">
         <div class="center b">
-            Suivez-nous
+            Partagez ou Suivez-nous
         </div>
         <div class="boxflex">
             <div class="boxelement">
                 <div id="fb"></div>
-                <div class="text"><a href="#">Facebook</a></div>
+                <div class="text"><a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://localhost/primebag%2F&amp;src=sdkpreparse" class="fb-xfbml-parse-ignore">Facebook</a></div>
             </div>
             <div class="boxelement">
                 <div id="tw"></div>
-                <div class="text"><a href="#">Twitter</a></div>
+                <div class="text"><a href="https://twitter.com/TwitterDev?ref_src=twsrc%5Etfw">Twitter</a><script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script></div>
             </div>
             <div class="boxelement">
                 <div id="instagr"></div>
