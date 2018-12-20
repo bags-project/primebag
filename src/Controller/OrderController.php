@@ -16,8 +16,10 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 
 use Symfony\Component\Validator\Constraints\Date;
+
 use Symfony\Component\Validator\Constraints\Email;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
+
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
@@ -50,7 +52,7 @@ class OrderController extends AbstractController
     public function confirmValidatedOrder(SessionInterface $session, Request $request, UserService $userService,
                                     CartService $cartService, OrderService $orderService, 
                                     ArticleService $articleService, CarrierService $carrierService,
-                                    OrderStatusService $orderStatusService, PaymentMethodService $paymentMethodService)
+                                    OrderStatusService $orderStatusService, PaymentMethodService $paymentMethodService, \Swift_Mailer $mailer)
     {
         //////////////////////////////////////////
         //              PAIEMENT                //
@@ -166,8 +168,7 @@ class OrderController extends AbstractController
         
         ///////////////////////////////////////////////
         //Envoie des mails vers User & Seller
-        $orderService->sendMails($orderNumber, $currentUser);
-
+        $orderService->sendMails($orderNumber, $mailer);
 
         ///////////////////////////////////////////////
         //Vider le panier une fois les traitements finis

@@ -65,6 +65,7 @@
             <div id="gallery-display" class="row">
 
                 {% for article in articles %}
+                
                 {% if cat is null %}
                 {% if article.stock != 0 %}
                 {% if article.categories[0].name == 'Femme' %}
@@ -95,20 +96,18 @@
                             <a href="{{ path('article_display' , {'id': article.id}) }}" class="btn btn-primary btn-lg active btn-sm"
                                 role="button" aria-pressed="true">Détails</a>
                         </div>
-
                     </div>
-
                 </div>
 
                 {% endif %}
                 {% endif %}
                 {% endif %}
 
+
                 {% if cat is not null %}
                 {% if article.stock != 0 %}
-                {% if article.categories[0].name == 'Femme' and article.brand.name == cat or article.articleColor.name
-                == cat %}
-
+                {% if article.categories[0].name == 'Femme' and article.brand.name == cat or article.articleColor.name == cat %}
+                
                 <div class="gallery-card" style="width: 18rem;">
 
                     <div>

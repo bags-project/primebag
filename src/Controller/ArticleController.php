@@ -39,7 +39,6 @@ class ArticleController extends AbstractController
             ]);
     }
 
-    
     /**
      * @Route("/article/{id}", name="article_display", requirements={"id"="\d+"})
      */
@@ -78,7 +77,7 @@ class ArticleController extends AbstractController
         'articles' => $articleService->search($queryPrice, $page), 
         'brands' => $brandService->getAllBrands(),
         'colors' => $articleColorService->getAllColors(),
-        'cat' => $queryCategories ,
+        'cat' => $queryCategories,
         'page' => $page
         ]);
     }
