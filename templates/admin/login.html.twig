@@ -6,6 +6,34 @@
 
     <h1 class="center progressive">Bienvenue admin !</h1>
 
+    <h2 class="center">Que souhaitez-vous faire ?</h2>
+
+    <div class="limit">
+
+        <div class="flexaround">
+            <div class="flexaround-child">
+                <h3><a href="{{ path('admin_all') }}">Voir tous les articles</a></h3>
+                <p>Voir tous les articles sur une seule page dans un grand tableau simplifié.</p>
+            </div>
+            <div class="flexaround-child">
+                <h3><a href="{{ path('admin_article') }}">Editer ou Supprimer des articles</a></h3>
+                <p>Voir les articles avec pagination.</p>
+            </div>
+        </div>
+
+        <div class="flexaround">
+            <div class="flexaround-child">
+                <h3><a href="{{ path('admin_user') }}">Supprimer des utilisateurs</a></h3>
+                <p>Supprimez des utilisateurs s'ils vous demandent.</p>
+            </div>
+            <div class="flexaround-child">
+                <h3><a href="{{ path('admin_order') }}">Modifier des commandes</a></h3>
+                <p>Modifier les commandes une fois expédiée.</p>
+            </div>
+        </div>
+
+    </div>
+
 
 
     {# <h1 class="center progressive">Login admin</h1>
