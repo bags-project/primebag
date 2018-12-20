@@ -21,9 +21,11 @@ use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
+
 class OrderController extends AbstractController
 {
     private $orders;
+
 
     /**
      * @Route("/buy", name="order_valid")
@@ -41,6 +43,7 @@ class OrderController extends AbstractController
     }
 
 
+
     /**
      * @Route("/buy/success", name="order_success")
      */
@@ -49,16 +52,14 @@ class OrderController extends AbstractController
                                     ArticleService $articleService, CarrierService $carrierService,
                                     OrderStatusService $orderStatusService, PaymentMethodService $paymentMethodService)
     {
-
-        //////////////////////////////////////////////////
+        //////////////////////////////////////////
+        //              PAIEMENT                //
+        //////////////////////////////////////////
 
         //var_dump($request->request->all());
             // array (size=2)
             // 'stripeToken' => string 'tok_1DiqqXCDiJ3Czp9nLqosnDmC' (length=28)
             // 'modeLivraison' => string 'colissimo' (length=9)
-        
-
-
         
         $totalCosts = "";
         // calcul du total panier
@@ -100,8 +101,12 @@ class OrderController extends AbstractController
         ]);
         /////////////////////////////////////////////////////////////
         
+        ///////////////////////////////////////////////
+        //              ENREG EN BASE                //
+        ///////////////////////////////////////////////
 
         $order = new Order;
+        //////////////////////////////////////////////
         ////////////////// SETS ORDER ////////////////
         //pour set setCreatedAt
         $today = new \DateTime();  // obligé de passer par un new Datetime car setCreatedAt attend un objet de type Date
@@ -129,7 +134,7 @@ class OrderController extends AbstractController
         $orderService->saveOrder($order, $today, $orderNumber, $paymentDate, $paymentRef, $PaymentMethod, $user, $orderStatus, $carrier, $shippingCost);
         //$orderId = $order->getId();
 
-
+        ///////////////////////////////////////////////
         ///////////// SETS ORDER-CONTENTS /////////////
         $cart = $session->get('cart');
         
@@ -139,9 +144,7 @@ class OrderController extends AbstractController
             //setOrderRef
             //$orderRef = $orderService->getOne($orderId);// $orderId récupéré après le flush de l'order
             //setArticleRef
-            //$articleRef = $cart['ref'][$i];
             $articleRef = $articleService->getOne($cart['id'][$i]);
-            dump($articleRef);
             //set Quantity
             $articleQuantity = $cart['quantity'][$i];
             //setTaxe
@@ -151,76 +154,27 @@ class OrderController extends AbstractController
             //setInclusiveOfTaxes
             $inclusiveOfTaxes = $cart['price'][$i]; // prix sur le site
 
-            
-
-
-            //incrémente orderContents et fait le setOrderRef
-            $order->addOrderContent($orderContent);
+            //incrémente orderContents et fait le setOrderRef,
+            //utile dans le cas où on aurait besoin du getOrderContents
+            //$order->addOrderContent($orderContent);
 
             //sauvegarde en base la ligne de commande
             $orderService->saveOrderContents($orderContent, $order, $articleRef, $articleQuantity, $tax, $exclusiveOfTaxes, $inclusiveOfTaxes);
-                                                          //$order est déjà une instance de la cde, inutile de passer par le $orderRef = $orderService->getOne($orderId);
+                                                          //$order est déjà une instance de la cde, inutile de passer par $orderRef
         }
         
-
-
+        ///////////////////////////////////////////////
         //Envoie des mails vers User & Seller
-
-        // $message = (new \Swift_Message('Mail nouvelle preparation de commande'))
-        // ->setFrom('primebag62@gmail.com')
-        // ->setTo('primebag62@gmail.com')
-        // ->setBody(
-        //     '<html>' .
-        //     ' <body>' .
-        //     ' <h1>Nouvelle commande</h1>'.
-        //     // 'En date du'. $date.
-        //     ' Une nouvelle commande numéro '. $order .
-        //     ' </body>' .
-        //     '</html>',
-        //         'text/html' // Mark the content-type as HTML
-        //     );
-
-        // $mailer->send($message);
-
-        // $message = (new \Swift_Message('Confirmation de nouvelle commande'))
-        // ->setFrom('primebag62@gmail.com')
-        // ->setTo('guillaume.goubel.pro@gmail.com')
-        // ->setBody(
-        //     '<html>' .
-        //     '<body>'.
-        //     '<header>' .
-        //         '<h1>FACTURE' .
-        //         '<h2>Prime Bag − Vente de sacs </h2>' .
-        //         '</h1>' .  //
-        //     '</header>' .
-        //     '<h2></h2>'.
-        //     '<table>'.
-        //     '<tr>'.
-        //         '<td>Carmen</td>'.
-        //         '<td>33 ans</td>'.
-        //         '<td>Espagne</td>'.
-        //     '</tr>'.
-        //     '<tr>'.
-        //         '<td>Michelle</td>'.
-        //         '<td>26 ans</td>'.
-        //         '<td>États-Unis</td>'.
-        //     '</table>'.
-        //         '</html>',  
-        //                 'text/html' // Mark the content-type as HTML
-        //     );
-
-        //     $mailer->send($message);
+        $oderService->sendMails();
 
 
-
-
-
+        ///////////////////////////////////////////////
         //Vider le panier une fois les traitements finis
         $cartService->setEmptyCart($session);
 
+
         return $this->render('order/success.html.twig', [
-            //'date' => $date,
-            //'totalCosts' => $totalCosts,
+            'orderNumber' => $orderNumber,
 
         ]);
     }
