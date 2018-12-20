@@ -615,7 +615,7 @@ article {
 }
 
 #article-showcase{
-    max-height: 140px;
+    max-height: 155px;
 }
 
 
@@ -666,6 +666,14 @@ article {
     color: cornflowerblue;
     font-style: italic;
 }
+
+
+.limit{
+    min-height: 40rem;
+}
+
+
+
 
 /*//////////////////////////////////////////////////*/
 /*                     PANIER                       */
@@ -1065,6 +1073,19 @@ article {
         padding: 1rem;
     }
 }
+
+
+/* affichage responsive du qui sommes nous? */
+@media screen and (max-width: 500px) {
+    #user-count{
+        width: 23rem;
+    }
+}
+
+
+
+
+
 
 
 

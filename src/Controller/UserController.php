@@ -30,6 +30,7 @@ use App\Service\OrderService;
 use App\Repository\OrderContentRepository;
 use App\Service\OrderContentService; 
 
+
 class UserController extends AbstractController
 {
     /**
@@ -49,10 +50,6 @@ class UserController extends AbstractController
 
     public function loginUser( Request $request, UserService $userService, AuthenticationUtils $authenticationUtils)
     {
-
-
-
-
             $this->addFlash(
                 'notice',
                 'Votre compte a été ajouté avec succès! 
@@ -107,12 +104,13 @@ class UserController extends AbstractController
         // $orders = $repo->findAll();
 
         return $this->render('user/profile.html.twig', [
-            'user' => $user,
+            'user' => $this->getUser(),
             'orders' => $orderService->searchOrder(),
             'orderContents' => $orderContentService->searchOrderContents()
             ]);
     }
 
+    
     // /**
     //  * @Route("user/edit{id}", name="user_edit", methods="GET")
     //  */
