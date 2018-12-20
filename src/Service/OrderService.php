@@ -7,6 +7,7 @@ use App\Entity\Carrier;
 
 use App\Entity\OrderContent;
 use App\Repository\OrderRepository;
+use App\Entity\Order;
 
 use App\Repository\OrderContentRepository;
 use Doctrine\Common\Persistence\ObjectManager;

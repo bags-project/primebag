@@ -37,23 +37,14 @@
                     <td>{{ app.user.zipCode }}</td>
                     <td>{{ app.user.countryName }}</td>
                     <td>
-                        <button type="submit"><a href="{{path('user_edit', {id: app.user.id })}}">Editer le profil</a></button>
-                        <button type="submit"><a href="{{path('user_delete', {id: app.user.id })}}">Supprimer le profil</a></button>
+                        <a class ="btn btn-warning"href="{{path('user_edit')}}">Editer le profil</a>
+                        <br>
+                        <br>
+                        <a class ="btn btn-danger"href="{{path('user_delete')}}">Supprimer le profil</a>
 
 
                     </td>
                 </tr>
-                {# <tr>
-                    <td colspan="14">no records found</td>
-                </tr> #}
-
-
-                <form method="post" action="{{ path('user_delete', {'id': user.id}) }}" onsubmit="return confirm('Are you sure you want to delete this item?');">
-                    <input type="hidden" name="_method" value="DELETE">
-                    <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ user.id) }}">
-                    <button class="btn">Delete</button>
-                </form>
-
 
             </tbody>
         </table>
@@ -63,11 +54,6 @@
 
             {% for order in orders %}
 
-            {% if order.user.id == app.user.id %}
-
-            {# <pre>
-                {{ dump(order) }}
-            </pre> #}
 
             <!-- Card -->
             <div class="card">
@@ -101,11 +87,6 @@
             </div>
             <!-- Card -->
 
-
-
-
-
-            {% endif %}
 
             {% endfor %}
 

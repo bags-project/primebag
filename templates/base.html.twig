@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="fr" prefix="og: http://ogp.me/ns#">
 
 <head>
     <meta charset="UTF-8">
-    <title>{% block title %} Primebag {% endblock %}</title>
+    <title>{% block title %}Primebag{% endblock %}</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     {% block stylesheets %}
@@ -21,6 +21,12 @@
     <link href="https://fonts.googleapis.com/css?family=Playfair+Display+SC" rel="stylesheet">
 
     {% endblock %}
+
+    <meta property="og:title" content="Primebag - Sac à main, Bagage, Cartable, Besace aux meilleurs prix">
+    <meta property="og:description" content="Les plus grandes marques de sacs (Desigual, Lancaster, Lacoste, Fossile, Eastpak...) sont sur Primebag.com">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://www.primebag.com/">
+    <meta property="og:image" content="https://www.primebag.com/assets/img/primebag.png">
 </head>
 
 <header>
@@ -95,7 +101,7 @@
                 {% if is_granted ('ROLE_USER') %}
 
                 <li id="button-nav" class="nav-item">
-                    <a class="btn btn-light-blue btn-sm" href="{{path('user_profile', {id: app.user.id})}}">Votre
+                    <a class="btn btn-light-blue btn-sm" href="{{path('user_profile')}}">Votre
                         Compte</a>
                 </li>
                 {% else %}
@@ -156,7 +162,7 @@
     {# MESSAGE FLAH - LOG SUCCESS #}
     {% for message in app.flashes('notice') %}
     <div id="alert" class="flash-notice alert alert-success">
-        <h2 class="alert-heading">Félicitations!</h2>
+        <h2 class="alert-heading">Félicitations !</h2>
         {{ message }}
         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
             <span aria-hidden="true">&times;</span>
@@ -164,6 +170,37 @@
     </div>
     {% endfor %}
 
+    {% for message in app.flashes('success') %}
+    <div id="alert" class="flash-notice alert alert-success">
+        <h2 class="alert-heading">Succès !</h2>
+        {{ message }}
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    {% endfor %}
+
+    {% for message in app.flashes('danger') %}
+
+    <div id="alert" class="flash-danger alert alert-danger">
+        <h2 class="alert-heading">Attention !</h2>
+        {{ message }}
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    {% endfor %}
+
+    {% for message in app.flashes('warning') %}
+
+    <div id="alert" class="flash-danger alert alert-danger">
+        <h2 class="alert-heading">Erreur !</h2>
+        {{ message }}
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    {% endfor %}
 
 </header>
 <!--Main Navigation-->
@@ -175,7 +212,7 @@
   var js, fjs = d.getElementsByTagName(s)[0];
   if (d.getElementById(id)) return;
   js = d.createElement(s); js.id = id;
-  js.src = 'https://connect.facebook.net/fr_FR/sdk.js#xfbml=1&version=v3.1';
+  js.src = 'https://connect.facebook.net/fr_FR/sdk.js#xfbml=1&version=v3.2';
   fjs.parentNode.insertBefore(js, fjs);
 }(document, 'script', 'facebook-jssdk'));</script>
 
@@ -212,15 +249,18 @@
         <div class="boxflex">
             <div class="boxelement">
                 <div id="fb"></div>
-                <div class="text"><a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://localhost/primebag%2F&amp;src=sdkpreparse" class="fb-xfbml-parse-ignore">Facebook</a></div>
+                <div class="text">
+                    <div class="fb-share-button" data-href="https://www.primebag.com" data-layout="button" data-size="small" data-mobile-iframe="false"><a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fwww.primebag.com%2F&amp;src=sdkpreparse" class="fb-xfbml-parse-ignore">Facebook</a>
+                    </div>
+                </div>
             </div>
             <div class="boxelement">
                 <div id="tw"></div>
-                <div class="text"><a href="https://twitter.com/TwitterDev?ref_src=twsrc%5Etfw">Twitter</a><script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script></div>
+                <div class="text"><a href="https://twitter.com/Primebag1?ref_src=twsrc%5Etfw" class="twitter-follow-button" data-show-screen-name="false" data-lang="fr" data-show-count="false">Twitter</a><script async src="https://platform.twitter.com/widgets.js"></script></div>
             </div>
             <div class="boxelement">
                 <div id="instagr"></div>
-                <div class="text"><a href="#">Instagram</a></div>
+                <div class="text"><a href="https://www.instagram.com/primebag62/" target="_blank">Instagram</a></div>
             </div>
         </div>
     </div>

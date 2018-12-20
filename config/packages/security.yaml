@@ -14,35 +14,12 @@ security:
                 class: App\Entity\User
                 property: email
 
-        # managers:
-        #     memory:
-        #         users:
-        #             admin@mail.com: 
-        #                 password: admin
-        #                 roles: 'ROLE_ADMIN'
-
-
 
     firewalls:
         dev:
             pattern: ^/(_(profiler|wdt)|css|images|js)/
             security: false
-        # manager:
-        #     pattern: ^/manager$
-        #     http_basic: true
 
-        # admin:
-        #     pattern: ^/admin
-        #     http_basic: true
-
-        #     provider: in_database
-
-        #     form_login:
-        #         login_path: admin_login
-        #         check_path: admin_login
-        #     logout:
-        #         path: admin_logout
-        #         target: home
         main:
             anonymous: true
             provider: db_provider
@@ -67,6 +44,6 @@ security:
     access_control:
          - { path: ^/admin/login, roles: IS_AUTHENTICATED_ANONYMOUSLY }
          - { path: ^/admin, roles: ROLE_ADMIN }
-         - { path: ^/user/profile, roles: ROLE_USER }
+         - { path: ^/user, roles: ROLE_USER }
          - { path: ^/buy, roles: ROLE_USER }
 
