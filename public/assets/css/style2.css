@@ -369,7 +369,7 @@ article {
 
 .details-shopping-cart {
     display: flex;
-    justify-content: center;
+    justify-content: space-around;
     align-items: center;
 }
 
@@ -418,12 +418,25 @@ article {
 
 }
 
-
 #cartQuantity {
     display: flex;
     justify-content: flex;
     align-items: flex;
 }
+
+.details-quantity{
+    color:white ;
+    font-size: 1.2rem;
+    border: 1px solid black;
+    padding: 0.5rem;
+    background-color: black;
+    border-radius: 50%;
+}
+
+#quantity-choice-btn{
+    background-color: #880e4f;
+}
+
 
 /*//////////////////////////////////////////////////*/
 /*                  GALLERY                          */
