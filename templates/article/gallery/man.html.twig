@@ -28,7 +28,6 @@
 <main id="gallery-main">
 
     <div class="container">
-
         {# Pagination #}
         <nav aria-label="Page navigation example">
             <ul class="pagination pg-blue justify-content-center">
@@ -101,8 +100,6 @@
                 {% endif %}
                 {% endif %}
 
-
-
                 {% if cat is not null %}
                 {% if article.stock != 0 %}
                 {% if article.categories[0].name == 'Homme' and article.brand.name == cat or article.articleColor.name
@@ -144,8 +141,7 @@
 
                 {% endfor %}
 
-            </div>
-
+        </div>
 </main>
 
 

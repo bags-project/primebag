@@ -418,6 +418,13 @@ article {
 
 }
 
+
+#cartQuantity {
+    display: flex;
+    justify-content: flex;
+    align-items: flex;
+}
+
 /*//////////////////////////////////////////////////*/
 /*                  GALLERY                          */
 /*//////////////////////////////////////////////////*/
@@ -614,7 +621,7 @@ article {
     background-color: rgb(153, 96, 50)
 }
 
-#article-showcase{
+#article-showcase {
     max-height: 155px;
 }
 
@@ -668,7 +675,7 @@ article {
 }
 
 
-.limit{
+.limit {
     min-height: 40rem;
 }
 
@@ -812,6 +819,14 @@ article {
 
 #main-order-container {
     min-height: 35rem;
+}
+
+.orders-details {
+    margin-bottom: 5rem;
+}
+
+.card-body-order {
+    padding: 1rem;
 }
 
 #order-process div {
@@ -1077,7 +1092,7 @@ article {
 
 /* affichage responsive du qui sommes nous? */
 @media screen and (max-width: 500px) {
-    #user-count{
+    #user-count {
         width: 23rem;
     }
 }

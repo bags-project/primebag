@@ -56,7 +56,6 @@ class UserController extends AbstractController
                  Vous pouvez dès maintenant vous connecter à votre compte.'
             );
 
-
         return $this->render('user/login.html.twig');
     }
 

@@ -9,21 +9,16 @@
     <div>
         <img id="jumbo-img-kid" src="{{ asset('assets/img/logo/kid_univers.jpg')}}" alt="woman_univers">
     </div>
-
     <div>
-
         <div>
             <h2><strong>Galerie Scolaire</strong></h2>
         </div>
-
         <div>
             <p>Pratique et robuste <br>
                 en toutes circonstances</p>
         </div>
-
     </div>
 </div>
-
 
 <main id="gallery-main">
 
@@ -104,9 +99,8 @@
                 {% if cat is not null %}
                 {% if article.stock != 0 %}
                 {% if article.categories[0].name == 'Scolaire' and article.brand.name == cat or
-                article.articleColor.name
-                == cat %}
-
+                article.articleColor.name == cat %}
+                
                 <div class="gallery-card" style="width: 18rem;">
 
                     <div>
@@ -133,9 +127,7 @@
                                 role="button" aria-pressed="true">Détails</a>
 
                         </div>
-
                     </div>
-
                 </div>
 
                 {% endif %}
@@ -143,8 +135,7 @@
                 {% endif %}
 
                 {% endfor %}
-
-            </div>
+        </div>
 </main>
 
 
