@@ -22,7 +22,6 @@ use App\Form\UserRegisterType;
 use App\Form\ResetPasswordType;
 use App\Form\LoginType;
 use App\Service\UserService;
-use App\Repository\UserRepository;
 
 use App\Repository\OrderRepository;
 use App\Service\OrderService; 
@@ -32,27 +31,27 @@ use App\Service\OrderContentService;
 
 class UserController extends AbstractController
 {
-    //private $user;
-
 
     /**
-    * @Route("/user/login", name="user_login")
+    * @Route("/login", name="user_login")
     */
 
     public function loginUser( Request $request, AuthenticationUtils $authenticationUtils)
     {
+        // En cas d'erreur d'autentification , l'utilisateur reçoit addFlash('danger')
 
             $this->addFlash(
                 'danger',
                 'Il y a une erreur de saisir dans votre identifiant ou votre mot de passe.'
             );
 
+        // Si l'autentification réussi l'utilisateur est connecté et rediriger automatiquement vers la page d'accueil 
 
         return $this->render('user/login.html.twig');
     }
 
     /**
-    * @Route("/user/register", name="user_register")
+    * @Route("/register", name="user_register")
     */
 
     public function registerUser( Request $request, UserService $userService)
@@ -89,10 +88,6 @@ class UserController extends AbstractController
     */
     public function profilUser(Request $request, OrderService $orderService, OrderContentService $orderContentService): Response
     {   
-        // $userId = $user->getId();
-        
-        // $repo = $this->getDoctrine()->getRepository(Order::class); 
-        // $orders = $repo->findAll();
 
         return $this->render('user/profile.html.twig', [
             'user' => $this->getUser(),
@@ -100,27 +95,6 @@ class UserController extends AbstractController
             'orderContents' => $orderContentService->searchOrderContents()
             ]);
     }
-
-    // /**
-    //  * @Route("user/edit{id}", name="user_edit", methods="GET")
-    //  */
-    // public function edit(Request $request, User $user, UserService $userService, $id ): Response
-    // {
-    //     $form = $this->createForm(UserRegisterType::class, $user);
-    //     $form->handleRequest($request);
-
-    //     if ($form->isSubmitted() && $form->isValid()) {
-    //         $userService->edit($id);
-    //         //$this->getDoctrine()->getManager()->flush();
-
-    //         return $this->redirectToRoute('user_index', ['id' => $user->getId()]);
-    //     }
-
-    //     return $this->render('user/edit.html.twig', [
-    //         'user' => $user,
-    //         'form' => $form->createView(),
-    //     ]);
-    // }
 
     /**
      * @Route("user/profile/edit", name="user_edit")
@@ -145,44 +119,27 @@ class UserController extends AbstractController
 
 
     /**
-    * @Route("/user/delete/{id}", name="user_delete")
+    * @Route("/user/delete/", name="user_delete")
     */
-    public function delete(Request $request, User $user): Response
+    public function delete(Request $request,  UserService $userService): Response
     {
-
-
-        $em = $this->getDoctrine()->getManager();
-        $em->remove($user);
-
-        $em->flush();
+        $user = $this->getUser();
+        $userService->delete($user);
 
         $this->addFlash(
-            'notice',
+            'danger',
             'Utilisateur effacé !'
         );
+        $this->get('security.token_storage')->setToken(null);
+        return $this->redirectToRoute('logout');
 
-        // if ($this->isCsrfTokenValid('delete'.$user->getId(), $request->request->get('_token'))) {
-        //     $em = $this->getDoctrine()->getManager();
-        //     $em->remove($user);
-        //     $em->flush();
-        // }
-
-        return $this->redirectToRoute('home', [
-            'delete' => $user
+        return $this->render('home', [
+            'delete' => $this->getUser()
         ]);
     }
 
-    // /**
-    //  * @Route("/forgottenPassword", name="app_forgotten_password")
-    //  */
-    // public function forgottenPassword(): Response
-    // {
- 
-    //     return $this->render('user/forgotten_password.html.twig');
-    // }
-
-        /**
-     * @Route("user/forgotten_password", name="app_forgotten_password")
+    /**
+     * @Route("/forgotten_password", name="app_forgotten_password")
      */
     public function forgottenPassword(
         Request $request,
@@ -192,6 +149,8 @@ class UserController extends AbstractController
     ): Response
     {
 
+        // Envoie de mail pour les mots de passe oublié via un formulaire avec comme champ 'email'
+
         if ($request->isMethod('POST')) {
 
             $email = $request->request->get('email');
@@ -199,8 +158,8 @@ class UserController extends AbstractController
 
             $entityManager = $this->getDoctrine()->getManager();
             $user = $entityManager->getRepository(User::class)->findOneByEmail($email);
-            /* @var $user User */
 
+            // Si l'email est inconnu dans notre base de donné, alors un addFlash('danger') s'affiché
 
             if ($user === null) {
                 $this->addFlash('danger', 'Email Inconnu');
@@ -209,17 +168,28 @@ class UserController extends AbstractController
             $token = $tokenGenerator->generateToken();
 
             try{
+
+                // La varaible $token répresente "reset_token" dans notre base de donné. Si le champs n'est pas null, le champs est automatiquement vidé.
+
                 $user->setResetToken($token);
                 $entityManager->flush();
-            } catch (\Exception $e) {
+            } 
+            
+            // En cas d'erreur , alors un addFlash('warning') s'affoche
+
+            catch (\Exception $e) {
                 $this->addFlash('warning', $e->getMessage());
                 return $this->redirectToRoute('app_forgotten_password');
             }
 
+            // Generation d'URL à laquelle on ajoute la variable $token. Cette variable se colle à la fin de l'url et 
+            // s'ajoute dans la base de donné dans la table USER dans la ligne correspondant à l'email utilisateur saisi dans le formulaire.
+            // Exemple d'URL avec le token http://127.0.0.1:8000/reset_password/k1CPkEtcgTzUm1l0XmngQd7TZXljlX-g9wlKSqwKgjQ
+
             $url = $this->generateUrl('app_reset_password', array('token' => $token), UrlGeneratorInterface::ABSOLUTE_URL);
 
 
-            $message = (new \Swift_Message('Forgot Password'))
+            $message = (new \Swift_Message('Mot de passe oublié?'))
                 ->setFrom('primebag62@gmail.com')
                 ->setTo($email)
                 ->setBody(
@@ -229,17 +199,7 @@ class UserController extends AbstractController
 
             $mailer->send($message);
 
-            //var_dump($email);
-
-
-            
-
-            //$this->addFlash('token', $url);
-
-
-            $this->addFlash('notice', 'Vous avez réussi un email à l\'adresse suivante : ' . $email);
-
-            //var_dump($message);
+            $this->addFlash('notice', 'Vous avez reçu un email à l\'adresse suivante : ' . $email);
 
             return $this->redirectToRoute('home');
         }
@@ -259,18 +219,19 @@ class UserController extends AbstractController
             $entityManager = $this->getDoctrine()->getManager();
  
             $user = $entityManager->getRepository(User::class)->findOneByResetToken($token);
-            /* @var $user User */
  
+            // Si le token est nul
+
             if ($user === null) {
-                $this->addFlash('danger', 'Token Inconnu');
-                return $this->redirectToRoute('homepage');
+                $this->addFlash('warning', 'Ce lien a déjà été utilisé ou est invalide');
+                return $this->redirectToRoute('home');
             }
  
             $user->setResetToken(null);
             $user->setPassword($passwordEncoder->encodePassword($user, $request->request->get('password')));
             $entityManager->flush();
  
-            $this->addFlash('notice', 'Mot de passe mis à jour');
+            $this->addFlash('success', 'Mot de passe mis à jour');
  
             return $this->redirectToRoute('home');
         }else {
@@ -280,50 +241,9 @@ class UserController extends AbstractController
  
     }
 
-    
-
-    // /**
-    //  * @Route("/passwordEdite", name="password_edite",)
-    //  * 
-    //  */
-
-    // public function editAction(Request $request)
-    // {
-    // 	$em = $this->getDoctrine()->getManager();
-    //     $user = $this->getUser();
-    // 	$form = $this->createForm(ResetPasswordType::class, $user);
-
-    // 	$form->handleRequest($request);
-    //     if ($form->isSubmitted() && $form->isValid()) {
-
-    //         $passwordEncoder = $this->get('security.password_encoder');
-    //         $oldPassword = $request->request->get('etiquettebundle_user')['oldPassword'];
-
-    //         // Si l'ancien mot de passe est bon
-    //         if ($passwordEncoder->isPasswordValid($user, $oldPassword)) {
-    //             $newEncodedPassword = $passwordEncoder->encodePassword($user, $user->getPlainPassword());
-    //             $user->setPassword($newEncodedPassword);
-                
-    //             $em->persist($user);
-    //             $em->flush();
-
-    //             $this->addFlash('notice', 'Votre mot de passe à bien été changé !');
-
-    //             return $this->redirectToRoute('profile');
-    //         } else {
-    //             $form->addError(new FormError('Ancien mot de passe incorrect'));
-    //         }
-    //     }
-    	
-    // 	return $this->render('user/password.html.twig', array(
-    // 		'form' => $form->createView(),
-    // 	));
-    // }
-
-
     /**
-     * @Route("/logout", name ="logout")
-     */
+    * @Route("/logout", name ="logout")
+    */
 
     public function logout()
     {
