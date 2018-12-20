@@ -8,25 +8,27 @@
 
 <main class="user-container">
 
-    <div class="container limit">
+    <div class="container">
 
-        <table class="table">
+        <table id="user-count" class="table">
             <thead>
                 <tr>
-                    <th>Prénom</th>
-                    <th>Nom</th>
-                    <th>Addresse</th>
-                    <th>Deuxième adresse</th>
-                    <th>Numéro de téléphone</th>
-                    <th>Email</th>
-                    <th>Ville</th>
-                    <th>Code postal</th>
-                    <th>Pays</th>
-                    <th>Modifier ou supprimer le compte</th>
+                    <th scope="col">#</th>
+                    <th scope="col">Prénom</th>
+                    <th scope="col">Nom</th>
+                    <th scope="col">Addresse</th>
+                    <th scope="col">Deuxième adresse</th>
+                    <th scope="col">Numéro de téléphone</th>
+                    <th scope="col">Email</th>
+                    <th scope="col">Ville</th>
+                    <th scope="col">Code postal</th>
+                    <th scope="col">Pays</th>
+                    <th scope="col">Modifier ou supprimer le compte</th>
                 </tr>
             </thead>
             <tbody>
                 <tr>
+                    <th scope="row">#</th>
                     <td>{{ app.user.firstName }}</td>
                     <td>{{ app.user.lastName }}</td>
                     <td>{{ app.user.address }}</td>
@@ -37,20 +39,17 @@
                     <td>{{ app.user.zipCode }}</td>
                     <td>{{ app.user.countryName }}</td>
                     <td>
-                        <a class ="btn btn-warning"href="{{path('user_edit')}}">Editer le profil</a>
-                        <br>
-                        <br>
-                        <a class ="btn btn-danger"href="{{path('user_delete')}}">Supprimer le profil</a>
-
-
+                        <button class="btn btn-light btn-sm" type="submit"><a href="{{path('user_edit', {id: app.user.id })}}">Editer
+                                le profil</a></button>
+                        <button class="btn btn-danger btn-sm" type="submit"><a href="{{path('user_delete', {id: app.user.id })}}">Supprimer
+                                le profil</a></button>
                     </td>
                 </tr>
 
             </tbody>
         </table>
 
-        <div class="vos achats en cours">
-
+        <div class="orders-details">
 
             {% for order in orders %}
 
@@ -58,38 +57,40 @@
             <!-- Card -->
             <div class="card">
 
+                <div class="card-body-order">
 
-                <!-- Card content -->
-                <div class="card-body">
-
-                    <!-- Title -->
                     <h4 class="card-title">Votre commande {{order.orderNumber}}</h4>
                     <p>Effectuée le : {{ order.createdAt | date('d-m-Y H:i') }}</p>
-                    <p>Est actuellement en <strong>{{order.orderStatus.name}}</strong> </p>
-                    <p>Le paiement a été effectué par {{order.paymentMethod.name}} pour une somme totale de : </p>    
-                    
+                    <p>Le statut de la commande est actuellement <strong>{{order.orderStatus.name}}</strong> </p>
+
                     <strong>Cette commande comprend :</strong>
                     <hr>
-                    {% for orderContent in order.orderContents %}
-                    
-                    <p>{{orderContent.quantity}} quantité de l'article : {{orderContent.articleRef.name}} , pour un montant unitaire de {{orderContent.articleRef.price}}  Euros TTC  </p>
-                    
-                    {% set soustotal = orderContent.quantity * orderContent.articleRef.price  %}
-                    {% set total = soustotal + soustotal  %}
 
-                    <p>Soit un sous-montant de <strong> {{soustotal}}  Euros </strong> concernant cet article</p>
+                    {% set total = 0 %}
+
+                    {% for orderContent in order.orderContents %}
+
+                    <p>{{orderContent.quantity}} quantité de l'article : {{orderContent.articleRef.name}} , pour un
+                        montant unitaire de {{orderContent.articleRef.price}} Euros TTC </p>
+
+                    {% set soustotal = orderContent.quantity * orderContent.articleRef.price %}
+                    {% set total = total + soustotal %}
+
+                    <p>Soit un sous-montant de <strong> {{soustotal}} Euros </strong> concernant cette ligne</p>
+
                     <hr>
 
                     {% endfor %}
-
+                    <p>Le paiement a été effectué par {{order.paymentMethod.name}} pour une somme totale de : <strong>{{
+                    total }}</strong> Euros </p>
                 </div>
 
             </div>
-            <!-- Card -->
 
+
+            {% endif %}
 
             {% endfor %}
-
 
         </div>
 

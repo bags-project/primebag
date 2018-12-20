@@ -7,8 +7,10 @@ use App\Form\ContactType;
 use App\Notification\ContactNotification;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
+
 use Symfony\Component\Validator\Constraints\Email;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
+
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class EmailController extends AbstractController

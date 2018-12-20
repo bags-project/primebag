@@ -4,6 +4,8 @@
 
 {% block body %}
 
+
+
 {# STREET-WEAR GALLERY #}
 <div id="gallery-jumbotron-bagage">
     <div>
@@ -23,7 +25,6 @@
 
     </div>
 </div>
-
 
 <main id="gallery-main">
 
@@ -74,7 +75,6 @@
                     </div>
 
                     <div class="card-body">
-
                         <div>
                             <h5 class="card-title">{{article.name}}</h5>
                             <h4 class="card-brand">{{article.brand.name}}</h4>
@@ -92,16 +92,12 @@
                             <a href="{{ path('article_display' , {'id': article.id}) }}" class="btn btn-primary btn-lg active btn-sm"
                                 role="button" aria-pressed="true">Détails</a>
                         </div>
-
                     </div>
-
                 </div>
 
                 {% endif %}
                 {% endif %}
                 {% endif %}
-
-
 
                 {% if cat is not null %}
                 {% if article.stock != 0 %}
@@ -135,9 +131,7 @@
                                 role="button" aria-pressed="true">Détails</a>
                             <a href="#" class="btn btn-primary btn-lg active btn-sm" role="button" aria-pressed="true">Panier</a>
                         </div>
-
                     </div>
-
                 </div>
 
                 {% endif %}
@@ -145,8 +139,7 @@
                 {% endif %}
 
                 {% endfor %}
-
-            </div>
+        </div>
 </main>
 
 

@@ -60,22 +60,6 @@ class ArticleController extends AbstractController
     }
 
 
-    // /**
-    //  * @Route("/article/gallerie/{category}", name="article_gallery")
-    //  */
-    // public function galleryList(ArticleService $articleService, Request $request)
-    //  {      
-
-    //         $path = $request->getPathInfo();
-
-    //         return $this->render('article/gallery.html.twig', [
-    //             'articles' => $articleService->getAll(),
-    //             'path' => $path
-    //         ]);
-    //  }
-
-
-
     /**
      * @Route("/article/gallerie/femme", name="woman_gallery")
      */
@@ -99,6 +83,7 @@ class ArticleController extends AbstractController
         ]);
     }
 
+
     /**
      * @Route("/article/gallerie/homme", name="man_gallery")
      */
@@ -120,7 +105,6 @@ class ArticleController extends AbstractController
             'page' => $page
             ]);
         }
-    
 
 
     /**
@@ -153,8 +137,6 @@ class ArticleController extends AbstractController
     public function bagageGallery(ArticleService $articleService, Request $request, BrandService $brandService , ArticleColorService $articleColorService )
     {      
 
-    //    $path = $request->getPathInfo();
-
        $queryCategories = $request->query->get('cat');
        $queryPrice = $request->query->get('price');
        $page = $request->query->get('page');
@@ -171,8 +153,6 @@ class ArticleController extends AbstractController
             'page' => $page
            ]);
     }
-
-
 }
 
 

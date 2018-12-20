@@ -29,7 +29,7 @@ class OrderRepository extends ServiceEntityRepository
         ->addSelect('ordS')
         ->innerJoin('ord.paymentMethod', 'ordPM' )      
         ->addSelect('ordPM');
-
+    
         return $stmt->getQuery()->getResult();    
 
     }

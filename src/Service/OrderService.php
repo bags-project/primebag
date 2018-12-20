@@ -67,6 +67,11 @@ class OrderService
     }
 
     
+    public function searchOrder(){
+        $repo = $this->om->getRepository(Order::class);
+        return $repo->searchOrder();
+    }  
+
 }
 // Enreg Order
 // Enreg contents
