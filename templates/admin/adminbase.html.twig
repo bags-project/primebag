@@ -16,54 +16,58 @@
 
         <nav class="admin-navbar" id="admin-topnavbar">
             <a href="{{ path('home') }}"><img src="{{ asset('assets/img/miniprimebag.png') }}" alt="logo primeBag"></a>
-            <a href="{{ path('admin_login') }}">Admin</a>
+            {# <a href="{{ path('admin_login') }}">Admin</a> #}
             <a href="{{ path('admin_add') }}">Ajouter article</a>
-            <a href="{{ path('admin_all') }}">Tout sur une page</a>
-            <a href="{{ path('admin_article') }}">Modifier/Effacer article</a>
-            <a href="{{ path('admin_user') }}">Supprimer utilisateur</a>
+            <a href="{{ path('admin_all') }}">Tous les articles</a>
+            <a href="{{ path('admin_article') }}">Edit/Suppr article</a>
+            <a href="{{ path('admin_user') }}">Suppr. client</a>
+            <a href="{{ path('admin_order') }}">Commandes</a>
             <a href="{{ path('logout') }}">Déconnecter</a>
             <a href="#" class="icon" onclick="function_menu()">&#9776;</a>
         </nav>
 
     {% block body %}{% endblock %}
 
+    <div id="fb-root"></div>
+    <script>(function(d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s); js.id = id;
+    js.src = 'https://connect.facebook.net/fr_FR/sdk.js#xfbml=1&version=v3.1';
+    fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));</script>
+
 
     <!-- Footer -->
     <div class="to-top"><a rel="nofollow" href="#">Haut de page</a></div>
     <footer class="footer-flex">
         <div class="footer-flex-child">
-            <p><a href="{{ path('home') }}">Primebag</a></p>
-            <p>Bienvenue dans la partie Admin. Vous pouvez voir, ajouter, modifier ou effacer des articles ici. Vous pouvez aussi supprimer des utilisateurs.</p>
+            <p><a href="{{ path('home') }}"><img src="{{ asset('assets/img/primebag.png') }}" alt="Logo Primebag"></a></p>
+            <p>Bienvenue dans la partie Admin. Vous pouvez voir, ajouter, modifier ou effacer des articles ici. Vous pouvez aussi supprimer des utilisateurs ou éditer des commandes.</p>
         </div>
         <div class="footer-flex-child center">
             <div class="b">
-            Catégories
+            Consulter
             </div><br>
             <p>
-            <a href="#">Femme</a>
+            <a href="{{ path('cgv') }}">CGV</a>
             </p>
             <p>
-            <a href="#">Homme</a>
-            </p>
-            <p>
-            <a href="#">Scolaire</a>
-            </p>
-            <p>
-            <a href="#">Bagages</a>
+            <a href="{{ path('faq') }}">FAQ</a>
             </p>          
         </div>
         <div class="footer-flex-child">
             <div class="center b">
-            Suivez-nous
+            Mes réseaux sociaux
             </div>
             <div class="boxflex">
             <div class="boxelement">
                 <div id="fb"></div>
-                <div class="text"><a href="#">Facebook</a></div>
+                <div class="text"><a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://localhost/primebag%2F&amp;src=sdkpreparse" class="fb-xfbml-parse-ignore">Facebook</a></div>
             </div>
             <div class="boxelement">
                 <div id="tw"></div>
-                <div class="text"><a href="#">Twitter</a></div>
+                <div class="text"><a href="https://twitter.com/TwitterDev?ref_src=twsrc%5Etfw">Twitter</a><script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script></div>
             </div>
             <div class="boxelement">
                 <div id="instagr"></div>

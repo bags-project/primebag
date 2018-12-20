@@ -26,10 +26,8 @@ use App\Repository\BrandRepository;
 use App\Form\FormType;
 use Doctrine\Common\Persistence\ObjectManager;
 
-
 class ArticleController extends AbstractController
 {
-    // https://roadtodev.com/fr/blog/symfony-4-reset-password
     
     /**
      * @Route("/", name="home")
@@ -130,8 +128,6 @@ class ArticleController extends AbstractController
      */
     public function kidGallery(ArticleService $articleService, Request $request, BrandService $brandService , ArticleColorService $articleColorService )
     {      
-
-       $path = $request->getPathInfo();
 
        $queryCategories = $request->query->get('cat');
        $queryPrice = $request->query->get('price');

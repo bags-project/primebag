@@ -15,7 +15,7 @@ use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 
-
+use App\Entity\Order;
 
 use App\Entity\User;
 use App\Form\UserRegisterType;
@@ -23,6 +23,12 @@ use App\Form\ResetPasswordType;
 use App\Form\LoginType;
 use App\Service\UserService;
 use App\Repository\UserRepository;
+
+use App\Repository\OrderRepository;
+use App\Service\OrderService; 
+
+use App\Repository\OrderContentRepository;
+use App\Service\OrderContentService; 
 
 class UserController extends AbstractController
 {
@@ -93,13 +99,18 @@ class UserController extends AbstractController
     * @Route("/user/profile{id}", name="user_profile", requirements={"id"="\d+"}, methods="GET")
     * 
     */
-    public function profilUser(User $user, UserService $userService): Response
-    {
-    
-    
-        return $this->render('user/profile.html.twig', ['user' => $user]);
+    public function profilUser(User $user, UserService $userService, Request $request, $id, OrderService $orderService, OrderContentService $orderContentService): Response
+    {   
+        // $userId = $user->getId();
         
-        
+        // $repo = $this->getDoctrine()->getRepository(Order::class); 
+        // $orders = $repo->findAll();
+
+        return $this->render('user/profile.html.twig', [
+            'user' => $user,
+            'orders' => $orderService->searchOrder(),
+            'orderContents' => $orderContentService->searchOrderContents()
+            ]);
     }
 
     // /**
