@@ -95,7 +95,7 @@ class UserController extends AbstractController
         // $orders = $repo->findAll();
 
         return $this->render('user/profile.html.twig', [
-            'user' => $this->getuser(),
+            'user' => $this->getUser(),
             'orders' => $orderService->searchOrder(),
             'orderContents' => $orderContentService->searchOrderContents()
             ]);
