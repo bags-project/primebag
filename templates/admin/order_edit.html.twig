@@ -1,0 +1,18 @@
+{% extends 'admin/adminbase.html.twig' %}
+
+{% block title %}Editer commande{% endblock %}
+
+{% block body %}
+
+    <h1 class="center progressive">Editer commande</h1>
+
+    <div class="limit">
+
+        {{ form_start ( form ) }}
+        {{ form_widget ( form ) }}
+        <button type="submit">Editer</button>
+        {{ form_end ( form ) }}
+
+    </div>
+
+{% endblock %}

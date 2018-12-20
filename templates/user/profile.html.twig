@@ -40,12 +40,66 @@
                         <button type="submit"><a href="{{path('user_edit')}}">Editer le profil</a></button>
                         <button type="submit"><a href="{{path('user_delete', {id: app.user.id })}}">Supprimer le profil</a></button>
 
-                        
+
                     </td>
                 </tr>
 
             </tbody>
         </table>
+
+        <div class="vos achats en cours">
+
+
+            {% for order in orders %}
+
+            {% if order.user.id == app.user.id %}
+
+            {# <pre>
+                {{ dump(order) }}
+            </pre> #}
+
+            <!-- Card -->
+            <div class="card">
+
+
+                <!-- Card content -->
+                <div class="card-body">
+
+                    <!-- Title -->
+                    <h4 class="card-title">Votre commande {{order.orderNumber}}</h4>
+                    <p>Effectuée le : {{ order.createdAt | date('d-m-Y H:i') }}</p>
+                    <p>Est actuellement en <strong>{{order.orderStatus.name}}</strong> </p>
+                    <p>Le paiement a été effectué par {{order.paymentMethod.name}} pour une somme totale de : </p>    
+                    
+                    <strong>Cette commande comprend :</strong>
+                    <hr>
+                    {% for orderContent in order.orderContents %}
+                    
+                    <p>{{orderContent.quantity}} quantité de l'article : {{orderContent.articleRef.name}} , pour un montant unitaire de {{orderContent.articleRef.price}}  Euros TTC  </p>
+                    
+                    {% set soustotal = orderContent.quantity * orderContent.articleRef.price  %}
+                    {% set total = soustotal + soustotal  %}
+
+                    <p>Soit un sous-montant de <strong> {{soustotal}}  Euros </strong> concernant cet article</p>
+                    <hr>
+
+                    {% endfor %}
+
+                </div>
+
+            </div>
+            <!-- Card -->
+
+
+
+
+
+            {% endif %}
+
+            {% endfor %}
+
+
+        </div>
 
     </div>
 

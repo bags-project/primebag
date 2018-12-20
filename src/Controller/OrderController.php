@@ -3,8 +3,9 @@
 namespace App\Controller;
 
 use App\Entity\Order;
+use App\Entity\OrderContent;
 use App\Service\CartService;
-
+use App\Service\OrderService;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Validator\Constraints\Email;
@@ -12,33 +13,11 @@ use Symfony\Component\Validator\Constraints\Email;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-
+use Symfony\Component\Validator\Constraints\Date;
 
 class OrderController extends AbstractController
 {
-    /**
-     * @Route("/order", name="order")
-     */
-    public function index(SessionInterface $session)
-    {
-
-    //     $date = new \DateTime();
-    //     $session = $this->get('session');
-    //     $carts = $session->get('cart');
-
-    //     foreach ($carts as $key => $cart) {
-            
-    //         var_dump($cart->price);
-    //     }
-
-    //     return $this->render('order/order.html.twig', [
-    //         'controller_name' => 'OrderController',
-    //         'date'=> $date,
-    //         'session' => $session,
-    //         'cart' => $cart
-    //     ]);
-    }
-    
+    private $orders;
 
     /**
      * @Route("/buy", name="order_valid")
@@ -64,13 +43,16 @@ class OrderController extends AbstractController
     /**
      * @Route("/buy/success", name="order_success")
      */
-    public function confirmValidatedOrder(SessionInterface $session, CartService $cartService, Request $request)
+    public function confirmValidatedOrder(SessionInterface $session, CartService $cartService, OrderService $orderService, Request $request)
     {
+
+        //////////////////////////////////////////////////
+
         //var_dump($request->request->all());
             // array (size=2)
             // 'stripeToken' => string 'tok_1DiqqXCDiJ3Czp9nLqosnDmC' (length=28)
             // 'modeLivraison' => string 'colissimo' (length=9)
-
+            
         $totalCosts = "";
         // calcul du total panier
         $totalCart = $cartService->calculateCartTotal($session);
@@ -80,9 +62,14 @@ class OrderController extends AbstractController
         switch ($resultRequest['modeLivraison']) {
             case 'colissimo':
                 $totalCosts = ($totalCart + 5) * 100; // *100 car unité par défaut en centimes
+                //pour pouvoir afficher la fouchette du délai de livraison
+                $in1days = date('Y-m-d H:m:s', strtotime('+1 day'));
+                $in8days = date('Y-m-d H:m:s', strtotime('+8 day'));
                 break;
             case 'chronopost':
                 $totalCosts = ($totalCart + 10) * 100;
+                $in1days = date('Y-m-d H:m:s', strtotime('+1 day'));
+                $in3days = date('Y-m-d H:m:s', strtotime('+3 day'));
                 break;
             case 'retraitMag':
                 $totalCosts = $totalCart * 100;
@@ -99,14 +86,62 @@ class OrderController extends AbstractController
             "description" => "Paiement de (nom) pour la commande (numCommande)"
         ]);
         /////////////////////////////////////////////////////////////
+        
+
+        $order = new Order;
+        ///////////// SETS ORDER-CONTENTS /////////////
+        $cart = $session->get('cart');
+        
+        for($i=0; $i<count($cart['id']); $i++){
+
+            $orderContent = new OrderContent;
+            //setArticleRef
+            $articleRef = $cart['ref'][$i];
+            //set Quantity
+            $articleQuantity = $cart['quantity'][$i];
+            //setTaxe
+            $tax = 1.2;
+            //set setExclusiveOfTaxes
+            $exclusiveOfTaxes = (($cart['price'][$i])/$tax);//TVA = 20%
+            //setInclusiveOfTaxes
+            $inclusiveOfTaxes = $cart['price'][$i]; // prix sur le site
+
+            //incrémente orderContents et fait le setOrderRef
+            $order->addOrderContent($orderContent);
+
+            //sauvegarde en base la ligne de commande
+            $orderService->saveOrderContents($orderContent, $articleRef, $articleQuantity, $tax, $exclusiveOfTaxes, $inclusiveOfTaxes);
+            
+        }
+
+        
+        ////////////////// SETS ORDER ////////////////
+        //pour set setCreatedAt
+        $today = date("Y-m-d H:m:s");  // remplacer par un new Datetime ?
+        // Pour le setOrderNumber
+        $currentUser = $this->getUser();
+        $curentUserId = $currentUser->getId();
+        $orderNumber = $today .'-'. $curentUserId;
+        //pour le setPaymentDate
+        $paymentDate = $today;
+        //setPaymentReference
+        $paymentRef = $resultRequest['stripeToken'];
+        
+        ///////////////////////////////
+        //Sauvegarde des infos propres à la commande
+
+        $orderService->saveOrder($order, $today, $orderNumber, $paymentDate, $paymentRef);
+        
 
 
-        $date = new \DateTime();
 
-        //Ecrire les données dans la DB
-        // + ajouter un champ stripeToken
+
+
+        //Envoie des mails vers User & Seller
+
 
         //Vider le panier une fois les traitements finis
+        //$cartService->setEmptyCart($session);
 
         return $this->render('order/success.html.twig', [
             'date' => $date,
@@ -114,6 +149,12 @@ class OrderController extends AbstractController
 
         ]);
     }
+
+
+
+
+
+    
 }
 
 
@@ -201,3 +242,11 @@ class OrderController extends AbstractController
             //        );
        
             //        $mailer->send($message);
+           
+
+
+
+
+
+
+

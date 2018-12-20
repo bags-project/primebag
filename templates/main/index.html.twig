@@ -4,29 +4,10 @@
 
 {% block body %}
 
-{# Décoration de la vitrine #}
-{# <div class="card card-image" id="view">
-    <div class="text-black text-left py-5 px-4 my-5">
-        <div class="title-home-content">
-            <h1 class="card-title h1-responsive pt-3 mb-5 font-bold"><strong>PrimeBag</strong></h1>
-            <p class="mx-5 mb-5">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repellat fugiat, laboriosam,
-                voluptatem,
-            </p>
-        </div>
-    </div>
-</div> #}
-
-{# Décoration de la vitrine #}
-{# <header id="home-view">
-    <canvas class="snow"></canvas>
-    <h1><span class="p-primebag">P</span>rime <span class="b-primebag">B</span>ag</h1>
-</header> #}
-
 <main>
-
     <section id="home-one">
 
-        <!-- One -->
+        <!-- Woman -->
         <article class="woman">
 
             <div id="woman" class="home-categories">
@@ -35,27 +16,24 @@
             <div class="content-article">
                 <p>Gamme</p>
                 <h2>Femme</h2>
-                {# <a href="{{ path('article_gallery', {'category' : 'femme' })}}" class="btn btn-outline-info waves-effect">Découvrir</a></li>
-                #}
                 <a href="{{ path('woman_gallery')}}" class="btn btn-deep-purple btn-lg active btn-sm" role="button"
                     aria-pressed="true">Découvrir</a>
             </div>
+
             <div class="vitrine">
-
                 {% for article in articles %}
-
                 {% if article.categories[0].name == 'Femme' %}
 
                 <div class="container-info-article">
-                    <a href="{{ path('article_display' , {'id': article.id}) }}"><img height="170" width="170" src="../../assets/img/poster/{{ article.poster }}"
+                    <a href="{{ path('article_display' , {'id': article.id}) }}"><img id="article-showcase" height="170" width="170" src="../../assets/img/poster/{{ article.poster }}"
                             alt="produit de chez {{article.brand.name}}"></a>
-
                     <div id="{{ article.tag.icon }}" class="info-showcase">
+                        
                         {% if article.tag.name is defined %}
                         {{article.tag.name}}
                         {% endif %}
-                    </div>
 
+                    </div>
                 </div>
 
                 {% endif %}
@@ -63,7 +41,9 @@
             </div>
         </article>
 
-        <!-- Two -->
+
+
+        <!-- Man -->
         <article class="man">
 
             <div id="man" class="home-categories">
@@ -80,7 +60,7 @@
                 {% if article.categories[0].name == 'Homme' %}
 
                 <div class="container-info-article">
-                    <a href="{{ path('article_display' , {'id': article.id}) }}"><img height="170" width="170" src="../../assets/img/poster/{{ article.poster }}"
+                    <a href="{{ path('article_display' , {'id': article.id}) }}"><img id="article-showcase" height="170" width="170" src="{{ asset('assets/img/poster/') }}{{ article.poster }}"
                             alt="produit de chez {{article.brand.name}}"></a>
 
                     <div id="{{ article.tag.icon }}" class="info-showcase">
@@ -97,7 +77,7 @@
             </div>
         </article>
 
-        <!-- Three -->
+        <!-- Kids -->
         <article class="kid">
 
             <div id="kid" class="home-categories"></div>
@@ -112,7 +92,7 @@
                 {% if article.categories[0].name == 'Scolaire' %}
 
                 <div class="container-info-article">
-                    <a href="{{ path('article_display' , {'id': article.id}) }}"><img height="170" width="170" src="../../assets/img/poster/{{ article.poster }}"
+                    <a href="{{ path('article_display' , {'id': article.id}) }}"><img id="article-showcase" height="170" width="170" src="{{ asset('assets/img/poster/') }}{{ article.poster }}"
                             alt="produit de chez {{article.brand.name}}"></a>
 
                     <div id="{{ article.tag.icon }}" class="info-showcase">
@@ -130,7 +110,7 @@
 
         </article>
 
-        <!-- Four -->
+        <!-- bagages -->
         <article class="bagages">
 
             <div id="bagages" class="home-categories"></div>
@@ -147,7 +127,7 @@
 
                 <div class="container-info-article">
 
-                    <a href="{{ path('article_display' , {'id': article.id}) }}"><img height="170" width="170" src="../../assets/img/poster/{{ article.poster }}"
+                    <a href="{{ path('article_display' , {'id': article.id}) }}"><img id="article-showcase" height="170" width="170" src="{{ asset('assets/img/poster/') }}{{ article.poster }}"
                             alt="produit de chez {{article.brand.name}}"></a>
 
                     <div id="{{ article.tag.icon }}" class="info-showcase">
