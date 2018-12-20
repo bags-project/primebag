@@ -8,6 +8,15 @@
 
     <div class="limit">
 
+        {# Message Flash #}
+        {% for label, messages in app.flashes %}
+            {% for message in messages %}
+                <div class="boxdotted flash-{{ label }}">
+                    <h2 class="center">{{ message }}</h2>
+                </div>
+            {% endfor %}
+        {% endfor %}
+
         {{ form_start ( form ) }}
         {{ form_widget ( form ) }}
         <button type="submit">Editer</button>

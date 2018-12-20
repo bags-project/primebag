@@ -21,11 +21,13 @@ class OrderType extends AbstractType
             // ->add('paymentDate')
             // ->add('paymentReference')
             ->add('sentAt', DateTimeType::class, [
+                'required' => false,
                 'label' => 'Date d\'expédition :',
                 'date_widget' => 'single_text'
             ])
             // ->add('shippingCost')
             ->add('trackingNumber', TextType::class, [
+                'required' => false,
                 'label' => 'Numéro de suivi :'
             ])
             // ->add('paymentMethod')
