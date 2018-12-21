@@ -92,8 +92,10 @@ class OrderService
     //Envoie des mails vers User & Seller
     public function sendMails($orderNumber, $mailer){
         
+    $currentUser = $this->getUser();
+
         //$currentUser : tableau avec toutes les infos du user (firstName...)
-        $message = (new \Swift_Message('Mail nouvelle preparation de commande'))
+    $message = (new \Swift_Message('Mail nouvelle preparation de commande'))
     ->setFrom('primebag62@gmail.com')
     ->setTo('primebag62@gmail.com')
     ->setBody(
@@ -111,7 +113,7 @@ class OrderService
 
     $message = (new \Swift_Message('Confirmation de nouvelle commande'))
     ->setFrom('primebag62@gmail.com')
-    ->setTo('primebag62@gmail.com')
+    ->setTo($currentUser->email)
     ->setBody(
         '<html>' .
         '<body>'.

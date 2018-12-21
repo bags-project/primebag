@@ -20,7 +20,7 @@ class CartController extends AbstractController
         if($session->get('cart') == null){
             $cartService->setEmptyCart($session);
         }
-        
+          
         $totalCart = $cartService->calculateCartTotal($session);
 
         return $this->render('cart/view.html.twig', [
