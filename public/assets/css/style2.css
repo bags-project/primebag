@@ -207,6 +207,11 @@ footer {
 
 }
 
+.casesize {
+    max-height:170px;
+    max-width:170px;
+}
+
 .vitrine {
 
     display: flex;
